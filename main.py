@@ -4,14 +4,17 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+from dotenv import load_dotenv
 import json
 import os
+load_dotenv()
+
 
 driver = webdriver.FirefoxD()
 from time import sleep
 
-username = os.get("USERNAME")  # tu user
-passsword = os.get("PASSWORD")  # Tu contra
+username = os.getenv("USERNAME")  # tu user
+passsword = os.getenv("PASSWORD")  # Tu contra
 
 print("Starting")
 
