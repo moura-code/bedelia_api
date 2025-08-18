@@ -26,6 +26,7 @@ PASSWORD = os.getenv("CONTRASENA", "")
 
 LOGIN_URL = "https://bedelias.udelar.edu.uy/views/private/desktop/evaluarPrevias/evaluarPrevias02.xhtml?cid=2"
 
+# TODO make a this a class in later refactoring
 
 def _get_options(browser: str):
     if browser == "chrome":
