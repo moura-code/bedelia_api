@@ -1,0 +1,16 @@
+api/materias
+api/materias/id/{
+    previas: [id1, id2, id3],
+    posrequisitos: [id1, id2, id3],
+    creditos: 4,
+    nombre: "Materia 1",
+    cupo: 100,
+    instituto: "Instituto 1",
+    semestre: 1,
+    link: "https://www.google.com",
+}
+
+agente:
+
+
+

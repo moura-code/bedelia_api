@@ -15,6 +15,9 @@ from time import sleep
 from database import init_database, get_db_session
 from data_parser import DataParser
 from models import Subject, Offering, Program
+import re
+import time
+
 
 load_dotenv()
 
@@ -100,6 +103,22 @@ class Bedelias(Scraper):
         self.login_url = "https://bedelias.udelar.edu.uy/views/private/desktop/evaluarPrevias/evaluarPrevias02.xhtml?cid=2"
         self.data_parser = DataParser()
         self.total_pages = 0
+        
+        # Map JSF nodetype to a readable group type
+        self.NODETYPE_MAP = {
+            "y": "ALL",       # debe tener todas
+            "o": "ANY",       # debe tener alguna
+            "no": "NONE",     # no debe tener
+            "default": "LEAF" # leaf node (a concrete requirement)
+        }
+        
+        # Regex patterns for parsing
+        self.APPROVAL_RE = re.compile(r"(\d+)\s+aprobaci[oó]n(?:/|)es?\s+entre:?", re.IGNORECASE)
+        self.CREDITS_RE = re.compile(r"(\d+)\s+cr[eé]ditos?\s+en\s+el\s+Plan:?\s*(.*)", re.IGNORECASE)
+        self.ITEM_PREFIX_RE = re.compile(
+            r"^(?:(Examen|Curso)\s+de\s+la\s+U\.C\.B|U\.C\.B\s+aprobada)\s*:\s*(.+)$",
+            re.IGNORECASE
+        )
     
     def extract_table_info(self, table_element):
         """Extract information from a table (and nested tables) into a list of row dicts."""
@@ -131,7 +150,182 @@ class Bedelias(Scraper):
         self.wait.until(EC.element_to_be_clickable((By.XPATH, "//a[@class='ui-paginator-first ui-state-default ui-corner-all']"))).click()
         self.total_pages = total
         return total
+    # ----------------------------
+# High-level API you’ll call
+# ----------------------------
+    def extract_requirements(self, root_id="arbol"):
+        """
+        Scrape the PrimeFaces horizontal tree (#arbol) into a nested JSON-able dict.
+        - driver: Selenium WebDriver, already on the page with the HTML.
+        - root_id: id of the tree root container (defaults to 'arbol').
+        - expand: click all togglers first so content is present in DOM.
+        """
     
+
+    
+        # find the root treenode (data-rowkey="root")
+        root_node_td = self.driver.find_element(By.CSS_SELECTOR, 'td.ui-treenode[data-rowkey="root"]')
+        return self._parse_node(root_node_td)
+    
+    # ----------------------------
+    # Implementation details
+    # ----------------------------
+    
+    def _expand_all(self, root_elem):
+        """
+        Repeatedly click all '+' togglers until none remain.
+        Works even if tree loads collapsed or partially expanded.
+        """
+        # primefaces uses 'ui-icon-plus' when collapsed, 'ui-icon-minus' when expanded
+        for _ in range(10):  # safety loop to avoid infinite clicking
+            pluses = root_elem.find_elements(By.CSS_SELECTOR, ".ui-tree-toggler.ui-icon.ui-icon-plus")
+            if not pluses:
+                break
+            for p in pluses:
+                try:
+                    self.driver.execute_script("arguments[0].click();", p)
+                    time.sleep(0.05)
+                except Exception:
+                    pass
+                
+    def _parse_node(self, td_node):
+        nodetype = td_node.get_attribute("data-nodetype") or "default"
+        label_text = self._get_label_text(td_node).strip()
+        kind = self.NODETYPE_MAP.get(nodetype, "LEAF")
+    
+        if "ui-treenode-leaf" in td_node.get_attribute("class"):
+            # Parse a concrete requirement leaf
+            return {
+                "type": "LEAF",
+                "label": label_text,
+                **self._parse_leaf_payload(td_node)
+            }
+    
+        # Otherwise: parent group node
+        children = []
+        for child_td in self._direct_children_of(td_node):
+            children.append(self._parse_node(child_td))
+    
+        return {
+            "type": kind,
+            "label": label_text,
+            "children": children
+        }
+    
+    def _get_label_text(self, td_node):
+        # The visible text sits in span.ui-treenode-label
+        try:
+            label_el = td_node.find_element(By.CSS_SELECTOR, ".ui-treenode-label")
+            # innerText preserves line breaks; textContent is similar. Prefer innerText.
+            txt = label_el.get_attribute("innerText") or label_el.text
+            # Normalize whitespace
+            lines = [l.strip() for l in txt.replace("\r", "\n").split("\n")]
+            return "\n".join([l for l in lines if l])
+        except Exception:
+            return ""
+    
+    def _direct_children_of(self, parent_td):
+        """
+        Given a <td.ui-treenode> that is a PARENT, return only its direct child <td.ui-treenode> elements.
+        PrimeFaces horizontal tree places children in the next-sibling
+        <td class="ui-treenode-children-container"> ... <div class="ui-treenode-children"> with nested tables.
+        """
+        try:
+            container = parent_td.find_element(
+                By.XPATH, 'following-sibling::td[contains(@class,"ui-treenode-children-container")]'
+            )
+        except Exception:
+            return []
+    
+        return container.find_elements(
+            By.CSS_SELECTOR, 'div.ui-treenode-children > table > tbody > tr > td.ui-treenode'
+        )
+    
+    # ---------- Leaf parsing ----------
+    def _parse_leaf_payload(self, td_leaf):
+        """
+        Return a dict describing the leaf rule:
+          - approvals: {"rule":"min_approvals","required_count":N,"items":[...]}
+          - credits:   {"rule":"credits_in_plan","credits":N,"plan": "..."}
+          - fallback:  {"rule":"raw_text","value": "..."}
+        """
+        raw = self._get_label_text(td_leaf)
+        # Split by lines, preserving order
+        lines = [l for l in (raw.split("\n")) if l.strip()]
+        if not lines:
+            return {"rule": "raw_text", "value": raw}
+    
+        first = lines[0]
+    
+        # 1) "N aprobación/es entre:"
+        m = self.APPROVAL_RE.search(first)
+        if m:
+            required = int(m.group(1))
+            items = [self._parse_item_line(l) for l in lines[1:]]
+            items = [i for i in items if i]  # drop None
+            return {
+                "rule": "min_approvals",
+                "required_count": required,
+                "items": items,
+                "raw": raw
+            }
+    
+        # 2) "N créditos en el Plan: <plan>"
+        m = self.CREDITS_RE.search(first)
+        if m:
+            credits = int(m.group(1))
+            plan_inline = (m.group(2) or "").strip()
+            plan_tail = " ".join(lines[1:]).strip()
+            plan = plan_inline if plan_inline else plan_tail
+            return {
+                "rule": "credits_in_plan",
+                "credits": credits,
+                "plan": plan or None,
+                "raw": raw
+            }
+    
+        # Fallback: just return the text
+        return {"rule": "raw_text", "value": raw}
+    
+    
+    
+    def _parse_item_line(self, line):
+        """
+        Convert lines like:
+          - "U.C.B aprobada: 2241 - ADMINISTRACION DE EMPRESAS"
+          - "Examen de la U.C.B: CP1 - ANALISIS MATEMATICO I"
+          - "Curso de la U.C.B: 1321 - PROGRAMACION 2"
+          - or anything else -> {"raw": line}
+        into a uniform structure.
+        """
+        line = line.strip()
+        m = self.ITEM_PREFIX_RE.match(line)
+        if m:
+            prefix = m.group(1) or "U.C.B aprobada"
+            payload = m.group(2).strip()
+    
+            # Split "CODE - NAME" but allow multiple " - " parts in CODE (e.g., "CENURLN - SRN14 - NAME")
+            parts = [p.strip() for p in payload.split(" - ")]
+            if len(parts) >= 2:
+                code = " - ".join(parts[:-1])
+                name = parts[-1]
+            else:
+                code, name = payload, None
+    
+            return {
+                "source": "UCB",
+                "kind": prefix.lower(),   # "examen", "curso", or "u.c.b aprobada"
+                "code": code or None,
+                "name": name or None,
+                "raw": line
+            }
+    
+        # If it doesn't match known prefixes, still try to split "CODE - NAME"
+        parts = [p.strip() for p in line.split(" - ")]
+        if len(parts) >= 2:
+            return {"code": " - ".join(parts[:-1]), "name": parts[-1], "raw": line}
+    
+        return {"raw": line}
     def login_and_navigate(self):
         """Login to Bedelías and navigate to the main interface."""
         self.logger.info("Starting login process...")
@@ -143,10 +337,11 @@ class Bedelias(Scraper):
         password_field = self.driver.find_element(By.ID, "password")
         password_field.send_keys(self.password)
         
-        login_button = self.driver.find_element(By.NAME, "_eventId_proceed")
-        login_button.click()
-        
-        # Wait for a known menu link to indicate post-login
+        self.wait.until(EC.element_to_be_clickable((By.NAME, "_eventId_proceed"))).click()
+        sleep(0.5)
+       
+
+                # Wait for a known menu link to indicate post-login
         self.wait.until(
             EC.presence_of_element_located(
                 (By.LINK_TEXT, "PLANES DE ESTUDIO")
@@ -165,8 +360,11 @@ class Bedelias(Scraper):
 
         # Expand and open info
         self.wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@class='ui-row-toggler ui-icon ui-icon-circle-triangle-e']"))).click()
-        sleep(0.3)
+        sleep(1)
+        self.logger.info("Clicking info circle")
         self.wait.until(EC.element_to_be_clickable((By.XPATH, '//i[@class="pi  pi-info-circle"]'))).click()
+        sleep(1)
+        self.logger.info("Clicking sistema de previaturas")
         self.wait.until(EC.element_to_be_clickable((By.XPATH, '//span[text()="Sistema de previaturas"]'))).click()
         sleep(0.3)
 
@@ -178,29 +376,35 @@ class Bedelias(Scraper):
         
         # Extract previas data
         for current_page in range(1, self.total_pages + 1):
+
             self.logger.info(f"Processing previas page {current_page}/{self.total_pages}")
             sleep(0.1)
             rows_len = len(self.driver.find_elements(By.XPATH, '//tr[@class="ui-widget-content ui-datatable-even"]'))
-            
             for i in range(rows_len):
                 try:
                     row = self.driver.find_elements(By.XPATH, '//tr[contains(@class, "ui-widget-content")]')[i]
                     
-                    # Extract row data for processing
+                    sleep(3)
+                    # Extract row data for processing table data
                     cells = row.find_elements(By.TAG_NAME, "td")
+                    self.logger.info(f"Cells length: {len(cells)}")
                     if len(cells) >= 3:
                         subject_info = {
                             'code': cells[0].text.strip() if cells[0].text else '',
                             'name': cells[1].text.strip() if cells[1].text else '',
                             'prerequisites': []  # Will be populated with detailed data
                         }
+                        self.logger.info(f"Subject info: {subject_info}")
+                        sleep(3)
                         
                         # Click for details if available
                         detail_links = cells[2].find_elements(By.TAG_NAME, "a")
+                        
                         if detail_links:
                             detail_links[0].click()
                             sleep(0.2)
-                            
+                            sleep(3)
+
                             # Extract prerequisite details from the expanded view
                             # This would need to be implemented based on the actual page structure
                             # For now, we'll store the basic info
@@ -210,6 +414,18 @@ class Bedelias(Scraper):
                             
                             # Close detail view if needed
                             # (Implementation depends on UI behavior)
+
+                        self.logger.info("Clicking +")
+                        plus_elements = self.driver.find_elements(By.XPATH, '//span[@class="ui-tree-toggler ui-icon ui-icon-plus"]')
+                        if plus_elements:
+                            for i in range(len(plus_elements)):
+                                self.wait.until(EC.element_to_be_clickable((By.XPATH, f'//span[@class="ui-tree-toggler ui-icon ui-icon-plus"][{i+1}]'))).click()
+                                sleep(0.1)
+                        else:
+                            self.logger.info("No + found")
+                        
+                            
+                            
                             
                 except Exception as e:
                     self.logger.warning(f"Error processing previas row {i}: {e}")
@@ -233,7 +449,7 @@ class Bedelias(Scraper):
             
             # Initialize database
             self.logger.info("Initializing database connection...")
-            init_database()
+            #init_database()
             self.logger.info("Database initialized successfully")
             
             # Start driver
