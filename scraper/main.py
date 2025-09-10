@@ -128,6 +128,7 @@ class Bedelias(Scraper):
         self.username = username
         self.password = password
         self.login_url = "https://bedelias.udelar.edu.uy/views/private/desktop/evaluarPrevias/evaluarPrevias02.xhtml?cid=2"
+        self.home_url = "https://bedelias.udelar.edu.uy/"
         self.total_pages = 0
 
         # Map JSF nodetype to a readable group type
@@ -414,21 +415,28 @@ class Bedelias(Scraper):
     def get_previas(self):
         """Extract prerequisite (previas) data and store in database."""
         self.logger.info("Starting to extract previas (prerequisites) data...")
-
+        self.driver.get(self.home_url)
+        
+        self.wait_for_page_to_load()
+        
         self.hover_by_text("PLANES DE ESTUDIO")
-        self.wait.until(
-            EC.element_to_be_clickable((By.LINK_TEXT, "Planes de estudio / Previas"))
-        ).click()
+        self.wait_for_element_to_be_clickable((By.LINK_TEXT, "Planes de estudio / Previas")).click()
+        input("Press Enter to continue...")
+        
+        # Selecting fing
+        self.wait_for_element_to_be_clickable((By.XPATH, '//*[text()= "TECNOLOGÍA Y CIENCIAS DE LA NATURALEZA"]')).click()
+        self.wait_for_element_to_be_clickable((By.XPATH, '//*[text()= "FING - FACULTAD DE INGENIERÍA"]')).click()
+        
+        # Selecting INGENIERIA EN COMPUTACION
+        
+        self.wait_for_element_to_be_clickable((By.XPATH, "//span[contains(@class,'ui-column-title')]/following-sibling::input[1]")).send_keys("INGENIERIA EN COMPUTACION")
+        self.wait_for_element_to_be_clickable((By.XPATH, '//div[@class="ui-row-toggler ui-icon ui-icon-circle-triangle-e"]')).click()
+        self.wait_for_element_to_be_clickable((By.XPATH, "//div[@class='ui-row-toggler ui-icon ui-icon-circle-triangle-e']")).click()
 
         # Expand and open info
-        self.wait.until(
-            EC.element_to_be_clickable(
-                (
-                    By.XPATH,
-                    "//div[@class='ui-row-toggler ui-icon ui-icon-circle-triangle-e']",
-                )
-            )
-        ).click()
+        input("Press Enter to continue...")
+        
+       
         self.logger.info("Clicking info circle")
         self.wait.until(
             EC.element_to_be_clickable((By.XPATH, '//i[@class="pi  pi-info-circle"]'))
@@ -528,8 +536,9 @@ class Bedelias(Scraper):
             # Start driver
             self.start_driver()
 
+            self.driver.get("https://bedelias.udelar.edu.uy/views/private/desktop/evaluarPrevias/evaluarPrevias02.xhtml?cid=2")
             # Login and navigate
-            self.login_and_navigate()
+            #self.login_and_navigate()
 
             # Extract previas (prerequisites) data
             self.get_previas()
