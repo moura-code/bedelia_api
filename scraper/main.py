@@ -421,8 +421,8 @@ class Bedelias(Scraper):
         
         self.hover_by_text("PLANES DE ESTUDIO")
         self.wait_for_element_to_be_clickable((By.LINK_TEXT, "Planes de estudio / Previas")).click()
-        input("Press Enter to continue...")
-        
+        # <div id="j_idt22_modal" > sempre esta na frente TODO> remove esse sleep, talvez self.wait_for_element_to_be_visible((By.ID, "j_idt22_modal")) ou wait_page_to_load
+        sleep(0.5)
         # Selecting fing
         self.wait_for_element_to_be_clickable((By.XPATH, '//*[text()= "TECNOLOGÍA Y CIENCIAS DE LA NATURALEZA"]')).click()
         self.wait_for_element_to_be_clickable((By.XPATH, '//*[text()= "FING - FACULTAD DE INGENIERÍA"]')).click()
@@ -430,28 +430,21 @@ class Bedelias(Scraper):
         # Selecting INGENIERIA EN COMPUTACION
         
         self.wait_for_element_to_be_clickable((By.XPATH, "//span[contains(@class,'ui-column-title')]/following-sibling::input[1]")).send_keys("INGENIERIA EN COMPUTACION")
-        self.wait_for_element_to_be_clickable((By.XPATH, '//div[@class="ui-row-toggler ui-icon ui-icon-circle-triangle-e"]')).click()
-        self.wait_for_element_to_be_clickable((By.XPATH, "//div[@class='ui-row-toggler ui-icon ui-icon-circle-triangle-e']")).click()
+        self.wait_for_element_to_be_clickable((By.XPATH, '//*[text()="INGENIERIA EN COMPUTACION"]/preceding-sibling::td[1]')).click()
 
         # Expand and open info
-        input("Press Enter to continue...")
-        
-       
-        self.logger.info("Clicking info circle")
-        self.wait.until(
-            EC.element_to_be_clickable((By.XPATH, '//i[@class="pi  pi-info-circle"]'))
-        ).click()
+        self.wait_for_element_to_be_clickable((By.XPATH, '//i[@class="pi  pi-info-circle"]')).click()
         self.logger.info("Clicking sistema de previaturas")
-        self.wait.until(
-            EC.element_to_be_clickable(
-                (By.XPATH, '//span[text()="Sistema de previaturas"]')
-            )
-        ).click()
+        self.wait_for_element_to_be_clickable((By.XPATH, '//span[text()="Sistema de previaturas"]')).click()
+        # TODO remover
+        sleep(2)
 
         self.logger.info("Getting total pages...")
         # Ensure paginator is in known state and get total pages
         self.get_total_pages()
-
+        # TODO remover
+        sleep(2)
+        
         data = {}
         try:
             # Extract previas data
