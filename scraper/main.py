@@ -87,7 +87,8 @@ class Scraper:
 
     def scroll_to_element_and_click(self, element):
         self.scroll_to_element(element)
-        element.click()
+        sleep(0.2)
+        self.wait_for_element_to_be_clickable(element).click()
 
     def wait_for_element(self, locator: tuple):
         return self.wait.until(EC.presence_of_element_located(locator))
@@ -448,7 +449,7 @@ class Bedelias(Scraper):
         data = {}
         try:
             # Extract previas data
-            for current_page in range(19, self.total_pages + 1):
+            for current_page in range(1, self.total_pages + 1):
                 self.logger.info(
                     f"Processing previas page {current_page}/{self.total_pages}"
                 )
@@ -476,7 +477,7 @@ class Bedelias(Scraper):
                         subject_info = {
                             "code": cells[0].text.strip() if cells[0].text else "",
                             "name": cells[1].text.strip() if cells[1].text else "",
-                            "prerequisites": [],  # Will be populated with detailed data
+                            "prerequisites": [],  
                         }
                         self.logger.info(f"Subject info: {subject_info}")
 
@@ -496,7 +497,7 @@ class Bedelias(Scraper):
                         self.expand_all_requirements()
 
                         subject_info["requirements"] = self.extract_requirements()
-
+                     
                         data[subject_info["code"]] = subject_info
                         self.logger.info(
                             f"Requriments extracted for {subject_info['code']}"
@@ -506,6 +507,7 @@ class Bedelias(Scraper):
                                 By.XPATH, "//span[normalize-space(.)='Volver']"
                             )
                         )
+
                     except Exception as e:
                         if self.debug:
                             traceback.print_exc()
