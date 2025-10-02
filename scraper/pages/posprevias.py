@@ -166,12 +166,16 @@ class PosPrevias(Scraper, UseTable):
                         self.logger.info(f"Extracted {len(results)} posprevias for {codigo}")
                     self.scroll_to_bottom()
                     # foot is in front volver
-                    self.scroll_to_element_and_click(
+                    try:
+                        self.scroll_to_element_and_click(
                             self.driver.find_element(
                                 By.XPATH, "//span[normalize-space(.)='Volver']"
                             )
                         )
-                    self.wait_for_page_to_load()
+                        self.wait_for_page_to_load()
+                    except:
+                        input("Press Enter to continue...")	
+                        continue
         finally:
             backup_file = "posprevias_data_backup.json"
             

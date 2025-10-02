@@ -47,6 +47,6 @@ class UseTable():
         if page > 10:
             self.scroll_to_element_and_click(self.wait_for_element_to_be_clickable((By.XPATH, f'//a[contains(@class,"ui-paginator-last")]')))
             self.wait_for_page_to_load()
-
+        self.wait.until(EC.invisibility_of_element_located((By.XPATH, '//div[@id="j_idt22_modal"]')))
         self.scroll_to_element_and_click(self.wait_for_element_to_be_clickable((By.XPATH, f'//a[@aria-label="Page {page}"]')))
         self.wait_for_page_to_load()

@@ -13,12 +13,14 @@ import traceback
 import json
 import re
 from scraper import Scraper
+from common.navigation import PlanSection
 
 
-class Previas(Scraper, UseTable):
+class Previas(Scraper, UseTable, PlanSection):
 
-    def __init__(self, driver, wait, browser: str = "firefox", debug: bool = False, home_url: str = None):
+    def __init__(self, driver, wait, browser: str = "firefox", debug: bool = False, home_url: str = None, plan_name: str = "INGENIERIA EN COMPUTACION"):
         Scraper.__init__(self, driver, wait, browser, debug)
+        PlanSection.__init__(self, plan_name)
         UseTable.__init__(self)
         self.home_url = home_url
                 # Map JSF nodetype to a readable group type
@@ -236,27 +238,11 @@ class Previas(Scraper, UseTable):
    
     def run(self):
         """Extract prerequisite (previas) data and store in database."""
-        self.logger.info("Starting to extract previas (prerequisites) data...")
-        self.driver.get(self.home_url)
-        
-        self.wait_for_page_to_load()
-        
-        self.hover_by_text("PLANES DE ESTUDIO")
-        self.wait_for_element_to_be_clickable((By.LINK_TEXT, "Planes de estudio / Previas")).click()
-        # <div id="j_idt22_modal" > sempre esta na frente TODO> remove esse sleep, talvez self.wait_for_element_to_be_visible((By.ID, "j_idt22_modal")) ou wait_page_to_load
-        sleep(0.5)
-        # Selecting fing
-        self.wait_for_element_to_be_clickable((By.XPATH, '//*[text()= "TECNOLOGÍA Y CIENCIAS DE LA NATURALEZA"]')).click()
-        self.wait_for_element_to_be_clickable((By.XPATH, '//*[text()= "FING - FACULTAD DE INGENIERÍA"]')).click()
-        
-        # Selecting INGENIERIA EN COMPUTACION
-        
-        self.wait_for_element_to_be_clickable((By.XPATH, "//span[contains(@class,'ui-column-title')]/following-sibling::input[1]")).send_keys("INGENIERIA EN COMPUTACION")
-        self.wait_for_element_to_be_clickable((By.XPATH, '//*[text()="INGENIERIA EN COMPUTACION"]/preceding-sibling::td[1]')).click()
-
-        # Expand and open info
-        self.wait_for_element_to_be_clickable((By.XPATH, '//i[@class="pi  pi-info-circle"]')).click()
+        self.open_plan_section(
+            log_message="Starting to extract previas (prerequisites) data...",
+        )
         self.logger.info("Clicking sistema de previaturas")
+
         self.wait_for_element_to_be_clickable((By.XPATH, '//span[text()="Sistema de previaturas"]')).click()
         # TODO remover
         sleep(2)
@@ -276,17 +262,16 @@ class Previas(Scraper, UseTable):
                 )
                 rows_len = len(
                     self.driver.find_elements(
-                        By.XPATH, '//tr[@class="ui-widget-content ui-datatable-even"]'
+                        By.XPATH, '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]'
                     )
                 )
-    
                 for i in range(rows_len):
                     self.go_to_page(current_page)
                     try:
                         row = self.wait_for_all_elements_to_be_visible(
                             (
                                 By.XPATH,
-                                '//tr[@class="ui-widget-content ui-datatable-even"]',
+                                '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]',
                             )
                         )[i]
                         # Extract row data for processing table data
