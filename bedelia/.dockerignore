@@ -1,0 +1,66 @@
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+
+# Environment and config
+.env
+.env.local
+.env.*.local
+
+# Version control
+.git
+.gitignore
+.gitattributes
+
+# Dependencies
+node_modules/
+venv/
+env/
+.venv/
+
+# Django/Python specific
+media/
+staticfiles/
+static/
+migrations/__pycache__/
+*.sqlite3
+*.db
+
+# Testing and coverage
+htmlcov/
+coverage.xml
+.coverage
+.pytest_cache/
+.tox/
+.cache/
+.mypy_cache/
+test-results/
+.coverage.*
+
+# Logs
+*.log
+logs/
+
+# Documentation and collections
+*.postman_collection.json
+*.md
+
+# IDE and OS files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Temporary files
+tmp/
+temp/

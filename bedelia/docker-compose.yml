@@ -1,0 +1,44 @@
+networks:
+  bedelias-api-network:
+    name: bedelias-api-network
+
+services:
+  bedelias-api:
+    build: .
+    image: bedelias-api:latest
+    container_name: bedelias-api
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file: .env
+    environment:
+      - DB_HOST=db
+    networks:
+      - bedelias-api-network
+    ports:
+      - '8000:8000'
+  db:
+    image: postgres
+    container_name: bedelias-postgres-db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=bedelias-api
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U postgres' ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    networks:
+      - bedelias-api-network
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  
+
+volumes:
+  db:
+    driver: local
