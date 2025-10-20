@@ -15977,3 +15977,224 @@ _onJSONObjectReady/<@chrome://remote/content/marionette/transport.sys.mjs:494:20
 2025-10-01 18:01:32 - Previas - INFO - [previas.py:326] - Backup saved to previas_data_backup.json
 2025-10-01 18:01:32 - Bedelias - INFO - [main.py:226] - Cleaning up and closing browser...
 2025-10-01 18:01:32 - Bedelias - INFO - [main.py:140] - Closing browser...
+2025-10-17 15:44:57 - __main__ - INFO - [main.py:236] - Initializing Bedelias scraper with pages: previas, posprevias, credits
+2025-10-17 15:44:57 - Bedelias - INFO - [main.py:201] - Starting Bedelias scraper...
+2025-10-17 15:44:57 - Bedelias - INFO - [main.py:96] - Starting firefox browser in debug mode...
+2025-10-17 15:45:23 - Bedelias - INFO - [main.py:100] - Browser started successfully
+2025-10-17 15:45:23 - Bedelias - INFO - [main.py:214] - Running previas step...
+2025-10-17 15:45:23 - Previas - INFO - [navigation.py:20] - Starting to extract previas (prerequisites) data...
+2025-10-17 15:45:26 - Previas - INFO - [previas.py:244] - Clicking sistema de previaturas
+2025-10-17 15:45:29 - Previas - INFO - [previas.py:250] - Getting total pages...
+2025-10-17 15:45:29 - Previas - INFO - [usetable.py:26] - Total pages: 19
+2025-10-17 15:45:31 - Previas - INFO - [previas.py:260] - Processing previas page 1/19
+2025-10-17 15:45:32 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1944 - ADMINISTRACION GENERAL PARA INGENIEROS', 'name': 'Curso'}
+2025-10-17 15:45:34 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:45:34 - Previas - INFO - [previas.py:307] - Requriments extracted for 1944 - ADMINISTRACION GENERAL PARA INGENIEROS
+2025-10-17 15:45:35 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1944 - ADMINISTRACION GENERAL PARA INGENIEROS', 'name': 'Examen'}
+2025-10-17 15:45:36 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:45:36 - Previas - INFO - [previas.py:307] - Requriments extracted for 1944 - ADMINISTRACION GENERAL PARA INGENIEROS
+2025-10-17 15:45:37 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1918 - ADMINISTRACION Y SEGURIDAD DE SISTEMAS', 'name': 'Curso'}
+2025-10-17 15:45:39 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:45:40 - Previas - INFO - [previas.py:307] - Requriments extracted for 1918 - ADMINISTRACION Y SEGURIDAD DE SISTEMAS
+2025-10-17 15:45:41 - Previas - INFO - [previas.py:287] - Subject info: {'code': 'SRN03 - ALGEBRA LINEAL I', 'name': 'Examen'}
+2025-10-17 15:45:43 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:45:43 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:45:43 - Previas - INFO - [previas.py:307] - Requriments extracted for SRN03 - ALGEBRA LINEAL I
+2025-10-17 15:45:43 - Previas - INFO - [previas.py:287] - Subject info: {'code': 'SRN10 - ALGEBRA LINEAL II', 'name': 'Curso'}
+2025-10-17 15:45:45 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:45:45 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:45:45 - Previas - INFO - [previas.py:307] - Requriments extracted for SRN10 - ALGEBRA LINEAL II
+2025-10-17 15:45:46 - Previas - INFO - [previas.py:287] - Subject info: {'code': 'SRN10 - ALGEBRA LINEAL II', 'name': 'Examen'}
+2025-10-17 15:45:48 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:45:48 - Previas - INFO - [previas.py:307] - Requriments extracted for SRN10 - ALGEBRA LINEAL II
+2025-10-17 15:45:49 - Previas - INFO - [previas.py:287] - Subject info: {'code': '5914 - ALGEBRA LINEAL NUMERICA', 'name': 'Curso'}
+2025-10-17 15:45:51 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:45:51 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:45:51 - Previas - INFO - [previas.py:307] - Requriments extracted for 5914 - ALGEBRA LINEAL NUMERICA
+2025-10-17 15:45:51 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1641 - ALGORITMOS DE APROXIMACION', 'name': 'Curso'}
+2025-10-17 15:45:53 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:45:53 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:45:53 - Previas - INFO - [previas.py:307] - Requriments extracted for 1641 - ALGORITMOS DE APROXIMACION
+2025-10-17 15:45:54 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1628 - ALGORITMOS EVOLUTIVOS', 'name': 'Curso'}
+2025-10-17 15:45:56 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:45:57 - Previas - INFO - [previas.py:307] - Requriments extracted for 1628 - ALGORITMOS EVOLUTIVOS
+2025-10-17 15:45:58 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1637 - ALGORITMOS EVOLUTIVOS', 'name': 'Curso'}
+2025-10-17 15:46:00 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:01 - Previas - INFO - [previas.py:307] - Requriments extracted for 1637 - ALGORITMOS EVOLUTIVOS
+2025-10-17 15:46:02 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1634 - ANALISIS DE DATOS EN REDES COMPLEJAS', 'name': 'Curso'}
+2025-10-17 15:46:04 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:04 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:46:04 - Previas - INFO - [previas.py:307] - Requriments extracted for 1634 - ANALISIS DE DATOS EN REDES COMPLEJAS
+2025-10-17 15:46:05 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1864 - ANALISIS SEMANTICO DE LENGUAJE NATURAL', 'name': 'Curso'}
+2025-10-17 15:46:07 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:07 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:46:08 - Previas - INFO - [previas.py:307] - Requriments extracted for 1864 - ANALISIS SEMANTICO DE LENGUAJE NATURAL
+2025-10-17 15:46:09 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1440 - ANALISIS Y DISEÑO DE ALGORIT.DISTRIB.EN REDES', 'name': 'Curso'}
+2025-10-17 15:46:11 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:11 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:46:11 - Previas - INFO - [previas.py:307] - Requriments extracted for 1440 - ANALISIS Y DISEÑO DE ALGORIT.DISTRIB.EN REDES
+2025-10-17 15:46:12 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1438 - APLICACIONES DE TEORIA DE LA INFORMACION AL PROC. DE IMAG.', 'name': 'Curso'}
+2025-10-17 15:46:14 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:14 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:46:14 - Previas - INFO - [previas.py:307] - Requriments extracted for 1438 - APLICACIONES DE TEORIA DE LA INFORMACION AL PROC. DE IMAG.
+2025-10-17 15:46:15 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1872 - APLICACIONES DEL ALGEBRA LINEAL', 'name': 'Curso'}
+2025-10-17 15:46:17 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:17 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:46:17 - Previas - INFO - [previas.py:307] - Requriments extracted for 1872 - APLICACIONES DEL ALGEBRA LINEAL
+2025-10-17 15:46:18 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1872 - APLICACIONES DEL ALGEBRA LINEAL', 'name': 'Examen'}
+2025-10-17 15:46:20 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:20 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:46:20 - Previas - INFO - [previas.py:307] - Requriments extracted for 1872 - APLICACIONES DEL ALGEBRA LINEAL
+2025-10-17 15:46:21 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1866 - APRENDIZAJE AUTOMATICO', 'name': 'Curso'}
+2025-10-17 15:46:23 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:25 - Previas - INFO - [previas.py:307] - Requriments extracted for 1866 - APRENDIZAJE AUTOMATICO
+2025-10-17 15:46:26 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1443 - ARQUITECTURA DE COMPUTADORAS', 'name': 'Curso'}
+2025-10-17 15:46:28 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:29 - Previas - INFO - [previas.py:307] - Requriments extracted for 1443 - ARQUITECTURA DE COMPUTADORAS
+2025-10-17 15:46:30 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1443 - ARQUITECTURA DE COMPUTADORAS', 'name': 'Examen'}
+2025-10-17 15:46:32 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:33 - Previas - INFO - [previas.py:307] - Requriments extracted for 1443 - ARQUITECTURA DE COMPUTADORAS
+2025-10-17 15:46:34 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1466 - ARQUITECTURA DE COMPUTADORAS', 'name': 'Curso'}
+2025-10-17 15:46:36 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:37 - Previas - INFO - [previas.py:307] - Requriments extracted for 1466 - ARQUITECTURA DE COMPUTADORAS
+2025-10-17 15:46:38 - Previas - INFO - [previas.py:260] - Processing previas page 2/19
+2025-10-17 15:46:38 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1466 - ARQUITECTURA DE COMPUTADORAS', 'name': 'Examen'}
+2025-10-17 15:46:40 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:41 - Previas - INFO - [previas.py:307] - Requriments extracted for 1466 - ARQUITECTURA DE COMPUTADORAS
+2025-10-17 15:46:42 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1424 - ARQUITECTURA DE COMPUTADORES 1', 'name': 'Examen'}
+2025-10-17 15:46:44 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:44 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:46:44 - Previas - INFO - [previas.py:307] - Requriments extracted for 1424 - ARQUITECTURA DE COMPUTADORES 1
+2025-10-17 15:46:45 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1425 - ARQUITECTURA DE COMPUTADORES 2', 'name': 'Examen'}
+2025-10-17 15:46:47 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:48 - Previas - INFO - [previas.py:307] - Requriments extracted for 1425 - ARQUITECTURA DE COMPUTADORES 2
+2025-10-17 15:46:49 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1743 - ARQUITECTURA DE SOFTWARE', 'name': 'Curso'}
+2025-10-17 15:46:51 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:52 - Previas - INFO - [previas.py:307] - Requriments extracted for 1743 - ARQUITECTURA DE SOFTWARE
+2025-10-17 15:46:53 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1444 - ASPECTOS AVANZ. DE ARQ.DE COMPUTADORAS', 'name': 'Curso'}
+2025-10-17 15:46:55 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:56 - Previas - INFO - [previas.py:307] - Requriments extracted for 1444 - ASPECTOS AVANZ. DE ARQ.DE COMPUTADORAS
+2025-10-17 15:46:57 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1448 - ASPECTOS AVANZ. DE REDES DE COMPUTADORAS', 'name': 'Curso'}
+2025-10-17 15:46:59 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:46:59 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:46:59 - Previas - INFO - [previas.py:307] - Requriments extracted for 1448 - ASPECTOS AVANZ. DE REDES DE COMPUTADORAS
+2025-10-17 15:47:00 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1454 - ASPECTOS BASICOS DE REDES DE COMPUT', 'name': 'Examen'}
+2025-10-17 15:47:02 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:47:02 - Previas - INFO - [previas.py:307] - Requriments extracted for 1454 - ASPECTOS BASICOS DE REDES DE COMPUT
+2025-10-17 15:47:03 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1949 - BASES DE DATOS NO RELACIONALES', 'name': 'Curso'}
+2025-10-17 15:47:05 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:47:05 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:47:05 - Previas - INFO - [previas.py:307] - Requriments extracted for 1949 - BASES DE DATOS NO RELACIONALES
+2025-10-17 15:47:06 - Previas - INFO - [previas.py:287] - Subject info: {'code': '736EU - BIOINFORMÁTICA', 'name': 'Curso'}
+2025-10-17 15:47:08 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:47:08 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:47:08 - Previas - INFO - [previas.py:307] - Requriments extracted for 736EU - BIOINFORMÁTICA
+2025-10-17 15:47:09 - Previas - INFO - [previas.py:287] - Subject info: {'code': '736EU - BIOINFORMÁTICA', 'name': 'Examen'}
+2025-10-17 15:47:12 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:47:12 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:47:12 - Previas - INFO - [previas.py:307] - Requriments extracted for 736EU - BIOINFORMÁTICA
+2025-10-17 15:47:13 - Previas - INFO - [previas.py:287] - Subject info: {'code': '836EU - BIONFORMÁTICA ESTRUCTURAL', 'name': 'Curso'}
+2025-10-17 15:47:15 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:47:15 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:47:15 - Previas - INFO - [previas.py:307] - Requriments extracted for 836EU - BIONFORMÁTICA ESTRUCTURAL
+2025-10-17 15:47:16 - Previas - INFO - [previas.py:287] - Subject info: {'code': '836EU - BIONFORMÁTICA ESTRUCTURAL', 'name': 'Examen'}
+2025-10-17 15:47:18 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:47:18 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:47:18 - Previas - INFO - [previas.py:307] - Requriments extracted for 836EU - BIONFORMÁTICA ESTRUCTURAL
+2025-10-17 15:47:19 - Previas - INFO - [previas.py:287] - Subject info: {'code': 'MHC39 - BIOQUÍMICA I (2025-', 'name': 'Examen'}
+2025-10-17 15:47:21 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:47:21 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:47:21 - Previas - INFO - [previas.py:307] - Requriments extracted for MHC39 - BIOQUÍMICA I (2025-
+2025-10-17 15:47:22 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1849 - BUTIA: ROBOTICA EDUCATIVA', 'name': 'Curso'}
+2025-10-17 15:47:24 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:47:25 - Previas - INFO - [previas.py:307] - Requriments extracted for 1849 - BUTIA: ROBOTICA EDUCATIVA
+2025-10-17 15:47:26 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1061 - CALCULO DIF. E INTEGRAL EN UNA VARIABLE', 'name': 'Curso'}
+2025-10-17 15:47:28 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:47:28 - Previas - INFO - [previas.py:307] - Requriments extracted for 1061 - CALCULO DIF. E INTEGRAL EN UNA VARIABLE
+2025-10-17 15:47:29 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1061 - CALCULO DIF. E INTEGRAL EN UNA VARIABLE', 'name': 'Examen'}
+2025-10-17 15:47:32 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:47:32 - Previas - INFO - [previas.py:307] - Requriments extracted for 1061 - CALCULO DIF. E INTEGRAL EN UNA VARIABLE
+2025-10-17 15:47:33 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1062 - CALCULO DIF. E INTEGRAL EN VARIAS VARIABLES', 'name': 'Curso'}
+2025-10-17 15:47:36 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:47:36 - Previas - INFO - [previas.py:307] - Requriments extracted for 1062 - CALCULO DIF. E INTEGRAL EN VARIAS VARIABLES
+2025-10-17 15:48:37 - Previas - INFO - [previas.py:326] - Backup saved to previas_data_backup.json
+2025-10-17 15:48:37 - Bedelias - INFO - [main.py:226] - Cleaning up and closing browser...
+2025-10-17 15:48:37 - Bedelias - INFO - [main.py:140] - Closing browser...
+2025-10-17 15:48:39 - Bedelias - INFO - [main.py:142] - Browser closed successfully
+2025-10-17 15:48:39 - __main__ - ERROR - [main.py:247] - Scraping failed: Message: 
+Stacktrace:
+RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8
+WebDriverError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:202:5
+NoSuchElementError@chrome://remote/content/shared/webdriver/Errors.sys.mjs:555:5
+dom.find/</<@chrome://remote/content/shared/DOM.sys.mjs:136:16
+
+2025-10-17 15:57:14 - __main__ - INFO - [main.py:236] - Initializing Bedelias scraper with pages: previas, posprevias, credits
+2025-10-17 15:57:14 - Bedelias - INFO - [main.py:201] - Starting Bedelias scraper...
+2025-10-17 15:57:14 - Bedelias - INFO - [main.py:96] - Starting firefox browser in debug mode...
+2025-10-17 15:57:18 - Bedelias - INFO - [main.py:100] - Browser started successfully
+2025-10-17 15:57:18 - Bedelias - INFO - [main.py:214] - Running previas step...
+2025-10-17 15:57:18 - Previas - INFO - [navigation.py:20] - Starting to extract previas (prerequisites) data...
+2025-10-17 15:57:22 - Previas - INFO - [previas.py:244] - Clicking sistema de previaturas
+2025-10-17 15:57:25 - Previas - INFO - [previas.py:250] - Getting total pages...
+2025-10-17 15:57:25 - Previas - INFO - [usetable.py:26] - Total pages: 19
+2025-10-17 15:57:27 - Previas - INFO - [previas.py:260] - Processing previas page 1/19
+2025-10-17 15:57:27 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1944 - ADMINISTRACION GENERAL PARA INGENIEROS', 'name': 'Curso'}
+2025-10-17 15:57:29 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:57:30 - Previas - INFO - [previas.py:307] - Requriments extracted for 1944 - ADMINISTRACION GENERAL PARA INGENIEROS
+2025-10-17 15:57:31 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1944 - ADMINISTRACION GENERAL PARA INGENIEROS', 'name': 'Examen'}
+2025-10-17 15:57:33 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:57:33 - Previas - INFO - [previas.py:307] - Requriments extracted for 1944 - ADMINISTRACION GENERAL PARA INGENIEROS
+2025-10-17 15:57:34 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1918 - ADMINISTRACION Y SEGURIDAD DE SISTEMAS', 'name': 'Curso'}
+2025-10-17 15:57:36 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:57:36 - Previas - INFO - [previas.py:307] - Requriments extracted for 1918 - ADMINISTRACION Y SEGURIDAD DE SISTEMAS
+2025-10-17 15:57:37 - Previas - INFO - [previas.py:287] - Subject info: {'code': 'SRN03 - ALGEBRA LINEAL I', 'name': 'Examen'}
+2025-10-17 15:57:39 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:57:39 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:57:39 - Previas - INFO - [previas.py:307] - Requriments extracted for SRN03 - ALGEBRA LINEAL I
+2025-10-17 15:57:40 - Previas - INFO - [previas.py:287] - Subject info: {'code': 'SRN10 - ALGEBRA LINEAL II', 'name': 'Curso'}
+2025-10-17 15:57:42 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:57:42 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 15:57:42 - Previas - INFO - [previas.py:307] - Requriments extracted for SRN10 - ALGEBRA LINEAL II
+2025-10-17 15:57:43 - Previas - INFO - [previas.py:287] - Subject info: {'code': 'SRN10 - ALGEBRA LINEAL II', 'name': 'Examen'}
+2025-10-17 15:57:45 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 15:57:45 - Previas - INFO - [previas.py:307] - Requriments extracted for SRN10 - ALGEBRA LINEAL II
+2025-10-17 15:57:46 - Previas - INFO - [previas.py:287] - Subject info: {'code': '5914 - ALGEBRA LINEAL NUMERICA', 'name': 'Curso'}
+2025-10-17 15:57:47 - Previas - INFO - [previas.py:326] - Backup saved to previas_data_backup.json
+2025-10-17 15:57:47 - Bedelias - INFO - [main.py:226] - Cleaning up and closing browser...
+2025-10-17 15:57:47 - Bedelias - INFO - [main.py:140] - Closing browser...
+2025-10-17 15:57:49 - __main__ - INFO - [main.py:244] - Scraping interrupted by user
+2025-10-17 16:03:19 - __main__ - INFO - [main.py:236] - Initializing Bedelias scraper with pages: previas, posprevias, credits
+2025-10-17 16:03:19 - Bedelias - INFO - [main.py:201] - Starting Bedelias scraper...
+2025-10-17 16:03:19 - Bedelias - INFO - [main.py:96] - Starting firefox browser in debug mode...
+2025-10-17 16:03:24 - Bedelias - INFO - [main.py:100] - Browser started successfully
+2025-10-17 16:03:24 - Bedelias - INFO - [main.py:214] - Running previas step...
+2025-10-17 16:03:24 - Previas - INFO - [navigation.py:20] - Starting to extract previas (prerequisites) data...
+2025-10-17 16:03:28 - Previas - INFO - [previas.py:244] - Clicking sistema de previaturas
+2025-10-17 16:03:31 - Previas - INFO - [previas.py:250] - Getting total pages...
+2025-10-17 16:03:31 - Previas - INFO - [usetable.py:26] - Total pages: 19
+2025-10-17 16:03:33 - Previas - INFO - [previas.py:260] - Processing previas page 1/19
+2025-10-17 16:03:33 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1944 - ADMINISTRACION GENERAL PARA INGENIEROS', 'name': 'Curso'}
+2025-10-17 16:03:35 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 16:03:35 - Previas - INFO - [previas.py:307] - Requriments extracted for 1944 - ADMINISTRACION GENERAL PARA INGENIEROS
+2025-10-17 16:03:36 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1944 - ADMINISTRACION GENERAL PARA INGENIEROS', 'name': 'Examen'}
+2025-10-17 16:03:38 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 16:03:38 - Previas - INFO - [previas.py:307] - Requriments extracted for 1944 - ADMINISTRACION GENERAL PARA INGENIEROS
+2025-10-17 16:03:39 - Previas - INFO - [previas.py:287] - Subject info: {'code': '1918 - ADMINISTRACION Y SEGURIDAD DE SISTEMAS', 'name': 'Curso'}
+2025-10-17 16:03:41 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 16:03:42 - Previas - INFO - [previas.py:307] - Requriments extracted for 1918 - ADMINISTRACION Y SEGURIDAD DE SISTEMAS
+2025-10-17 16:03:42 - Previas - INFO - [previas.py:287] - Subject info: {'code': 'SRN03 - ALGEBRA LINEAL I', 'name': 'Examen'}
+2025-10-17 16:03:44 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 16:03:44 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 16:03:44 - Previas - INFO - [previas.py:307] - Requriments extracted for SRN03 - ALGEBRA LINEAL I
+2025-10-17 16:03:45 - Previas - INFO - [previas.py:287] - Subject info: {'code': 'SRN10 - ALGEBRA LINEAL II', 'name': 'Curso'}
+2025-10-17 16:03:47 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 16:03:47 - Previas - INFO - [previas.py:173] - No expandable elements found - tree may already be fully expanded
+2025-10-17 16:03:47 - Previas - INFO - [previas.py:307] - Requriments extracted for SRN10 - ALGEBRA LINEAL II
+2025-10-17 16:03:48 - Previas - INFO - [previas.py:287] - Subject info: {'code': 'SRN10 - ALGEBRA LINEAL II', 'name': 'Examen'}
+2025-10-17 16:03:50 - Previas - INFO - [previas.py:166] - Expanding all requirements
+2025-10-17 16:03:50 - Previas - INFO - [previas.py:307] - Requriments extracted for SRN10 - ALGEBRA LINEAL II
+2025-10-17 16:03:51 - Previas - INFO - [previas.py:287] - Subject info: {'code': '5914 - ALGEBRA LINEAL NUMERICA', 'name': 'Curso'}
+2025-10-17 16:03:52 - Previas - INFO - [previas.py:326] - Backup saved to previas_data_backup.json
+2025-10-17 16:03:52 - Bedelias - INFO - [main.py:226] - Cleaning up and closing browser...
+2025-10-17 16:03:52 - Bedelias - INFO - [main.py:140] - Closing browser...
+2025-10-17 16:03:54 - __main__ - INFO - [main.py:244] - Scraping interrupted by user
