@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Mapping, Tuple
 import os
 
-DEFAULT_PAGES = ("previas", "posprevias", "credits")
+DEFAULT_PAGES = ("previas", "posprevias", "credits", "vigentes")
 
 
 def _parse_bool(value: str, default: bool = False) -> bool:
@@ -26,6 +26,8 @@ def _pages_from_legacy_flags(env: Mapping[str, str]) -> Tuple[str, ...]:
         pages.append("posprevias")
     if _parse_bool(env.get("EXTRACT_CREDITS"), default=True):
         pages.append("credits")
+    if _parse_bool(env.get("EXTRACT_VIGENTES"), default=True):
+        pages.append("vigentes")
     if not pages:
         return DEFAULT_PAGES
     return tuple(pages)

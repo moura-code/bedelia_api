@@ -18,11 +18,13 @@ from common.navigation import PlanSection
 
 class Previas(Scraper, UseTable, PlanSection):
 
-    def __init__(self, driver, wait, browser: str = "firefox", debug: bool = False, home_url: str = None, plan_name: str = "INGENIERIA EN COMPUTACION"):
+    def __init__(self, driver, wait, browser: str = "firefox", debug: bool = False, home_url: str = None, plan_name: str = "INGENIERÍA EN COMPUTACIÓN"):
         Scraper.__init__(self, driver, wait, browser, debug)
-        PlanSection.__init__(self, plan_name)
-        UseTable.__init__(self)
         self.home_url = home_url
+ 
+        url = f"{home_url}views/public/desktop/consultaOfertaAcademica/consultaOfertaAcademica02.xhtml?cid=1"
+        PlanSection.__init__(self, url, plan_name)
+        UseTable.__init__(self)
                 # Map JSF nodetype to a readable group type
         self.NODETYPE_MAP = {
             "y": "ALL",  # debe tener todas

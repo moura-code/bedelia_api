@@ -15,7 +15,8 @@ class Credits(Scraper, PlanSection):
 
     def __init__(self, driver, wait, browser: str = "firefox", debug: bool = False, home_url: Optional[str] = None, plan_name: str = "INGENIERIA EN COMPUTACION"):
         Scraper.__init__(self, driver, wait, browser, debug)
-        PlanSection.__init__(self, plan_name)
+        url = f"{home_url}views/public/desktop/consultaOfertaAcademica/consultaOfertaAcademica02.xhtml?cid=1"
+        PlanSection.__init__(self, url, plan_name)
         self.home_url = home_url
 
     def run(self):

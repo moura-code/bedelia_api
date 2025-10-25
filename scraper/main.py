@@ -16,7 +16,7 @@ from pages.login import LoginPage
 from pages.previas import Previas
 from pages.posprevias import PosPrevias
 from pages.credits import Credits
-
+from pages.vigentes import Vigentes
 load_dotenv()
 
 # Configure logging with better formatting and levels
@@ -133,7 +133,13 @@ class Bedelias:
             self.debug,
             self.home_url,
         )
-
+        self.vigentes_page = Vigentes(
+            self.driver,
+            self.wait,
+            self.browser,
+            self.debug,
+            self.home_url,
+        )
     def stop_driver(self):
         """Cleanly close the Selenium driver."""
         if self.driver:
@@ -181,6 +187,11 @@ class Bedelias:
         if not self.credits_page:
             raise RuntimeError("Credits page not initialized. Call start_driver() first.")
         self.credits_page.run()
+    def get_vigentes(self):
+        """Extract vigentes data using the Vigentes page class."""
+        if not self.vigentes_page:
+            raise RuntimeError("Vigentes page not initialized. Call start_driver() first.")
+        self.vigentes_page.run()
 
     def run(self):
         """Execute the configured scraping workflow."""
@@ -189,6 +200,7 @@ class Bedelias:
             "previas": (self.get_previas, False),
             "posprevias": (self.get_posprevias, False),
             "credits": (self.get_credits, False),
+            "vigentes": (self.get_vigentes, False),
         }
         ordered_pages: list[str] = []
         seen = set()

@@ -1,5 +1,8 @@
 import sys
 import os
+from turtle import home
+
+from common.navigation import PlanSection
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from common.usetable import UseTable
@@ -9,11 +12,13 @@ from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 import json
 
-class PosPrevias(Scraper, UseTable):
+class PosPrevias(Scraper, UseTable, PlanSection):
     
-    def __init__(self, driver, wait, browser: str = "firefox", debug: bool = False, home_url: str = None):
+    def __init__(self, driver, wait, browser: str = "firefox", debug: bool = False, home_url: str = None,  plan_name: str = "INGENIERÍA EN COMPUTACIÓN"):
         Scraper.__init__(self, driver, wait, browser, debug)
         UseTable.__init__(self)
+        link =  f"{home_url}/views/public/desktop/consultarDeQueEsPrevia/consultarDeQueEsPrevia01.xhtml?cid=1"
+        PlanSection.__init__(self, link, plan_name)
         self.home_url = home_url
     
     def run(self):
