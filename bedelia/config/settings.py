@@ -43,6 +43,7 @@ else:
 INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
+    "django_filters",
     "api",
     "django.contrib.admin",
     "django.contrib.auth",

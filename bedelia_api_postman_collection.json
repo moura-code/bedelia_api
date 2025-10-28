@@ -1,0 +1,977 @@
+{
+	"info": {
+		"_postman_id": "bedelia-api-collection",
+		"name": "Bedelia API",
+		"description": "API endpoints for Bedelia course management system. This collection includes all endpoints for managing programs, subjects, offerings, requirements, and dependencies.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Programs",
+			"item": [
+				{
+					"name": "List all programs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/programs/",
+							"host": ["{{base_url}}"],
+							"path": ["programs", ""]
+						},
+						"description": "Get a paginated list of all academic programs."
+					},
+					"response": []
+				},
+				{
+					"name": "Get program by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/programs/{{program_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["programs", "{{program_id}}", ""]
+						},
+						"description": "Get detailed information about a specific program."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by plan year",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/programs/?plan_year=1997",
+							"host": ["{{base_url}}"],
+							"path": ["programs", ""],
+							"query": [
+								{
+									"key": "plan_year",
+									"value": "1997",
+									"description": "Filter programs by plan year"
+								}
+							]
+						},
+						"description": "Filter programs by their plan year (e.g., 1997, 2023)."
+					},
+					"response": []
+				},
+				{
+					"name": "Search by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/programs/?search=INGENIERIA",
+							"host": ["{{base_url}}"],
+							"path": ["programs", ""],
+							"query": [
+								{
+									"key": "search",
+									"value": "INGENIERIA",
+									"description": "Search programs by name (case-insensitive)"
+								}
+							]
+						},
+						"description": "Search programs by name using full-text search."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for managing academic programs."
+		},
+		{
+			"name": "Subjects",
+			"item": [
+				{
+					"name": "List all subjects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subjects/",
+							"host": ["{{base_url}}"],
+							"path": ["subjects", ""]
+						},
+						"description": "Get a paginated list of all subjects/courses."
+					},
+					"response": []
+				},
+				{
+					"name": "Get subject by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subjects/{{subject_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["subjects", "{{subject_id}}", ""]
+						},
+						"description": "Get detailed information about a specific subject including all offerings and aliases."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by program",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subjects/?program={{program_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["subjects", ""],
+							"query": [
+								{
+									"key": "program",
+									"value": "{{program_id}}",
+									"description": "Filter subjects by program ID"
+								}
+							]
+						},
+						"description": "Filter subjects by their associated program."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by credits (range)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subjects/?credits__gte=10&credits__lte=15",
+							"host": ["{{base_url}}"],
+							"path": ["subjects", ""],
+							"query": [
+								{
+									"key": "credits__gte",
+									"value": "10",
+									"description": "Minimum credits"
+								},
+								{
+									"key": "credits__lte",
+									"value": "15",
+									"description": "Maximum credits"
+								}
+							]
+						},
+						"description": "Filter subjects by credit range (between 10 and 15 credits)."
+					},
+					"response": []
+				},
+				{
+					"name": "Search by code or name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subjects/?search=CALCULO",
+							"host": ["{{base_url}}"],
+							"path": ["subjects", ""],
+							"query": [
+								{
+									"key": "search",
+									"value": "CALCULO",
+									"description": "Search in subject code and name"
+								}
+							]
+						},
+						"description": "Search subjects by code or name using full-text search."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by subject code (contains)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subjects/?code__icontains=DMA",
+							"host": ["{{base_url}}"],
+							"path": ["subjects", ""],
+							"query": [
+								{
+									"key": "code__icontains",
+									"value": "DMA",
+									"description": "Filter by code containing text (case-insensitive)"
+								}
+							]
+						},
+						"description": "Filter subjects whose code contains specific text."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for managing subjects/courses."
+		},
+		{
+			"name": "Offerings",
+			"item": [
+				{
+					"name": "List all offerings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/offerings/",
+							"host": ["{{base_url}}"],
+							"path": ["offerings", ""]
+						},
+						"description": "Get a paginated list of all course/exam offerings."
+					},
+					"response": []
+				},
+				{
+					"name": "Get offering by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/offerings/{{offering_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["offerings", "{{offering_id}}", ""]
+						},
+						"description": "Get detailed information about a specific offering including all requirement groups and links."
+					},
+					"response": []
+				},
+				{
+					"name": "Get requirement tree",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/offerings/{{offering_id}}/requirement_tree/",
+							"host": ["{{base_url}}"],
+							"path": ["offerings", "{{offering_id}}", "requirement_tree", ""]
+						},
+						"description": "Get the full recursive requirement tree for this offering. Returns all requirement groups in a nested tree structure."
+					},
+					"response": []
+				},
+				{
+					"name": "Search by requirements (custom)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/offerings/search_by_requirements/?requires_subject=DMA01&scope=ALL",
+							"host": ["{{base_url}}"],
+							"path": ["offerings", "search_by_requirements", ""],
+							"query": [
+								{
+									"key": "requires_subject",
+									"value": "DMA01",
+									"description": "Subject code that must be in requirements"
+								},
+								{
+									"key": "scope",
+									"value": "ALL",
+									"description": "Filter by requirement group scope (ALL/ANY/NONE)"
+								},
+								{
+									"key": "min_credits",
+									"value": "10",
+									"description": "Minimum total credits required",
+									"disabled": true
+								}
+							]
+						},
+						"description": "Custom action to search offerings by requirement patterns."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by subject",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/offerings/?subject={{subject_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["offerings", ""],
+							"query": [
+								{
+									"key": "subject",
+									"value": "{{subject_id}}",
+									"description": "Filter by subject ID"
+								}
+							]
+						},
+						"description": "Filter offerings by their associated subject."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by type (COURSE or EXAM)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/offerings/?type=EXAM",
+							"host": ["{{base_url}}"],
+							"path": ["offerings", ""],
+							"query": [
+								{
+									"key": "type",
+									"value": "EXAM",
+									"description": "Filter by offering type (COURSE or EXAM)"
+								}
+							]
+						},
+						"description": "Filter offerings by type - either COURSE or EXAM."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by term",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/offerings/?term=2025S1",
+							"host": ["{{base_url}}"],
+							"path": ["offerings", ""],
+							"query": [
+								{
+									"key": "term",
+									"value": "2025S1",
+									"description": "Filter by academic term (e.g., 2025S1, 2024S2)"
+								}
+							]
+						},
+						"description": "Filter offerings by academic term."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by active status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/offerings/?is_active=true",
+							"host": ["{{base_url}}"],
+							"path": ["offerings", ""],
+							"query": [
+								{
+									"key": "is_active",
+									"value": "true",
+									"description": "Filter by active status"
+								}
+							]
+						},
+						"description": "Filter offerings by their active status."
+					},
+					"response": []
+				},
+				{
+					"name": "Search by subject code/name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/offerings/?search=CALCULO",
+							"host": ["{{base_url}}"],
+							"path": ["offerings", ""],
+							"query": [
+								{
+									"key": "search",
+									"value": "CALCULO",
+									"description": "Search in subject code and name"
+								}
+							]
+						},
+						"description": "Search offerings by their subject's code or name."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for managing course and exam offerings."
+		},
+		{
+			"name": "Requirement Groups",
+			"item": [
+				{
+					"name": "List all requirement groups",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-groups/",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-groups", ""]
+						},
+						"description": "Get a paginated list of all requirement groups."
+					},
+					"response": []
+				},
+				{
+					"name": "Get requirement group by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-groups/{{group_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-groups", "{{group_id}}", ""]
+						},
+						"description": "Get detailed information about a specific requirement group including all items and child links."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by offering",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-groups/?offering={{offering_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-groups", ""],
+							"query": [
+								{
+									"key": "offering",
+									"value": "{{offering_id}}",
+									"description": "Filter by offering ID"
+								}
+							]
+						},
+						"description": "Filter requirement groups by their associated offering."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by scope",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-groups/?scope=ANY",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-groups", ""],
+							"query": [
+								{
+									"key": "scope",
+									"value": "ANY",
+									"description": "Filter by scope (ALL/ANY/NONE)"
+								}
+							]
+						},
+						"description": "Filter requirement groups by their scope (ALL, ANY, or NONE)."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by flavor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-groups/?flavor=APPROVALS",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-groups", ""],
+							"query": [
+								{
+									"key": "flavor",
+									"value": "APPROVALS",
+									"description": "Filter by flavor (GENERIC, APPROVALS, etc.)"
+								}
+							]
+						},
+						"description": "Filter requirement groups by their semantic flavor."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by min_required",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-groups/?min_required__gte=2",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-groups", ""],
+							"query": [
+								{
+									"key": "min_required__gte",
+									"value": "2",
+									"description": "Minimum value for min_required"
+								}
+							]
+						},
+						"description": "Filter requirement groups by their min_required value (for ANY scope groups)."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for managing requirement groups."
+		},
+		{
+			"name": "Requirement Group Links",
+			"item": [
+				{
+					"name": "List all links",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-group-links/",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-group-links", ""]
+						},
+						"description": "Get a paginated list of all requirement group links (parent-child relationships)."
+					},
+					"response": []
+				},
+				{
+					"name": "Get link by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-group-links/{{link_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-group-links", "{{link_id}}", ""]
+						},
+						"description": "Get detailed information about a specific requirement group link."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by parent group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-group-links/?parent_group={{group_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-group-links", ""],
+							"query": [
+								{
+									"key": "parent_group",
+									"value": "{{group_id}}",
+									"description": "Filter by parent group ID"
+								}
+							]
+						},
+						"description": "Filter links by their parent requirement group."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by child group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-group-links/?child_group={{group_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-group-links", ""],
+							"query": [
+								{
+									"key": "child_group",
+									"value": "{{group_id}}",
+									"description": "Filter by child group ID"
+								}
+							]
+						},
+						"description": "Filter links by their child requirement group."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for managing requirement group links (parent-child relationships)."
+		},
+		{
+			"name": "Requirement Items",
+			"item": [
+				{
+					"name": "List all items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-items/",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-items", ""]
+						},
+						"description": "Get a paginated list of all requirement items (leaf requirements)."
+					},
+					"response": []
+				},
+				{
+					"name": "Get item by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-items/{{item_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-items", "{{item_id}}", ""]
+						},
+						"description": "Get detailed information about a specific requirement item."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-items/?group={{group_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-items", ""],
+							"query": [
+								{
+									"key": "group",
+									"value": "{{group_id}}",
+									"description": "Filter by requirement group ID"
+								}
+							]
+						},
+						"description": "Filter requirement items by their parent requirement group."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by target type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-items/?target_type=SUBJECT",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-items", ""],
+							"query": [
+								{
+									"key": "target_type",
+									"value": "SUBJECT",
+									"description": "Filter by target type (SUBJECT or OFFERING)"
+								}
+							]
+						},
+						"description": "Filter requirement items by their target type (SUBJECT or OFFERING)."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by target subject",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-items/?target_subject={{subject_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-items", ""],
+							"query": [
+								{
+									"key": "target_subject",
+									"value": "{{subject_id}}",
+									"description": "Filter by target subject ID"
+								}
+							]
+						},
+						"description": "Filter requirement items by their target subject."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by condition",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-items/?condition=APPROVED",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-items", ""],
+							"query": [
+								{
+									"key": "condition",
+									"value": "APPROVED",
+									"description": "Filter by condition (APPROVED/ENROLLED/CREDITED)"
+								}
+							]
+						},
+						"description": "Filter requirement items by their required condition."
+					},
+					"response": []
+				},
+				{
+					"name": "Search by alt_code or alt_label",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/requirement-items/?search=DMA01",
+							"host": ["{{base_url}}"],
+							"path": ["requirement-items", ""],
+							"query": [
+								{
+									"key": "search",
+									"value": "DMA01",
+									"description": "Search in alt_code and alt_label"
+								}
+							]
+						},
+						"description": "Search requirement items by their alternative code or label."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for managing requirement items (leaf requirements)."
+		},
+		{
+			"name": "Subject Equivalences",
+			"item": [
+				{
+					"name": "List all equivalences",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subject-equivalences/",
+							"host": ["{{base_url}}"],
+							"path": ["subject-equivalences", ""]
+						},
+						"description": "Get a paginated list of all subject equivalences."
+					},
+					"response": []
+				},
+				{
+					"name": "Get equivalence by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subject-equivalences/{{equivalence_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["subject-equivalences", "{{equivalence_id}}", ""]
+						},
+						"description": "Get detailed information about a specific subject equivalence."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by subject_a",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subject-equivalences/?subject_a={{subject_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["subject-equivalences", ""],
+							"query": [
+								{
+									"key": "subject_a",
+									"value": "{{subject_id}}",
+									"description": "Filter by first subject ID"
+								}
+							]
+						},
+						"description": "Filter equivalences by the first subject."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by subject_b",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subject-equivalences/?subject_b={{subject_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["subject-equivalences", ""],
+							"query": [
+								{
+									"key": "subject_b",
+									"value": "{{subject_id}}",
+									"description": "Filter by second subject ID"
+								}
+							]
+						},
+						"description": "Filter equivalences by the second subject."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by kind",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/subject-equivalences/?kind=FULL",
+							"host": ["{{base_url}}"],
+							"path": ["subject-equivalences", ""],
+							"query": [
+								{
+									"key": "kind",
+									"value": "FULL",
+									"description": "Filter by equivalence kind (FULL or PARTIAL)"
+								}
+							]
+						},
+						"description": "Filter equivalences by their kind (FULL or PARTIAL)."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for managing subject equivalences."
+		},
+		{
+			"name": "Dependency Edges",
+			"item": [
+				{
+					"name": "List all edges",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dependency-edges/",
+							"host": ["{{base_url}}"],
+							"path": ["dependency-edges", ""]
+						},
+						"description": "Get a paginated list of all dependency edges."
+					},
+					"response": []
+				},
+				{
+					"name": "Get edge by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dependency-edges/{{edge_id}}/",
+							"host": ["{{base_url}}"],
+							"path": ["dependency-edges", "{{edge_id}}", ""]
+						},
+						"description": "Get detailed information about a specific dependency edge."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by source offering",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dependency-edges/?source_offering={{offering_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["dependency-edges", ""],
+							"query": [
+								{
+									"key": "source_offering",
+									"value": "{{offering_id}}",
+									"description": "Filter by source offering ID"
+								}
+							]
+						},
+						"description": "Filter dependency edges by their source offering."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by target offering",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dependency-edges/?target_offering={{offering_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["dependency-edges", ""],
+							"query": [
+								{
+									"key": "target_offering",
+									"value": "{{offering_id}}",
+									"description": "Filter by target offering ID"
+								}
+							]
+						},
+						"description": "Filter dependency edges by their target offering."
+					},
+					"response": []
+				},
+				{
+					"name": "Filter by dependency kind",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/dependency-edges/?dep_kind=REQUIRES_ALL",
+							"host": ["{{base_url}}"],
+							"path": ["dependency-edges", ""],
+							"query": [
+								{
+									"key": "dep_kind",
+									"value": "REQUIRES_ALL",
+									"description": "Filter by dependency kind"
+								}
+							]
+						},
+						"description": "Filter dependency edges by their kind (REQUIRES_ALL, ALTERNATIVE_ANY, FORBIDDEN_NONE)."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for managing dependency edges between offerings."
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/api",
+			"type": "string"
+		},
+		{
+			"key": "program_id",
+			"value": "",
+			"type": "string",
+			"description": "UUID of a program - fill from responses"
+		},
+		{
+			"key": "subject_id",
+			"value": "",
+			"type": "string",
+			"description": "UUID of a subject - fill from responses"
+		},
+		{
+			"key": "offering_id",
+			"value": "",
+			"type": "string",
+			"description": "UUID of an offering - fill from responses"
+		},
+		{
+			"key": "group_id",
+			"value": "",
+			"type": "string",
+			"description": "UUID of a requirement group - fill from responses"
+		},
+		{
+			"key": "link_id",
+			"value": "",
+			"type": "string",
+			"description": "UUID of a requirement group link - fill from responses"
+		},
+		{
+			"key": "item_id",
+			"value": "",
+			"type": "string",
+			"description": "UUID of a requirement item - fill from responses"
+		},
+		{
+			"key": "equivalence_id",
+			"value": "",
+			"type": "string",
+			"description": "UUID of a subject equivalence - fill from responses"
+		},
+		{
+			"key": "edge_id",
+			"value": "",
+			"type": "string",
+			"description": "UUID of a dependency edge - fill from responses"
+		}
+	]
+}
+
