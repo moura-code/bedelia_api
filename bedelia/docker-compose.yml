@@ -13,7 +13,7 @@ services:
     env_file: .env
     environment:
       - DB_HOST=db
-    networks:
+    networks: 
       - bedelias-api-network
     ports:
       - '8000:8000'
