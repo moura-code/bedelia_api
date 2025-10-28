@@ -519,13 +519,14 @@ class Command(BaseCommand):
         """Add a requirement to target offering that it requires prereq_subject."""
         # Find or create an ANY group for posprevias
         if not self.dry_run:
+            # Use note in the lookup to distinguish from other ANY+APPROVALS groups
             group, created = RequirementGroup.objects.get_or_create(
                 offering=target_offering,
                 scope=GroupScope.ANY,
                 flavor=GroupFlavor.APPROVALS,
+                note='Generated from posprevias',
                 defaults={
                     'min_required': 1,
-                    'note': 'Generated from posprevias',
                     'order_index': 999  # Put at end
                 }
             )
