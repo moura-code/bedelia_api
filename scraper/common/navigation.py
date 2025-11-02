@@ -1,28 +1,101 @@
 from __future__ import annotations
 
+from functools import total_ordering
 from time import sleep
 from typing import Any
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from .usetable import UseTable
 
-
-class PlanSection:
+class PlanSection(UseTable):
 
     def __init__(self, link, plan_name):
         self.plan_name = plan_name
         self.link = link
+        super().__init__()
 
-    def open_plan_section(self, *, log_message: str) -> None:
-        """Navigate to the previas listing shared by previas and credits pages."""
-    
-        self.logger.info(log_message)
-        self.driver.get(self.link)
-        self.driver.get(self.link)
-        
-        # TODO replace sleep with an explicit wait for the modal to disappear when feasible.
-        sleep(0.5)
+
+    def open_faculty(self):
+        for i in range(2):
+            self.driver.get(self.link)
+        self.wait_loading_to_finish()
         self.wait_for_element_to_be_clickable((By.XPATH, f'//*[text()= "TECNOLOGÍA Y CIENCIAS DE LA NATURALEZA"]')).click()
         self.scroll_to_element_and_click(self.wait_for_element_to_be_clickable((By.XPATH, '//*[text()= "FING - FACULTAD DE INGENIER\u00cdA"]')))
+    
+    def get_total_plan_sections(self):
+        self.open_faculty()
+        self.get_total_pages()
+        plans_data = []
+        for current_page in range(1, self.total_pages + 1):
+            self.go_to_page(current_page)
+            rows_len = len(
+                [row for row in self.driver.find_elements(
+                    By.XPATH, 
+                    '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]'
+                ) if row.is_displayed()]
+            )
+            self.logger.info(f"Rows length: {rows_len}")
+            for i in range(rows_len):
+                self.go_to_page(current_page)
+                rows = [row for row in self.driver.find_elements(
+                    By.XPATH, 
+                    '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]'
+                ) if row.is_displayed()]
+                row = rows[i]
+                # Wait for modal to disappear before clicking
+                self.wait.until(
+                    EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
+                )
+                
+                toggler = row.find_element(
+                    By.XPATH, 
+                    "./td[1]"
+                )
+                
+                self.scroll_to_element_and_click(toggler)
+                self.wait_for_element_to_be_present((By.XPATH, '//div[contains(@class, "ui-datatable ui-widget tablanivel2")]'))
+
+                
+                planes_div_list = self.driver.find_elements(By.XPATH, '//div[contains(@class, "ui-datatable ui-widget tablanivel2")]')
+                
+                planes_div = planes_div_list[-1]
+                
+                # Extract vigent plans
+                tbody = planes_div.find_element(By.CLASS_NAME, "ui-datatable-data")
+                plan_rows = tbody.find_elements(By.TAG_NAME, "tr")
+                
+                for plan_row in plan_rows:
+                    cells = plan_row.find_elements(By.TAG_NAME, "td")
+                    
+                    if len(cells) >= 3:
+                        year = cells[0].text.strip()
+                        plan_name = row.find_element(By.XPATH, "./td[2]").text.strip()
+                        vigente = cells[2].text.strip()
+                        
+                        # Check if vigente is "Sí" or "Si"
+                        if vigente.lower() in ["sí", "si"]:
+                            plans_data.append({
+                                "year": year,
+                                "name": plan_name
+                            })
+                        print(plan_name)
+                        print(year)
+                        print(vigente)
+                
+                if plans_data:
+                    self.logger.info(f"Found {len(plans_data)} vigent plan(s):")
+                self.scroll_to_element_and_click(toggler)
+   
+        print(plans_data)
+        return plans_data
+    
+    def open_plan_section(self, *, log_message: str) -> None:
+        """Navigate to the previas listing shared by previas and credits pages."""
+        self.get_total_plan_sections()
+        self.logger.info(log_message)
+        self.open_faculty()
+        
     
         filter_input = self.wait_for_element_to_be_clickable(
             (By.XPATH, "//span[contains(@class,'ui-column-title')]/following-sibling::input[1]")

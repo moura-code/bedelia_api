@@ -60,4 +60,6 @@ class Scraper:
             return  WebDriverWait(self.driver, 2).until(EC.presence_of_element_located(locator))
         except:
             return None
-
+    def wait_loading_to_finish(self):
+        loading_path = "//img[@src='/jakarta.faces.resource/img/cargando.gif.xhtml?ln=default']"
+        self.wait.until(EC.invisibility_of_element_located((By.XPATH, loading_path)))

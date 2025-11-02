@@ -2,21 +2,14 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from common.usetable import UseTable
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
-import traceback
 import json
-import re
 from scraper import Scraper
 from common.navigation import PlanSection
 
 
-class Vigentes(Scraper, UseTable, PlanSection):
+class Vigentes(Scraper, PlanSection):
 
     def __init__(self, driver, wait, browser: str = "firefox", debug: bool = False, home_url: str = None, plan_name: str = "INGENIERÍA EN COMPUTACIÓN"):
         Scraper.__init__(self, driver, wait, browser, debug)
@@ -24,7 +17,6 @@ class Vigentes(Scraper, UseTable, PlanSection):
         self.home_url = home_url
         url = f"{home_url}views/public/desktop/consultarCalendario/consultarCalendario01.xhtml?cid=1"
         PlanSection.__init__(self, url, plan_name)
-        UseTable.__init__(self)
        
     def parse_course_text(self, text: str) -> dict:
         """Parse course text like 'FING - 5707 IMAGENES MEDICAS: ADQUISICION, INSTRUMENTACION Y GESTION'"""

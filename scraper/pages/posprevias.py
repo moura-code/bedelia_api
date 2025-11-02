@@ -1,22 +1,18 @@
 import sys
 import os
-from turtle import home
 
 from common.navigation import PlanSection
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from common.usetable import UseTable
 from scraper import Scraper
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 import json
 
-class PosPrevias(Scraper, UseTable, PlanSection):
+class PosPrevias(Scraper, PlanSection):
     
     def __init__(self, driver, wait, browser: str = "firefox", debug: bool = False, home_url: str = None,  plan_name: str = "INGENIERÍA EN COMPUTACIÓN"):
         Scraper.__init__(self, driver, wait, browser, debug)
-        UseTable.__init__(self)
         link =  f"{home_url}/views/public/desktop/consultarDeQueEsPrevia/consultarDeQueEsPrevia01.xhtml?cid=1"
         PlanSection.__init__(self, link, plan_name)
         self.home_url = home_url
@@ -24,86 +20,71 @@ class PosPrevias(Scraper, UseTable, PlanSection):
     def run(self):
          # Copiado de get previas
         self.logger.info("Starting to extract previas (prerequisites) data...")
-        self.driver.get(self.home_url)
-        
-        self.wait_for_page_to_load()
-        
-        self.hover_by_text("PLANES DE ESTUDIO")
-        self.wait_for_element_to_be_clickable((By.LINK_TEXT, "Consultar de qué es previa")).click()
-        # <div id="j_idt22_modal" > sempre esta na frente TODO> remove esse sleep, talvez self.wait_for_element_to_be_visible((By.ID, "j_idt22_modal")) ou wait_page_to_load
-        sleep(0.5)
-        # Selecting fing
-        self.wait_for_element_to_be_clickable((By.XPATH, '//*[text()= "TECNOLOGÍA Y CIENCIAS DE LA NATURALEZA"]')).click()
-        self.scroll_to_element_and_click(self.wait_for_element_to_be_clickable((By.XPATH, '//*[text()= "FING - FACULTAD DE INGENIERÍA"]')))
-        
-        # Selecting INGENIERIA EN COMPUTACION
-        
-        self.wait_for_element_to_be_clickable((By.XPATH, "//span[contains(@class,'ui-column-title')]/following-sibling::input[1]")).send_keys("INGENIERIA EN COMPUTACION")
-        self.wait_for_element_to_be_clickable((By.XPATH, '//*[text()="INGENIERIA EN COMPUTACION"]/preceding-sibling::td[1]')).click()
-        # Expand and open info
-        self.wait_for_element_to_be_clickable((By.XPATH, '//i[@class="pi  pi-info-circle"]')).click()
+        self.open_plan_section(
+            log_message="Starting to extract posprevias (prerequisites) data...",
+        )
         self.get_total_pages()
         data = {}
-        loading_path = "//img[@src='/jakarta.faces.resource/img/cargando.gif.xhtml?ln=default']"
-        try:
-            # Extract previas data
-            #TODO: As vezes total_pages = 1
-            for current_page in range(1, self.total_pages + 1):
-                self.logger.info(
-                    f"Processing previas page {current_page}/{self.total_pages}"
+        # Extract previas data
+        #TODO: As vezes total_pages = 1
+        for current_page in range(3, self.total_pages + 1):
+            self.logger.info(
+                f"Processing previas page {current_page}/{self.total_pages}"
+            )
+            self.go_to_page(current_page)
+            # TODO: As vezes rows_len = 1
+            rows_len = len(
+                self.driver.find_elements(
+                    By.XPATH, '//tr[@class="ui-widget-content ui-datatable-even"]'
                 )
-                # TODO: As vezes rows_len = 1
-                rows_len = len(
-                    self.driver.find_elements(
-                        By.XPATH, '//tr[@class="ui-widget-content ui-datatable-even"]'
-                    )
-                )
-                
-                for i in range(rows_len):
-                    self.go_to_page(current_page)
-                    # TODO: remover esse sleep
-                    sleep(1)
-                    row = self.wait_for_all_elements_to_be_visible(
-                                (
-                                    By.XPATH,
-                                    '//tr[@class="ui-widget-content ui-datatable-even"]',
-                                )
-                            )[i]
-                    codigo = row.find_element(By.XPATH, "./td[1]").text.strip()
-                    nombre = row.find_element(By.XPATH, "./td[2]").text.strip()
-                    self.logger.info(f"Processing {codigo} - {nombre}")
-                    data[codigo] = {
-                        "code": codigo,
-                        "name": nombre,
-                        "posprevias": [],
-                    }
-
-                    
-                    sleep(1)
-                    
-                    info_icons = self.wait_for_all_elements_to_be_visible(
-                                (
-                                    By.XPATH,
-                                    '//i[@class="pi  pi-info-circle"]',
-                                )
+            )
+            
+            for i in range(rows_len):
+                self.go_to_page(current_page)
+                # TODO: remover esse sleep
+                sleep(1)
+                row = self.wait_for_all_elements_to_be_visible(
+                            (
+                                By.XPATH,
+                                '//tr[@class="ui-widget-content ui-datatable-even"]',
                             )
-                    self.scroll_to_element_and_click(info_icons[i])
+                        )[i]
+                codigo = row.find_element(By.XPATH, "./td[1]").text.strip()
+                nombre = row.find_element(By.XPATH, "./td[2]").text.strip()
+                self.logger.info(f"Processing {codigo} - {nombre}")
+                data[codigo] = {
+                    "code": codigo,
+                    "name": nombre,
+                    "posprevias": [],
+                }
+
                 
-                    self.logger.info("Waiting for loading to finish")
-                    self.wait.until(EC.invisibility_of_element_located((By.XPATH, loading_path)))
-                    self.logger.info("Loading finished")
-                    # try checking if there no previaturas 
-                    xpath_icon = (
-                            "//div[contains(@id,':nombServicio')]"
-                            "[contains(normalize-space(.), 'FACULTAD DE INGENIERÍA')]"
-                            "//div[contains(@class,'ui-accordion-header')][1]"
-                            "//span[contains(@class,'ui-icon')]"
+                sleep(1)
+                
+                info_icons = self.wait_for_all_elements_to_be_visible(
+                            (
+                                By.XPATH,
+                                '//i[@class="pi  pi-info-circle"]',
+                            )
                         )
-                    if self.try_find_element((By.XPATH, xpath_icon)):
-                    
-                        self.wait_for_page_to_load()
-                        self.wait_for_element_to_be_clickable((By.XPATH, xpath_icon)).click()
-                        outer_tbody = self.wait_for_element_to_be_visible((By.XPATH, "//div[contains(@id,':nombServicio')][contains(normalize-space(.), 'FACULTAD DE INGENIERÍA')]//tbody[contains(@id,':previaturasPlanes_data')]"))
+                self.scroll_to_element_and_click(info_icons[i])
+            
+                self.logger.info("Waiting for loading to finish")
+                self.wait_loading_to_finish()
+                # try checking if there no previaturas 
+                xpath_icon = (
+                        "//div[contains(@id,':nombServicio')]"
+                        "[contains(normalize-space(.), 'FACULTAD DE INGENIERÍA')]"
+                        "//div[contains(@class,'ui-accordion-header')][1]"
+                        "//span[contains(@class,'ui-icon')]"
+                    )
+                if self.try_find_element((By.XPATH, xpath_icon)):
+                
+                    self.wait_for_page_to_load()
+                    self.scroll_to_element_and_click(self.wait_for_element_to_be_clickable((By.XPATH, xpath_icon)))
+                    outer_tbody = self.try_find_element((By.XPATH, "//div[contains(@id,':nombServicio')][contains(normalize-space(.), 'FACULTAD DE INGENIERÍA')]//tbody[contains(@id,':previaturasPlanes_data')]"))
+                    if outer_tbody != None:
+                            
                         results = []
                         def _txt(el):
                             return (el.get_attribute("textContent") or "").strip()
@@ -169,36 +150,31 @@ class PosPrevias(Scraper, UseTable, PlanSection):
                         
                         data[codigo]["posprevias"] = results
                         self.logger.info(f"Extracted {len(results)} posprevias for {codigo}")
-                    self.scroll_to_bottom()
-                    # foot is in front volver
-                    try:
-                        self.scroll_to_element_and_click(
-                            self.driver.find_element(
-                                By.XPATH, "//span[normalize-space(.)='Volver']"
-                            )
-                        )
-                        self.wait_for_page_to_load()
-                    except:
-                        input("Press Enter to continue...")	
-                        continue
-        finally:
-            backup_file = "posprevias_data_backup.json"
-            
-            # Load existing data if file exists
-            existing_data = {}
-            try:
-                with open(backup_file, "r", encoding="utf-8") as fp:
-                    existing_data = json.load(fp)
-                self.logger.info(f"Loaded existing data with {len(existing_data)} entries")
-            except FileNotFoundError:
-                self.logger.info("No existing backup file found, creating new one")
-            except json.JSONDecodeError:
-                self.logger.warning("Existing backup file is corrupted, starting fresh")
-            
-            # Update existing data with new data
-            existing_data.update(data)
-            
-            # Save updated data
-            with open(backup_file, "w", encoding="utf-8") as fp:
-                json.dump(existing_data, fp, ensure_ascii=False, indent=2)
-            self.logger.info(f"Backup updated with {len(data)} new/updated entries. Total entries: {len(existing_data)}")
+                self.scroll_to_bottom()
+                # foot is in front volver
+                self.scroll_to_element_and_click(
+                    self.driver.find_element(
+                        By.XPATH, "//span[normalize-space(.)='Volver']"
+                    )
+                )
+                self.wait_for_page_to_load()
+        backup_file = "posprevias_data_backup.json"
+        
+        # Load existing data if file exists
+        existing_data = {}
+        try:
+            with open(backup_file, "r", encoding="utf-8") as fp:
+                existing_data = json.load(fp)
+            self.logger.info(f"Loaded existing data with {len(existing_data)} entries")
+        except FileNotFoundError:
+            self.logger.info("No existing backup file found, creating new one")
+        except json.JSONDecodeError:
+            self.logger.warning("Existing backup file is corrupted, starting fresh")
+        
+        # Update existing data with new data
+        existing_data.update(data)
+        
+        # Save updated data
+        with open(backup_file, "w", encoding="utf-8") as fp:
+            json.dump(existing_data, fp, ensure_ascii=False, indent=2)
+        self.logger.info(f"Backup updated with {len(data)} new/updated entries. Total entries: {len(existing_data)}")

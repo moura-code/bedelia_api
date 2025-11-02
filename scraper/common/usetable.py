@@ -17,7 +17,7 @@ class UseTable():
         # Find the first visible and clickable one
         for element in elements:
             if element.is_displayed():
-                self.wait.until(EC.element_to_be_clickable(element)).click()
+                self.scroll_to_element_and_click(self.wait.until(EC.element_to_be_clickable(element)))
                 break
         active_anchor_xpath = "//a[contains(@class,'ui-paginator-page') and contains(@class,'ui-state-active')]"
         # TODO: remover esse sleep
@@ -28,6 +28,12 @@ class UseTable():
         
         total = int(active.text.strip())
         self.logger.info(f"Total pages: {total}")
+        
+        # Wait for modal to disappear before clicking first page
+        self.wait.until(
+            EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
+        )
+        
         self.wait.until(
             EC.element_to_be_clickable(
                 (
@@ -40,17 +46,24 @@ class UseTable():
         return total
 
     def go_to_page(self, page: int):
-        page_text = self.wait_for_element_to_be_visible((
+        page_text_element = self.wait_for_element_to_be_visible((
                 By.XPATH,
                 '//a[contains(@class, "ui-state-active")]',
-            )).get_attribute("aria-label")
+            ))
+        
+        page_text = page_text_element.get_attribute("aria-label")
+        if page_text is None:
+            page_text = page_text_element.text.strip()
         if (
             page_text == f"Page {page}"
         ):
             return
-        if page > 10 and page_text == "Page 1 ":
+        if page > 10 and (page_text == "Page 1" or page_text == "1"):
             self.scroll_to_element_and_click(self.wait_for_element_to_be_clickable((By.XPATH, f'//a[contains(@class,"ui-paginator-last")]')))
             self.wait_for_page_to_load()
         self.wait.until(EC.invisibility_of_element_located((By.XPATH, '//div[@id="j_idt22_modal"]')))
         self.scroll_to_element_and_click(self.wait_for_element_to_be_clickable((By.XPATH, f'//a[@aria-label="Page {page}"]')))
         self.wait_for_page_to_load()
+        self.logger.info("Waiting for loading to finish")
+        self.wait.until(EC.invisibility_of_element_located((By.XPATH, "//img[@src='/jakarta.faces.resource/img/cargando.gif.xhtml?ln=default']")))
+        self.logger.info("Loading finished")
