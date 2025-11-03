@@ -3,7 +3,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
-
+from selenium.common.exceptions import ElementClickInterceptedException
 
 class UseTable():
     
@@ -15,10 +15,15 @@ class UseTable():
             EC.presence_of_all_elements_located((By.XPATH, "//a[contains(@class,'ui-paginator-last')]"))
         )
         # Find the first visible and clickable one
-        for element in elements:
-            if element.is_displayed():
-                self.scroll_to_element_and_click(self.wait.until(EC.element_to_be_clickable(element)))
-                break
+        try:
+            for element in elements:
+                if element.is_displayed():
+                    self.scroll_to_element_and_click(self.wait.until(EC.element_to_be_clickable(element)))
+                    break
+        except ElementClickInterceptedException:
+            # Only 1 page
+            self.total_pages = 1
+            return 1
         active_anchor_xpath = "//a[contains(@class,'ui-paginator-page') and contains(@class,'ui-state-active')]"
         # TODO: remover esse sleep
         sleep(0.2)

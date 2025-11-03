@@ -30,6 +30,15 @@ class Scraper:
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
     def scroll_to_element_and_click(self, element):
+        """Scroll to element and click, waiting for modal to disappear first."""
+        # Always wait for the persistent modal overlay to disappear
+        try:
+            self.wait.until(
+                EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
+            )
+        except:
+            pass
+        
         self.scroll_to_element(element)
         self.wait_for_element_to_be_clickable(element).click()
 

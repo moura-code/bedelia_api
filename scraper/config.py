@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Mapping, Tuple
 import os
 
-DEFAULT_PAGES = ("posprevias", "credits", "vigentes", "previas")
+DEFAULT_PAGES = ("previas","posprevias", "credits", "vigentes")
 
 
 def _parse_bool(value: str, default: bool = False) -> bool:

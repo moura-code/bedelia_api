@@ -10,17 +10,22 @@ from .usetable import UseTable
 
 class PlanSection(UseTable):
 
-    def __init__(self, link, plan_name):
-        self.plan_name = plan_name
+    def __init__(self, link):
         self.link = link
         super().__init__()
 
 
     def open_faculty(self):
-        for i in range(2):
+        self.driver.get(self.link)
+        while self.try_find_element((By.XPATH, f'//span[@class="tituloNoticia"]')):
             self.driver.get(self.link)
+            print("Retrying...")
+            sleep(0.1)
         self.wait_loading_to_finish()
+        
+        # Wait for modal to disappear        
         self.wait_for_element_to_be_clickable((By.XPATH, f'//*[text()= "TECNOLOGÍA Y CIENCIAS DE LA NATURALEZA"]')).click()
+        sleep(1)
         self.scroll_to_element_and_click(self.wait_for_element_to_be_clickable((By.XPATH, '//*[text()= "FING - FACULTAD DE INGENIER\u00cdA"]')))
     
     def get_total_plan_sections(self):
@@ -36,6 +41,8 @@ class PlanSection(UseTable):
                 ) if row.is_displayed()]
             )
             self.logger.info(f"Rows length: {rows_len}")
+            
+            number_planes_div = 0
             for i in range(rows_len):
                 self.go_to_page(current_page)
                 rows = [row for row in self.driver.find_elements(
@@ -44,19 +51,16 @@ class PlanSection(UseTable):
                 ) if row.is_displayed()]
                 row = rows[i]
                 # Wait for modal to disappear before clicking
-                self.wait.until(
-                    EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
-                )
-                
+         
                 toggler = row.find_element(
                     By.XPATH, 
                     "./td[1]"
                 )
                 
                 self.scroll_to_element_and_click(toggler)
-                self.wait_for_element_to_be_present((By.XPATH, '//div[contains(@class, "ui-datatable ui-widget tablanivel2")]'))
-
-                
+                self.wait.until(
+                    lambda d: len(d.find_elements(By.XPATH, '//div[contains(@class, "ui-datatable ui-widget tablanivel2")]')) > number_planes_div
+                )
                 planes_div_list = self.driver.find_elements(By.XPATH, '//div[contains(@class, "ui-datatable ui-widget tablanivel2")]')
                 
                 planes_div = planes_div_list[-1]
@@ -64,35 +68,23 @@ class PlanSection(UseTable):
                 # Extract vigent plans
                 tbody = planes_div.find_element(By.CLASS_NAME, "ui-datatable-data")
                 plan_rows = tbody.find_elements(By.TAG_NAME, "tr")
-                
                 for plan_row in plan_rows:
                     cells = plan_row.find_elements(By.TAG_NAME, "td")
-                    
-                    if len(cells) >= 3:
-                        year = cells[0].text.strip()
-                        plan_name = row.find_element(By.XPATH, "./td[2]").text.strip()
-                        vigente = cells[2].text.strip()
-                        
-                        # Check if vigente is "Sí" or "Si"
-                        if vigente.lower() in ["sí", "si"]:
-                            plans_data.append({
-                                "year": year,
-                                "name": plan_name
-                            })
-                        print(plan_name)
-                        print(year)
-                        print(vigente)
+                    year = cells[0].text.strip()
+                    plan_name = row.find_element(By.XPATH, "./td[2]").text.strip()
+                    vigente = cells[2].get_attribute("innerHTML").strip()
+                    if vigente.lower() in ["sí", "si"]:
+                        plans_data.append((plan_name, year))
                 
                 if plans_data:
                     self.logger.info(f"Found {len(plans_data)} vigent plan(s):")
+                number_planes_div += 1
                 self.scroll_to_element_and_click(toggler)
    
-        print(plans_data)
         return plans_data
     
-    def open_plan_section(self, *, log_message: str) -> None:
+    def open_plan_section(self, *, log_message: str, plan_name: str, plan_year: str) -> None:
         """Navigate to the previas listing shared by previas and credits pages."""
-        self.get_total_plan_sections()
         self.logger.info(log_message)
         self.open_faculty()
         
@@ -101,10 +93,13 @@ class PlanSection(UseTable):
             (By.XPATH, "//span[contains(@class,'ui-column-title')]/following-sibling::input[1]")
         )
         filter_input.clear()
-        filter_input.send_keys(self.plan_name)
+        filter_input.send_keys(plan_name)
     
-        self.wait_for_element_to_be_clickable(
-            (By.XPATH, f'//*[text()="{self.plan_name}"]/preceding-sibling::td[1]')
-        ).click()
-    
-        self.wait_for_element_to_be_clickable((By.XPATH, '//tr[td[3][text()="Si"]]//i[contains(@class, "pi-info-circle") or contains(@class, "pi-calendar")]')).click()
+        self.scroll_to_element_and_click(self.wait_for_element_to_be_clickable(
+            (By.XPATH, f'//*[text()="{plan_name}"]/preceding-sibling::td[1]')
+        ))
+        
+        # Click on the info icon for the row that has both the matching year AND "Si" in vigente
+        xpath = f'//tr[td[1][text()="{plan_year}"]][td[3][text()="Si"]]//i[contains(@class, "pi-info-circle") or contains(@class, "pi-calendar")]'
+        self.logger.info(f"Clicking plan: year={plan_year}, vigente=Si")
+        self.scroll_to_element_and_click(self.wait_for_element_to_be_clickable((By.XPATH, xpath)))
