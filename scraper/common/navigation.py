@@ -34,6 +34,8 @@ class PlanSection(UseTable):
         plans_data = []
         for current_page in range(1, self.total_pages + 1):
             self.go_to_page(current_page)
+            span_grado = self.wait_for_element_to_be_visible((By.XPATH, '//span[text()="Grado"]'))
+            self.scroll_to_element_and_click(span_grado)
             rows_len = len(
                 [row for row in self.driver.find_elements(
                     By.XPATH, 
