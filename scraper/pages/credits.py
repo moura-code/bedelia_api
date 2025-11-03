@@ -13,23 +13,23 @@ from scraper import Scraper
 class Credits(Scraper, PlanSection):
     """Placeholder page object responsible for extracting course credits."""
 
-    def __init__(self, driver, wait, browser: str = "firefox", debug: bool = False, home_url: Optional[str] = None, plan_name: str = "INGENIERIA EN COMPUTACION"):
+    def __init__(self, driver, wait, browser: str = "firefox", debug: bool = False, home_url: Optional[str] = None):
         Scraper.__init__(self, driver, wait, browser, debug)
         url = f"{home_url}views/public/desktop/consultaOfertaAcademica/consultaOfertaAcademica02.xhtml?cid=1"
-        PlanSection.__init__(self, url, plan_name)
+        PlanSection.__init__(self, url)
         self.home_url = home_url
 
     def run(self):
         """Navigate to the credits section and trigger extraction logic."""
-        self.logger.info("Starting credits data extraction...")
-        
-        self.open_plan_section(
-            self,
-            log_message="Navigating to credits section...",
-        )
-
-        items = []
-        try:
+        plans_data = self.get_total_plan_sections()
+        data_plans = {}
+        for plan, year in plans_data:
+            self.open_plan_section(
+                log_message=f"Starting to extract credits data for {plan} {year}",
+                plan_name=plan,
+                plan_year=year,
+            )
+            items = {}
             self.logger.info("Open all nodes")
 
             while self.try_find_element((By.XPATH, '//*[@class="ui-tree-toggler ui-icon ui-icon-triangle-1-e"]')):
@@ -43,9 +43,7 @@ class Credits(Scraper, PlanSection):
             self.logger.info(f"Found {len(materia_elements)} course materials to process")
             
             for idx, li in enumerate(materia_elements, 1):
-                try:
                     self.logger.debug(f"Processing material {idx}/{len(materia_elements)}")
-                    
                     # Get the span that holds the line "CODE - NAME - whatever"
                     span = li.find_element(By.XPATH, './/td/span[@title="Código - Nombre - Créd.aportado"]')
                     raw = span.text
@@ -67,28 +65,16 @@ class Credits(Scraper, PlanSection):
                         "creditos": creditos,        # e.g., "créditos: 12" — left intact on purpose
                     }
                     
-                    items.append(item)
+                    items[f"{codigo}_{nombre}"] = item
                     self.logger.debug(f"Processed material: {codigo} - {nombre}")
                     
-                except Exception as e:
-                    self.logger.error(f"Error processing material {idx}: {e}")
-                    self.logger.debug(f"Raw material data: {li.get_attribute('outerHTML')[:200]}...")
-                    continue
-            
+            data_plans[f"{plan}_{year}"] = items
             self.logger.info(f"Successfully processed {len(items)} course materials")
 
-        except Exception as e:
-            self.logger.error(f"Error during credits extraction: {e}")
-            raise
-        finally:
-            # save to JSON as backup
-            backup_file = "credits_data_backup.json"
-            try:
-                with open(backup_file, "w", encoding="utf-8") as fp:
-                    json.dump(items, fp, ensure_ascii=False, indent=2)
-                self.logger.info(f"Backup saved to {backup_file} with {len(items)} items")
-            except Exception as e:
-                self.logger.error(f"Failed to save backup file {backup_file}: {e}")
+        backup_file = "credits_data_backup.json"
+        with open(backup_file, "w", encoding="utf-8") as fp:
+            json.dump(data_plans, fp, ensure_ascii=False, indent=2)
+        self.logger.info(f"Backup saved to {backup_file} with {len(items)} items")
 
 
 

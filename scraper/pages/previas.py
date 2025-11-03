@@ -2,29 +2,23 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from common.usetable import UseTable
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.common.action_chains import ActionChains
 from time import sleep
-import traceback
 import json
 import re
 from scraper import Scraper
 from common.navigation import PlanSection
 
 
-class Previas(Scraper, UseTable, PlanSection):
+class Previas(Scraper, PlanSection):
 
-    def __init__(self, driver, wait, browser: str = "firefox", debug: bool = False, home_url: str = None, plan_name: str = "INGENIERÍA EN COMPUTACIÓN"):
+    def __init__(self, driver, wait, browser: str = "firefox", debug: bool = False, home_url: str = None):
         Scraper.__init__(self, driver, wait, browser, debug)
         self.home_url = home_url
  
-        url = f"{home_url}views/public/desktop/consultaOfertaAcademica/consultaOfertaAcademica02.xhtml?cid=1"
-        PlanSection.__init__(self, url, plan_name)
-        UseTable.__init__(self)
+        url = f"{home_url}views/public/desktop/consultaOfertaAcademica/consultaOfertaAcademica01.xhtml?cid=6"
+        PlanSection.__init__(self, url)
                 # Map JSF nodetype to a readable group type
         self.NODETYPE_MAP = {
             "y": "ALL",  # debe tener todas
@@ -166,6 +160,11 @@ class Previas(Scraper, UseTable, PlanSection):
 
     def expand_all_requirements(self):
         self.logger.info("Expanding all requirements")
+        
+        # Wait for modal overlay to disappear
+        self.wait.until(
+            EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
+        )
 
         plus_elements = self.driver.find_elements(
             By.XPATH, '//span[@class="ui-tree-toggler ui-icon ui-icon-plus"]'
@@ -180,10 +179,13 @@ class Previas(Scraper, UseTable, PlanSection):
         visible_plus_elements = self.wait_for_all_elements_to_be_visible(
             (By.XPATH, '//span[@class="ui-tree-toggler ui-icon ui-icon-plus"]')
         )
-        # TODO remover
-        # <div id="j_idt22_modal" sempre esta na frente
-        sleep(0.1)
+        
         for plus_element in visible_plus_elements:
+            # Wait for modal to disappear before each click
+            self.wait.until(
+                EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
+            )
+            sleep(0.1)
             self.scroll_to_element_and_click(plus_element)
 
     def _parse_node(self, td_node):
@@ -240,25 +242,35 @@ class Previas(Scraper, UseTable, PlanSection):
    
     def run(self):
         """Extract prerequisite (previas) data and store in database."""
-        self.open_plan_section(
-            log_message="Starting to extract previas (prerequisites) data...",
-        )
-        self.logger.info("Clicking sistema de previaturas")
-
-        self.wait_for_element_to_be_clickable((By.XPATH, '//span[text()="Sistema de previaturas"]')).click()
-        # TODO remover
-        sleep(2)
-
-        self.logger.info("Getting total pages...")
-        # Ensure paginator is in known state and get total pages
-        self.get_total_pages()
-        # TODO remover
-        sleep(2)
         
-        data = {}
-        try:
+        plans_data = self.get_total_plan_sections()
+        data_plans = {}
+        for plan, year in plans_data:
+            self.open_plan_section(
+                log_message=f"Starting to extract previas (prerequisites) data for {plan} {year}",
+                plan_name=plan,
+                plan_year=year,
+            )
+            self.logger.info("Clicking sistema de previaturas")
+
+            self.wait_for_element_to_be_clickable((By.XPATH, '//span[text()="Sistema de previaturas"]')).click()
+            # TODO remover
+            sleep(2)
+            
+            if self.try_find_element((By.XPATH, '//span[text()="No se pueden mostrar los Sistemas de Previaturas del Plan"]')):
+                self.logger.info("No se pueden mostrar los Sistemas de Previaturas del Plan")
+                continue
+
+            self.logger.info("Getting total pages...")
+            # Ensure paginator is in known state and get total pages
+            self.get_total_pages()
+            # TODO remover
+            sleep(2)
+            
+            data = {}
             # Extract previas data
             for current_page in range(1, self.total_pages + 1):
+                self.go_to_page(current_page)
                 self.logger.info(
                     f"Processing previas page {current_page}/{self.total_pages}"
                 )
@@ -267,62 +279,83 @@ class Previas(Scraper, UseTable, PlanSection):
                         By.XPATH, '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]'
                     )
                 )
+                
+                self.logger.info(f"Rows length: {rows_len}")
                 for i in range(rows_len):
                     self.go_to_page(current_page)
-                    try:
-                        row = self.wait_for_all_elements_to_be_visible(
-                            (
-                                By.XPATH,
-                                '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]',
-                            )
-                        )[i]
-                        # Extract row data for processing table data
-                        cells = row.find_elements(By.TAG_NAME, "td")
-
-                        if len(cells) < 3:
-                            raise Exception("Less than 3 cells found in row")
-
-                        subject_info = {
-                            "code": cells[0].text.strip() if cells[0].text else "",
-                            "name": cells[1].text.strip() if cells[1].text else "",
-                        }
-                        self.logger.info(f"Subject info: {subject_info}")
-
-                        # Click in Ver Más
-                        self.scroll_to_element_and_click(
-                            cells[2].find_element(By.TAG_NAME, "a")
+                    
+                    # Re-find rows to avoid stale element references
+                    rows = self.wait_for_all_elements_to_be_visible(
+                        (
+                            By.XPATH,
+                            '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]',
                         )
+                    )
+                    
+                    row = rows[i]
+                    
+                    # Extract row data immediately to avoid stale elements
+                    cells = row.find_elements(By.TAG_NAME, "td")
 
-                        # Wait for the table to be visible
-                        self.wait_for_element_to_be_visible(
-                            (
-                                By.XPATH,
-                                "/html/body/div[3]/div[7]/div/form/div[1]/div/div/table/tbody/tr/td[1]/div",
-                            )
+                    if len(cells) < 3:
+                        raise Exception("Less than 3 cells found in row")
+
+                    # Extract text immediately before any other operations
+                    code = cells[0].text.strip() if cells[0].text else ""
+                    name = cells[1].text.strip() if cells[1].text else ""
+                    
+                    subject_info = {
+                        "code": code,
+                        "name": name,
+                    }
+                    self.logger.info(f"Subject info: {subject_info}")
+
+                    # Wait for modal to disappear before clicking Ver Más
+                    self.wait.until(
+                        EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
+                    )
+                    
+                    # Re-find the row and link to avoid stale element
+                    fresh_rows = self.driver.find_elements(
+                        By.XPATH,
+                        '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]'
+                    )
+                    fresh_cells = fresh_rows[i].find_elements(By.TAG_NAME, "td")
+                    ver_mas_link = fresh_cells[2].find_element(By.TAG_NAME, "a")
+                    
+                    # Click in Ver Más
+                    self.scroll_to_element_and_click(ver_mas_link)
+
+                    # Wait for the table to be visible
+                    self.wait_for_element_to_be_visible(
+                        (
+                            By.XPATH,
+                            "/html/body/div[3]/div[7]/div/form/div[1]/div/div/table/tbody/tr/td[1]/div",
                         )
+                    )
 
-                        self.expand_all_requirements()
+                    self.expand_all_requirements()
 
-                        subject_info["requirements"] = self.extract_requirements()
+                    subject_info["requirements"] = self.extract_requirements()
 
-                        data[subject_info["code"]] = subject_info
-                        self.logger.info(
-                            f"Requriments extracted for {subject_info['code']}"
+                    data[subject_info["code"]] = subject_info
+                    self.logger.info(
+                        f"Requriments extracted for {subject_info['code']}"
+                    )
+                    
+                    # Wait for modal overlay to disappear before clicking Volver
+                    self.wait.until(
+                        EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
+                    )
+                    self.scroll_to_element_and_click(
+                        self.driver.find_element(
+                            By.XPATH, "//span[normalize-space(.)='Volver']"
                         )
-                        self.scroll_to_element_and_click(
-                            self.driver.find_element(
-                                By.XPATH, "//span[normalize-space(.)='Volver']"
-                            )
-                        )
-                    except Exception as e:
-                        if self.debug:
-                            traceback.print_exc()
-                        else:
-                            self.logger.error(f"Error processing previas row {i}: {e}")
-                        continue
-        finally:
-            # save to JSON as backup
-            backup_file = "previas_data_backup.json"
-            with open(backup_file, "w", encoding="utf-8") as fp:
-                json.dump(data, fp, ensure_ascii=False, indent=2)
-            self.logger.info(f"Backup saved to {backup_file}")
+                    )
+                data_plans[f"{plan}_{year}"] = data
+
+        # save to JSON as backup
+        backup_file = "previas_data_backup.json"
+        with open(backup_file, "w", encoding="utf-8") as fp:
+            json.dump(data_plans, fp, ensure_ascii=False, indent=2)
+        self.logger.info(f"Backup saved to {backup_file}")
