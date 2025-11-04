@@ -244,118 +244,152 @@ class Previas(Scraper, PlanSection):
         """Extract prerequisite (previas) data and store in database."""
         
         plans_data = self.get_total_plan_sections()
+        print(plans_data)
+        print(len(plans_data))
         data_plans = {}
-        for plan, year in plans_data:
-            self.open_plan_section(
-                log_message=f"Starting to extract previas (prerequisites) data for {plan} {year}",
-                plan_name=plan,
-                plan_year=year,
-            )
-            self.logger.info("Clicking sistema de previaturas")
-
-            self.wait_for_element_to_be_clickable((By.XPATH, '//span[text()="Sistema de previaturas"]')).click()
-            # TODO remover
-            sleep(2)
-            
-            if self.try_find_element((By.XPATH, '//span[text()="No se pueden mostrar los Sistemas de Previaturas del Plan"]')):
-                self.logger.info("No se pueden mostrar los Sistemas de Previaturas del Plan")
-                continue
-
-            self.logger.info("Getting total pages...")
-            # Ensure paginator is in known state and get total pages
-            self.get_total_pages()
-            # TODO remover
-            sleep(2)
-            
-            data = {}
-            # Extract previas data
-            for current_page in range(1, self.total_pages + 1):
-                self.go_to_page(current_page)
-                self.logger.info(
-                    f"Processing previas page {current_page}/{self.total_pages}"
+        j = 6
+        while j < len(plans_data):
+            try:
+                plan, year = plans_data[j]
+                self.open_plan_section(
+                    log_message=f"Starting to extract previas (prerequisites) data for {plan} {year}",
+                    plan_name=plan,
+                    plan_year=year,
                 )
-                rows_len = len(
-                    self.driver.find_elements(
-                        By.XPATH, '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]'
-                    )
-                )
-                
-                self.logger.info(f"Rows length: {rows_len}")
-                for i in range(rows_len):
+                self.logger.info("Clicking sistema de previaturas")
+
+                self.wait_for_element_to_be_clickable((By.XPATH, '//span[text()="Sistema de previaturas"]')).click()
+                # TODO remover
+                sleep(1)
+
+                if self.try_find_element((By.XPATH, '//span[text()="No se pueden mostrar los Sistemas de Previaturas del Plan"]')):
+                    self.logger.info("No se pueden mostrar los Sistemas de Previaturas del Plan")
+                    continue
+
+                self.logger.info("Getting total pages...")
+                # Ensure paginator is in known state and get total pages
+                self.get_total_pages()
+                # TODO remover
+                sleep(1)
+
+                data = {}
+
+                current_page = 1
+                # Extract previas data
+                while current_page != self.total_pages + 1:
                     self.go_to_page(current_page)
-                    
-                    # Re-find rows to avoid stale element references
-                    rows = self.wait_for_all_elements_to_be_visible(
-                        (
-                            By.XPATH,
-                            '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]',
-                        )
-                    )
-                    
-                    row = rows[i]
-                    
-                    # Extract row data immediately to avoid stale elements
-                    cells = row.find_elements(By.TAG_NAME, "td")
-
-                    if len(cells) < 3:
-                        raise Exception("Less than 3 cells found in row")
-
-                    # Extract text immediately before any other operations
-                    code = cells[0].text.strip() if cells[0].text else ""
-                    name = cells[1].text.strip() if cells[1].text else ""
-                    
-                    subject_info = {
-                        "code": code,
-                        "name": name,
-                    }
-                    self.logger.info(f"Subject info: {subject_info}")
-
-                    # Wait for modal to disappear before clicking Ver Más
-                    self.wait.until(
-                        EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
-                    )
-                    
-                    # Re-find the row and link to avoid stale element
-                    fresh_rows = self.driver.find_elements(
-                        By.XPATH,
-                        '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]'
-                    )
-                    fresh_cells = fresh_rows[i].find_elements(By.TAG_NAME, "td")
-                    ver_mas_link = fresh_cells[2].find_element(By.TAG_NAME, "a")
-                    
-                    # Click in Ver Más
-                    self.scroll_to_element_and_click(ver_mas_link)
-
-                    # Wait for the table to be visible
-                    self.wait_for_element_to_be_visible(
-                        (
-                            By.XPATH,
-                            "/html/body/div[3]/div[7]/div/form/div[1]/div/div/table/tbody/tr/td[1]/div",
-                        )
-                    )
-
-                    self.expand_all_requirements()
-
-                    subject_info["requirements"] = self.extract_requirements()
-
-                    data[subject_info["code"]] = subject_info
                     self.logger.info(
-                        f"Requriments extracted for {subject_info['code']}"
+                        f"Processing previas page {current_page}/{self.total_pages}"
                     )
-                    
-                    # Wait for modal overlay to disappear before clicking Volver
-                    self.wait.until(
-                        EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
-                    )
-                    self.scroll_to_element_and_click(
-                        self.driver.find_element(
-                            By.XPATH, "//span[normalize-space(.)='Volver']"
+                    rows_len = len(
+                        self.driver.find_elements(
+                            By.XPATH, '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]'
                         )
                     )
-                data_plans[f"{plan}_{year}"] = data
+                    
+                    self.logger.info(f"Rows length: {rows_len}") 
+                    i = 0
+                    while i != rows_len:
+                        self.go_to_page(current_page)
+                        
+                        # Re-find rows to avoid stale element references
+                        rows = self.wait_for_all_elements_to_be_visible(
+                            (
+                                By.XPATH,
+                                '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]',
+                            )
+                        )
+                        
+                        row = rows[i]
+                        
+                        # Extract row data immediately to avoid stale elements
+                        cells = row.find_elements(By.TAG_NAME, "td")
 
+                        # Re-find the cells after re-finding the row
+                        cells = row.find_elements(By.TAG_NAME, "td")
+                        if len(cells) < 3:
+                            raise Exception("Less than 3 cells found in row")
+
+                        # Extract text immediately before any other operations
+                        code = cells[0].text.strip() if cells[0].text else ""
+                        name = cells[1].text.strip() if cells[1].text else ""
+                        
+                        subject_info = {
+                            "code": code,
+                            "name": name,
+                        }
+                        self.logger.info(f"Subject info: {subject_info}")
+
+                        # Wait for modal to disappear before clicking Ver Más
+                        self.wait.until(
+                            EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
+                        )
+                        
+                        # Re-find the row and link to avoid stale element
+                        fresh_rows = self.driver.find_elements(
+                            By.XPATH,
+                            '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]'
+                        )
+                        fresh_cells = fresh_rows[i].find_elements(By.TAG_NAME, "td")
+                        ver_mas_link = fresh_cells[2].find_element(By.TAG_NAME, "a")
+                        
+                        # Click in Ver Más
+                        self.scroll_to_element_and_click(ver_mas_link)
+
+                        # Wait for the table to be visible
+                        
+                        self.wait_for_element_to_be_visible(
+                            (
+                                By.XPATH,
+                                "/html/body/div[3]/div[7]/div/form/div[1]/div/div/table/tbody/tr/td[1]/div",
+                            )
+                        )
+            
+
+                        self.expand_all_requirements()
+
+                        subject_info["requirements"] = self.extract_requirements()
+
+                        data[subject_info["code"]] = subject_info
+                        self.logger.info(
+                            f"Requriments extracted for {subject_info['code']}"
+                        )
+                        
+                        # Wait for modal overlay to disappear before clicking Volver
+                        self.wait.until(
+                            EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
+                        )
+                        self.scroll_to_element_and_click(
+                            self.driver.find_element(
+                                By.XPATH, "//span[normalize-space(.)='Volver']"
+                            )
+                        )
+                        i += 1
+                    data_plans[f"{plan}_{year}"] = data
+                    current_page += 1
+                j+=1
+            except Exception as e:
+                if self.try_find_element((By.XPATH, f'//span[@class="tituloNoticia"]')):
+                    self.logger.info("Volvio a pagina principal")
+                    self.open_plan_section(
+                        log_message=f"Volvio a pagina principal",
+                        plan_name=plan,
+                        plan_year=year,
+                    )
+                    continue
+                backup_file = "previas_data_backup2.json"
+                with open(backup_file, "w", encoding="utf-8") as fp:
+                    json.dump(data_plans, fp, ensure_ascii=False, indent=2)
+                    self.logger.info(f"Backup saved to {backup_file}")
+                    self.logger.info(f"Error: {e}")
+                raise e
         # save to JSON as backup
         backup_file = "previas_data_backup.json"
+        read_backup_file = open(backup_file, "r", encoding="utf-8")
+        data_plans = json.load(read_backup_file)
+        read_backup_file.close()
+        data_plans.update(data_plans)
         with open(backup_file, "w", encoding="utf-8") as fp:
             json.dump(data_plans, fp, ensure_ascii=False, indent=2)
         self.logger.info(f"Backup saved to {backup_file}")
+        read_backup_file.close()

@@ -34,8 +34,6 @@ class PlanSection(UseTable):
         plans_data = []
         for current_page in range(1, self.total_pages + 1):
             self.go_to_page(current_page)
-            span_grado = self.wait_for_element_to_be_visible((By.XPATH, '//span[text()="Grado"]'))
-            self.scroll_to_element_and_click(span_grado)
             rows_len = len(
                 [row for row in self.driver.find_elements(
                     By.XPATH, 
@@ -53,7 +51,10 @@ class PlanSection(UseTable):
                 ) if row.is_displayed()]
                 row = rows[i]
                 # Wait for modal to disappear before clicking
-         
+                if row.find_element(By.XPATH, "./td[3]").text.strip() != "Grado":
+                    self.logger.info(f"Skipping row {i} because it is not a Grado")
+                    continue
+                
                 toggler = row.find_element(
                     By.XPATH, 
                     "./td[1]"

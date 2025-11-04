@@ -144,9 +144,7 @@ class Bedelias:
         """Cleanly close the Selenium driver."""
         if self.driver:
             self.logger.info("Closing browser...")
-            self.driver.quit()
             self.logger.info("Browser closed successfully")
-        self.driver = None
         self.wait = None
         self._logged_in = False
 
@@ -250,8 +248,11 @@ def main():
             ", ".join(config.pages) if config.pages else "(none)",
         )
         scraper = Bedelias(config)
-        scraper.run()
-        logger.info("Scraping completed successfully!")
+        try:
+            scraper.run()
+        except Exception as exc:
+            traceback.print_exc()
+            scraper.driver.get_screenshot_as_file("screenshot.png")
     except KeyboardInterrupt:
         logger.info("Scraping interrupted by user")
         sys.exit(0)
