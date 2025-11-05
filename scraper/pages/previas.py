@@ -240,17 +240,36 @@ class Previas(Scraper, PlanSection):
         )
 
    
-    def run(self):
-        """Extract prerequisite (previas) data and store in database."""
-        
-        plans_data = self.get_total_plan_sections()
-        print(plans_data)
-        print(len(plans_data))
-        data_plans = {}
-        j = 6
-        while j < len(plans_data):
+    def _load_backup_data(self, backup_file: str) -> dict:
+        """Load existing backup data if available."""
+        if os.path.exists(backup_file):
             try:
-                plan, year = plans_data[j]
+                with open(backup_file, "r", encoding="utf-8") as fp:
+                    return json.load(fp)
+            except json.JSONDecodeError:
+                self.logger.warning(f"Backup file {backup_file} is corrupted, starting fresh")
+                return {}
+        return {}
+    
+    def _save_backup_data(self, backup_file: str, data: dict):
+        """Save data to backup file."""
+        with open(backup_file, "w", encoding="utf-8") as fp:
+            json.dump(data, fp, ensure_ascii=False, indent=2)
+        self.logger.info(f"Backup saved to {backup_file}")
+    
+    def _process_plan_with_retry(self, plan: str, year: str, max_retries: int = 3) -> dict:
+        """
+        Process a single plan with retry logic for Selenium errors.
+        Returns the extracted data for this plan.
+        """
+        retry_count = 0
+        last_exception = None
+        
+        while retry_count < max_retries:
+            try:
+                self.logger.info(f"Processing plan {plan} {year} (attempt {retry_count + 1}/{max_retries})")
+                
+                # Navigate to the plan section
                 self.open_plan_section(
                     log_message=f"Starting to extract previas (prerequisites) data for {plan} {year}",
                     plan_name=plan,
@@ -259,28 +278,25 @@ class Previas(Scraper, PlanSection):
                 self.logger.info("Clicking sistema de previaturas")
 
                 self.wait_for_element_to_be_clickable((By.XPATH, '//span[text()="Sistema de previaturas"]')).click()
-                # TODO remover
                 sleep(1)
 
+                # Check if plan has no previaturas
                 if self.try_find_element((By.XPATH, '//span[text()="No se pueden mostrar los Sistemas de Previaturas del Plan"]')):
                     self.logger.info("No se pueden mostrar los Sistemas de Previaturas del Plan")
-                    continue
+                    return {}
 
                 self.logger.info("Getting total pages...")
-                # Ensure paginator is in known state and get total pages
                 self.get_total_pages()
-                # TODO remover
                 sleep(1)
 
                 data = {}
-
                 current_page = 1
-                # Extract previas data
-                while current_page != self.total_pages + 1:
+                
+                # Extract previas data for all pages
+                while current_page <= self.total_pages:
                     self.go_to_page(current_page)
-                    self.logger.info(
-                        f"Processing previas page {current_page}/{self.total_pages}"
-                    )
+                    self.logger.info(f"Processing previas page {current_page}/{self.total_pages}")
+                    
                     rows_len = len(
                         self.driver.find_elements(
                             By.XPATH, '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]'
@@ -289,7 +305,8 @@ class Previas(Scraper, PlanSection):
                     
                     self.logger.info(f"Rows length: {rows_len}") 
                     i = 0
-                    while i != rows_len:
+                    
+                    while i < rows_len:
                         self.go_to_page(current_page)
                         
                         # Re-find rows to avoid stale element references
@@ -302,18 +319,26 @@ class Previas(Scraper, PlanSection):
                         
                         row = rows[i]
                         
-                        # Extract row data immediately to avoid stale elements
-                        cells = row.find_elements(By.TAG_NAME, "td")
+                        # Extract row data with retry
+                        max_cell_retries = 5
+                        cell_retry = 0
+                        while cell_retry < max_cell_retries:
+                            try:
+                                cells = row.find_elements(By.TAG_NAME, "td")
+                                if len(cells) < 3:
+                                    raise Exception("Less than 3 cells found in row")
+        
+                                # Extract text immediately before any other operations
+                                code = cells[0].text.strip() if cells[0].text else ""
+                                name = cells[1].text.strip() if cells[1].text else ""
+                                break
+                            except Exception as cell_error:
+                                cell_retry += 1
+                                if cell_retry >= max_cell_retries:
+                                    raise cell_error
+                                row = rows[i]
+                                sleep(0.1)
 
-                        # Re-find the cells after re-finding the row
-                        cells = row.find_elements(By.TAG_NAME, "td")
-                        if len(cells) < 3:
-                            raise Exception("Less than 3 cells found in row")
-
-                        # Extract text immediately before any other operations
-                        code = cells[0].text.strip() if cells[0].text else ""
-                        name = cells[1].text.strip() if cells[1].text else ""
-                        
                         subject_info = {
                             "code": code,
                             "name": name,
@@ -333,27 +358,22 @@ class Previas(Scraper, PlanSection):
                         fresh_cells = fresh_rows[i].find_elements(By.TAG_NAME, "td")
                         ver_mas_link = fresh_cells[2].find_element(By.TAG_NAME, "a")
                         
-                        # Click in Ver Más
+                        # Click Ver Más
                         self.scroll_to_element_and_click(ver_mas_link)
 
                         # Wait for the table to be visible
-                        
                         self.wait_for_element_to_be_visible(
                             (
                                 By.XPATH,
                                 "/html/body/div[3]/div[7]/div/form/div[1]/div/div/table/tbody/tr/td[1]/div",
                             )
                         )
-            
 
                         self.expand_all_requirements()
-
                         subject_info["requirements"] = self.extract_requirements()
 
                         data[subject_info["code"]] = subject_info
-                        self.logger.info(
-                            f"Requriments extracted for {subject_info['code']}"
-                        )
+                        self.logger.info(f"Requirements extracted for {subject_info['code']}")
                         
                         # Wait for modal overlay to disappear before clicking Volver
                         self.wait.until(
@@ -365,31 +385,68 @@ class Previas(Scraper, PlanSection):
                             )
                         )
                         i += 1
-                    data_plans[f"{plan}_{year}"] = data
+                    
                     current_page += 1
-                j+=1
+                
+                # Successfully processed the plan
+                self.logger.info(f"Successfully processed plan {plan} {year}")
+                return data
+                
             except Exception as e:
-                if self.try_find_element((By.XPATH, f'//span[@class="tituloNoticia"]')):
-                    self.logger.info("Volvio a pagina principal")
-                    self.open_plan_section(
-                        log_message=f"Volvio a pagina principal",
-                        plan_name=plan,
-                        plan_year=year,
-                    )
-                    continue
-                backup_file = "previas_data_backup2.json"
-                with open(backup_file, "w", encoding="utf-8") as fp:
-                    json.dump(data_plans, fp, ensure_ascii=False, indent=2)
-                    self.logger.info(f"Backup saved to {backup_file}")
-                    self.logger.info(f"Error: {e}")
-                raise e
-        # save to JSON as backup
+                last_exception = e
+                retry_count += 1
+                self.logger.error(f"Error processing plan {plan} {year} (attempt {retry_count}/{max_retries}): {e}")
+                
+                # Check if we returned to main page
+                if self.try_find_element((By.XPATH, '//span[@class="tituloNoticia"]')):
+                    self.logger.info("Returned to main page, will retry")
+                
+                if retry_count < max_retries:
+                    self.logger.info(f"Retrying plan {plan} {year}...")
+                    sleep(2)  # Wait before retrying
+                else:
+                    self.logger.error(f"Failed to process plan {plan} {year} after {max_retries} attempts")
+                    raise last_exception
+        
+        raise last_exception
+    
+    def run(self):
+        """Extract prerequisite (previas) data and store in database."""
         backup_file = "previas_data_backup.json"
-        read_backup_file = open(backup_file, "r", encoding="utf-8")
-        data_plans = json.load(read_backup_file)
-        read_backup_file.close()
-        data_plans.update(data_plans)
-        with open(backup_file, "w", encoding="utf-8") as fp:
-            json.dump(data_plans, fp, ensure_ascii=False, indent=2)
-        self.logger.info(f"Backup saved to {backup_file}")
-        read_backup_file.close()
+        
+        # Load existing backup data
+        all_plans_data = self._load_backup_data(backup_file)
+        self.logger.info(f"Loaded {len(all_plans_data)} plans from backup")
+        
+        # Get all available plans
+        plans_data = self.get_total_plan_sections()
+        self.logger.info(f"Total plans available: {len(plans_data)}")
+        
+        # Process each plan
+        for j in range(len(plans_data)):
+            plan, year = plans_data[j]
+            plan_key = f"{plan}_{year}"
+            
+            # Skip if already processed
+            if plan_key in all_plans_data:
+                self.logger.info(f"Skipping already processed plan: {plan_key}")
+                continue
+            
+            try:
+                # Process plan with retry logic
+                plan_data = self._process_plan_with_retry(plan, year, max_retries=3)
+                
+                # Save data for this plan
+                all_plans_data[plan_key] = plan_data
+                
+                # Save backup after each successful plan
+                self._save_backup_data(backup_file, all_plans_data)
+                self.logger.info(f"✓ Completed and saved plan {j+1}/{len(plans_data)}: {plan_key}")
+                
+            except Exception as e:
+                self.logger.error(f"✗ Failed to process plan {plan_key} after all retries: {e}")
+                # Continue with next plan instead of crashing
+                continue
+        
+        self.logger.info(f"Previas extraction completed! Processed {len(all_plans_data)} plans total")
+        self.logger.info(f"Final data saved to {backup_file}")

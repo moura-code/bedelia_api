@@ -2,7 +2,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-
+from time import sleep
 import logging
 
 
@@ -26,21 +26,50 @@ class Scraper:
         el = self.wait_for_element_to_be_present((By.LINK_TEXT, text))
         ActionChains(self.driver).move_to_element(el).perform()
 
-    def scroll_to_element(self, element):
-        self.driver.execute_script("arguments[0].scrollIntoView();", element)
+    def scroll_to_element(self, element, behavior="auto", block="center", inline="nearest"):
+        """
+        Scroll to element with configurable options.
+        
+        Args:
+            element: WebElement to scroll to
+            behavior: 'smooth' or 'auto' (instant)
+            block: 'start', 'center', 'end', or 'nearest'
+            inline: 'start', 'center', 'end', or 'nearest'
+        """
+        try:
+            # Modern approach with scrollIntoView options
+            self.driver.execute_script(
+                """
+                arguments[0].scrollIntoView({
+                    behavior: arguments[1],
+                    block: arguments[2],
+                    inline: arguments[3]
+                });
+                """,
+                element, behavior, block, inline
+            )
+            # Small pause to allow smooth scrolling to complete
+            if behavior == "smooth":
+                sleep(0.3)
+        except Exception as e:
+            # Fallback to basic scrollIntoView for older browsers
+            self.logger.warning(f"Modern scroll failed, using fallback: {e}")
+            self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+            sleep(0.2)
 
     def scroll_to_element_and_click(self, element):
         """Scroll to element and click, waiting for modal to disappear first."""
         # Always wait for the persistent modal overlay to disappear
-        try:
-            self.wait.until(
-                EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
-            )
-        except:
-            pass
-        
-        self.scroll_to_element(element)
-        self.wait_for_element_to_be_clickable(element).click()
+        while True:
+            try:
+                self.wait.until(
+                    EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
+                )
+                self.scroll_to_element(element)
+                self.wait_for_element_to_be_clickable(element).click()
+                return True
+            except:
+                pass
 
 
     def wait_for_element_to_be_clickable(self, locator: tuple):
