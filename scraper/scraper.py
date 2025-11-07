@@ -71,7 +71,8 @@ class Scraper:
                 self.wait_for_element_to_be_clickable(element).click()
                 return True
             except:
-                traceback.print_exc()
+                pass
+        traceback.print_exc()
         return False
 
 
@@ -105,3 +106,9 @@ class Scraper:
     def wait_loading_to_finish(self):
         loading_path = "//img[@src='/jakarta.faces.resource/img/cargando.gif.xhtml?ln=default']"
         self.wait.until(EC.invisibility_of_element_located((By.XPATH, loading_path)))
+
+    def remove_element(self, element):
+        self.driver.execute_script("""
+        var element = arguments[0];
+        element.remove();
+        """, element)

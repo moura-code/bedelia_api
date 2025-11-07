@@ -253,7 +253,7 @@ class PosPrevias(Scraper, PlanSection):
     
     def run(self):
         """Extract posprevias data and store with incremental backup."""
-        backup_file = "posprevias_data_backup.json"
+        backup_file = "../../data/posprevias_data_backup.json"
         
         # Load existing backup data
         all_plans_data = self._load_backup_data(backup_file)

@@ -145,7 +145,7 @@ class Bedelias:
         if self.driver:
             self.logger.info("Closing browser...")
             self.logger.info("Browser closed successfully")
-        self.wait = None
+            self.driver.quit()
         self._logged_in = False
 
     def login_and_navigate(self):

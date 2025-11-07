@@ -124,7 +124,7 @@ class Credits(Scraper, PlanSection):
     
     def run(self):
         """Navigate to the credits section and trigger extraction logic."""
-        backup_file = "credits_data_backup.json"
+        backup_file = "../../data/credits_data_backup.json"
         
         # Load existing backup data
         all_plans_data = self._load_backup_data(backup_file)

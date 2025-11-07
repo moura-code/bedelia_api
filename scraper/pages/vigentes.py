@@ -60,15 +60,11 @@ class Vigentes(Scraper, PlanSection):
                 'course_code': course_code,
                 'course_name': course_name,
             }
-        
-        return {
-            'university_code': '',
-            'course_code': '',
-            'course_name': '',
-        }
+        print(text)
+        print(parts)
+        raise Exception("Course text not found")
     
     def process_table(self):
-        self.logger.info("tablew")
         numero = self.get_total_pages()
         
         # List to store all course data
@@ -79,8 +75,7 @@ class Vigentes(Scraper, PlanSection):
             self.go_to_page(current_page)
             sleep(0.5)
             rows = self.wait_for_all_elements_to_be_visible(
-                (By.XPATH, '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]')
-            )
+                (By.XPATH, '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]'))
             
             for i in range(len(rows)):
                 row = self.wait_for_all_elements_to_be_visible(
@@ -110,15 +105,16 @@ class Vigentes(Scraper, PlanSection):
                     plan_year=year,
                 )
                 self.logger.info("Sacando instancias de dictado con período disponible")
-                data_disponibles = self.process_table()
-           
+                
+                data_disponibles = {}
+                if not self.try_find_element((By.XPATH, '//td[text()= "No existen instancias de evaluación con período de inscripción/desistimiento habilitado."]')):
+                    data_disponibles = self.process_table()
+                self.remove_element(self.driver.find_element(By.XPATH, '//div[@id="accordDict:tabDictH_header"]'))
+                self.remove_element(self.driver.find_element(By.XPATH, '//div[@id="accordDict:tabDictH"]'))
                 self.logger.info("Sacando instancias de dictado con período finalizado")
                 self.wait_for_element_to_be_clickable((By.XPATH, '//div[contains(text(), "Instancias de dictado con período finalizado")]')).click()
                 sleep(1)
-                self.driver.execute_script("""
-                    var element = arguments[0];
-                    element.parentNode.removeChild(element);
-                    """, self.wait_for_element_to_be_clickable((By.XPATH, '//div[@id="accordDict:tabDictH"]')))
+             
                 data_finalizadas = self.process_table()
                 
                 combined_data = {**data_disponibles, **data_finalizadas}
@@ -145,14 +141,14 @@ class Vigentes(Scraper, PlanSection):
     # TODO: Essa pagina nao esta consistente, da muito erro as veses
     def run(self):
         """Extract prerequisite (materias vigentes) data and store in database."""
-        backup_file = "vigentes_data_backup.json"
+        backup_file = "../../data/vigentes_data_backup.json"
         
         # Load existing backup data
         all_plans_data = self._load_backup_data(backup_file)
         self.logger.info(f"Loaded {len(all_plans_data)} plans from backup")
         
         # Get all available plans
-        plans_data =[("INGENIERÍA CIVIL", 2021)] or self.get_total_plan_sections()
+        plans_data = self.get_total_plan_sections()
         self.logger.info(f"Total plans available: {len(plans_data)}")
         
         # Process each plan
