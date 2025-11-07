@@ -1,91 +1,148 @@
-import json
+import re
+from bs4 import BeautifulSoup
 
-def extract_codes_from_requirements(requirements_data):
-    """Extract all course codes from requirements.json structure"""
-    codes = set()
-    
-    # Add codes from main keys
-    for key in requirements_data.keys():
-        # Keys are in format "CODE - NAME"
-        code = key.split(' - ')[0]
-        codes.add(code)
-    
-    # Recursively extract codes from nested structure
-    def traverse(node):
-        if isinstance(node, dict):
-            # Check if this is a LEAF node with items
-            if node.get('type') == 'LEAF' and 'items' in node:
-                for item in node['items']:
-                    if 'code' in item:
-                        codes.add(item['code'])
-            
-            # Traverse all children
-            if 'children' in node:
-                for child in node['children']:
-                    traverse(child)
-            
-            # Traverse other nested structures
-            for value in node.values():
-                if isinstance(value, (dict, list)):
-                    traverse(value)
-        elif isinstance(list, list):
-            for item in node:
-                traverse(item)
-    
-    # Traverse each course's requirements
-    for course_data in requirements_data.values():
-        if 'requirements' in course_data:
-            traverse(course_data['requirements'])
-    
-    return codes
+# =============================
+# Node type map
+# =============================
+NODETYPE_MAP = {
+    "default": "LEAF",
+    "and": "ALL",
+    "or": "ANY",
+    "not": "NOT"
+}
 
-# Load credits.json
-with open('data/credits.json', 'r', encoding='utf-8') as f:
-    credits_data = json.load(f)
+# =============================
+# Utility helpers
+# =============================
 
-# Load requirements.json
-with open('data/requirements.json', 'r', encoding='utf-8') as f:
-    requirements_data = json.load(f)
+def clean_text(text):
+    return re.sub(r"\s+", " ", text or "").strip()
 
-# Extract all codes from credits.json
-credits_codes = set(course['codigo'] for course in credits_data)
+def is_direct_child(parent_rk: str, child_rk: str) -> bool:
+    """Return True if child_rk is exactly one level below parent_rk."""
+    if not parent_rk or parent_rk in ("root", ""):
+        return "_" not in child_rk
+    return child_rk.startswith(parent_rk + "_") and child_rk.count("_") == parent_rk.count("_") + 1
 
-# Extract all codes from requirements.json
-requirements_codes = extract_codes_from_requirements(requirements_data)
+# =============================
+# Leaf parsing
+# =============================
 
-# Find codes in credits but not in requirements
-missing_codes = credits_codes - requirements_codes
+def _split_code_name(s: str):
+    s = s.strip()
+    notes = re.findall(r"\(([^)]+)\)", s)
+    if notes:
+        s = re.sub(r"\([^)]+\)", "", s).strip()
 
-# Sort for better readability
-missing_codes_sorted = sorted(missing_codes)
+    m = re.match(r"^([A-Z0-9]+)\s*-\s*(.+)$", s, flags=re.I)
+    if m:
+        return m.group(1).strip().upper(), m.group(2).strip(), notes
 
-print(f"Total courses in credits.json: {len(credits_codes)}")
-print(f"Total course codes referenced in requirements.json: {len(requirements_codes)}")
-print(f"Courses in credits.json but NOT in requirements.json: {len(missing_codes)}")
-print("\n" + "="*80)
-print("Missing courses:")
-print("="*80)
+    m2 = re.match(r"^([A-Z0-9]+)\b(.*)$", s, flags=re.I)
+    if m2:
+        return m2.group(1).strip().upper(), m2.group(2).strip(" -:"), notes
 
-# Print detailed information about missing courses
-for code in missing_codes_sorted:
-    # Find the course name from credits.json
-    course_info = next((c for c in credits_data if c['codigo'] == code), None)
-    if course_info:
-        print(f"{code:15s} - {course_info['nombre']:60s} ({course_info['creditos']} créditos)")
+    return None, s, notes
 
-# Optionally, save to a file
-with open('missing_courses.txt', 'w', encoding='utf-8') as f:
-    f.write(f"Total courses in credits.json: {len(credits_codes)}\n")
-    f.write(f"Total course codes referenced in requirements.json: {len(requirements_codes)}\n")
-    f.write(f"Courses in credits.json but NOT in requirements.json: {len(missing_codes)}\n\n")
-    f.write("="*80 + "\n")
-    f.write("Missing courses:\n")
-    f.write("="*80 + "\n")
-    for code in missing_codes_sorted:
-        course_info = next((c for c in credits_data if c['codigo'] == code), None)
-        if course_info:
-            f.write(f"{code:15s} - {course_info['nombre']:60s} ({course_info['creditos']} créditos)\n")
 
-print("\n" + "="*80)
-print(f"Results also saved to: missing_courses.txt")
+def parse_item_line(line: str, prefix: str):
+    """Parse one textual item line (Examen/Course/UCB) into a structured dict."""
+    original = line.strip()
+    low = original.lower()
 
+    # Default modality
+    modality = "unknown"
+
+    if "examen de la u.c.b" in low:
+        modality = "exam"
+        body = re.sub(r"(?i)^examen\s+de\s+la\s+u\.c\.b:\s*", "", original).strip()
+    elif "curso de la u.c.b" in low:
+        modality = "course"
+        body = re.sub(r"(?i)^curso\s+de\s+la\s+u\.c\.b:\s*", "", original).strip()
+    elif re.search(r"(?i)u\.c\.b\s+aprobad[ao]:", original):
+        modality = "ucb_module"
+        body = re.sub(r"(?i)^u\.c\.b\s+aprobad[ao]:\s*", "", original).strip()
+    else:
+        body = original
+
+    code, title, notes = _split_code_name(body)
+
+    return {
+        "source": "UCB",
+        "modality": modality,  # exam | course | ucb_module | unknown
+        "code": code,
+        "title": title,
+        "notes": notes,
+        "raw": original
+    }
+
+
+def extract_items_from_leaf_structured(td):
+    """Extracts structured items and count from a leaf <td>."""
+    label_el = td.select_one(".ui-treenode-label")
+    if not label_el:
+        return {"required_count": 0, "items": []}
+
+    full_text = label_el.get_text("\n", strip=True)
+    bold = label_el.select_one(".negrita")
+    prefix = bold.get_text(" ", strip=True) if bold else ""
+    rest = full_text.replace(prefix, "", 1).strip()
+
+    required_count = 1
+    m = re.search(r"(\d+)\s+aprobaci[oó]n/es?", prefix, flags=re.I)
+    if m:
+        required_count = int(m.group(1))
+
+    lines = [l for l in (x.strip() for x in rest.split("\n")) if l]
+    items = [parse_item_line(line, prefix) for line in lines]
+
+    return {"required_count": required_count, "items": items}
+
+# =============================
+# Recursive tree parsing
+# =============================
+
+def parse_treenode(td):
+    """Recursively parse a <td data-nodetype> tree node into JSON."""
+    parent_rk = td.get("data-rowkey", "root")
+    nodetype = td.get("data-nodetype", "default")
+    kind = NODETYPE_MAP.get(nodetype, "LEAF")
+
+    title_el = td.select_one(".ui-treenode-label")
+    title = clean_text(title_el.get_text(" ", strip=True)) if title_el else ""
+
+    # --- Leaf nodes ---
+    if kind == "LEAF":
+        leaf = extract_items_from_leaf_structured(td)
+        leaf["title"] = title
+        return leaf
+
+    # --- Composite nodes ---
+    children = []
+    container = td.find_next_sibling("td", class_="ui-treenode-children-container")
+    if container:
+        for tbl in container.select("> .ui-treenode-children > table"):
+            row = tbl.select_one("> tbody > tr")
+            if not row:
+                continue
+            # top-level cells only
+            for c in row.find_all("td", recursive=False):
+                if not c.has_attr("data-nodetype"):
+                    continue
+                child_rk = c.get("data-rowkey", "")
+                if not is_direct_child(parent_rk, child_rk):
+                    continue
+                children.append(parse_treenode(c))
+
+    return {"type": kind, "title": title, "children": children}
+
+# =============================
+# Entry point
+# =============================
+
+def parse_tree(html: str):
+    soup = BeautifulSoup(html, "html.parser")
+    root_td = soup.select_one("td[data-nodetype]")
+    if not root_td:
+        raise ValueError("No treenode found in HTML.")
+    return parse_treenode(root_td)

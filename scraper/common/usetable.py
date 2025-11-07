@@ -14,23 +14,27 @@ class UseTable():
         elements = self.wait.until(
             EC.presence_of_all_elements_located((By.XPATH, "//a[contains(@class,'ui-paginator-last')]"))
         )
+
         # Find the first visible and clickable one
-        try:
-            for element in elements:
-                if element.is_displayed():
-                    self.scroll_to_element_and_click(self.wait.until(EC.element_to_be_clickable(element)))
-                    break
-        except ElementClickInterceptedException:
-            # Only 1 page
-            self.total_pages = 1
-            return 1
+        for element in elements:
+            if element.is_displayed():
+                if not self.scroll_to_element_and_click(element):
+                    self.total_pages = 1
+                    return 1
+                break
+            
         active_anchor_xpath = "//a[contains(@class,'ui-paginator-page') and contains(@class,'ui-state-active')]"
         # TODO: remover esse sleep
         sleep(0.2)
-        active = self.wait.until(
-            EC.presence_of_element_located((By.XPATH, active_anchor_xpath))
+        active_elements = self.wait.until(
+            EC.presence_of_all_elements_located((By.XPATH, active_anchor_xpath))
         )
-        
+        # Get the first displayed active element
+        active = None
+        for element in active_elements:
+            if element.is_displayed():
+                active = element
+                break
         total = int(active.text.strip())
         self.logger.info(f"Total pages: {total}")
         
@@ -39,14 +43,7 @@ class UseTable():
             EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
         )
         
-        self.wait.until(
-            EC.element_to_be_clickable(
-                (
-                    By.XPATH,
-                    "//a[@class='ui-paginator-first ui-state-default ui-corner-all']",
-                )
-            )
-        ).click()
+        self.wait_for_element_to_be_clickable((By.XPATH, "//a[@class='ui-paginator-first ui-state-default ui-corner-all']")).click()
         self.total_pages = total
         return total
 

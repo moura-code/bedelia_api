@@ -135,14 +135,15 @@ class PosPrevias(Scraper, PlanSection):
                             "//span[contains(@class,'ui-icon')]"
                         )
                         
-                        if self.try_find_element((By.XPATH, xpath_icon)):
+                        if self.try_find_element((By.XPATH, xpath_icon), 0.5):
                             self.wait_for_page_to_load()
                             self.scroll_to_element_and_click(
                                 self.wait_for_element_to_be_clickable((By.XPATH, xpath_icon))
                             )
                             
                             outer_tbody = self.try_find_element(
-                                (By.XPATH, "//div[contains(@id,':nombServicio')][contains(normalize-space(.), 'FACULTAD DE INGENIERÍA')]//tbody[contains(@id,':previaturasPlanes_data')]")
+                                (By.XPATH, "//div[contains(@id,':nombServicio')][contains(normalize-space(.), 'FACULTAD DE INGENIERÍA')]//tbody[contains(@id,':previaturasPlanes_data')]"), 
+                                0.1
                             )
                             
                             if outer_tbody is not None:

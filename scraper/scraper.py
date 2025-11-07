@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from time import sleep
 import logging
-
+import traceback
 
 class Scraper:
     """Base scraper class with common web scraping functionality."""
@@ -60,7 +60,9 @@ class Scraper:
     def scroll_to_element_and_click(self, element):
         """Scroll to element and click, waiting for modal to disappear first."""
         # Always wait for the persistent modal overlay to disappear
-        while True:
+        trys_number = 0
+        while trys_number < 3:
+            trys_number += 1
             try:
                 self.wait.until(
                     EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
@@ -69,7 +71,9 @@ class Scraper:
                 self.wait_for_element_to_be_clickable(element).click()
                 return True
             except:
-                pass
+                traceback.print_exc()
+        return False
+
 
 
     def wait_for_element_to_be_clickable(self, locator: tuple):
@@ -93,9 +97,9 @@ class Scraper:
             lambda d: d.execute_script("return document.readyState") == "complete"
         )
     
-    def try_find_element(self, locator: tuple):
+    def try_find_element(self, locator: tuple, wait: int = 2):
         try:
-            return  WebDriverWait(self.driver, 2).until(EC.presence_of_element_located(locator))
+            return  WebDriverWait(self.driver, wait).until(EC.presence_of_element_located(locator))
         except:
             return None
     def wait_loading_to_finish(self):
