@@ -29,7 +29,7 @@ ENVIRONMENT = os.environ.get("DJANGO_ENVIRONMENT")
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 # ALLOWED_HOSTS configuration
 allowed_hosts_env = os.environ.get("ALLOWED_HOSTS", "*")
 if allowed_hosts_env == "*":
@@ -108,23 +108,52 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# Base database configuration
-_db_config_base = {
-    "ENGINE": "django.db.backends.postgresql",
-    "USER": os.environ.get("POSTGRES_USER", "postgres"),
-    "HOST": os.environ.get("DB_HOST", "localhost"),
-    "PORT": os.environ.get("DB_PORT", "5432"),
-}
+# Use SQLite for simplicity (can be committed to GitHub)
+# For production, you can switch to PostgreSQL if needed
+USE_SQLITE = os.environ.get("USE_SQLITE", "True").lower() == "true"
 
+if USE_SQLITE:
+    # SQLite configuration (simple, file-based database)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
+else:
+    # PostgreSQL configuration (for production hosting)
+    try:
+        import dj_database_url
+    except ImportError:
+        dj_database_url = None
+    
+    DATABASE_URL = os.environ.get("DATABASE_URL")
+    
+    if DATABASE_URL and dj_database_url:
+        # Use DATABASE_URL if provided (Railway, Render, Heroku, etc.)
+        DATABASES = {
+            "default": dj_database_url.config(
+                default=DATABASE_URL,
+                conn_max_age=600,
+                conn_health_checks=True,
+            )
+        }
+    else:
+        # Fallback to individual environment variables
+        _db_config_base = {
+            "ENGINE": "django.db.backends.postgresql",
+            "USER": os.environ.get("POSTGRES_USER", "postgres"),
+            "HOST": os.environ.get("DB_HOST", "localhost"),
+            "PORT": os.environ.get("DB_PORT", "5432"),
+        }
 
-
-DATABASES = {
-    "default": {
-        **_db_config_base,
-        "NAME": os.environ.get("POSTGRES_DB", "bedelias-api"),
-        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "postgres"),
-    },
-}
+        DATABASES = {
+            "default": {
+                **_db_config_base,
+                "NAME": os.environ.get("POSTGRES_DB", "bedelias-api"),
+                "PASSWORD": os.environ.get("POSTGRES_PASSWORD", "postgres"),
+            },
+        }
 
 
 # Password validation
