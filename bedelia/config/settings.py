@@ -29,7 +29,7 @@ ENVIRONMENT = os.environ.get("DJANGO_ENVIRONMENT")
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+DEBUG = os.environ.get("DEBUG", "true").lower() == "true"
 # ALLOWED_HOSTS configuration
 allowed_hosts_env = os.environ.get("ALLOWED_HOSTS", "*")
 if allowed_hosts_env == "*":
@@ -249,6 +249,15 @@ SPECTACULAR_SETTINGS = {
         {'name': 'requirements', 'description': 'Course requirements and prerequisites'},
         {'name': 'smart', 'description': 'Intelligent course planning endpoints'},
     ],
+    'ENUM_NAME_OVERRIDES': {
+        'OfferingTypeEnum': 'api.models.OfferingType',
+        'GroupScopeEnum': 'api.models.GroupScope',
+        'GroupFlavorEnum': 'api.models.GroupFlavor',
+        'ReqConditionEnum': 'api.models.ReqCondition',
+        'TargetTypeEnum': 'api.models.TargetType',
+        'DepKindEnum': 'api.models.DepKind',
+        'EquivalenceKindEnum': 'api.models.EquivalenceKind',
+    },
 }
 
 

@@ -2,6 +2,7 @@
 Serializers for Bedelia models.
 """
 from rest_framework import serializers
+from typing import List, Dict, Any
 from api.models import (
     Program, Subject, SubjectAlias, Offering, OfferingLink,
     RequirementGroup, RequirementGroupLink, RequirementItem,
@@ -125,7 +126,7 @@ class RequirementGroupSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['id']
     
-    def get_child_links(self, obj):
+    def get_child_links(self, obj) -> List[Dict[str, Any]]:
         """Get child groups with their IDs."""
         links = obj.child_links.select_related('child_group').order_by('order_index')
         return [{'child_group_id': link.child_group.id, 'order_index': link.order_index} for link in links]

@@ -979,6 +979,28 @@ class DependencyEdgeViewSet(viewsets.ReadOnlyModelViewSet):
             'required': ['completed_codes']
         }
     },
+    responses={
+        200: {
+            'type': 'object',
+            'properties': {
+                'completed_count': {'type': 'integer'},
+                'recommendations': {
+                    'type': 'array',
+                    'items': {
+                        'type': 'object',
+                        'properties': {
+                            'offering': {'type': 'object'},
+                            'priority': {'type': 'string', 'enum': ['high', 'medium', 'low', 'future']},
+                            'missing_requirements': {'type': 'integer'},
+                            'unlocks_count': {'type': 'integer'},
+                            'reason': {'type': 'string'}
+                        }
+                    }
+                },
+                'total_available': {'type': 'integer'}
+            }
+        }
+    },
     examples=[
         OpenApiExample(
             'First semester recommendations',
@@ -1102,6 +1124,28 @@ def course_recommendations(request):
                 }
             },
             'required': ['target_code']
+        }
+    },
+    responses={
+        200: {
+            'type': 'object',
+            'properties': {
+                'target_course': {'type': 'object'},
+                'completed_courses': {'type': 'array', 'items': {'type': 'string'}},
+                'pathway': {
+                    'type': 'array',
+                    'items': {
+                        'type': 'object',
+                        'properties': {
+                            'code': {'type': 'string'},
+                            'name': {'type': 'string'},
+                            'credits': {'type': 'number'}
+                        }
+                    }
+                },
+                'total_missing': {'type': 'integer'},
+                'can_take_now': {'type': 'boolean'}
+            }
         }
     },
     examples=[
@@ -1313,6 +1357,26 @@ def _extract_missing_from_group(group: RequirementGroup, completed_subject_ids: 
             'required': ['completed_codes', 'semester']
         }
     },
+    responses={
+        200: {
+            'type': 'object',
+            'properties': {
+                'semester': {'type': 'integer'},
+                'completed_count': {'type': 'integer'},
+                'available_courses': {
+                    'type': 'array',
+                    'items': {
+                        'type': 'object',
+                        'properties': {
+                            'offering': {'type': 'object'},
+                            'unlocks_count': {'type': 'integer'}
+                        }
+                    }
+                },
+                'total_available': {'type': 'integer'}
+            }
+        }
+    },
     examples=[
         OpenApiExample(
             'Plan first semester',
@@ -1408,6 +1472,38 @@ def semester_planning(request):
                 }
             },
             'required': ['completed_codes', 'program_id']
+        }
+    },
+    responses={
+        200: {
+            'type': 'object',
+            'properties': {
+                'program': {'type': 'object'},
+                'progress': {
+                    'type': 'object',
+                    'properties': {
+                        'subjects': {
+                            'type': 'object',
+                            'properties': {
+                                'completed': {'type': 'integer'},
+                                'total': {'type': 'integer'},
+                                'remaining': {'type': 'integer'},
+                                'percentage': {'type': 'number'}
+                            }
+                        },
+                        'credits': {
+                            'type': 'object',
+                            'properties': {
+                                'completed': {'type': 'number'},
+                                'total': {'type': 'number'},
+                                'remaining': {'type': 'number'},
+                                'percentage': {'type': 'number'}
+                            }
+                        },
+                        'available_courses': {'type': 'integer'}
+                    }
+                }
+            }
         }
     },
     examples=[
