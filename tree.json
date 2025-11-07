@@ -1,0 +1,118 @@
+{
+  "type": "ALL",
+  "title": "debe tener todas",
+  "children": [
+    {
+      "type": "NOT",
+      "title": "no debe tener",
+      "children": [
+        {
+          "type": "LEAF",
+          "required_count": 1,
+          "items": [
+            "Examen de la U.C.B: FI15 - CREDITOS ASIGNADOS POR REVALIDA",
+            "Examen de la U.C.B: 1126 - MEC.DE SIST.Y FENOMENOS ONDULATORIOS"
+          ],
+          "title": "1 aprobación/es entre: Examen de la U.C.B: FI15 - CREDITOS ASIGNADOS POR REVALIDA\nExamen de la U.C.B: 1126 - MEC.DE SIST.Y FENOMENOS ONDULATORIOS"
+        }
+      ]
+    },
+    {
+      "type": "ANY",
+      "title": "debe tener alguna",
+      "children": [
+        {
+          "type": "ALL",
+          "title": "debe tener todas",
+          "children": [
+            {
+              "type": "ANY",
+              "title": "debe tener alguna",
+              "children": [
+                {
+                  "type": "LEAF",
+                  "required_count": 1,
+                  "items": [
+                    "Examen de la U.C.B: FG2 - CREDITOS ASIGNADOS POR REVALIDA",
+                    "Examen de la U.C.B: F8 - CREDITOS ASIGNADOS POR REVALIDA",
+                    "Examen de la U.C.B: 1153P - CREDITOS NO ACUM FISICA 3",
+                    "Examen de la U.C.B: CP13 - ELECTROMAGNETISMO",
+                    "Examen de la U.C.B: 1121 - FISICA GENERAL 2",
+                    "Examen de la U.C.B: 1172 - FISICA GENERAL 2",
+                    "Examen de la U.C.B: CP43 - FISICA III (P. 74)",
+                    "Examen de la U.C.B: 1153 - FISICA 3"
+                  ],
+                  "title": "1 aprobación/es entre: Examen de la U.C.B: FG2 - CREDITOS ASIGNADOS POR REVALIDA\nExamen de la U.C.B: F8 - CREDITOS ASIGNADOS POR REVALIDA\nExamen de la U.C.B: 1153P - CREDITOS NO ACUM FISICA 3\nExamen de la U.C.B: CP13 - ELECTROMAGNETISMO\nExamen de la U.C.B: 1121 - FISICA GENERAL 2\nExamen de la U.C.B: 1172 - FISICA GENERAL 2\nExamen de la U.C.B: CP43 - FISICA III (P. 74)\nExamen de la U.C.B: 1153 - FISICA 3"
+                },
+                {
+                  "type": "LEAF",
+                  "required_count": 2,
+                  "items": [
+                    "Examen de la U.C.B: 1152P - CREDITOS NO ACUM FISICA 2",
+                    "Examen de la U.C.B: 1152 - FISICA 2",
+                    "Curso de la U.C.B: 1153 - FISICA 3"
+                  ],
+                  "title": "2 aprobación/es entre: Examen de la U.C.B: 1152P - CREDITOS NO ACUM FISICA 2\nExamen de la U.C.B: 1152 - FISICA 2\nCurso de la U.C.B: 1153 - FISICA 3"
+                }
+              ]
+            },
+            {
+              "type": "LEAF",
+              "required_count": 1,
+              "items": [
+                "Examen de la U.C.B: 1021 - ALGEBRA LINEAL",
+                "Examen de la U.C.B: CM14 - CREDITOS ASIGNADOS POR REVALIDA",
+                "Examen de la U.C.B: MAT33 - CREDITOS ASIGNADOS POR REVALIDA",
+                "Examen de la U.C.B: M9 - CREDITOS ASIGNADOS POR REVALIDA",
+                "Examen de la U.C.B: 1030P - CREDITOS NO ACUM GAL1",
+                "Examen de la U.C.B: CP2 - GEOMETRIA Y ALGEBRA LINEAL",
+                "Examen de la U.C.B: 1030 - GEOMETRIA Y ALGEBRA LINEAL 1",
+                "Examen de la U.C.B: 1071 - GEOMETRIA Y ALGEBRA LINEAL 1",
+                "Examen de la U.C.B: 171L - GEOMETRIA Y ALGEBRA LINEAL 1",
+                "Examen de la U.C.B: 171Q - GEOMETRIA Y ALGEBRA LINEAL 1",
+                "Examen de la U.C.B: 1053 - GEOMETRIA Y ALGEBRA LINEAL 1 (ANUAL)",
+                "Examen de la U.C.B: GAL1P - GEOMETRIA Y ALGEBRA LINEAL 1 INTERACTIVA"
+              ],
+              "title": "1 aprobación/es entre: Examen de la U.C.B: 1021 - ALGEBRA LINEAL\nExamen de la U.C.B: CM14 - CREDITOS ASIGNADOS POR REVALIDA\nExamen de la U.C.B: MAT33 - CREDITOS ASIGNADOS POR REVALIDA\nExamen de la U.C.B: M9 - CREDITOS ASIGNADOS POR REVALIDA\nExamen de la U.C.B: 1030P - CREDITOS NO ACUM GAL1\nExamen de la U.C.B: CP2 - GEOMETRIA Y ALGEBRA LINEAL\nExamen de la U.C.B: 1030 - GEOMETRIA Y ALGEBRA LINEAL 1\nExamen de la U.C.B: 1071 - GEOMETRIA Y ALGEBRA LINEAL 1\nExamen de la U.C.B: 171L - GEOMETRIA Y ALGEBRA LINEAL 1\nExamen de la U.C.B: 171Q - GEOMETRIA Y ALGEBRA LINEAL 1\nExamen de la U.C.B: 1053 - GEOMETRIA Y ALGEBRA LINEAL 1 (ANUAL)\nExamen de la U.C.B: GAL1P - GEOMETRIA Y ALGEBRA LINEAL 1 INTERACTIVA"
+            },
+            {
+              "type": "LEAF",
+              "required_count": 1,
+              "items": [
+                "Examen de la U.C.B: CP1 - ANALISIS MATEMATICO I",
+                "Examen de la U.C.B: CP22 - ANALISIS MATEMATICO I (P. 74)",
+                "Examen de la U.C.B: 1062 - CALCULO DIF. E INTEGRAL EN VARIAS VARIABLES",
+                "Examen de la U.C.B: 1022 - CALCULO 2",
+                "Examen de la U.C.B: 1072 - CALCULO 2",
+                "Examen de la U.C.B: MAT33 - CREDITOS ASIGNADOS POR REVALIDA",
+                "Examen de la U.C.B: 1062P - CREDITOS NO ACUM CDIVV"
+              ],
+              "title": "1 aprobación/es entre: Examen de la U.C.B: CP1 - ANALISIS MATEMATICO I\nExamen de la U.C.B: CP22 - ANALISIS MATEMATICO I (P. 74)\nExamen de la U.C.B: 1062 - CALCULO DIF. E INTEGRAL EN VARIAS VARIABLES\nExamen de la U.C.B: 1022 - CALCULO 2\nExamen de la U.C.B: 1072 - CALCULO 2\nExamen de la U.C.B: MAT33 - CREDITOS ASIGNADOS POR REVALIDA\nExamen de la U.C.B: 1062P - CREDITOS NO ACUM CDIVV"
+            },
+            {
+              "type": "LEAF",
+              "required_count": 1,
+              "items": [
+                "Examen de la U.C.B: 1122P - CREDITOS NO ACUM MEC NEWTONIANA",
+                "Examen de la U.C.B: CP26 - MECANICA GENERAL I (P. 74)",
+                "Examen de la U.C.B: CP8 - MECANICA II",
+                "Examen de la U.C.B: 1078 - MECANICA NEWTONIANA",
+                "Curso de la U.C.B: 1122 - MECANICA NEWTONIANA"
+              ],
+              "title": "1 aprobación/es entre: Examen de la U.C.B: 1122P - CREDITOS NO ACUM MEC NEWTONIANA\nExamen de la U.C.B: CP26 - MECANICA GENERAL I (P. 74)\nExamen de la U.C.B: CP8 - MECANICA II\nExamen de la U.C.B: 1078 - MECANICA NEWTONIANA\nCurso de la U.C.B: 1122 - MECANICA NEWTONIANA"
+            }
+          ]
+        },
+        {
+          "type": "LEAF",
+          "required_count": 1,
+          "items": [
+            "Curso aprobado de la U.C.B:",
+            "1144 - VIBRACIONES Y ONDAS"
+          ],
+          "title": "Curso aprobado de la U.C.B: 1144 - VIBRACIONES Y ONDAS"
+        }
+      ]
+    }
+  ]
+}

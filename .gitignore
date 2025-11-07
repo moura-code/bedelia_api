@@ -7,6 +7,5 @@ __pycache__/
 *.pyd
 *.pyw
 *.pyz
-*.json
 .ruff_cache/
 *.log

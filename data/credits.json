@@ -1,0 +1,3187 @@
+[
+  {
+    "codigo": "2041",
+    "nombre": "METODOS NUMERICOS",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1158",
+    "nombre": "PROCESAMIENTO CUANTICO DE LA INFORMACION",
+    "creditos": "10"
+  },
+  {
+    "codigo": "DMA06",
+    "nombre": "CALCULO DIFERENCIAL E INTEGRAL EN VARIAS VARIABLES",
+    "creditos": "13"
+  },
+  {
+    "codigo": "DMA01",
+    "nombre": "CÁLCULO DIFERENCIAL E INTEGRAL EN UNA VARIABLE",
+    "creditos": "12"
+  },
+  {
+    "codigo": "MC10",
+    "nombre": "CÁLCULO I",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CAL2",
+    "nombre": "CÁLCULO 2",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CM",
+    "nombre": "COMPLEMENTO DE MATEMÁTICA",
+    "creditos": "6"
+  },
+  {
+    "codigo": "ESTAI",
+    "nombre": "ESTADÍSTICA I",
+    "creditos": "10"
+  },
+  {
+    "codigo": "RN115",
+    "nombre": "ESTADÍSTICA I 2022",
+    "creditos": "10"
+  },
+  {
+    "codigo": "ESII",
+    "nombre": "ESTADÍSTICA II",
+    "creditos": "10"
+  },
+  {
+    "codigo": "DMA05",
+    "nombre": "MATEMÁTICA INICIAL",
+    "creditos": "4"
+  },
+  {
+    "codigo": "DMA02",
+    "nombre": "MATEMÁTICA DISCRETA",
+    "creditos": "12"
+  },
+  {
+    "codigo": "RN407",
+    "nombre": "MATEMATICA II",
+    "creditos": "12"
+  },
+  {
+    "codigo": "RN404",
+    "nombre": "MATEMATICA I",
+    "creditos": "11"
+  },
+  {
+    "codigo": "DMA03",
+    "nombre": "GEOMETRÍA Y ÁLGEBRA LINEAL 1",
+    "creditos": "12"
+  },
+  {
+    "codigo": "AL",
+    "nombre": "GEOMETRÍA Y ÁLGEBRA LINEAL",
+    "creditos": "9"
+  },
+  {
+    "codigo": "DMA04",
+    "nombre": "GEOMETRÍA Y ALGEBRA LINEAL II",
+    "creditos": "12"
+  },
+  {
+    "codigo": "MA18",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDAS",
+    "creditos": "18"
+  },
+  {
+    "codigo": "1899",
+    "nombre": "TEMAS AVANZADOS EN CODIGOS PARA CORRECCION DE ERRORES",
+    "creditos": "7"
+  },
+  {
+    "codigo": "GAL1P",
+    "nombre": "GEOMETRIA Y ALGEBRA LINEAL 1 INTERACTIVA",
+    "creditos": "9"
+  },
+  {
+    "codigo": "SRN45",
+    "nombre": "MATEMATICA INICIAL",
+    "creditos": "OPTATIVA - 4"
+  },
+  {
+    "codigo": "CIM22",
+    "nombre": "TOPOLOGÍA",
+    "creditos": "12"
+  },
+  {
+    "codigo": "SRN14",
+    "nombre": "MATEMÁTICA DISCRETA I",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CIM11",
+    "nombre": "MATEMÁTICA DISCRETA 2",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CH201",
+    "nombre": "PROBABILIDAD Y ESTADÍSTICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CIM24",
+    "nombre": "ECUACIONES DIFERENCIALES",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CIM10",
+    "nombre": "CÁLCULO VECTORIAL",
+    "creditos": "12"
+  },
+  {
+    "codigo": "SRN09",
+    "nombre": "CÁLCULO II",
+    "creditos": "16"
+  },
+  {
+    "codigo": "SRN02",
+    "nombre": "CÁLCULO I",
+    "creditos": "16"
+  },
+  {
+    "codigo": "SRN10",
+    "nombre": "ALGEBRA LINEAL II",
+    "creditos": "12"
+  },
+  {
+    "codigo": "SRN03",
+    "nombre": "ALGEBRA LINEAL I",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1886",
+    "nombre": "TOPOLOGIA Y ANALISIS REAL",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1066",
+    "nombre": "FUNCIONES DE VARIABLE COMPLEJA",
+    "creditos": "5"
+  },
+  {
+    "codigo": "1025T",
+    "nombre": "CREDITOS NO ACUM PROBABILIDAD Y ESTADISTICA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "D87",
+    "nombre": "TEORÍA DE JUEGOS",
+    "creditos": "6"
+  },
+  {
+    "codigo": "MI2",
+    "nombre": "MATEMATICA INICIAL",
+    "creditos": "4"
+  },
+  {
+    "codigo": "M09",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "9"
+  },
+  {
+    "codigo": "M5",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "5"
+  },
+  {
+    "codigo": "GP5",
+    "nombre": "ESTADISTICA ESPACIAL",
+    "creditos": "5"
+  },
+  {
+    "codigo": "MA015",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "15"
+  },
+  {
+    "codigo": "MA48",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "48"
+  },
+  {
+    "codigo": "MA11",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "11"
+  },
+  {
+    "codigo": "MA020",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "20"
+  },
+  {
+    "codigo": "CAL12",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "12"
+  },
+  {
+    "codigo": "2415",
+    "nombre": "CODIGOS PARA CORRECCION DE ERRORES",
+    "creditos": "8"
+  },
+  {
+    "codigo": "CAL10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CP7",
+    "nombre": "ANALISIS COMPLEJO",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CP1",
+    "nombre": "ANALISIS MATEMATICO I",
+    "creditos": "33"
+  },
+  {
+    "codigo": "CP22",
+    "nombre": "ANALISIS MATEMATICO I (P. 74)",
+    "creditos": "33"
+  },
+  {
+    "codigo": "CP44",
+    "nombre": "ANALISIS MATEMATICO I (1ER.SEM.)",
+    "creditos": "17"
+  },
+  {
+    "codigo": "CP45",
+    "nombre": "ANALISIS MATEMATICO I (2DO.SEM.)",
+    "creditos": "16"
+  },
+  {
+    "codigo": "CP6",
+    "nombre": "ANALISIS MATEMATICO II",
+    "creditos": "33"
+  },
+  {
+    "codigo": "CP25",
+    "nombre": "ANALISIS MATEMATICO II (P. 74)",
+    "creditos": "33"
+  },
+  {
+    "codigo": "CP48",
+    "nombre": "ANALISIS MATEMATICO II (1ER.SEM.)",
+    "creditos": "16"
+  },
+  {
+    "codigo": "CP49",
+    "nombre": "ANALISIS MATEMATICO II (2DO.SEM.)",
+    "creditos": "17"
+  },
+  {
+    "codigo": "1061",
+    "nombre": "CALCULO DIF. E INTEGRAL EN UNA VARIABLE",
+    "creditos": "13"
+  },
+  {
+    "codigo": "1020",
+    "nombre": "CALCULO 1",
+    "creditos": "16"
+  },
+  {
+    "codigo": "1070",
+    "nombre": "CALCULO 1",
+    "creditos": "16"
+  },
+  {
+    "codigo": "1052",
+    "nombre": "CALCULO 1 (ANUAL)",
+    "creditos": "16"
+  },
+  {
+    "codigo": "1062",
+    "nombre": "CALCULO DIF. E INTEGRAL EN VARIAS VARIABLES",
+    "creditos": "13"
+  },
+  {
+    "codigo": "1022",
+    "nombre": "CALCULO 2",
+    "creditos": "16"
+  },
+  {
+    "codigo": "1072",
+    "nombre": "CALCULO 2",
+    "creditos": "16"
+  },
+  {
+    "codigo": "1063",
+    "nombre": "CALCULO VECTORIAL",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1024",
+    "nombre": "CALCULO 3",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1076",
+    "nombre": "CALCULO 3",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1021",
+    "nombre": "ALGEBRA LINEAL",
+    "creditos": "18"
+  },
+  {
+    "codigo": "CP2",
+    "nombre": "GEOMETRIA Y ALGEBRA LINEAL",
+    "creditos": "24"
+  },
+  {
+    "codigo": "CP23",
+    "nombre": "GEOMETRIA Y ALGEBRA LINEAL (P. 74)",
+    "creditos": "24"
+  },
+  {
+    "codigo": "CP46",
+    "nombre": "GEOMETRIA Y ALGEBRA LINEAL (1ER.SEM.)",
+    "creditos": "12"
+  },
+  {
+    "codigo": "CP47",
+    "nombre": "GEOMETRIA Y ALGEBRA LINEAL (2DO.SEM.)",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1030",
+    "nombre": "GEOMETRIA Y ALGEBRA LINEAL 1",
+    "creditos": "9"
+  },
+  {
+    "codigo": "1071",
+    "nombre": "GEOMETRIA Y ALGEBRA LINEAL 1",
+    "creditos": "9"
+  },
+  {
+    "codigo": "1053",
+    "nombre": "GEOMETRIA Y ALGEBRA LINEAL 1 (ANUAL)",
+    "creditos": "9"
+  },
+  {
+    "codigo": "1031",
+    "nombre": "GEOMETRIA Y ALGEBRA LINEAL 2",
+    "creditos": "9"
+  },
+  {
+    "codigo": "1058",
+    "nombre": "GEOMETRIA Y ALGEBRA LINEAL 2",
+    "creditos": "9"
+  },
+  {
+    "codigo": "1012",
+    "nombre": "COMBINATORIA ANALITICA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1065",
+    "nombre": "TEORIA DE COD. ALGEB. PARA CORR. DE ERRORES",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1059",
+    "nombre": "CRIPTOGRAFIA:ASPECTOS TEOR. Y PRACTICOS",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1049",
+    "nombre": "INFERENCIA II (ESTADISTICA BAYESIANA)",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1450",
+    "nombre": "INT. A LA TEORIA DE LA INFORMACION",
+    "creditos": "8"
+  },
+  {
+    "codigo": "C461",
+    "nombre": "INT. A LA TOPOLOGIA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CP4",
+    "nombre": "LOGICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1027",
+    "nombre": "LOGICA",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1013",
+    "nombre": "LOGICA MODALIDAD AL REVES",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1010",
+    "nombre": "LOGICA Y COMPUTACION",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1023",
+    "nombre": "MATEMATICA DISCRETA 1",
+    "creditos": "9"
+  },
+  {
+    "codigo": "1026",
+    "nombre": "MATEMATICA DISCRETA 2",
+    "creditos": "9"
+  },
+  {
+    "codigo": "1064",
+    "nombre": "INT. A LAS ECUACIONES DIFERENCIALES",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1028",
+    "nombre": "ECUACIONES DIFERENCIALES",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1074",
+    "nombre": "ECUACIONES DIFERENCIALES",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1025",
+    "nombre": "PROBABILIDAD Y ESTADISTICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1075",
+    "nombre": "PROBABILIDAD Y ESTADISTICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1043",
+    "nombre": "TEORIA ALGEBRAICA DE GRAFOS",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1042",
+    "nombre": "TEORIA DE COD. ALGEB. PARA CORR. DE ERRORES",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1046",
+    "nombre": "TEORIA DE CODIGOS",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1011",
+    "nombre": "TEORIA DE CODIGOS AVANZADO",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1037",
+    "nombre": "TEORIA DE JUEGOS Y PROG. FUNCIONAL",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1034",
+    "nombre": "TEORIA DE JUEGOS Y PROG. FUNCIONAL",
+    "creditos": "9"
+  },
+  {
+    "codigo": "1233",
+    "nombre": "TUTORIA EN MATEMATICA",
+    "creditos": "4"
+  },
+  {
+    "codigo": "GAL7",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "7"
+  },
+  {
+    "codigo": "MAT10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "MAT33",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "33"
+  },
+  {
+    "codigo": "MAT6",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "6"
+  },
+  {
+    "codigo": "MAT8",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "MA10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "MA15",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "15"
+  },
+  {
+    "codigo": "MA16",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "16"
+  },
+  {
+    "codigo": "MA20",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "20"
+  },
+  {
+    "codigo": "MA24",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "24"
+  },
+  {
+    "codigo": "MA25",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "25"
+  },
+  {
+    "codigo": "MA29",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "29"
+  },
+  {
+    "codigo": "MA3",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "3"
+  },
+  {
+    "codigo": "MA5",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "5"
+  },
+  {
+    "codigo": "MA9",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "9"
+  },
+  {
+    "codigo": "MC13",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "13"
+  },
+  {
+    "codigo": "MC3",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "12"
+  },
+  {
+    "codigo": "MEC",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "9"
+  },
+  {
+    "codigo": "M1",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "1"
+  },
+  {
+    "codigo": "M12",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "12"
+  },
+  {
+    "codigo": "M24",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "24"
+  },
+  {
+    "codigo": "M9",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "9"
+  },
+  {
+    "codigo": "1159",
+    "nombre": "INT. A LA FISICA MODERNA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "MHC39",
+    "nombre": "BIOQUÍMICA I (2025",
+    "creditos": "- 11"
+  },
+  {
+    "codigo": "102EU",
+    "nombre": "QUÍMICA GENERAL I",
+    "creditos": "7"
+  },
+  {
+    "codigo": "103EU",
+    "nombre": "INT. A LAS C. BIOLÓGICAS I",
+    "creditos": "5"
+  },
+  {
+    "codigo": "FIS40",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDAS",
+    "creditos": "40"
+  },
+  {
+    "codigo": "SRN50",
+    "nombre": "FISICA 1A CIOCT 2023",
+    "creditos": "4"
+  },
+  {
+    "codigo": "REF05",
+    "nombre": "FÍSICA IA",
+    "creditos": "LDI.CIOCT - 4"
+  },
+  {
+    "codigo": "RN252",
+    "nombre": "FISICA 1 BIOCIENCIAS 2017",
+    "creditos": "12"
+  },
+  {
+    "codigo": "RN253",
+    "nombre": "FISICA 2 BIOCIENCIAS 2017",
+    "creditos": "12"
+  },
+  {
+    "codigo": "REF06",
+    "nombre": "FÍSICA I B CIO CT",
+    "creditos": "LDI - 6"
+  },
+  {
+    "codigo": "SRN26",
+    "nombre": "FÍSICA 3",
+    "creditos": "10"
+  },
+  {
+    "codigo": "SRN11",
+    "nombre": "FÍSICA 2",
+    "creditos": "10"
+  },
+  {
+    "codigo": "REF04",
+    "nombre": "FÍSICA 1",
+    "creditos": "10"
+  },
+  {
+    "codigo": "MHC16",
+    "nombre": "BIOQUÍMICA 1 (2020",
+    "creditos": "2024) - 13"
+  },
+  {
+    "codigo": "MHC24",
+    "nombre": "GENÉTICA GENERAL",
+    "creditos": "14"
+  },
+  {
+    "codigo": "MHC20",
+    "nombre": "GENÓMICA (2021",
+    "creditos": "2024) - 10"
+  },
+  {
+    "codigo": "M000",
+    "nombre": "METODOS CUANTITATIVOS III",
+    "creditos": "PAYSANDU - 6"
+  },
+  {
+    "codigo": "CCT20",
+    "nombre": "FÍSICA II",
+    "creditos": "14"
+  },
+  {
+    "codigo": "203EU",
+    "nombre": "INTRODUCCIÓN A LAS CIENCIAS BIOLÓGICAS II (TEÓRICO)",
+    "creditos": "4"
+  },
+  {
+    "codigo": "M001",
+    "nombre": "DISEÑO Y ANALISIS DE EXPERIMENTOS (MTDEO)",
+    "creditos": "4"
+  },
+  {
+    "codigo": "CE5",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "5"
+  },
+  {
+    "codigo": "CE10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "FA4",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "4"
+  },
+  {
+    "codigo": "CE12",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "12"
+  },
+  {
+    "codigo": "CCT10",
+    "nombre": "FÍSICA I",
+    "creditos": "14"
+  },
+  {
+    "codigo": "CP217",
+    "nombre": "MECANICA GENERAL I",
+    "creditos": "12"
+  },
+  {
+    "codigo": "CP26",
+    "nombre": "MECANICA GENERAL I (P. 74)",
+    "creditos": "22"
+  },
+  {
+    "codigo": "CP40",
+    "nombre": "MECANICA GENERAL II (P. 74)",
+    "creditos": "20"
+  },
+  {
+    "codigo": "CP3",
+    "nombre": "MECANICA I",
+    "creditos": "12"
+  },
+  {
+    "codigo": "CP17",
+    "nombre": "MECANICA I (TRANSICION)",
+    "creditos": "12"
+  },
+  {
+    "codigo": "CP8",
+    "nombre": "MECANICA II",
+    "creditos": "24"
+  },
+  {
+    "codigo": "1120",
+    "nombre": "FISICA GENERAL 1",
+    "creditos": "13"
+  },
+  {
+    "codigo": "1170",
+    "nombre": "FISICA GENERAL 1",
+    "creditos": "13"
+  },
+  {
+    "codigo": "1121",
+    "nombre": "FISICA GENERAL 2",
+    "creditos": "13"
+  },
+  {
+    "codigo": "1172",
+    "nombre": "FISICA GENERAL 2",
+    "creditos": "13"
+  },
+  {
+    "codigo": "CP41",
+    "nombre": "FISICA I (P. 74)",
+    "creditos": "22"
+  },
+  {
+    "codigo": "CP42",
+    "nombre": "FISICA II (P. 74)",
+    "creditos": "22"
+  },
+  {
+    "codigo": "CP43",
+    "nombre": "FISICA III (P. 74)",
+    "creditos": "20"
+  },
+  {
+    "codigo": "1151",
+    "nombre": "FISICA 1",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1171",
+    "nombre": "FISICA 1",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1077",
+    "nombre": "FISICA 2",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1152",
+    "nombre": "FISICA 2",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1153",
+    "nombre": "FISICA 3",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1173",
+    "nombre": "FISICA 3",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1131",
+    "nombre": "INT. A LA FISICA MODERNA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CEX28",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "28"
+  },
+  {
+    "codigo": "CE11",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "11"
+  },
+  {
+    "codigo": "CE2",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "2"
+  },
+  {
+    "codigo": "FA8",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "FF10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "FG",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "7"
+  },
+  {
+    "codigo": "FG2",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "13"
+  },
+  {
+    "codigo": "FIS14",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "14"
+  },
+  {
+    "codigo": "FIS8",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "FI10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "FL1",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "FL2",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "FL8",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "F2",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "7"
+  },
+  {
+    "codigo": "F66",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "66"
+  },
+  {
+    "codigo": "2042",
+    "nombre": "OPTIMIZACIÓN COMBINATORIA CON METAHEURÍSTICAS",
+    "creditos": "2"
+  },
+  {
+    "codigo": "1374",
+    "nombre": "CONCEPTOS DE LENGUAJES DE PROGRAMACION",
+    "creditos": "6"
+  },
+  {
+    "codigo": "SRN17",
+    "nombre": "PROGRAMACIÓN I",
+    "creditos": "CIO CT-LHRH - 10"
+  },
+  {
+    "codigo": "1373",
+    "nombre": "PROGRAMACION 1",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1322T",
+    "nombre": "PROGRAMACION 1",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1145",
+    "nombre": "VISION 3D",
+    "creditos": "12"
+  },
+  {
+    "codigo": "PR4",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "4"
+  },
+  {
+    "codigo": "PR10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1354",
+    "nombre": "PROGRAMACION FUNCIONAL",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1353",
+    "nombre": "DIDACTICA DE ALGORIT.Y ESTRUCT.DE DATOS",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1355",
+    "nombre": "COMPLEJIDAD COMPUTACIONAL",
+    "creditos": "9"
+  },
+  {
+    "codigo": "1358",
+    "nombre": "TEORIA DE LA COMPUTACION",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1334",
+    "nombre": "ANALISIS DE ALGORITMOS",
+    "creditos": "15"
+  },
+  {
+    "codigo": "CP380",
+    "nombre": "ANALISIS NUMERICO II (P. 74)",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1343",
+    "nombre": "BIO",
+    "creditos": "COMPUTACION PARALELA - 6"
+  },
+  {
+    "codigo": "1351",
+    "nombre": "COMBINATORIA ANALITICA Y APLICACIONES",
+    "creditos": "3"
+  },
+  {
+    "codigo": "1352",
+    "nombre": "COMPRESION DE DATOS SIN PERDIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CP52",
+    "nombre": "COMPUTACION",
+    "creditos": "12"
+  },
+  {
+    "codigo": "CP24",
+    "nombre": "COMPUTACION (P. 74)",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1349",
+    "nombre": "COMPUTACION GRAFICA AVANZADA",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1337",
+    "nombre": "CONST.FORMAL DE PROGR.EN TEORIA DE TIPOS",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1347",
+    "nombre": "CONST.FORMAL DE PROGR.EN TEORIA DE TIPOS",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1345",
+    "nombre": "DESARROLLO WEB",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1331",
+    "nombre": "DISEÑO DE COMPILADORES",
+    "creditos": "12"
+  },
+  {
+    "codigo": "CP36",
+    "nombre": "INT. A LA COMPUTACION",
+    "creditos": "9"
+  },
+  {
+    "codigo": "1315",
+    "nombre": "INT. A LA COMPUTACION GRAFICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1316",
+    "nombre": "INT. A LA COMPUTACION GRAFICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1332",
+    "nombre": "INT. A LA PROGR.PARA DISEÑO GRAFICO",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1328",
+    "nombre": "INT. A LA PROGRAMACION FUNCIONAL",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1333",
+    "nombre": "INT. A LA PROGRAMACION GENERICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1329",
+    "nombre": "INT. A LA PROGRAMACION LOGICA",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1338",
+    "nombre": "INT. A LOS FUND.DE LOS LENG.DE PR.OR. OB",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1330",
+    "nombre": "LOGICA DE LA PROGRAMACION IMPERATIVA",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1341",
+    "nombre": "LOGICA DE LA PROGRAMACION IMPERATIVA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1348",
+    "nombre": "MODELOS Y VERIF. DE SIST. DE TIEMPO REAL",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CP32",
+    "nombre": "ORGANIZACION DE LENG. DE PROGRAMACION",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CP384",
+    "nombre": "PROCESAMIENTO DE DATOS II (P. 74)",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1350",
+    "nombre": "PROGRAMACION FUNCIONAL AVANZADA",
+    "creditos": "12"
+  },
+  {
+    "codigo": "CP9",
+    "nombre": "PROGRAMACION I",
+    "creditos": "8"
+  },
+  {
+    "codigo": "CP37",
+    "nombre": "PROGRAMACION I (P. 74)",
+    "creditos": "15"
+  },
+  {
+    "codigo": "CP15",
+    "nombre": "PROGRAMACION II",
+    "creditos": "15"
+  },
+  {
+    "codigo": "CP38",
+    "nombre": "PROGRAMACION II (P. 74)",
+    "creditos": "8"
+  },
+  {
+    "codigo": "CP29",
+    "nombre": "PROGRAMACION III",
+    "creditos": "15"
+  },
+  {
+    "codigo": "CP374",
+    "nombre": "PROGRAMACION III (P. 74)",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1340",
+    "nombre": "PROGRAMACION LOGICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1320",
+    "nombre": "PROGRAMACION 1",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1322",
+    "nombre": "PROGRAMACION 1",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1372",
+    "nombre": "PROGRAMACION 1",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1321",
+    "nombre": "PROGRAMACION 2",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1323",
+    "nombre": "PROGRAMACION 3",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1324",
+    "nombre": "PROGRAMACION 4",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1342",
+    "nombre": "TALLER DE COMPUTACION GRAFICA",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1314",
+    "nombre": "TALLER DE PRODUCCION DE PROG.SIN FALLAS",
+    "creditos": "12"
+  },
+  {
+    "codigo": "CP5",
+    "nombre": "TALLER I",
+    "creditos": "2"
+  },
+  {
+    "codigo": "CP10",
+    "nombre": "TALLER II",
+    "creditos": "7"
+  },
+  {
+    "codigo": "CP30",
+    "nombre": "TALLER III (1ER.SEM.)",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1304",
+    "nombre": "TECNOLOGIAS INTERACTIVAS Y VIDEOJUEGOS",
+    "creditos": "4"
+  },
+  {
+    "codigo": "CP382",
+    "nombre": "TEORIA DE AUTOMATAS (P. 74)",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1336",
+    "nombre": "TEORIA DE LA COMPUTACION",
+    "creditos": "4"
+  },
+  {
+    "codigo": "CP33",
+    "nombre": "TEORIA DE LA PROGRAMACION I",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1325",
+    "nombre": "TEORIA DE LENGUAJES",
+    "creditos": "12"
+  },
+  {
+    "codigo": "CP365",
+    "nombre": "TEORIA DE PROGRAMACION II",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1335",
+    "nombre": "TRANSDUCTORES DE ESTADO FINITO",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1346",
+    "nombre": "VERIFICACION DE MODELOS",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1339",
+    "nombre": "VERIFICACION Y LOGICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "PA7",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "7"
+  },
+  {
+    "codigo": "PP6",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "6"
+  },
+  {
+    "codigo": "PR3",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "3"
+  },
+  {
+    "codigo": "PR6",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "6"
+  },
+  {
+    "codigo": "PR7",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "7"
+  },
+  {
+    "codigo": "PR8",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "2512",
+    "nombre": "DISEÑO LOGICO",
+    "creditos": "12"
+  },
+  {
+    "codigo": "5907",
+    "nombre": "REDES OPTICAS",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1466",
+    "nombre": "ARQUITECTURA DE COMPUTADORAS",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1898",
+    "nombre": "PROGRAMACIÓN MASIVAMENTE PARALELA EN PROCESADORES GRÁFICOS (GPUS)",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1891",
+    "nombre": "TALLER DE SEGURIDAD INFORMÁTICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1888",
+    "nombre": "TALLER DE INICIACION A LOS SISTEMAS CIBER",
+    "creditos": "FISICOS - 4"
+  },
+  {
+    "codigo": "1556",
+    "nombre": "SISTEMAS EMBEBIDOS PARA TIEMPO REAL",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1536",
+    "nombre": "SISTEMAS EMBEBIDOS PARA TIEMPO REAL",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1952",
+    "nombre": "TALLER DE SISTEMAS CIBER",
+    "creditos": "FISICOS - 6"
+  },
+  {
+    "codigo": "GP6",
+    "nombre": "PLAN.DE SIST.COMP.CLUSTER, GRID Y CLOUD",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1546",
+    "nombre": "TALLER DE RADIO DEFINIDA POR SOFTWARE",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1545",
+    "nombre": "CRIPTOGRAFIA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "AR20",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "20"
+  },
+  {
+    "codigo": "1454",
+    "nombre": "ASPECTOS BASICOS DE REDES DE COMPUT",
+    "creditos": "12"
+  },
+  {
+    "codigo": "AR12",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "12"
+  },
+  {
+    "codigo": "AR015",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "15"
+  },
+  {
+    "codigo": "AR6",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1453",
+    "nombre": "COMPL.ARQUITECTURA DE COMPUTADORAS",
+    "creditos": "5"
+  },
+  {
+    "codigo": "1440",
+    "nombre": "ANALISIS Y DISEÑO DE ALGORIT.DISTRIB.EN REDES",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1443",
+    "nombre": "ARQUITECTURA DE COMPUTADORAS",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1424",
+    "nombre": "ARQUITECTURA DE COMPUTADORES 1",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1425",
+    "nombre": "ARQUITECTURA DE COMPUTADORES 2",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CP28",
+    "nombre": "ARQUITECTURA DE SISTEMAS",
+    "creditos": "15"
+  },
+  {
+    "codigo": "CP383",
+    "nombre": "ARQUITECTURA DE SISTEMAS (P. 74)",
+    "creditos": "14"
+  },
+  {
+    "codigo": "1444",
+    "nombre": "ASPECTOS AVANZ. DE ARQ.DE COMPUTADORAS",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1448",
+    "nombre": "ASPECTOS AVANZ. DE REDES DE COMPUTADORAS",
+    "creditos": "8"
+  },
+  {
+    "codigo": "5813",
+    "nombre": "CODIFICACION DE FUENTES SIN PERDIDA",
+    "creditos": "0"
+  },
+  {
+    "codigo": "1447",
+    "nombre": "COMPUT.DE PR.GRAL.EN UNID.DE PROC.GRAF.",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1427",
+    "nombre": "COMPUTACION CUANTICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1415",
+    "nombre": "COMPUTACION DE ALTA PERFORMANCE",
+    "creditos": "5"
+  },
+  {
+    "codigo": "1430",
+    "nombre": "COMPUTACION DE ALTA PERFORMANCE",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1434",
+    "nombre": "COMPUTACION DE ALTA PERFORMANCE",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CP364",
+    "nombre": "COMUNICACION DE DATOS",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1441",
+    "nombre": "CURVAS ELIPTICAS EN CRIPTOGRAFIA",
+    "creditos": "3"
+  },
+  {
+    "codigo": "CP51",
+    "nombre": "DISEÑO LOGICO",
+    "creditos": "23"
+  },
+  {
+    "codigo": "1512C",
+    "nombre": "DISEÑO LOGICO",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1429",
+    "nombre": "DISEÑO TOPOLOGICO DE REDES",
+    "creditos": "5"
+  },
+  {
+    "codigo": "1412",
+    "nombre": "ESTUDIO COMPLEMENTARIO EN SIST. OPERAT.",
+    "creditos": "3"
+  },
+  {
+    "codigo": "1436",
+    "nombre": "FUND.PARA LA INVEST.EN REDES DE COMPUTAD",
+    "creditos": "8"
+  },
+  {
+    "codigo": "5915",
+    "nombre": "FUNDAMENTOS DE SEGURIDAD INFORMATICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "5916",
+    "nombre": "FUNDAMENTOS DE SEGURIDAD INFORMATICA",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1403",
+    "nombre": "INT. A LA ARQUITECTURA DE COMPUTADORES",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1416",
+    "nombre": "INT. A LA CRIPTOGRAFIA",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1431",
+    "nombre": "INT. A LA TEORIA DE LA INFORMACION",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1432",
+    "nombre": "INT. A LA TEORIA DE LA INFORMACION",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1433",
+    "nombre": "INT. A LAS REDES DE COMPUTADORAS",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1406",
+    "nombre": "INT. A LAS REDES DE COMPUTADORES",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1513C",
+    "nombre": "INT. A LOS MICROPROCESADORES",
+    "creditos": "11"
+  },
+  {
+    "codigo": "1446",
+    "nombre": "REDES DE COMPUTADORAS",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1442",
+    "nombre": "ROBOTICA EMBEBIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1414",
+    "nombre": "SISTEMAS DISTRIBUIDOS",
+    "creditos": "15"
+  },
+  {
+    "codigo": "CP31",
+    "nombre": "SISTEMAS OPERATIVOS",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1511",
+    "nombre": "SISTEMAS OPERATIVOS",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1518",
+    "nombre": "SISTEMAS OPERATIVOS",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1532",
+    "nombre": "SISTEMAS OPERATIVOS",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1537",
+    "nombre": "SISTEMAS OPERATIVOS",
+    "creditos": "12"
+  },
+  {
+    "codigo": "CP372",
+    "nombre": "SISTEMAS OPERATIVOS (P. 74)",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1445",
+    "nombre": "TALLER DE ARQUITECTURA DE COMPUTADORAS",
+    "creditos": "3"
+  },
+  {
+    "codigo": "1439",
+    "nombre": "TALLER DE CRIPTOGRAFIA MODERNA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1428",
+    "nombre": "TALLER DE FIRMWARE",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1449",
+    "nombre": "TALLER DE GPGPU",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1437",
+    "nombre": "TALLER DE SEGURIDAD INFORMATICA",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1535",
+    "nombre": "TALLER DE SISTEMAS OPERATIVOS",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1542",
+    "nombre": "TALLER DE SISTEMAS OPERATIVOS",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1426",
+    "nombre": "TRAF.RESTRIC.T. REAL REDES BEST EFFORT",
+    "creditos": "6"
+  },
+  {
+    "codigo": "AA9",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "9"
+  },
+  {
+    "codigo": "AR15",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "15"
+  },
+  {
+    "codigo": "AR30",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "30"
+  },
+  {
+    "codigo": "AR8",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "5720",
+    "nombre": "TALLER DE APRENDIZAJE AUTOMATICO",
+    "creditos": "10"
+  },
+  {
+    "codigo": "5852",
+    "nombre": "FUNDAMENTOS DE APRENDIZAJE AUTOMATICO Y RECONOCIMIENTO DE PATRONES",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1887",
+    "nombre": "REDES NEURONALES PARA LENGUAJE NATURAL",
+    "creditos": "10"
+  },
+  {
+    "codigo": "5853",
+    "nombre": "TALLER DE APRENDIZAJE AUTOMATICO",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1888",
+    "nombre": "TALLER DE INICIACION A LOS SISTEMAS CIBER",
+    "creditos": "FISICOS - 4"
+  },
+  {
+    "codigo": "SRN30",
+    "nombre": "TALLER DE ROBÓTICA",
+    "creditos": "CIO CT- INGBIOL - 2"
+  },
+  {
+    "codigo": "1880",
+    "nombre": "CIENCIA DE DATOS Y LENGUAJE NATURAL",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1868",
+    "nombre": "MODELOS ESTADISTICOS PARA CLASIF. Y REGRESION",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1866",
+    "nombre": "APRENDIZAJE AUTOMATICO",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1952",
+    "nombre": "TALLER DE SISTEMAS CIBER",
+    "creditos": "FISICOS - 6"
+  },
+  {
+    "codigo": "5842",
+    "nombre": "RECONOCIMIENTO DE PATRONES",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1865",
+    "nombre": "ROBOTICA EDUCATIVA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1864",
+    "nombre": "ANALISIS SEMANTICO DE LENGUAJE NATURAL",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1857",
+    "nombre": "FUNDAMENTOS DE LA ROBOTICA AUTONOMA",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1820",
+    "nombre": "APRENDIZAJE AUTOMATICO",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1827",
+    "nombre": "APRENDIZAJE AUTOMATICO",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1849",
+    "nombre": "BUTIA: ROBOTICA EDUCATIVA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1832",
+    "nombre": "CONST.DE MOD.PROB.DEL LENGUAJE NATURAL",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1821",
+    "nombre": "EXTRACCION Y CATEGORIZACION DE INFORM.",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1835",
+    "nombre": "GRAMATICAS FORMALES PARA EL LENG.NATURAL",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1829",
+    "nombre": "I.A. Y ROBOTICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1828",
+    "nombre": "INT. AL PROCESAMIENTO DE LENG. NATURAL",
+    "creditos": "12"
+  },
+  {
+    "codigo": "5831",
+    "nombre": "INT. AL RECONOCIMIENTO DE PATRONES",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1834",
+    "nombre": "METODOS DE APRENDIZAJE AUTOMATICO",
+    "creditos": "9"
+  },
+  {
+    "codigo": "1848",
+    "nombre": "ROBOTICA BASADA EN COMPORTAMIENTOS",
+    "creditos": "15"
+  },
+  {
+    "codigo": "5912",
+    "nombre": "SISTEMAS NEURO FUZZY",
+    "creditos": "8"
+  },
+  {
+    "codigo": "IAR6",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1890",
+    "nombre": "CALIDAD DE DATOS E INFORMACIÓN",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1937T",
+    "nombre": "CREDITOS NO ACUM. CON SIST. DE INFORMACION EN SALUD",
+    "creditos": "4"
+  },
+  {
+    "codigo": "2418",
+    "nombre": "INGENIERIA DE ONTOLOGIAS",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1867",
+    "nombre": "INTEGRACION DE DATOS",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1781",
+    "nombre": "SISTEMAS DE INFORMACION PARA EL ANALISIS DE GRANDES VOLUMENES DE DATOS",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1802",
+    "nombre": "CALIDAD DE DATOS E INFORMACION",
+    "creditos": "6"
+  },
+  {
+    "codigo": "GP1",
+    "nombre": "GESTION Y TECNOL. DE PROCESOS DE NEGOCIO",
+    "creditos": "10"
+  },
+  {
+    "codigo": "GP2",
+    "nombre": "GESTION DE LA INFORMACION",
+    "creditos": "4"
+  },
+  {
+    "codigo": "1949",
+    "nombre": "BASES DE DATOS NO RELACIONALES",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1947",
+    "nombre": "TALLER DE LENG.Y TEC.DE LA WEB SEMANTICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1948",
+    "nombre": "INT. AL MIDDLEWARE",
+    "creditos": "10"
+  },
+  {
+    "codigo": "BD15",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "15"
+  },
+  {
+    "codigo": "BD05",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "5"
+  },
+  {
+    "codigo": "BD015",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1918",
+    "nombre": "ADMINISTRACION Y SEGURIDAD DE SISTEMAS",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CP362",
+    "nombre": "BASES DE DATOS",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1935",
+    "nombre": "CALIDAD DE DATOS",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1916",
+    "nombre": "DESCUBRIMIENTO DE INF.EN BASES DE DATOS",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1939",
+    "nombre": "DISEÑO Y CONSTRUCCION DE DATA WAREHOUSE",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1911",
+    "nombre": "FUNDAMENTOS DE BASES DE DATOS",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1942",
+    "nombre": "FUNDAMENTOS DE LA WEB SEMANTICA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1926",
+    "nombre": "INT. A LOS SIST. DE INFOR. GEOGRAFICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1936",
+    "nombre": "INT. AL MIDDLEWARE",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1941",
+    "nombre": "INTEGRACION DE DATOS",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1919",
+    "nombre": "INTEROPERABILIDAD",
+    "creditos": "13"
+  },
+  {
+    "codigo": "1934",
+    "nombre": "INTEROPERABILIDAD SEMANTICA",
+    "creditos": "11"
+  },
+  {
+    "codigo": "1932",
+    "nombre": "METADATA EN SISTEMAS DE INFORMACION",
+    "creditos": "13"
+  },
+  {
+    "codigo": "CP378",
+    "nombre": "PROCESAMIENTO DE DATOS I (P. 74)",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1938",
+    "nombre": "RECUPERACION DE INF. Y RECOMEND. EN LA WEB (WIR)",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1943",
+    "nombre": "SEMINARIO RECUP.DE INF.Y REC.EN LA WEB",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1937",
+    "nombre": "SISTEMAS DE INFORMACION EN SALUD",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1931",
+    "nombre": "SISTEMAS MULTIFUENTES",
+    "creditos": "13"
+  },
+  {
+    "codigo": "1917",
+    "nombre": "TECNICAS AVANZADAS PARA LA GEST. DE SIST. DE INF.",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1933",
+    "nombre": "TECNICAS AVANZADAS PARA LA GEST. DE SIST. DE INF.",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1929",
+    "nombre": "WEB Y BASE DE DATOS",
+    "creditos": "6"
+  },
+  {
+    "codigo": "BDSI6",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "6"
+  },
+  {
+    "codigo": "BD10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "BD5",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "5"
+  },
+  {
+    "codigo": "BD8",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "BD9",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "9"
+  },
+  {
+    "codigo": "EPCN",
+    "nombre": "ELEMENTOS DE PROGRAM Y CÁLCULO NUMÉRICO",
+    "creditos": "6"
+  },
+  {
+    "codigo": "CIM20",
+    "nombre": "MÉTODOS NUMÉRICOS",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1872",
+    "nombre": "APLICACIONES DEL ALGEBRA LINEAL",
+    "creditos": "9"
+  },
+  {
+    "codigo": "CN6",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1040",
+    "nombre": "ALGEBRA LINEAL NUMERICA",
+    "creditos": "4"
+  },
+  {
+    "codigo": "5914",
+    "nombre": "ALGEBRA LINEAL NUMERICA",
+    "creditos": "9"
+  },
+  {
+    "codigo": "1054",
+    "nombre": "ANALISIS DE FOURIER PARA TRATAM.DE IMAGE",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CP377",
+    "nombre": "ANALISIS NUMERICO I (P. 74)",
+    "creditos": "14"
+  },
+  {
+    "codigo": "CP379",
+    "nombre": "ANALISIS NUMERICO II (P. 74)",
+    "creditos": "12"
+  },
+  {
+    "codigo": "CP16",
+    "nombre": "CALCULO NUMERICO",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CP376",
+    "nombre": "CALCULO NUMERICO (P. 74)",
+    "creditos": "14"
+  },
+  {
+    "codigo": "1041",
+    "nombre": "METODOS NUMERICOS PARA LA RESOL. DE ECUAC. DIF.",
+    "creditos": "5"
+  },
+  {
+    "codigo": "1055",
+    "nombre": "METODOS DE MONTE CARLO",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1057",
+    "nombre": "METODOS MONTECARLO",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1033",
+    "nombre": "METODOS NUMERICOS",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1079",
+    "nombre": "METODOS NUMERICOS",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1048",
+    "nombre": "TEORIA COMPUTACIONAL DE LA GESTALT",
+    "creditos": "8"
+  },
+  {
+    "codigo": "CN3",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "3"
+  },
+  {
+    "codigo": "I546",
+    "nombre": "TALLER: DISEÑO DE PROYECTOS PARA LA GESTIÓN UNIVERSITARIA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1783",
+    "nombre": "TALLER INTRODUCTORIO DE INGENIERÍA DE SOFTWARE",
+    "creditos": "10"
+  },
+  {
+    "codigo": "O6221",
+    "nombre": "LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV.",
+    "creditos": "EXT.) - 10"
+  },
+  {
+    "codigo": "O6311",
+    "nombre": "TALLER DE INTERACCIÓN",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1758T",
+    "nombre": "CREDITOS NO ACUM. CON RELACIONES PERS. EN ING. DE SOFT. Y GER. DE PROY.",
+    "creditos": "4"
+  },
+  {
+    "codigo": "2417",
+    "nombre": "INGENIERIA DE SOFTWARE BASADA EN EVIDENCIAS",
+    "creditos": "8"
+  },
+  {
+    "codigo": "D84",
+    "nombre": "FORMULACIÓN Y EVALUACIÓN DE PROYECTOS DE INVERSIÓN",
+    "creditos": "8"
+  },
+  {
+    "codigo": "A66",
+    "nombre": "GESTIÓN DE PROYECTOS",
+    "creditos": "5"
+  },
+  {
+    "codigo": "1782",
+    "nombre": "INVESTIGACION MEDIANTE ENCUESTAS EN COMPUTACION",
+    "creditos": "5"
+  },
+  {
+    "codigo": "1778",
+    "nombre": "TALLER DE PLAN Y SEG DE PROY DE SOFTWARE",
+    "creditos": "4"
+  },
+  {
+    "codigo": "1777",
+    "nombre": "PROFESION EN INGENIERIA DE SOFTWARE",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1773",
+    "nombre": "INGENIERIA DE SOFTWARE EMPIRICA",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1772",
+    "nombre": "INGENIERIA DE SOFTWARE BASADA EN EVID.Y REV.SIST.",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1771",
+    "nombre": "INGENIERIA DE SOFTWARE EMPIRICA",
+    "creditos": "5"
+  },
+  {
+    "codigo": "1770",
+    "nombre": "TALLER DE ING.DIRIGIDA POR MODELOS",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1732",
+    "nombre": "ARQUITECTURA DE SOFTWARE",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1743",
+    "nombre": "ARQUITECTURA DE SOFTWARE",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1737",
+    "nombre": "GESTION DE SOFTWARE",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1716",
+    "nombre": "INT. A LA INGENIERIA DE SOFTWARE",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1736",
+    "nombre": "INT. A LA INTERAC. PERSONA COMPUTADORA",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1749",
+    "nombre": "INTERACCION PERSONA COMPUTADORA",
+    "creditos": "12"
+  },
+  {
+    "codigo": "1767",
+    "nombre": "PRINC.Y FUND.DEL PROC.PERS.DE SOFTWARE",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1769",
+    "nombre": "PROFESION EN INGENIERIA DE SOFTWARE",
+    "creditos": "4"
+  },
+  {
+    "codigo": "1728",
+    "nombre": "RELACIONES PERSONALES EN ING. DE SOFT. Y GER. DE PROY.",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1758",
+    "nombre": "RELACIONES PERSONALES EN ING. DE SOFT. Y GER. DE PROY.",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1750",
+    "nombre": "TALLER DE ARQUITECTURA DE SOFTWARE",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1768",
+    "nombre": "TALLER DE INTERACCION PERSONA COMPUTAD.",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1752",
+    "nombre": "TALLER DE PSP",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1742",
+    "nombre": "TALLER DE VERIFICACION DEL SOFTWARE",
+    "creditos": "8"
+  },
+  {
+    "codigo": "CP366",
+    "nombre": "TALLER IV (2DO.SEM.)",
+    "creditos": "10"
+  },
+  {
+    "codigo": "IS14",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "14"
+  },
+  {
+    "codigo": "SFW10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1876",
+    "nombre": "TALLER DE MINERIA DE PROCESOS DE NEGOCIO (TPM)",
+    "creditos": "8"
+  },
+  {
+    "codigo": "A42",
+    "nombre": "DISEÑO ORGANIZACIONAL",
+    "creditos": "10"
+  },
+  {
+    "codigo": "BTI29",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "29"
+  },
+  {
+    "codigo": "BT31",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "31"
+  },
+  {
+    "codigo": "BTI33",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "33"
+  },
+  {
+    "codigo": "BTI23",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "23"
+  },
+  {
+    "codigo": "BTI31",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "31"
+  },
+  {
+    "codigo": "ATI3",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "3"
+  },
+  {
+    "codigo": "BTI38",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "38"
+  },
+  {
+    "codigo": "1780",
+    "nombre": "TALLER DE ROBOTICA EDUCATIVA",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1775",
+    "nombre": "TALLER DE SISTEMAS EMPRESARIALES",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1774",
+    "nombre": "TALLER DE EVALUACION DE TECNOLOGIAS DE LA INF.",
+    "creditos": "10"
+  },
+  {
+    "codigo": "AA28",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "28"
+  },
+  {
+    "codigo": "A028",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "28"
+  },
+  {
+    "codigo": "AI10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "BT28",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "28"
+  },
+  {
+    "codigo": "A28",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "28"
+  },
+  {
+    "codigo": "AI28",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "28"
+  },
+  {
+    "codigo": "1753",
+    "nombre": "MODULO TALLER A",
+    "creditos": "5"
+  },
+  {
+    "codigo": "1754",
+    "nombre": "MODULO TALLER B",
+    "creditos": "4"
+  },
+  {
+    "codigo": "1755",
+    "nombre": "MODULO TALLER C",
+    "creditos": "4"
+  },
+  {
+    "codigo": "1756",
+    "nombre": "MODULO TALLER D",
+    "creditos": "3"
+  },
+  {
+    "codigo": "1757",
+    "nombre": "MODULO TALLER E",
+    "creditos": "2"
+  },
+  {
+    "codigo": "1731",
+    "nombre": "PASANTIA (COMPUTACION)",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CP384",
+    "nombre": "PROCESAMIENTO DE DATOS II (P. 74)",
+    "creditos": "5"
+  },
+  {
+    "codigo": "1730",
+    "nombre": "PROYECTO DE GRADO",
+    "creditos": "30"
+  },
+  {
+    "codigo": "1721",
+    "nombre": "PROYECTO DE INGENIERIA DE SOFTWARE",
+    "creditos": "15"
+  },
+  {
+    "codigo": "5705",
+    "nombre": "SEMINARIO DE INGENIERIA BIOMEDICA",
+    "creditos": "4"
+  },
+  {
+    "codigo": "1748",
+    "nombre": "SEMINARIO DE PROCESAM. PARALELO APLICADO",
+    "creditos": "3"
+  },
+  {
+    "codigo": "1733",
+    "nombre": "TALLER DE DESARROLLO CLIENTE/SERVIDOR",
+    "creditos": "21"
+  },
+  {
+    "codigo": "1766",
+    "nombre": "TALLER DE GEST.Y TEC.PROC.NEGOCIO (TBPM)",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1739",
+    "nombre": "TALLER DE GESTION DE SOFTWARE",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1327",
+    "nombre": "TALLER DE PROGRAMACION",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1925",
+    "nombre": "TALLER DE PROGRAMACION Y ARTE",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1759",
+    "nombre": "TALLER DE SIST. DE INF.GEOGRAF.EMPRESAR.",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1751",
+    "nombre": "TALLER DE SISTEMAS DE INFORMACION 1",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1740",
+    "nombre": "TALLER DE SISTEMAS DE INFORMACION 3",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1741",
+    "nombre": "TALLER DE SISTEMAS DE INFORMACION 4",
+    "creditos": "15"
+  },
+  {
+    "codigo": "5823",
+    "nombre": "TALLER DE TELEMATICA",
+    "creditos": "12"
+  },
+  {
+    "codigo": "CP71",
+    "nombre": "TALLER III ( 2DO.SEM.)",
+    "creditos": "15"
+  },
+  {
+    "codigo": "CP363",
+    "nombre": "TALLER IV (1ER.SEM.)",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1734",
+    "nombre": "TALLER SISTEMAS DE INFORMACION 1",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1735",
+    "nombre": "TALLER SISTEMAS DE INFORMACION 2",
+    "creditos": "15"
+  },
+  {
+    "codigo": "CP221",
+    "nombre": "TALLER V",
+    "creditos": "30"
+  },
+  {
+    "codigo": "1233",
+    "nombre": "TUTORIA EN MATEMATICA",
+    "creditos": "4"
+  },
+  {
+    "codigo": "AT10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "AT28",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "28"
+  },
+  {
+    "codigo": "AT3",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "3"
+  },
+  {
+    "codigo": "AT7",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "7"
+  },
+  {
+    "codigo": "TP25",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "25"
+  },
+  {
+    "codigo": "1776",
+    "nombre": "TALLER DE SIST. DE INF. GEO. EMPRES.",
+    "creditos": "10"
+  },
+  {
+    "codigo": "2042",
+    "nombre": "OPTIMIZACIÓN COMBINATORIA CON METAHEURÍSTICAS",
+    "creditos": "8"
+  },
+  {
+    "codigo": "TIIO",
+    "nombre": "TALLER INTR A LA INVEST DE OPERACIONES",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1897",
+    "nombre": "METODOS EFICI. DE SIMUL. PARA LA ESTIM. DE CONFIA. DE REDES",
+    "creditos": "4"
+  },
+  {
+    "codigo": "1641",
+    "nombre": "ALGORITMOS DE APROXIMACION",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1650",
+    "nombre": "INT. A LA INVESTIGACION DE OPERACIONES",
+    "creditos": "10"
+  },
+  {
+    "codigo": "2398",
+    "nombre": "TECNICAS DE DESCOMPOSICION EN PROGRAMACION MATEMATICA",
+    "creditos": "4"
+  },
+  {
+    "codigo": "1877",
+    "nombre": "REFORMULACIONES Y ALGORITMOS PARA PLANIFICACION DE LA PRODUCCION",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1871",
+    "nombre": "FUNDAMENTOS DE OPTIMIZACION",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1639",
+    "nombre": "PRINCIPIOS DE LOGISTICA HUMANITARIA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1640",
+    "nombre": "OPTIMIZACION CONTINUA Y APLICACIONES",
+    "creditos": "10"
+  },
+  {
+    "codigo": "3207",
+    "nombre": "HERRAMIENTAS P/EL DISEÑO Y ANALISIS DE REDES DE TRANSP.URB DE PASAJEROS",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1458",
+    "nombre": "DISEÑO TOPOLOGICO DE REDES",
+    "creditos": "11"
+  },
+  {
+    "codigo": "1779",
+    "nombre": "INVESTIGACION DE OPER.Y GEST. DE RIESGOS",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1637",
+    "nombre": "ALGORITMOS EVOLUTIVOS",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1636",
+    "nombre": "MODELOS COMB. DE CONFIABILIDAD EN REDES",
+    "creditos": "10"
+  },
+  {
+    "codigo": "GP7",
+    "nombre": "TOPICOS EN COLOREO EN GRAFOS Y CONECTIV.",
+    "creditos": "4"
+  },
+  {
+    "codigo": "1635",
+    "nombre": "METAHEURISTICAS Y OPTIMIZACION SOBRE REDES (MOR)",
+    "creditos": "11"
+  },
+  {
+    "codigo": "1633",
+    "nombre": "TEORIA, ALGORIT. Y APLIC. DE GEST. LOGIS",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1634",
+    "nombre": "ANALISIS DE DATOS EN REDES COMPLEJAS",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1628",
+    "nombre": "ALGORITMOS EVOLUTIVOS",
+    "creditos": "9"
+  },
+  {
+    "codigo": "1625",
+    "nombre": "ALGORITMOS GENETICOS",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1435",
+    "nombre": "DISEÑO TOPOLOGICO DE REDES",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1621",
+    "nombre": "EXTENS. DE PROG. LINEAL Y PROG. ENTERA",
+    "creditos": "15"
+  },
+  {
+    "codigo": "1631",
+    "nombre": "FUNDAMENTOS DE PROGRAMACION ENTERA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1610",
+    "nombre": "INT. A LA INVESTIGACION DE OPERACIONES",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1629",
+    "nombre": "INT. A LA OPTIMIZ.Y A LA PROG. CON RESTR",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1623",
+    "nombre": "INVESTIGACION DE OPER. EN COMERCIO ELECTRONICO",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1630",
+    "nombre": "INVESTIGACION DE OPER.Y GEST. DE RIESGOS",
+    "creditos": "6"
+  },
+  {
+    "codigo": "CP27",
+    "nombre": "INVESTIGACION OPERATIVA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CP320",
+    "nombre": "INVESTIGACION OPERATIVA (P. 74)",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CP373",
+    "nombre": "INVESTIGACION OPERATIVA I (P. 74)",
+    "creditos": "14"
+  },
+  {
+    "codigo": "CP381",
+    "nombre": "INVESTIGACION OPERATIVA II (P. 74)",
+    "creditos": "14"
+  },
+  {
+    "codigo": "CP385",
+    "nombre": "INVESTIGACION OPERATIVA III (P. 74)",
+    "creditos": "14"
+  },
+  {
+    "codigo": "1613",
+    "nombre": "METAHEURISTICAS Y OPTIMIZACION SOBRE REDES",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1624",
+    "nombre": "MODELADO Y OPTIMIZACION",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1626",
+    "nombre": "OPTIMIZACION BAJO INCERTIDUMBRE",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1632",
+    "nombre": "OPTIMIZACION BAJO INCERTIDUMBRE",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1627",
+    "nombre": "SEMINARIO:ELEMENTOS DE METAHEURISTICAS",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1617",
+    "nombre": "SIMULACION A EVENTOS DISCRETOS",
+    "creditos": "10"
+  },
+  {
+    "codigo": "IO20",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "20"
+  },
+  {
+    "codigo": "IO8",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "O1145",
+    "nombre": "COMUNICACIÓN ESTRATÉGICA",
+    "creditos": "9"
+  },
+  {
+    "codigo": "1954",
+    "nombre": "GESTION DE CALIDAD",
+    "creditos": "7"
+  },
+  {
+    "codigo": "2401",
+    "nombre": "LEGISLACION Y RELACIONES INDUSTRIALES",
+    "creditos": "6"
+  },
+  {
+    "codigo": "A83",
+    "nombre": "CAMBIO ORGANIZACIONAL",
+    "creditos": "10"
+  },
+  {
+    "codigo": "S42",
+    "nombre": "SOCIOLOGÍA DE LA EMPRESA Y MANAGEMENT",
+    "creditos": "10"
+  },
+  {
+    "codigo": "I87",
+    "nombre": "PROSPECTIVA ESTRATÉGICA: CON LA MIRADA EN EL FUTURO",
+    "creditos": "10"
+  },
+  {
+    "codigo": "D85",
+    "nombre": "PLANIFICACIÓN ESTRATÉGICA",
+    "creditos": "4"
+  },
+  {
+    "codigo": "A65",
+    "nombre": "INTRODUCCIÓN AL EMPRENDEDURISMO",
+    "creditos": "10"
+  },
+  {
+    "codigo": "618EU",
+    "nombre": "INTRODUCCIÓN A LOS SISTEMAS DE GESTIÓN",
+    "creditos": "4"
+  },
+  {
+    "codigo": "559EU",
+    "nombre": "PROPIEDAD INTELECTUAL",
+    "creditos": "3"
+  },
+  {
+    "codigo": "AT010",
+    "nombre": "GESTIÓN DE PROYECTOS",
+    "creditos": "4"
+  },
+  {
+    "codigo": "GO10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1543",
+    "nombre": "INT. AL NEGOCIO DEL SOFTWARE",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1944",
+    "nombre": "ADMINISTRACION GENERAL PARA INGENIEROS",
+    "creditos": "5"
+  },
+  {
+    "codigo": "1510",
+    "nombre": "CONTROL DE CALIDAD",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1901",
+    "nombre": "CONTROL DE CALIDAD",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1921",
+    "nombre": "GESTION DE CALIDAD",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1940",
+    "nombre": "GESTION DE CALIDAD",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1519",
+    "nombre": "INT. A LA ADMINISTRACION PARA INGENIEROS",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1507",
+    "nombre": "INT. A LAS ORGANIZACIONES",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CP375",
+    "nombre": "ORGANIZACION DE EMPRESAS (P. 74)",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1930",
+    "nombre": "ORGANIZACIONES PARA INGENIEROS",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1514",
+    "nombre": "ORGANIZACIONES Y SU ADMINISTRACION",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1945",
+    "nombre": "PRACTICA DE ADMINISTRACION PARA INGENIEROS",
+    "creditos": "5"
+  },
+  {
+    "codigo": "GA10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "GO6",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "6"
+  },
+  {
+    "codigo": "GO8",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "GO9",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "9"
+  },
+  {
+    "codigo": "A62",
+    "nombre": "GESTIÓN DE LA INNOVACIÓN Y LA TECNOLOGÍA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "V2110",
+    "nombre": "TALLER DE ÉTICA",
+    "creditos": "2"
+  },
+  {
+    "codigo": "IE",
+    "nombre": "INTRODUCCIÓN A LA ECONOMÍA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CH010",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDAS",
+    "creditos": "10"
+  },
+  {
+    "codigo": "24CIA",
+    "nombre": "COMUNICACIÓN E INTELIGENCIA ARTIFICIAL (PPP)",
+    "creditos": "9"
+  },
+  {
+    "codigo": "D78A",
+    "nombre": "CIENCIA,TECNOLOGÍA, INNOVACIÓN, SOCIEDAD Y DESARROLLO",
+    "creditos": "6"
+  },
+  {
+    "codigo": "O6521",
+    "nombre": "TEORÍAS Y PRÁCTICAS DE LA ACCESIBILIDAD EN LA COMUNICACIÓN",
+    "creditos": "LIM - 8"
+  },
+  {
+    "codigo": "O2525",
+    "nombre": "COMUNICACIÓN E INTELIGENCIA ARTIFICIAL(PPP)",
+    "creditos": "9"
+  },
+  {
+    "codigo": "O7246",
+    "nombre": "TECNOLOGÍAS DE DIGITALIZACIÓN Y TRANSCODIFICACIÓN. IDENTIFICACIÓN Y PRESERVACIÓN",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1271",
+    "nombre": "CIUDADANIA EN ENTORNOS DIGITALES",
+    "creditos": "8"
+  },
+  {
+    "codigo": "O6211",
+    "nombre": "TECNOLOGÍA DE MEDIOS AL SERVICIO DE LA PRESERVACIÓN DEL PATRIMONIO HISTÓRICO DOC",
+    "creditos": "8"
+  },
+  {
+    "codigo": "SRN13",
+    "nombre": "ECONOMÍA POLÍTICA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "1270",
+    "nombre": "CIUDADANIA EN ENTORNOS DIGITALES",
+    "creditos": "6"
+  },
+  {
+    "codigo": "FD1",
+    "nombre": "ETICA I",
+    "creditos": "13"
+  },
+  {
+    "codigo": "C216",
+    "nombre": "EPISTEMOLOGIA, ETICA Y EDUCACION",
+    "creditos": "8"
+  },
+  {
+    "codigo": "AT002",
+    "nombre": "METODOLOGÍAS DE INVESTIGACIÓN",
+    "creditos": "5"
+  },
+  {
+    "codigo": "558EU",
+    "nombre": "EPISTEMOLOGÍA",
+    "creditos": "3"
+  },
+  {
+    "codigo": "CHU10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CHS10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CH5",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "5"
+  },
+  {
+    "codigo": "GP3",
+    "nombre": "EPIST. GENET. Y APL. A LA DIDAC. EN INF.",
+    "creditos": "5"
+  },
+  {
+    "codigo": "CH08",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "CH3",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "3"
+  },
+  {
+    "codigo": "CH04",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "4"
+  },
+  {
+    "codigo": "1229",
+    "nombre": "ANALISIS DE INNOVACIONES",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1223",
+    "nombre": "CIENCIA, TECNOLOGIA Y SOCIEDAD",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1230",
+    "nombre": "COMUNICACION ORAL Y ESCRITA",
+    "creditos": "5"
+  },
+  {
+    "codigo": "1224",
+    "nombre": "ECONOMIA",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1221",
+    "nombre": "ECONOMIA",
+    "creditos": "7"
+  },
+  {
+    "codigo": "CP20",
+    "nombre": "ECONOMIA POLITICA",
+    "creditos": "7"
+  },
+  {
+    "codigo": "CP174",
+    "nombre": "ECONOMIA Y FINANZAS (P. 74)",
+    "creditos": "7"
+  },
+  {
+    "codigo": "1225",
+    "nombre": "POLITICAS CIENTIFICAS EN INF.Y COMP.",
+    "creditos": "3"
+  },
+  {
+    "codigo": "CP18",
+    "nombre": "TECNOLOGIA Y SOCIEDAD",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CH1",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "1"
+  },
+  {
+    "codigo": "CH10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "CH4",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "4"
+  },
+  {
+    "codigo": "CH6",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "6"
+  },
+  {
+    "codigo": "CH8",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "SO001",
+    "nombre": "INTRODUCCIÓN A LA VIDA UNIVERSITARIA (IVU)",
+    "creditos": "1"
+  },
+  {
+    "codigo": "1275",
+    "nombre": "TALLER BASICO DE ESTRATEGIAS Y ORIENTACION (TBEO)",
+    "creditos": "3"
+  },
+  {
+    "codigo": "MOP4",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDAS",
+    "creditos": "4"
+  },
+  {
+    "codigo": "M014",
+    "nombre": "ESTRATEGIAS PARA APRENDER: DESARROLLANDO ESTRATEGIAS P/ESTUDIAR EN LA UNIV.",
+    "creditos": "4"
+  },
+  {
+    "codigo": "INFU1",
+    "nombre": "INGLES PARA FINES UNIVERSITARIOS I",
+    "creditos": "8"
+  },
+  {
+    "codigo": "5005",
+    "nombre": "TUTORIAS ENTRE PARES ACADEMICAS PROGRESA/FING",
+    "creditos": "8"
+  },
+  {
+    "codigo": "1236",
+    "nombre": "SEMINARIO SOBRE ENCUENTROS ENTRE ARTE Y TECNOLOGIAS",
+    "creditos": "4"
+  },
+  {
+    "codigo": "AT001",
+    "nombre": "SENSIBILIZACIÓN E INTERCAMBIO PARA LA EQUIDAD",
+    "creditos": "2"
+  },
+  {
+    "codigo": "SRN22",
+    "nombre": "COMPRENSIÓN LECTORA DE INGLÉS",
+    "creditos": "8"
+  },
+  {
+    "codigo": "SRN25",
+    "nombre": "TALLER INTERDISCIPLINARIO",
+    "creditos": "2"
+  },
+  {
+    "codigo": "5828",
+    "nombre": "TRATAMIENTO DE IMAGENES POR COMPUTADORA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "736EU",
+    "nombre": "BIOINFORMÁTICA",
+    "creditos": "7"
+  },
+  {
+    "codigo": "836EU",
+    "nombre": "BIONFORMÁTICA ESTRUCTURAL",
+    "creditos": "7"
+  },
+  {
+    "codigo": "AT023",
+    "nombre": "PRODUCCIÓN GRÁFICA 3D II",
+    "creditos": "6"
+  },
+  {
+    "codigo": "AT021",
+    "nombre": "PRODUCCIÓN AUDIOVISUAL INTERACTIVA II",
+    "creditos": "6"
+  },
+  {
+    "codigo": "816EU",
+    "nombre": "INGLES CIENTÍFICO",
+    "creditos": "4"
+  },
+  {
+    "codigo": "2107A",
+    "nombre": "TALLER DE COMUNICACIÓN ORAL Y ESCRITA",
+    "creditos": "1"
+  },
+  {
+    "codigo": "AT003",
+    "nombre": "PROBLEMAS DE DISEÑO",
+    "creditos": "7"
+  },
+  {
+    "codigo": "AT009",
+    "nombre": "MODELADO 3D PARA PRODUCCION DIGITAL (PERFIL PRODUCTO)",
+    "creditos": "4"
+  },
+  {
+    "codigo": "MOP8",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "8"
+  },
+  {
+    "codigo": "2217",
+    "nombre": "TUTORIAS ENTRE PARES 2",
+    "creditos": "4"
+  },
+  {
+    "codigo": "2216",
+    "nombre": "TUTORIAS ENTRE PARES 1",
+    "creditos": "4"
+  },
+  {
+    "codigo": "1951",
+    "nombre": "TALLER: HERRAMIENTAS PARA LA INNOVACION",
+    "creditos": "4"
+  },
+  {
+    "codigo": "1216",
+    "nombre": "TALLER ENCARARE: CREAR",
+    "creditos": "8"
+  },
+  {
+    "codigo": "GP4",
+    "nombre": "REDACC. TEC. DE TESIS Y ART. CIENTIF.",
+    "creditos": "5"
+  },
+  {
+    "codigo": "2040",
+    "nombre": "INICIACION A LA PROD. AUDIOVIS. Y MULTIMEDIA",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1438",
+    "nombre": "APLICACIONES DE TEORIA DE LA INFORMACION AL PROC. DE IMAG.",
+    "creditos": "6"
+  },
+  {
+    "codigo": "5707",
+    "nombre": "IMAGENES MEDICAS: ADQUISICION, INSTRUMENTACION Y GESTION",
+    "creditos": "8"
+  },
+  {
+    "codigo": "5709",
+    "nombre": "IMAGENES MEDICAS:ADQ. INSTRUM. Y GESTION",
+    "creditos": "6"
+  },
+  {
+    "codigo": "1760",
+    "nombre": "MODULO DE EXTENSION A",
+    "creditos": "4"
+  },
+  {
+    "codigo": "1761",
+    "nombre": "MODULO DE EXTENSION B",
+    "creditos": "4"
+  },
+  {
+    "codigo": "1762",
+    "nombre": "MODULO DE EXTENSION C",
+    "creditos": "3"
+  },
+  {
+    "codigo": "1763",
+    "nombre": "MODULO DE EXTENSION D",
+    "creditos": "3"
+  },
+  {
+    "codigo": "1213",
+    "nombre": "PLANIFICACION DE CLASES: DISEÑO DE UNID.DIDACT.",
+    "creditos": "2"
+  },
+  {
+    "codigo": "2034",
+    "nombre": "TALLER ENCARARE 1:CREATIVIDAD E INNOVAC.",
+    "creditos": "5"
+  },
+  {
+    "codigo": "2036",
+    "nombre": "TALLER ENCARARE 2:PLANIF.DE LA FUT.EMPR.",
+    "creditos": "5"
+  },
+  {
+    "codigo": "2222",
+    "nombre": "TEATRO Y MATEMATICA",
+    "creditos": "6"
+  },
+  {
+    "codigo": "MOP1",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "4"
+  },
+  {
+    "codigo": "MOP10",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "10"
+  },
+  {
+    "codigo": "MOP20",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "20"
+  },
+  {
+    "codigo": "MOP30",
+    "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+    "creditos": "30"
+  }
+]
