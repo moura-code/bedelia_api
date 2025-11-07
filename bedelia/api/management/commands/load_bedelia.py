@@ -32,20 +32,30 @@ class Command(BaseCommand):
         parser.add_argument(
             '--credits',
             type=str,
-            required=True,
-            help='Path to credits.json file'
+            required=False,
+            help='Path to credits.json file',
+            default='../data/credits_data_backup.json'
         )
         parser.add_argument(
             '--requirements',
             type=str,
-            required=True,
-            help='Path to requirements.json file'
+            required=False,
+            help='Path to requirements.json file',
+            default='../data/previas_data_backup.json'
         )
         parser.add_argument(
             '--posprevias',
             type=str,
-            required=True,
-            help='Path to posprevias.json file'
+            required=False,
+            help='Path to posprevias.json file',
+            default='../data/posprevias_data_backup.json'
+        )
+        parser.add_argument(
+            '--vigentes',
+            type=str,
+            required=False,
+            help='Path to vigentes.json file (optional)',
+            default='../data/vigentes_data_backup.json'
         )
         parser.add_argument(
             '--default-term',
@@ -79,11 +89,12 @@ class Command(BaseCommand):
             'req_items': 0,
             'warnings': 0,
             'errors': 0,
+            'missing_subjects': set(),  # Track unique missing subject codes
         }
         
         # Lookup caches
         self.program_cache: Dict[str, Program] = {}
-        self.subject_cache: Dict[str, Subject] = {}
+        self.subject_cache: Dict[str, Subject] = {}  # By code only now
         self.subject_by_code: Dict[str, List[Subject]] = {}
         self.offering_cache: Dict[Tuple[str, str], Offering] = {}
     
@@ -103,8 +114,16 @@ class Command(BaseCommand):
             requirements_data = self._load_json(options['requirements'])
             posprevias_data = self._load_json(options['posprevias'])
             
+            # Vigentes is optional
+            vigentes_data = None
+            vigentes_path = options.get('vigentes')
+            if vigentes_path and Path(vigentes_path).exists():
+                vigentes_data = self._load_json(vigentes_path)
+            else:
+                self.stdout.write(self.style.WARNING('Vigentes file not found, skipping Phase 4'))
+            
             # Process data (each phase has its own transaction in _process_all_data)
-            self._process_all_data(credits_data, requirements_data, posprevias_data)
+            self._process_all_data(credits_data, requirements_data, posprevias_data, vigentes_data)
             
             # Print summary
             self._print_summary()
@@ -126,7 +145,7 @@ class Command(BaseCommand):
         except json.JSONDecodeError as e:
             raise CommandError(f'Invalid JSON in {filepath}: {e}')
     
-    def _process_all_data(self, credits_data, requirements_data, posprevias_data):
+    def _process_all_data(self, credits_data, requirements_data, posprevias_data, vigentes_data=None):
         """Process all data in phases."""
         try:
             self.stdout.write(self.style.SUCCESS('\n=== Phase 1: Loading Credits (Subjects) ==='))
@@ -160,39 +179,85 @@ class Command(BaseCommand):
                 self._load_posprevias(posprevias_data)
         except Exception as e:
             raise CommandError(f'Error in Phase 3 (PosPrevias): {e}')
+        
+        if vigentes_data:
+            try:
+                self.stdout.write(self.style.SUCCESS('\n=== Phase 4: Processing Vigentes (Active Offerings) ==='))
+                if not self.dry_run:
+                    with transaction.atomic():
+                        self._load_vigentes(vigentes_data)
+                else:
+                    self._load_vigentes(vigentes_data)
+            except Exception as e:
+                raise CommandError(f'Error in Phase 4 (Vigentes): {e}')
     
     # ========================================================================
     # Phase 1: Credits (Subjects)
     # ========================================================================
     
-    def _load_credits(self, credits_data: List[Dict]):
-        """Load credits.json into Program and Subject models."""
-        if not isinstance(credits_data, list):
-            self.error('credits.json should be a list')
+    def _load_credits(self, credits_data):
+        """Load credits.json into Program and Subject models.
+        
+        Handles both formats:
+        - New: {"PROGRAM_YEAR": {"CODE_NAME": {...}}}
+        - Old: [{"codigo": "...", "nombre": "...", "creditos": "..."}]
+        """
+        # Check if new nested format (dict) or old flat list
+        if isinstance(credits_data, dict):
+            self.stdout.write('Detected new multi-program format')
+            # New format: iterate over programs
+            for program_key, subjects_dict in credits_data.items():
+                # Parse program name and year from key like "INGENIERÍA CIVIL_2021"
+                if '_' in program_key:
+                    program_name, year_str = program_key.rsplit('_', 1)
+                    try:
+                        year = int(year_str)
+                    except ValueError:
+                        year = None
+                        program_name = program_key  # If year isn't numeric, treat whole thing as name
+                else:
+                    program_name, year = program_key, None
+                
+                program = self._get_or_create_program(program_name, year)
+                self.stdout.write(f'Processing program: {program_name} ({year}) with {len(subjects_dict)} subjects')
+                
+                # subjects_dict is like {"CODE_NAME": {"codigo": ..., "nombre": ..., "creditos": ...}}
+                count = 0
+                for subject_key, entry in subjects_dict.items():
+                    self._process_credit_entry_safe(entry, program)
+                    count += 1
+                    if count % 100 == 0:
+                        self.stdout.write(f'  Processed {count}/{len(subjects_dict)} subjects...')
+        
+        elif isinstance(credits_data, list):
+            self.log('Detected old flat list format')
+            # Old format: flat list of subjects
+            default_program = self._get_or_create_program('Default Program', None)
+            for entry in credits_data:
+                self._process_credit_entry_safe(entry, default_program)
+        else:
+            self.error(f'credits.json has unexpected format: {type(credits_data)}')
             return
-        
-        # Create a default program for now (we'll enhance this later)
-        default_program = self._get_or_create_program('Default Program', None)
-        
-        for entry in credits_data:
-            # Use savepoint for each entry to isolate transaction errors
-            if not self.dry_run:
-                try:
-                    sid = transaction.savepoint()
-                    self._process_credit_entry(entry, default_program)
-                    transaction.savepoint_commit(sid)
-                except Exception as e:
-                    transaction.savepoint_rollback(sid)
-                    self.stats['errors'] += 1
-                    if self.verbose:
-                        self.stdout.write(self.style.ERROR(f'ERROR: Error processing credit entry {entry.get("codigo")}: {e}'))
-            else:
-                try:
-                    self._process_credit_entry(entry, default_program)
-                except Exception as e:
-                    self.stats['errors'] += 1
-                    if self.verbose:
-                        self.stdout.write(self.style.ERROR(f'ERROR: Error processing credit entry {entry.get("codigo")}: {e}'))
+    
+    def _process_credit_entry_safe(self, entry: Dict, program: Program):
+        """Process a credit entry with error isolation."""
+        if not self.dry_run:
+            try:
+                sid = transaction.savepoint()
+                self._process_credit_entry(entry, program)
+                transaction.savepoint_commit(sid)
+            except Exception as e:
+                transaction.savepoint_rollback(sid)
+                self.stats['errors'] += 1
+                if self.verbose:
+                    self.stdout.write(self.style.ERROR(f'ERROR: Error processing credit entry {entry.get("codigo")}: {e}'))
+        else:
+            try:
+                self._process_credit_entry(entry, program)
+            except Exception as e:
+                self.stats['errors'] += 1
+                if self.verbose:
+                    self.stdout.write(self.style.ERROR(f'ERROR: Error processing credit entry {entry.get("codigo")}: {e}'))
     
     def _process_credit_entry(self, entry: Dict, default_program: Program):
         """Process a single credit entry."""
@@ -219,7 +284,7 @@ class Command(BaseCommand):
             self.stats['subjects'] += 1
             self.log(f'Created subject: {code} - {name} ({credits} credits)')
         else:
-            self.log(f'Updated subject: {code} - {name}')
+            self.log(f'Subject already exists: {code} - {name}')
     
     def _parse_credits(self, credits_str: str) -> Optional[Decimal]:
         """Parse credit string to Decimal."""
@@ -243,32 +308,70 @@ class Command(BaseCommand):
     # ========================================================================
     
     def _load_requirements(self, requirements_data: Dict):
-        """Load requirements.json into Offering and RequirementGroup models."""
+        """Load requirements.json into Offering and RequirementGroup models.
+        
+        Handles both formats:
+        - New: {"PROGRAM_YEAR": {"CODE - NAME": {...}}}
+        - Old: {"CODE - NAME": {...}}
+        """
         if not isinstance(requirements_data, dict):
             self.error('requirements.json should be a dictionary')
             return
         
+        # Check if this is the new nested format
+        # (first key contains "_" and its value is a dict of subjects)
+        first_key = next(iter(requirements_data.keys()), None)
+        if first_key and '_' in first_key and isinstance(requirements_data[first_key], dict):
+            # Check if the nested dict has subject-like keys
+            nested_dict = requirements_data[first_key]
+            first_nested_key = next(iter(nested_dict.keys()), None)
+            if first_nested_key and (' - ' in first_nested_key or 'code' in nested_dict[first_nested_key]):
+                self.stdout.write('Detected new multi-program requirements format')
+                # New format: iterate over programs first
+                for program_key, subjects_dict in requirements_data.items():
+                    if '_' in program_key:
+                        program_name, year_str = program_key.rsplit('_', 1)
+                        try:
+                            year = int(year_str)
+                        except ValueError:
+                            year = None
+                            program_name = program_key
+                    else:
+                        program_name, year = program_key, None
+                    
+                    self.stdout.write(f'Processing requirements for program: {program_name} ({year}) with {len(subjects_dict)} subjects')
+                    
+                    # Now process subjects under this program
+                    for subject_key, entry in subjects_dict.items():
+                        self._process_requirement_entry_safe(subject_key, entry)
+                return
+        
+        # Old format: flat dict with subject keys
+        self.log('Detected old flat requirements format')
         for key, entry in requirements_data.items():
-            # Use savepoint for each entry to isolate transaction errors
-            if not self.dry_run:
-                try:
-                    sid = transaction.savepoint()
-                    self._process_requirement_entry(key, entry)
-                    transaction.savepoint_commit(sid)
-                except Exception as e:
-                    transaction.savepoint_rollback(sid)
-                    self.stats['errors'] += 1
-                    self.stdout.write(self.style.ERROR(f'ERROR: Error processing requirement {key}: {type(e).__name__}: {e}'))
-                    if self.verbose:
-                        import traceback
-                        traceback.print_exc()
-            else:
-                try:
-                    self._process_requirement_entry(key, entry)
-                except Exception as e:
-                    self.stats['errors'] += 1
-                    if self.verbose:
-                        self.stdout.write(self.style.ERROR(f'ERROR: Error processing requirement {key}: {e}'))
+            self._process_requirement_entry_safe(key, entry)
+    
+    def _process_requirement_entry_safe(self, key: str, entry: Dict):
+        """Process a requirement entry with error isolation."""
+        if not self.dry_run:
+            try:
+                sid = transaction.savepoint()
+                self._process_requirement_entry(key, entry)
+                transaction.savepoint_commit(sid)
+            except Exception as e:
+                transaction.savepoint_rollback(sid)
+                self.stats['errors'] += 1
+                self.stdout.write(self.style.ERROR(f'ERROR: Error processing requirement {key}: {type(e).__name__}: {e}'))
+                if self.verbose:
+                    import traceback
+                    traceback.print_exc()
+        else:
+            try:
+                self._process_requirement_entry(key, entry)
+            except Exception as e:
+                self.stats['errors'] += 1
+                if self.verbose:
+                    self.stdout.write(self.style.ERROR(f'ERROR: Error processing requirement {key}: {e}'))
     
     def _process_requirement_entry(self, key: str, entry: Dict):
         """Process a single requirement entry."""
@@ -443,37 +546,74 @@ class Command(BaseCommand):
     # ========================================================================
     
     def _load_posprevias(self, posprevias_data: Dict):
-        """Load posprevias.json to create inverse requirement relationships."""
+        """Load posprevias.json to create inverse requirement relationships.
+        
+        Handles both formats:
+        - New: {"PROGRAM_YEAR": {"CODE": {...}}}
+        - Old: {"CODE": {...}}
+        """
         if not isinstance(posprevias_data, dict):
             self.error('posprevias.json should be a dictionary')
             return
         
+        # Check if this is the new nested format
+        first_key = next(iter(posprevias_data.keys()), None)
+        if first_key and '_' in first_key and isinstance(posprevias_data[first_key], dict):
+            # Check if nested dict has subject codes
+            nested_dict = posprevias_data[first_key]
+            first_nested_key = next(iter(nested_dict.keys()), None)
+            if first_nested_key and ('code' in nested_dict[first_nested_key] or 'posprevias' in nested_dict[first_nested_key]):
+                self.stdout.write('Detected new multi-program posprevias format')
+                # New format: iterate over programs first
+                for program_key, subjects_dict in posprevias_data.items():
+                    if '_' in program_key:
+                        program_name, year_str = program_key.rsplit('_', 1)
+                        try:
+                            year = int(year_str)
+                        except ValueError:
+                            year = None
+                            program_name = program_key
+                    else:
+                        program_name, year = program_key, None
+                    
+                    self.stdout.write(f'Processing posprevias for program: {program_name} ({year}) with {len(subjects_dict)} subjects')
+                    
+                    # Now process subjects under this program
+                    for code, entry in subjects_dict.items():
+                        self._process_posprevias_entry_safe(code, entry)
+                return
+        
+        # Old format: flat dict with subject codes
+        self.log('Detected old flat posprevias format')
         for code, entry in posprevias_data.items():
-            # Use savepoint for each entry to isolate transaction errors
-            if not self.dry_run:
-                try:
-                    sid = transaction.savepoint()
-                    self._process_posprevias_entry(code, entry)
-                    transaction.savepoint_commit(sid)
-                except Exception as e:
-                    transaction.savepoint_rollback(sid)
-                    self.stats['errors'] += 1
-                    if self.verbose:
-                        self.stdout.write(self.style.ERROR(f'ERROR: Error processing posprevias for {code}: {e}'))
-            else:
-                try:
-                    self._process_posprevias_entry(code, entry)
-                except Exception as e:
-                    self.stats['errors'] += 1
-                    if self.verbose:
-                        self.stdout.write(self.style.ERROR(f'ERROR: Error processing posprevias for {code}: {e}'))
+            self._process_posprevias_entry_safe(code, entry)
+    
+    def _process_posprevias_entry_safe(self, code: str, entry: Dict):
+        """Process a posprevias entry with error isolation."""
+        if not self.dry_run:
+            try:
+                sid = transaction.savepoint()
+                self._process_posprevias_entry(code, entry)
+                transaction.savepoint_commit(sid)
+            except Exception as e:
+                transaction.savepoint_rollback(sid)
+                self.stats['errors'] += 1
+                if self.verbose:
+                    self.stdout.write(self.style.ERROR(f'ERROR: Error processing posprevias for {code}: {e}'))
+        else:
+            try:
+                self._process_posprevias_entry(code, entry)
+            except Exception as e:
+                self.stats['errors'] += 1
+                if self.verbose:
+                    self.stdout.write(self.style.ERROR(f'ERROR: Error processing posprevias for {code}: {e}'))
     
     def _process_posprevias_entry(self, code: str, entry: Dict):
         """Process a single posprevias entry."""
         # Find the prerequisite subject (the one that unlocks others)
         prereq_subject = self._find_subject_by_code(code)
         if not prereq_subject:
-            self.warn(f'Subject not found for posprevias code: {code}')
+            self.warn(f'Subject not found for posprevias code: {code}\n{str(entry)[:100]}...')
             return
         
         posprevias_list = entry.get('posprevias', [])
@@ -489,7 +629,10 @@ class Command(BaseCommand):
             # Find target subject
             target_subject = self._find_subject_by_code(materia_codigo)
             if not target_subject:
-                self.warn(f'Target subject not found: {materia_codigo}')
+                # Track missing subject but only warn if verbose
+                self.stats['missing_subjects'].add(materia_codigo)
+                if self.verbose:
+                    self.warn(f'Target subject not found: {materia_codigo}')
                 continue
             
             # Get or create target offering
@@ -550,6 +693,79 @@ class Command(BaseCommand):
             self.stats['req_items'] += 1
     
     # ========================================================================
+    # Phase 4: Vigentes (Active Offerings)
+    # ========================================================================
+    
+    def _load_vigentes(self, vigentes_data):
+        """Load vigentes.json to mark which subjects have active offerings.
+        
+        Handles both formats:
+        - New: {"PROGRAM_YEAR": {"CODE": {...}}}
+        - Old: [{"course_code": "...", ...}]
+        """
+        if isinstance(vigentes_data, dict):
+            self.stdout.write('Detected new multi-program vigentes format')
+            # New format: iterate over programs
+            for program_key, courses in vigentes_data.items():
+                if '_' in program_key:
+                    program_name, year_str = program_key.rsplit('_', 1)
+                    try:
+                        year = int(year_str)
+                    except ValueError:
+                        year = None
+                        program_name = program_key
+                else:
+                    program_name, year = program_key, None
+                
+                courses_count = len(courses) if isinstance(courses, (dict, list)) else 0
+                self.stdout.write(f'Processing vigentes for program: {program_name} ({year}) with {courses_count} courses')
+                
+                # courses could be dict or list
+                if isinstance(courses, dict):
+                    for code, course_info in courses.items():
+                        self._process_vigente_entry(course_info)
+                elif isinstance(courses, list):
+                    for course_info in courses:
+                        self._process_vigente_entry(course_info)
+        
+        elif isinstance(vigentes_data, list):
+            self.log('Detected old flat vigentes list format')
+            for course_info in vigentes_data:
+                self._process_vigente_entry(course_info)
+        else:
+            self.error(f'vigentes.json has unexpected format: {type(vigentes_data)}')
+    
+    def _process_vigente_entry(self, course_info: Dict):
+        """Process a single vigente entry to mark subject as active."""
+        code = course_info.get('course_code') or course_info.get('codigo', '').strip()
+        if not code:
+            return
+        
+        # Find subject
+        subject = self._find_subject_by_code(code)
+        if not subject:
+            if self.verbose:
+                self.stdout.write(f'Subject not found for vigente code: {code}')
+            return
+        
+        # Mark subject as having active offerings
+        # For now, we just ensure an offering exists
+        if not self.dry_run:
+            offering, created = Offering.objects.get_or_create(
+                subject=subject,
+                type=OfferingType.COURSE,
+                term=self.default_term,
+                defaults={
+                    'is_active': True
+                }
+            )
+            
+            if created:
+                self.stats['offerings'] += 1
+                if self.verbose:
+                    self.stdout.write(f'Created active offering for {code}')
+    
+    # ========================================================================
     # Helper Methods
     # ========================================================================
     
@@ -567,23 +783,42 @@ class Command(BaseCommand):
             )
             if created:
                 self.stats['programs'] += 1
+                self.log(f'Created program: {name} ({year})')
         else:
-            # Create mock object for dry run
-            program = Program(name=name, plan_year=year)
-            created = True
+            # In dry-run mode, check if it exists first
+            try:
+                program = Program.objects.get(name=name, plan_year=year)
+                created = False
+            except Program.DoesNotExist:
+                program = Program(name=name, plan_year=year)
+                created = True
+                self.stats['programs'] += 1
         
         self.program_cache[cache_key] = program
         return program
     
     def _get_or_create_subject(self, program: Program, code: str, name: str, credits: Optional[Decimal]) -> Tuple[Subject, bool]:
-        """Get or create a Subject."""
-        cache_key = f'{program.id if hasattr(program, "id") else "mock"}_{code}'
-        if cache_key in self.subject_cache:
-            return self.subject_cache[cache_key], False
+        """Get or create a Subject and add it to the program.
+        
+        Since subjects can belong to multiple programs, we:
+        1. Get or create the subject by code only
+        2. Add the program to the subject's programs
+        """
+        # Check global cache by code only
+        if code in self.subject_cache:
+            subject = self.subject_cache[code]
+            created = False
+            
+            # Add program to subject if not already there
+            if not self.dry_run and program.id:
+                if not subject.programs.filter(id=program.id).exists():
+                    subject.programs.add(program)
+                    self.log(f'Added program {program.name} to subject {code}')
+            
+            return subject, created
         
         if not self.dry_run:
             subject, created = Subject.objects.get_or_create(
-                program=program,
                 code=code,
                 defaults={
                     'name': name,
@@ -591,20 +826,36 @@ class Command(BaseCommand):
                 }
             )
             
+            # Add program to subject
+            if program.id:
+                subject.programs.add(program)
+            
+            # Update if needed
             if not created and (subject.name != name or subject.credits != credits):
                 subject.name = name
                 subject.credits = credits
                 subject.save()
         else:
-            subject = Subject(program=program, code=code, name=name, credits=credits)
-            created = True
+            # In dry-run mode, check if it exists first
+            try:
+                subject = Subject.objects.get(code=code)
+                created = False
+            except Subject.DoesNotExist:
+                subject = Subject(code=code, name=name, credits=credits)
+                created = True
+            except Exception as e:
+                # If can't query, create mock
+                subject = Subject(code=code, name=name, credits=credits)
+                created = True
         
-        self.subject_cache[cache_key] = subject
+        # Cache by code only
+        self.subject_cache[code] = subject
         
         # Also add to code lookup
         if code not in self.subject_by_code:
             self.subject_by_code[code] = []
-        self.subject_by_code[code].append(subject)
+        if subject not in self.subject_by_code[code]:
+            self.subject_by_code[code].append(subject)
         
         return subject, created
     
@@ -658,10 +909,17 @@ class Command(BaseCommand):
             )
     
     def _find_subject_by_code(self, code: str) -> Optional[Subject]:
-        """Find a subject by code in cache."""
-        subjects = self.subject_by_code.get(code, [])
-
+        """Find a subject by code in cache.
         
+        Since subjects are now unique by code (ManyToMany with programs),
+        we just return the subject if it exists.
+        """
+        # Check cache first
+        if code in self.subject_cache:
+            return self.subject_cache[code]
+        
+        # Fallback to list lookup
+        subjects = self.subject_by_code.get(code, [])
         return subjects[0] if subjects else None
     
     def _extract_code_from_key(self, key: str) -> Optional[str]:
@@ -707,7 +965,22 @@ class Command(BaseCommand):
         self.stdout.write(f'Offerings created: {self.stats["offerings"]}')
         self.stdout.write(f'Requirement groups created: {self.stats["req_groups"]}')
         self.stdout.write(f'Requirement items created: {self.stats["req_items"]}')
-        self.stdout.write(self.style.WARNING(f'Warnings: {self.stats["warnings"]}'))
+        
+        # Show missing subjects summary
+        missing_count = len(self.stats['missing_subjects'])
+        if missing_count > 0:
+            self.stdout.write(self.style.WARNING(f'\nMissing subject codes: {missing_count}'))
+            if missing_count <= 20:
+                # Show all if not too many
+                missing_sorted = sorted(self.stats['missing_subjects'])
+                self.stdout.write(self.style.WARNING(f'  Codes: {", ".join(missing_sorted)}'))
+            else:
+                # Show first 20
+                missing_sorted = sorted(self.stats['missing_subjects'])[:20]
+                self.stdout.write(self.style.WARNING(f'  First 20: {", ".join(missing_sorted)}...'))
+            self.stdout.write('  (These subjects are referenced in posprevias but not found in credits data)')
+        
+        self.stdout.write(self.style.WARNING(f'\nWarnings: {self.stats["warnings"]}'))
         self.stdout.write(self.style.ERROR(f'Errors: {self.stats["errors"]}'))
         self.stdout.write(self.style.SUCCESS('=' * 60))
 

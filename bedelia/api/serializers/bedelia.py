@@ -66,8 +66,8 @@ class SubjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Subject
         fields = [
-            'id', 'program', 'code', 'name', 'credits', 'dept', 
-            'description', 'semester', 'created_at', 'updated_at'
+            'id', 'program', 'code', 'name', 'credits', 
+            'created_at', 'updated_at'
         ]
         read_only_fields = ['id', 'created_at', 'updated_at']
 
@@ -169,14 +169,16 @@ class SubjectEquivalenceSerializer(serializers.ModelSerializer):
 
 class DependencyEdgeSerializer(serializers.ModelSerializer):
     """Dependency edge serializer."""
-    source_offering = OfferingBasicSerializer(read_only=True)
-    target_offering = OfferingBasicSerializer(read_only=True)
+    from_subject = SubjectBasicSerializer(read_only=True)
+    from_offering = OfferingBasicSerializer(read_only=True)
+    to_offering = OfferingBasicSerializer(read_only=True)
     
     class Meta:
         model = DependencyEdge
         fields = [
-            'id', 'source_offering', 'target_offering', 'dep_kind', 
-            'note', 'created_at', 'updated_at'
+            'id', 'from_type', 'from_subject', 'from_offering', 
+            'to_offering', 'group', 'kind', 'condition',
+            'created_at', 'updated_at'
         ]
         read_only_fields = ['id', 'created_at', 'updated_at']
 

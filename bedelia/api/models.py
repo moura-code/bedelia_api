@@ -97,23 +97,20 @@ class Program(BaseModel):
 
 
 class Subject(BaseModel):
-    """Canonical subjects/courses (UCB/FIng codes)."""
+    """Canonical subjects/courses (UCB/FIng codes).
+    
+    Subjects can belong to multiple programs (e.g., CDIV appears in many engineering programs).
+    """
 
-    program = models.ForeignKey(
-        Program, null=True, blank=True, on_delete=models.SET_NULL, related_name="subjects",
-        help_text="Academic program this subject belongs to"
+    programs = models.ManyToManyField(
+        Program, related_name="subjects", blank=True,
+        help_text="Academic programs this subject belongs to"
     )
-    code = models.CharField(max_length=16, db_index=True, help_text="Subject code (e.g., UCB/FIng code)")
+    code = models.CharField(max_length=16, unique=True, db_index=True, help_text="Subject code (e.g., UCB/FIng code)")
     name = models.CharField(max_length=255, help_text="Full name of the subject")
     credits = models.DecimalField(
         max_digits=6, decimal_places=2, null=True, blank=True,
         help_text="Number of credits for this subject"
-    )
-    dept = models.CharField(max_length=100, null=True, blank=True, help_text="Department offering this subject")
-    description = models.TextField(null=True, blank=True, help_text="Detailed description of the subject")
-    semester = models.PositiveSmallIntegerField(
-        null=True, blank=True,
-        help_text="Recommended semester (1 or 2)"
     )
 
     class Meta:
@@ -121,16 +118,8 @@ class Subject(BaseModel):
         verbose_name = "Subject"
         verbose_name_plural = "Subjects"
         ordering = ["code", "name"]
-        constraints = [
-            models.UniqueConstraint(fields=["program", "code"], name="uq_subject_program_code"),
-            models.CheckConstraint(
-                check=Q(semester__in=[1, 2]) | Q(semester__isnull=True),
-                name="ck_subject_semester_in_1_2_or_null",
-            ),
-        ]
         indexes = [
             models.Index(fields=["code"], name="idx_subjects_code"),
-            models.Index(fields=["program"], name="idx_subjects_program"),
         ]
 
     def __str__(self) -> str:

@@ -10,6 +10,10 @@ from .bedelia import (
     RequirementItemViewSet,
     SubjectEquivalenceViewSet,
     DependencyEdgeViewSet,
+    course_recommendations,
+    course_pathway,
+    semester_planning,
+    program_progress,
 )
 
 __all__ = [
@@ -21,5 +25,9 @@ __all__ = [
     'RequirementItemViewSet',
     'SubjectEquivalenceViewSet',
     'DependencyEdgeViewSet',
+    'course_recommendations',
+    'course_pathway',
+    'semester_planning',
+    'program_progress',
 ]
 

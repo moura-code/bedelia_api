@@ -29,7 +29,7 @@ ENVIRONMENT = os.environ.get("DJANGO_ENVIRONMENT")
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = ENVIRONMENT == "development"
+DEBUG = True
 # ALLOWED_HOSTS configuration
 allowed_hosts_env = os.environ.get("ALLOWED_HOSTS", "*")
 if allowed_hosts_env == "*":
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "django_filters",
+    "drf_spectacular",
     "api",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -168,6 +169,58 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+
+# Django REST Framework configuration
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 50,
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ],
+}
+
+# drf-spectacular (OpenAPI/Swagger) configuration
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Bedelia API',
+    'DESCRIPTION': '''
+    Bedelia Course Management API
+    
+    This API provides access to university course data including:
+    - Programs and academic plans
+    - Subjects/courses with prerequisites
+    - Course offerings and schedules  
+    - Requirement trees and dependencies
+    - Smart course recommendations
+    - Course pathway planning
+    
+    ## Smart Features:
+    - **Available Courses**: Check what you can take based on completed courses
+    - **Course Unlocking**: See what courses become available after completing others
+    - **Recommendations**: Get prioritized course suggestions
+    - **Pathway Planning**: Find the optimal path to reach a target course
+    ''',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'COMPONENT_SPLIT_REQUEST': True,
+    'SCHEMA_PATH_PREFIX': '/api',
+    'SERVERS': [
+        {'url': 'http://localhost:8000', 'description': 'Development server'},
+    ],
+    'TAGS': [
+        {'name': 'programs', 'description': 'Academic programs and plans'},
+        {'name': 'subjects', 'description': 'Course subjects and smart queries'},
+        {'name': 'offerings', 'description': 'Course offerings and instances'},
+        {'name': 'requirements', 'description': 'Course requirements and prerequisites'},
+        {'name': 'smart', 'description': 'Intelligent course planning endpoints'},
+    ],
+}
 
 
 # Logging configuration for S3 operations

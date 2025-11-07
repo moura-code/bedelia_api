@@ -9,6 +9,10 @@ from api.views import (
     RequirementItemViewSet,
     SubjectEquivalenceViewSet,
     DependencyEdgeViewSet,
+    course_recommendations,
+    course_pathway,
+    semester_planning,
+    program_progress,
 )
 
 
@@ -27,4 +31,9 @@ router.register(r'dependency-edges', DependencyEdgeViewSet, basename='dependency
 
 urlpatterns = [
     path("", include(router.urls)),
+    # Custom function-based views
+    path("course-recommendations/", course_recommendations, name='course-recommendations'),
+    path("course-pathway/", course_pathway, name='course-pathway'),
+    path("semester-planning/", semester_planning, name='semester-planning'),
+    path("program-progress/", program_progress, name='program-progress'),
 ]
