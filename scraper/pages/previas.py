@@ -131,8 +131,8 @@ class Previas(Scraper, PlanSection):
 
         code, title, notes = self._split_code_name(body)
 
-            return {
-                "source": "UCB",
+        return {
+            "source": "UCB",
             "modality": modality,  # exam | course | ucb_module | course_enrollment | unknown
             "code": code,
             "title": title,
@@ -384,14 +384,14 @@ class Previas(Scraper, PlanSection):
                 self.logger.info(f"Processing plan {plan} {year} (attempt {retry_count + 1}/{max_retries})")
                 
                 # Navigate to the plan section
-        self.open_plan_section(
+                self.open_plan_section(
                     log_message=f"Starting to extract previas (prerequisites) data for {plan} {year}",
                     plan_name=plan,
                     plan_year=year,
-        )
-        self.logger.info("Clicking sistema de previaturas")
+                )
+                self.logger.info("Clicking sistema de previaturas")
 
-        self.wait_for_element_to_be_clickable((By.XPATH, '//span[text()="Sistema de previaturas"]')).click()
+                self.wait_for_element_to_be_clickable((By.XPATH, '//span[text()="Sistema de previaturas"]')).click()
                 sleep(1)
 
                 # Check if plan has no previaturas
@@ -399,34 +399,34 @@ class Previas(Scraper, PlanSection):
                     self.logger.info("No se pueden mostrar los Sistemas de Previaturas del Plan")
                     return {}
 
-        self.logger.info("Getting total pages...")
-        self.get_total_pages()
+                self.logger.info("Getting total pages...")
+                self.get_total_pages()
                 sleep(1)
         
-        data = {}
+                data = {}
                 current_page = 1
                 
                 # Extract previas data for all pages
                 while current_page <= self.total_pages:
                     self.go_to_page(current_page)
                     self.logger.info(f"Processing previas page {current_page}/{self.total_pages}")
-                    
-            rows_len = len(
-                self.driver.find_elements(
-                    By.XPATH, '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]'
-                )
-            )
+                            
+                    rows_len = len(
+                        self.driver.find_elements(
+                            By.XPATH, '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]'
+                        )
+                    )
                     
                     i = 0
                     
                     while i < rows_len:
-                self.go_to_page(current_page)
-                        
+                        self.go_to_page(current_page)
+                                
                         # Re-find rows to avoid stale element references
                         rows = self.wait_for_all_elements_to_be_visible(
-                        (
-                            By.XPATH,
-                            '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]',
+                            (
+                                By.XPATH,
+                                '//tr[contains(@class, "ui-datatable-even") or contains(@class, "ui-datatable-odd")]',
                             )
                         )
                         
@@ -437,10 +437,10 @@ class Previas(Scraper, PlanSection):
                         cell_retry = 0
                         while cell_retry < max_cell_retries:
                             try:
-                    cells = row.find_elements(By.TAG_NAME, "td")
-                    if len(cells) < 3:
-                        raise Exception("Less than 3 cells found in row")
-        
+                                cells = row.find_elements(By.TAG_NAME, "td")
+                                if len(cells) < 3:
+                                    raise Exception("Less than 3 cells found in row")
+                    
                                 # Extract text immediately before any other operations
                                 code = cells[0].text.strip() if cells[0].text else ""
                                 name = cells[1].text.strip() if cells[1].text else ""
@@ -452,7 +452,7 @@ class Previas(Scraper, PlanSection):
                                 row = rows[i]
                                 sleep(0.1)
 
-                    subject_info = {
+                        subject_info = {
                             "code": code,
                             "name": name,
                         }
@@ -468,37 +468,37 @@ class Previas(Scraper, PlanSection):
                         # Click Ver Más
                         self.scroll_to_element_and_click(ver_mas_link)
 
-                    # Wait for the table to be visible
-                    self.wait_for_element_to_be_visible(
-                        (
-                            By.XPATH,
-                            "/html/body/div[3]/div[7]/div/form/div[1]/div/div/table/tbody/tr/td[1]/div",
+                        # Wait for the table to be visible
+                        self.wait_for_element_to_be_visible(
+                            (
+                                By.XPATH,
+                                "/html/body/div[3]/div[7]/div/form/div[1]/div/div/table/tbody/tr/td[1]/div",
+                            )
                         )
-                    )
 
-                    self.expand_all_requirements()
-                    subject_info["requirements"] = self.extract_requirements()
+                        self.expand_all_requirements()
+                        subject_info["requirements"] = self.extract_requirements()
 
-                    data[subject_info["code"]] = subject_info
+                        data[subject_info["code"]] = subject_info
                         self.logger.info(f"Requirements extracted for {subject_info['code']}")
                         
                         # Wait for modal overlay to disappear before clicking Volver
                         self.wait.until(
                             EC.invisibility_of_element_located((By.ID, "j_idt22_modal"))
-                    )
-                    self.scroll_to_element_and_click(
-                        self.driver.find_element(
-                            By.XPATH, "//span[normalize-space(.)='Volver']"
                         )
-                    )
+                        self.scroll_to_element_and_click(
+                            self.driver.find_element(
+                                By.XPATH, "//span[normalize-space(.)='Volver']"
+                            )
+                        )
                         i += 1
-                    
+                
                     current_page += 1
                 
                 # Successfully processed the plan
                 self.logger.info(f"Successfully processed plan {plan} {year}")
                 return data
-                
+                    
             except Exception as e:
                 last_exception = e
                 retry_count += 1
