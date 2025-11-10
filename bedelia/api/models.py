@@ -34,11 +34,28 @@ class Carrera(models.Model):
 class Curso(models.Model):
     """
     Modelo que representa un curso/materia vigente en la universidad.
+    
+    Un mismo código de curso puede tener DOS tipos:
+    - Curso: El curso regular
+    - Examen: El examen del curso
     """
+    TIPO_EVALUACION_CHOICES = [
+        ('Curso', 'Curso'),
+        ('Examen', 'Examen'),
+        ('', 'No especificado'),
+    ]
+    
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    codigo_universidad = models.CharField(max_length=50, verbose_name="Código de Universidad")
-    codigo_curso = models.CharField(max_length=50, verbose_name="Código de Curso")
+    codigo_universidad = models.CharField(max_length=50, verbose_name="Código de Universidad", blank=True)
+    codigo_curso = models.CharField(max_length=50, verbose_name="Código de Curso", db_index=True)
     nombre_curso = models.CharField(max_length=255, verbose_name="Nombre del Curso")
+    tipo_evaluacion = models.CharField(
+        max_length=10, 
+        choices=TIPO_EVALUACION_CHOICES, 
+        default='',
+        verbose_name="Tipo de Evaluación",
+        blank=True
+    )
     carrera = models.ManyToManyField(Carrera, related_name='cursos', verbose_name="Carreras", blank=True)
     creditos = models.IntegerField(default=0, verbose_name="Créditos")
     activo = models.BooleanField(default=True, verbose_name="Activo")
@@ -51,14 +68,17 @@ class Curso(models.Model):
         db_table = 'cursos'
         verbose_name = 'Curso'
         verbose_name_plural = 'Cursos'
-        unique_together = ['codigo_universidad', 'codigo_curso']
+        unique_together = ['codigo_curso', 'tipo_evaluacion']  # Un curso puede tener Curso y Examen
         indexes = [
             models.Index(fields=['codigo_curso'], name='idx_codigo_curso'),
             models.Index(fields=['codigo_universidad'], name='idx_codigo_universidad'),
             models.Index(fields=['activo'], name='idx_curso_activo'),
+            models.Index(fields=['tipo_evaluacion'], name='idx_tipo_evaluacion'),
         ]
     
     def __str__(self):
+        if self.tipo_evaluacion:
+            return f"{self.codigo_curso} - {self.nombre_curso} ({self.tipo_evaluacion})"
         return f"{self.codigo_curso} - {self.nombre_curso}"
 
 

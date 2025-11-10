@@ -33,25 +33,25 @@ class Command(BaseCommand):
         parser.add_argument(
             '--vigentes',
             type=str,
-            default='data/vigentes_data_backup.json',
+            default='../data/vigentes_data_backup.json',
             help='Ruta al archivo vigentes_data_backup.json'
         )
         parser.add_argument(
             '--credits',
             type=str,
-            default='data/credits_data_backup.json',
+            default='../data/credits_data_backup.json',
             help='Ruta al archivo credits_data_backup.json'
         )
         parser.add_argument(
             '--previas',
             type=str,
-            default='data/previas_data_backup.json',
+            default='../data/previas_data_backup.json',
             help='Ruta al archivo previas_data_backup.json'
         )
         parser.add_argument(
             '--posprevias',
             type=str,
-            default='data/posprevias_data_backup.json',
+            default='../data/posprevias_data_backup.json',
             help='Ruta al archivo posprevias_data_backup.json'
         )
         parser.add_argument(
@@ -78,7 +78,7 @@ class Command(BaseCommand):
         # Estadísticas
         self.stats = {
             'carreras': 0,
-            'cursos': 0,
+            'cursos': 0,  # Todos los cursos (desde credits)
             'previas': 0,
             'items_previa': 0,
             'posprevias': 0,
@@ -128,7 +128,11 @@ class Command(BaseCommand):
                 
                 # Procesar en orden
                 self.stdout.write('🎓 Procesando carreras y cursos...')
-                self.process_vigentes(vigentes_data, credits_data)
+                self.stdout.write('   Paso 1: Creando TODOS los cursos desde credits...')
+                self.process_credits(credits_data)
+                
+                self.stdout.write('   Paso 2: Marcando cursos activos desde vigentes...')
+                self.mark_active_courses(vigentes_data)
                 
                 self.stdout.write('🌳 Procesando previas (requisitos)...')
                 self.process_previas(previas_data)
@@ -195,25 +199,11 @@ class Command(BaseCommand):
         self.carrera_cache[cache_key] = carrera
         return carrera
     
-    def process_vigentes(self, vigentes_data: Dict, credits_data: Dict):
+    def process_credits(self, credits_data: Dict):
         """
-        Procesar cursos vigentes y créditos.
+        Procesar TODOS los cursos desde credits_data.
         
-        IMPORTANTE: 
-        - vigentes contiene TODOS los cursos activos
-        - credits contiene los créditos (puede tener cursos adicionales)
-        - NO todos los cursos tienen previas (solo algunos)
-        
-        Estructura de vigentes_data:
-        {
-            "CARRERA_PLAN": {
-                "codigo_curso": {
-                    "university_code": "FING",
-                    "course_code": "1267",
-                    "course_name": "TALLER REPR. Y COM. GRAFICA"
-                }
-            }
-        }
+        Este es el paso principal: credits contiene TODOS los cursos (activos e históricos).
         
         Estructura de credits_data:
         {
@@ -226,11 +216,11 @@ class Command(BaseCommand):
             }
         }
         """
-        total_programs = len(vigentes_data)
+        total_programs = len(credits_data)
         
-        for idx, (carrera_plan, cursos) in enumerate(vigentes_data.items(), 1):
+        for idx, (carrera_plan, cursos) in enumerate(credits_data.items(), 1):
             if self.verbose:
-                self.stdout.write(f'  [{idx}/{total_programs}] Procesando: {carrera_plan}')
+                self.stdout.write(f'     [{idx}/{total_programs}] Procesando: {carrera_plan}')
             
             # Parsear carrera y año
             carrera_nombre, anio_plan = self.parse_carrera_plan(carrera_plan)
@@ -238,74 +228,164 @@ class Command(BaseCommand):
             # Crear carrera
             carrera = self.get_or_create_carrera(carrera_nombre, anio_plan)
             
-            # Obtener créditos para esta carrera
-            credits_for_carrera = credits_data.get(carrera_plan, {})
-            
             # Procesar cada curso
-            for codigo_curso, curso_data in cursos.items():
-                self.create_curso(
-                    codigo_curso=curso_data['course_code'],
-                    nombre_curso=curso_data['course_name'],
-                    codigo_universidad=curso_data['university_code'],
-                    carrera=carrera,
-                    credits_data=credits_for_carrera
+            for codigo_nombre, curso_data in cursos.items():
+                codigo_curso = curso_data.get('codigo', '')
+                nombre_curso = curso_data.get('nombre', '')
+                creditos_str = curso_data.get('creditos', '0')
+                
+                try:
+                    creditos = int(creditos_str)
+                except (ValueError, TypeError):
+                    creditos = 0
+                
+                self.create_curso_from_credits(
+                    codigo_curso=codigo_curso,
+                    nombre_curso=nombre_curso,
+                    creditos=creditos,
+                    carrera=carrera
                 )
         
         self.stdout.write(
-            f'  ✅ Procesados {self.stats["cursos"]} cursos en {self.stats["carreras"]} carreras'
+            f'     ✅ {self.stats["cursos"]} cursos creados (activo=False por defecto)'
         )
     
-    def create_curso(self, codigo_curso: str, nombre_curso: str, 
-                     codigo_universidad: str, carrera: Carrera,
-                     credits_data: Dict):
-        """Crear o actualizar un curso."""
-        cache_key = f"{codigo_universidad}_{codigo_curso}"
+    def mark_active_courses(self, vigentes_data: Dict):
+        """
+        Marcar como activos los cursos que están en vigentes.
         
-        # Buscar créditos
-        creditos = 0
-        for codigo_nombre, credit_info in credits_data.items():
-            if credit_info['codigo'] == codigo_curso:
-                try:
-                    creditos = int(credit_info['creditos'])
-                except (ValueError, KeyError):
-                    creditos = 0
-                break
+        Estructura de vigentes_data:
+        {
+            "CARRERA_PLAN": {
+                "codigo_curso": {
+                    "university_code": "FING",
+                    "course_code": "1267",
+                    "course_name": "TALLER REPR. Y COM. GRAFICA"
+                }
+            }
+        }
+        """
+        cursos_activos = 0
+        total_programs = len(vigentes_data)
         
+        for idx, (carrera_plan, cursos) in enumerate(vigentes_data.items(), 1):
+            if self.verbose:
+                self.stdout.write(f'     [{idx}/{total_programs}] Procesando: {carrera_plan}')
+            
+            # Parsear carrera y año
+            carrera_nombre, anio_plan = self.parse_carrera_plan(carrera_plan)
+            carrera = self.get_or_create_carrera(carrera_nombre, anio_plan)
+            
+            # Marcar cursos como activos y actualizar info
+            for codigo_curso_key, curso_data in cursos.items():
+                codigo_curso = curso_data['course_code']
+                nombre_curso = curso_data['course_name']
+                codigo_universidad = curso_data['university_code']
+                
+                # Buscar el curso en el caché o base de datos
+                curso = None
+                for key, c in self.curso_cache.items():
+                    if c.codigo_curso == codigo_curso:
+                        curso = c
+                        break
+                
+                if not curso and not self.dry_run:
+                    try:
+                        curso = Curso.objects.get(codigo_curso=codigo_curso)
+                    except Curso.DoesNotExist:
+                        # Si no existe, crearlo (caso raro)
+                        curso = Curso.objects.create(
+                            codigo_universidad=codigo_universidad,
+                            codigo_curso=codigo_curso,
+                            nombre_curso=nombre_curso,
+                            creditos=0,
+                            activo=True
+                        )
+                        self.stats['cursos'] += 1
+                
+                if curso:
+                    # Actualizar a activo y info de universidad
+                    if not self.dry_run and not curso.activo:
+                        curso.activo = True
+                        curso.codigo_universidad = codigo_universidad
+                        curso.nombre_curso = nombre_curso
+                        curso.save()
+                        cursos_activos += 1
+                    elif self.dry_run:
+                        curso.activo = True
+                        curso.codigo_universidad = codigo_universidad
+                        cursos_activos += 1
+                    
+                    # Agregar carrera si no la tiene
+                    if not self.dry_run and carrera and carrera.pk:
+                        curso.carrera.add(carrera)
+                    
+                    # Actualizar caché
+                    cache_key = f"{codigo_universidad}_{codigo_curso}"
+                    self.curso_cache[cache_key] = curso
+        
+        cursos_historicos = self.stats['cursos'] - cursos_activos
+        self.stdout.write(
+            f'     ✅ {cursos_activos} cursos marcados como activos'
+        )
+        self.stdout.write(
+            f'     📜 {cursos_historicos} cursos históricos (activo=False)'
+        )
+    
+    def create_curso_from_credits(self, codigo_curso: str, nombre_curso: str,
+                                  creditos: int, carrera: Carrera):
+        """
+        Crear curso desde credits_data.
+        Por defecto se crea como inactivo (activo=False) y sin tipo_evaluacion.
+        """
+        cache_key = f"credits_{codigo_curso}_"
+        
+        # Si ya está en caché, solo agregar la carrera
         if cache_key in self.curso_cache:
             curso = self.curso_cache[cache_key]
-            if not self.dry_run:
-                # Agregar carrera si no está
-                if carrera and carrera.pk:
-                    curso.carrera.add(carrera)
+            if not self.dry_run and carrera and carrera.pk:
+                curso.carrera.add(carrera)
             return curso
         
+        # Buscar si ya existe en BD (sin tipo_evaluacion especificado)
+        if not self.dry_run:
+            try:
+                curso = Curso.objects.get(codigo_curso=codigo_curso, tipo_evaluacion='')
+                if carrera and carrera.pk:
+                    curso.carrera.add(carrera)
+                self.curso_cache[cache_key] = curso
+                return curso
+            except Curso.DoesNotExist:
+                pass
+        
+        # Crear nuevo curso (inactivo por defecto, sin tipo_evaluacion)
         if self.dry_run:
             curso = Curso(
-                codigo_universidad=codigo_universidad,
+                codigo_universidad='',  # Se actualiza en mark_active_courses
                 codigo_curso=codigo_curso,
                 nombre_curso=nombre_curso,
+                tipo_evaluacion='',  # Sin tipo por defecto
                 creditos=creditos,
-                activo=True
+                activo=False  # ← Por defecto inactivo
             )
         else:
-            curso, created = Curso.objects.get_or_create(
-                codigo_universidad=codigo_universidad,
+            curso = Curso.objects.create(
+                codigo_universidad='',  # Se actualiza en mark_active_courses
                 codigo_curso=codigo_curso,
-                defaults={
-                    'nombre_curso': nombre_curso,
-                    'creditos': creditos,
-                    'activo': True
-                }
+                nombre_curso=nombre_curso,
+                tipo_evaluacion='',  # Sin tipo por defecto
+                creditos=creditos,
+                activo=False  # ← Por defecto inactivo
             )
             
             # Agregar carrera
-            if carrera:
+            if carrera and carrera.pk:
                 curso.carrera.add(carrera)
             
-            if created:
-                self.stats['cursos'] += 1
-                if self.verbose:
-                    self.stdout.write(f'    ✨ Nuevo curso: {curso} ({creditos} créditos)')
+            self.stats['cursos'] += 1
+            
+            if self.verbose:
+                self.stdout.write(f'       💿 {codigo_curso} - {nombre_curso[:35]} ({creditos} créditos)')
         
         self.curso_cache[cache_key] = curso
         return curso
@@ -346,9 +426,13 @@ class Command(BaseCommand):
             # Procesar cada previa
             for codigo_nombre, previa_data in previas.items():
                 try:
+                    # Extraer tipo_evaluacion del campo "name" (Examen o Curso)
+                    tipo_evaluacion = previa_data.get('name', '')
+                    
                     previa_creada = self.create_previa_tree(
                         codigo=previa_data['code'],
-                        nombre=previa_data['name'],
+                        nombre=tipo_evaluacion,
+                        tipo_evaluacion=tipo_evaluacion,
                         requirements=previa_data.get('requirements'),
                         carrera=carrera
                     )
@@ -373,7 +457,7 @@ class Command(BaseCommand):
             f'{cursos_sin_previas} cursos sin previas (de {total_cursos} totales)'
         )
     
-    def create_previa_tree(self, codigo: str, nombre: str, 
+    def create_previa_tree(self, codigo: str, nombre: str, tipo_evaluacion: str,
                           requirements: Optional[Dict], carrera: Carrera,
                           padre: Optional[Previa] = None) -> Optional[Previa]:
         """
@@ -382,6 +466,7 @@ class Command(BaseCommand):
         Args:
             codigo: Código del curso (ej: "1944 - ADMINISTRACION...")
             nombre: Tipo de requisito (ej: "Examen", "Curso")
+            tipo_evaluacion: Tipo de evaluación del curso (Examen/Curso)
             requirements: Diccionario con la estructura del árbol
             carrera: Carrera a la que pertenece
             padre: Nodo padre (None para raíz)
@@ -393,18 +478,45 @@ class Command(BaseCommand):
         titulo = requirements.get('title', '')
         required_count = requirements.get('required_count', 0)
         
-        # Buscar el curso correspondiente
+        # Buscar o crear el curso correspondiente
         curso = None
         if not padre:  # Solo para el nodo raíz
             # Extraer el código del curso del string "codigo - nombre"
             codigo_parts = codigo.split(' - ')
             if codigo_parts:
                 codigo_limpio = codigo_parts[0].strip()
+                cache_key = f"prev_{codigo_limpio}_{tipo_evaluacion}"
+                
                 # Buscar curso en cache
-                for key, c in self.curso_cache.items():
-                    if c.codigo_curso == codigo_limpio:
-                        curso = c
-                        break
+                if cache_key in self.curso_cache:
+                    curso = self.curso_cache[cache_key]
+                
+                # Si no está en caché, buscar o crear en BD
+                if not curso and codigo_limpio:
+                    if not self.dry_run:
+                        try:
+                            curso = Curso.objects.get(
+                                codigo_curso=codigo_limpio,
+                                tipo_evaluacion=tipo_evaluacion
+                            )
+                        except Curso.DoesNotExist:
+                            # Crear curso histórico con tipo_evaluacion
+                            nombre_curso = ' - '.join(codigo_parts[1:]) if len(codigo_parts) > 1 else ''
+                            curso = Curso.objects.create(
+                                codigo_universidad='HISTORICO',
+                                codigo_curso=codigo_limpio,
+                                nombre_curso=nombre_curso,
+                                tipo_evaluacion=tipo_evaluacion,
+                                creditos=0,
+                                activo=False
+                            )
+                            if self.verbose:
+                                self.stdout.write(
+                                    f'    📜 Curso histórico creado: {codigo_limpio} ({tipo_evaluacion})'
+                                )
+                    
+                    if curso:
+                        self.curso_cache[cache_key] = curso
         
         # Crear nodo previa
         if self.dry_run:
@@ -445,6 +557,7 @@ class Command(BaseCommand):
                 self.create_previa_tree(
                     codigo='',
                     nombre='',
+                    tipo_evaluacion='',  # Los hijos no necesitan tipo
                     requirements=child,
                     carrera=carrera,
                     padre=previa
@@ -525,25 +638,45 @@ class Command(BaseCommand):
             # Procesar cada posprevia
             for codigo, posprevia_data in posprevias.items():
                 codigo_curso = posprevia_data['code']
+                nombre_curso = posprevia_data['name']
                 
-                # Buscar curso
-                curso = None
-                for key, c in self.curso_cache.items():
-                    if c.codigo_curso == codigo_curso:
-                        curso = c
-                        break
-                
-                if not curso:
-                    if self.verbose:
-                        self.stdout.write(
-                            self.style.WARNING(f'    ⚠️  Curso no encontrado: {codigo_curso}')
-                        )
-                    self.stats['warnings'] += 1
-                    continue
-                
-                # Crear posprevias
+                # Crear posprevias para cada item (cada item tiene su tipo: Curso/Examen)
                 for posprevia_item in posprevia_data.get('posprevias', []):
-                    self.create_posprevia(curso, posprevia_data, posprevia_item)
+                    tipo_evaluacion = posprevia_item.get('tipo', '')  # Curso o Examen
+                    cache_key = f"posp_{codigo_curso}_{tipo_evaluacion}"
+                    
+                    # Buscar curso en caché
+                    curso = self.curso_cache.get(cache_key)
+                    
+                    # Si no está en caché, buscar o crear en BD
+                    if not curso:
+                        if not self.dry_run:
+                            try:
+                                curso = Curso.objects.get(
+                                    codigo_curso=codigo_curso,
+                                    tipo_evaluacion=tipo_evaluacion
+                                )
+                            except Curso.DoesNotExist:
+                                # Crear curso histórico
+                                curso = Curso.objects.create(
+                                    codigo_universidad='HISTORICO',
+                                    codigo_curso=codigo_curso,
+                                    nombre_curso=nombre_curso,
+                                    tipo_evaluacion=tipo_evaluacion,
+                                    creditos=0,
+                                    activo=False
+                                )
+                                if self.verbose:
+                                    self.stdout.write(
+                                        f'    📜 Curso histórico creado desde posprevia: {codigo_curso} ({tipo_evaluacion})'
+                                    )
+                            
+                            if curso:
+                                self.curso_cache[cache_key] = curso
+                    
+                    # Crear posprevia
+                    if curso:
+                        self.create_posprevia(curso, posprevia_data, posprevia_item)
         
         self.stdout.write(f'  ✅ Procesadas {self.stats["posprevias"]} posprevias')
     
@@ -594,20 +727,33 @@ class Command(BaseCommand):
     
     def print_stats(self):
         """Imprimir estadísticas."""
-        self.stdout.write('\n' + '=' * 60)
-        self.stdout.write(self.style.SUCCESS('📊 ESTADÍSTICAS'))
-        self.stdout.write('=' * 60)
-        self.stdout.write(f'🎓 Carreras creadas:    {self.stats["carreras"]}')
-        self.stdout.write(f'📚 Cursos creados:      {self.stats["cursos"]}')
-        self.stdout.write(f'🌳 Previas creadas:     {self.stats["previas"]}')
-        self.stdout.write(f'📝 Items creados:       {self.stats["items_previa"]}')
-        self.stdout.write(f'🔗 Posprevias creadas:  {self.stats["posprevias"]}')
+        self.stdout.write('\n' + '=' * 70)
+        self.stdout.write(self.style.SUCCESS('📊 ESTADÍSTICAS FINALES'))
+        self.stdout.write('=' * 70)
+        self.stdout.write(f'🎓 Carreras creadas:      {self.stats["carreras"]}')
+        self.stdout.write(f'📚 Cursos totales:        {self.stats["cursos"]}')
+        
+        # Contar cursos activos e inactivos
+        if not self.dry_run:
+            cursos_activos = Curso.objects.filter(activo=True).count()
+            cursos_inactivos = Curso.objects.filter(activo=False).count()
+            self.stdout.write(f'   ✅ Activos:            {cursos_activos}')
+            self.stdout.write(f'   📜 Históricos:         {cursos_inactivos}')
+        
+        self.stdout.write(f'🌳 Previas creadas:       {self.stats["previas"]}')
+        self.stdout.write(f'📝 Items creados:         {self.stats["items_previa"]}')
+        self.stdout.write(f'🔗 Posprevias creadas:    {self.stats["posprevias"]}')
         
         if self.stats['warnings'] > 0:
-            self.stdout.write(self.style.WARNING(f'⚠️  Advertencias:        {self.stats["warnings"]}'))
+            self.stdout.write('')
+            self.stdout.write(self.style.WARNING(
+                f'⚠️  Advertencias:          {self.stats["warnings"]}'
+            ))
+            self.stdout.write('   (Cursos referenciados en previas/posprevias que no están en credits)')
         
         if self.stats['errors'] > 0:
-            self.stdout.write(self.style.ERROR(f'❌ Errores:             {self.stats["errors"]}'))
+            self.stdout.write('')
+            self.stdout.write(self.style.ERROR(f'❌ Errores:               {self.stats["errors"]}'))
         
-        self.stdout.write('=' * 60 + '\n')
+        self.stdout.write('=' * 70 + '\n')
 
