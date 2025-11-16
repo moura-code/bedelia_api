@@ -1,29 +1,482 @@
 {
   "metadata": {
-    "generated_at": "2025-11-16T22:12:57.956463",
-    "total_errors": 991,
-    "unique_error_types": 2,
+    "generated_at": "2025-11-16T22:53:02.439447",
+    "total_errors": 1143,
+    "unique_error_types": 4,
     "dry_run": false,
     "stats": {
-      "carreras_creadas": 0,
-      "planes_creados": 0,
-      "plan_materias_creadas": 0,
-      "materias_creadas": 0,
+      "planes_creados": 19,
+      "plan_materias_creadas": 4292,
+      "materias_creadas": 2295,
       "materias_actualizadas": 0,
-      "materias_marcadas_activas": 0,
+      "materias_marcadas_activas": 734,
       "materias_totales": 2295,
-      "unidades_creadas": 0,
-      "requisitos_nodos_creados": 0,
-      "requisitos_items_creados": 3252,
+      "unidades_creadas": 3030,
+      "requisitos_nodos_creados": 21774,
+      "requisitos_items_creados": 29770,
       "posprevias_procesadas": 58338,
       "posprevias_validadas": 57883,
-      "errors": 991
+      "errors": 1143
     }
   },
   "summary": {
+    "previas_materia_no_encontrada": {
+      "total_count": 28,
+      "unique_messages": 28,
+      "errors_by_message": {
+        "Materia LIB47 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB47 - ANÁLISIS DE DATOS E INTELIGENCIA COMPUTACIONAL",
+              "timestamp": "2025-11-16T22:42:22.950149",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB47 - ANÁLISIS DE DATOS E INTELIGENCIA COMPUTACIONAL",
+                "materia_codigo": "LIB47"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB48 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB48 - ANÁLISIS Y DISEÑO DE EQUIPAMIENTO",
+              "timestamp": "2025-11-16T22:42:22.950427",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB48 - ANÁLISIS Y DISEÑO DE EQUIPAMIENTO",
+                "materia_codigo": "LIB48"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB11 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB11 - BASES BIOMOLECULARES I (HASTA 2024)",
+              "timestamp": "2025-11-16T22:42:22.950687",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB11 - BASES BIOMOLECULARES I (HASTA 2024)",
+                "materia_codigo": "LIB11"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia CSD23 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - CSD23 - BASES BIOMOLECULARES II",
+              "timestamp": "2025-11-16T22:42:22.950938",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "CSD23 - BASES BIOMOLECULARES II",
+                "materia_codigo": "CSD23"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB30 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB30 - BASES BIOMOLECULARES II (HASTA 2024)",
+              "timestamp": "2025-11-16T22:42:22.951181",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB30 - BASES BIOMOLECULARES II (HASTA 2024)",
+                "materia_codigo": "LIB30"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia CSD21 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - CSD21 - BASES HISTO-ANÁTOMO-FUNCIONALES HUMANAS",
+              "timestamp": "2025-11-16T22:42:22.951444",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "CSD21 - BASES HISTO-ANÁTOMO-FUNCIONALES HUMANAS",
+                "materia_codigo": "CSD21"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB31 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB31 - BASES HISTO-ANÁTOMO-FUNCIONALES HUMANAS (HASTA 2024)",
+              "timestamp": "2025-11-16T22:42:22.951698",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB31 - BASES HISTO-ANÁTOMO-FUNCIONALES HUMANAS (HASTA 2024)",
+                "materia_codigo": "LIB31"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB33 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB33 - BIOINSTRUMENTACIÓN",
+              "timestamp": "2025-11-16T22:42:22.951941",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB33 - BIOINSTRUMENTACIÓN",
+                "materia_codigo": "LIB33"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB32 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB32 - BIOMECÁNICA",
+              "timestamp": "2025-11-16T22:42:22.952178",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB32 - BIOMECÁNICA",
+                "materia_codigo": "LIB32"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB40 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB40 - ELECTRÓNICA I",
+              "timestamp": "2025-11-16T22:42:23.095246",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB40 - ELECTRÓNICA I",
+                "materia_codigo": "LIB40"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB41 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB41 - EQUIPAMIENTO BIOMÉDICO",
+              "timestamp": "2025-11-16T22:42:23.095552",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB41 - EQUIPAMIENTO BIOMÉDICO",
+                "materia_codigo": "LIB41"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB45 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB45 - GESTIÓN DE PROYECTOS",
+              "timestamp": "2025-11-16T22:42:23.235412",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB45 - GESTIÓN DE PROYECTOS",
+                "materia_codigo": "LIB45"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB44 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB44 - IMÁGENES EN BIOLOGÍA Y MEDICINA",
+              "timestamp": "2025-11-16T22:42:23.235699",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB44 - IMÁGENES EN BIOLOGÍA Y MEDICINA",
+                "materia_codigo": "LIB44"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB46 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB46 - INFORMÁTICA AVANZADA EN BIOLOGÍA Y MEDICINA",
+              "timestamp": "2025-11-16T22:42:23.235968",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB46 - INFORMÁTICA AVANZADA EN BIOLOGÍA Y MEDICINA",
+                "materia_codigo": "LIB46"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LB36A no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LB36A - INFORMÁTICA EN BIOLOGÍA Y MEDICINA",
+              "timestamp": "2025-11-16T22:42:23.236226",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LB36A - INFORMÁTICA EN BIOLOGÍA Y MEDICINA",
+                "materia_codigo": "LB36A"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB39 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB39 - MODELOS Y SIMULA.DE SISTEMAS BIOLÓGICOS",
+              "timestamp": "2025-11-16T22:42:23.265233",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB39 - MODELOS Y SIMULA.DE SISTEMAS BIOLÓGICOS",
+                "materia_codigo": "LIB39"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB37 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB37 - PASANTÍA DE LIC.EN INGENIERÍA BIOLÓGICA",
+              "timestamp": "2025-11-16T22:42:23.265513",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB37 - PASANTÍA DE LIC.EN INGENIERÍA BIOLÓGICA",
+                "materia_codigo": "LIB37"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB15 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB15 - PROCESAMIENTO ANALÓGICO DE SEÑALES",
+              "timestamp": "2025-11-16T22:42:23.339058",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB15 - PROCESAMIENTO ANALÓGICO DE SEÑALES",
+                "materia_codigo": "LIB15"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB51 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB51 - PROCESAMIENTO ANALÓGICO DE SEÑALES-2023",
+              "timestamp": "2025-11-16T22:42:23.339325",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB51 - PROCESAMIENTO ANALÓGICO DE SEÑALES-2023",
+                "materia_codigo": "LIB51"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB35 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB35 - PROCESAMIENTO DIGITAL DE SEÑALES",
+              "timestamp": "2025-11-16T22:42:23.346609",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB35 - PROCESAMIENTO DIGITAL DE SEÑALES",
+                "materia_codigo": "LIB35"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB12 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB12 - SEÑALES Y SISTEMAS",
+              "timestamp": "2025-11-16T22:42:23.365572",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB12 - SEÑALES Y SISTEMAS",
+                "materia_codigo": "LIB12"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB50 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB50 - SISTEMAS EMBEBIDOS",
+              "timestamp": "2025-11-16T22:42:23.365861",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB50 - SISTEMAS EMBEBIDOS",
+                "materia_codigo": "LIB50"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB14 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB14 - TALLER DE INGENIERIA BIOLÓGICA III",
+              "timestamp": "2025-11-16T22:42:23.366126",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB14 - TALLER DE INGENIERIA BIOLÓGICA III",
+                "materia_codigo": "LIB14"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB49 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB49 - TALLER DE INGENIERÍA BIOLÓGICA I",
+              "timestamp": "2025-11-16T22:42:23.366376",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB49 - TALLER DE INGENIERÍA BIOLÓGICA I",
+                "materia_codigo": "LIB49"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB42 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB42 - TALLER DE INGENIERÍA BIOLÓGICA III",
+              "timestamp": "2025-11-16T22:42:23.369448",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB42 - TALLER DE INGENIERÍA BIOLÓGICA III",
+                "materia_codigo": "LIB42"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia 1455 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - 1455 - TEORIA DE CIRCUITOS (LIC ING BIOL)",
+              "timestamp": "2025-11-16T22:42:23.369718",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "1455 - TEORIA DE CIRCUITOS (LIC ING BIOL)",
+                "materia_codigo": "1455"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB55 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB55 - TEORIA DE LOS CIRCUITOS",
+              "timestamp": "2025-11-16T22:42:23.369984",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB55 - TEORIA DE LOS CIRCUITOS",
+                "materia_codigo": "LIB55"
+              }
+            }
+          ],
+          "total_items": 1
+        },
+        "Materia LIB43 no encontrada, saltando previas": {
+          "count": 1,
+          "items": [
+            {
+              "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB43 - TESINA - TALLER DE INGENIERÍA BIOLÓGICA IV",
+              "timestamp": "2025-11-16T22:42:23.370257",
+              "stage": "previas",
+              "context": {
+                "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+                "course_code": "LIB43 - TESINA - TALLER DE INGENIERÍA BIOLÓGICA IV",
+                "materia_codigo": "LIB43"
+              }
+            }
+          ],
+          "total_items": 1
+        }
+      }
+    },
     "posprevias_materia_destino": {
-      "total_count": 979,
-      "unique_messages": 85,
+      "total_count": 914,
+      "unique_messages": 61,
       "errors_by_message": {
         "Materia destino 1612 no encontrada": {
           "count": 49,
@@ -2406,540 +2859,6 @@
             }
           ],
           "total_items": 2
-        },
-        "Materia destino IMF no encontrada": {
-          "count": 5,
-          "items": [
-            {
-              "item": "TIM52 -> IMF",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM30 -> IMF",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM21 -> IMF",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM22 -> IMF",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM51 -> IMF",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 5
-        },
-        "Materia destino IT no encontrada": {
-          "count": 5,
-          "items": [
-            {
-              "item": "TIM52 -> IT",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM30 -> IT",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM21 -> IT",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM22 -> IT",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM51 -> IT",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 5
-        },
-        "Materia destino TMF1 no encontrada": {
-          "count": 4,
-          "items": [
-            {
-              "item": "TIM52 -> TMF1",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM21 -> TMF1",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM22 -> TMF1",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM51 -> TMF1",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 4
-        },
-        "Materia destino MD4 no encontrada": {
-          "count": 2,
-          "items": [
-            {
-              "item": "TIM52 -> MD4",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM52 -> MD4",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 2
-        },
-        "Materia destino MD8 no encontrada": {
-          "count": 2,
-          "items": [
-            {
-              "item": "TIM56 -> MD8",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM56 -> MD8",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 2
-        },
-        "Materia destino IP4 no encontrada": {
-          "count": 4,
-          "items": [
-            {
-              "item": "TIM60 -> IP4",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM60 -> IP4",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM50 -> IP4",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM50 -> IP4",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 4
-        },
-        "Materia destino IP3 no encontrada": {
-          "count": 4,
-          "items": [
-            {
-              "item": "TIM60 -> IP3",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM60 -> IP3",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM50 -> IP3",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM50 -> IP3",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 4
-        },
-        "Materia destino MD7 no encontrada": {
-          "count": 2,
-          "items": [
-            {
-              "item": "TIM55 -> MD7",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM55 -> MD7",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 2
-        },
-        "Materia destino MD3 no encontrada": {
-          "count": 3,
-          "items": [
-            {
-              "item": "TIM30 -> MD3",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM51 -> MD3",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM51 -> MD3",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 3
-        },
-        "Materia destino EL1 no encontrada": {
-          "count": 2,
-          "items": [
-            {
-              "item": "TIM31 -> EL1",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM22 -> EL1",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 2
-        },
-        "Materia destino EL5 no encontrada": {
-          "count": 3,
-          "items": [
-            {
-              "item": "TIM72 -> EL5",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM72 -> EL5",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM70 -> EL5",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 3
-        },
-        "Materia destino MD2 no encontrada": {
-          "count": 2,
-          "items": [
-            {
-              "item": "TIM50 -> MD2",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM50 -> MD2",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 2
-        },
-        "Materia destino EL2 no encontrada": {
-          "count": 1,
-          "items": [
-            {
-              "item": "TIM70 -> EL2",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 1
-        },
-        "Materia destino EL4 no encontrada": {
-          "count": 1,
-          "items": [
-            {
-              "item": "TIM71 -> EL4",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 1
-        },
-        "Materia destino MAT3 no encontrada": {
-          "count": 1,
-          "items": [
-            {
-              "item": "TIM20 -> MAT3",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 1
-        },
-        "Materia destino FIS1 no encontrada": {
-          "count": 1,
-          "items": [
-            {
-              "item": "TIM20 -> FIS1",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 1
-        },
-        "Materia destino MD6 no encontrada": {
-          "count": 1,
-          "items": [
-            {
-              "item": "TIM20 -> MD6",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 1
-        },
-        "Materia destino FIS2 no encontrada": {
-          "count": 1,
-          "items": [
-            {
-              "item": "TIM21 -> FIS2",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 1
-        },
-        "Materia destino EN7 no encontrada": {
-          "count": 9,
-          "items": [
-            {
-              "item": "TIM54 -> EN7",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM54 -> EN7",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM10 -> EN7",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM11 -> EN7",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM12 -> EN7",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM13 -> EN7",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM14 -> EN7",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM41 -> EN7",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM41 -> EN7",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 9
-        },
-        "Materia destino MD5 no encontrada": {
-          "count": 1,
-          "items": [
-            {
-              "item": "TIM51 -> MD5",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 1
-        },
-        "Materia destino EN3 no encontrada": {
-          "count": 5,
-          "items": [
-            {
-              "item": "TIM10 -> EN3",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM11 -> EN3",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM12 -> EN3",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM13 -> EN3",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM14 -> EN3",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 5
-        },
-        "Materia destino EN5 no encontrada": {
-          "count": 2,
-          "items": [
-            {
-              "item": "TIM41 -> EN5",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM41 -> EN5",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 2
-        },
-        "Materia destino EN4 no encontrada": {
-          "count": 2,
-          "items": [
-            {
-              "item": "TIM41 -> EN4",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM41 -> EN4",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 2
-        },
-        "Materia destino EN6 no encontrada": {
-          "count": 2,
-          "items": [
-            {
-              "item": "TIM41 -> EN6",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            },
-            {
-              "item": "TIM41 -> EN6",
-              "timestamp": "N/A",
-              "stage": "unknown",
-              "context": {}
-            }
-          ],
-          "total_items": 2
         }
       }
     },
@@ -3092,9 +3011,485 @@
           "total_items": 1
         }
       }
+    },
+    "posprevias_plan_destino": {
+      "total_count": 189,
+      "unique_messages": 1,
+      "errors_by_message": {
+        "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)": {
+          "count": 189,
+          "items": [
+            {
+              "item": "TIM74 -> TIM74 (TECNOLOGO MECANICO 1994)",
+              "timestamp": "2025-11-16T22:53:01.110690",
+              "stage": "posprevias",
+              "context": {
+                "carrera_nombre": "TECNOLOGO MECANICO",
+                "anio_plan": "1994",
+                "materia_codigo": "TIM74"
+              }
+            },
+            {
+              "item": "TIM52 -> IMF (TECNOLOGO MECANICO 1994)",
+              "timestamp": "2025-11-16T22:53:01.129211",
+              "stage": "posprevias",
+              "context": {
+                "carrera_nombre": "TECNOLOGO MECANICO",
+                "anio_plan": "1994",
+                "materia_codigo": "IMF"
+              }
+            },
+            {
+              "item": "TIM52 -> IT (TECNOLOGO MECANICO 1994)",
+              "timestamp": "2025-11-16T22:53:01.131363",
+              "stage": "posprevias",
+              "context": {
+                "carrera_nombre": "TECNOLOGO MECANICO",
+                "anio_plan": "1994",
+                "materia_codigo": "IT"
+              }
+            },
+            {
+              "item": "TIM52 -> TMF1 (TECNOLOGO MECANICO 1994)",
+              "timestamp": "2025-11-16T22:53:01.133564",
+              "stage": "posprevias",
+              "context": {
+                "carrera_nombre": "TECNOLOGO MECANICO",
+                "anio_plan": "1994",
+                "materia_codigo": "TMF1"
+              }
+            },
+            {
+              "item": "TIM52 -> TIM53 (TECNOLOGO MECANICO 1994)",
+              "timestamp": "2025-11-16T22:53:01.135672",
+              "stage": "posprevias",
+              "context": {
+                "carrera_nombre": "TECNOLOGO MECANICO",
+                "anio_plan": "1994",
+                "materia_codigo": "TIM53"
+              }
+            },
+            {
+              "item": "TIM52 -> MD4 (TECNOLOGO MECANICO 1994)",
+              "timestamp": "2025-11-16T22:53:01.137766",
+              "stage": "posprevias",
+              "context": {
+                "carrera_nombre": "TECNOLOGO MECANICO",
+                "anio_plan": "1994",
+                "materia_codigo": "MD4"
+              }
+            },
+            {
+              "item": "TIM52 -> MD4 (TECNOLOGO MECANICO 1994)",
+              "timestamp": "2025-11-16T22:53:01.139818",
+              "stage": "posprevias",
+              "context": {
+                "carrera_nombre": "TECNOLOGO MECANICO",
+                "anio_plan": "1994",
+                "materia_codigo": "MD4"
+              }
+            },
+            {
+              "item": "TIM52 -> TIM52 (TECNOLOGO MECANICO 1994)",
+              "timestamp": "2025-11-16T22:53:01.141842",
+              "stage": "posprevias",
+              "context": {
+                "carrera_nombre": "TECNOLOGO MECANICO",
+                "anio_plan": "1994",
+                "materia_codigo": "TIM52"
+              }
+            },
+            {
+              "item": "TIM52 -> TIM53 (TECNOLOGO MECANICO 1994)",
+              "timestamp": "2025-11-16T22:53:01.143892",
+              "stage": "posprevias",
+              "context": {
+                "carrera_nombre": "TECNOLOGO MECANICO",
+                "anio_plan": "1994",
+                "materia_codigo": "TIM53"
+              }
+            },
+            {
+              "item": "TIM61 -> TIM61 (TECNOLOGO MECANICO 1994)",
+              "timestamp": "2025-11-16T22:53:01.152786",
+              "stage": "posprevias",
+              "context": {
+                "carrera_nombre": "TECNOLOGO MECANICO",
+                "anio_plan": "1994",
+                "materia_codigo": "TIM61"
+              }
+            }
+          ],
+          "total_items": 189
+        }
+      }
     }
   },
   "all_errors": [
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB47 - ANÁLISIS DE DATOS E INTELIGENCIA COMPUTACIONAL",
+      "message": "Materia LIB47 no encontrada, saltando previas",
+      "full_message": "Materia LIB47 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB47 - ANÁLISIS DE DATOS E INTELIGENCIA COMPUTACIONAL",
+        "materia_codigo": "LIB47"
+      },
+      "timestamp": "2025-11-16T22:42:22.950149",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB48 - ANÁLISIS Y DISEÑO DE EQUIPAMIENTO",
+      "message": "Materia LIB48 no encontrada, saltando previas",
+      "full_message": "Materia LIB48 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB48 - ANÁLISIS Y DISEÑO DE EQUIPAMIENTO",
+        "materia_codigo": "LIB48"
+      },
+      "timestamp": "2025-11-16T22:42:22.950427",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB11 - BASES BIOMOLECULARES I (HASTA 2024)",
+      "message": "Materia LIB11 no encontrada, saltando previas",
+      "full_message": "Materia LIB11 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB11 - BASES BIOMOLECULARES I (HASTA 2024)",
+        "materia_codigo": "LIB11"
+      },
+      "timestamp": "2025-11-16T22:42:22.950687",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - CSD23 - BASES BIOMOLECULARES II",
+      "message": "Materia CSD23 no encontrada, saltando previas",
+      "full_message": "Materia CSD23 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "CSD23 - BASES BIOMOLECULARES II",
+        "materia_codigo": "CSD23"
+      },
+      "timestamp": "2025-11-16T22:42:22.950938",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB30 - BASES BIOMOLECULARES II (HASTA 2024)",
+      "message": "Materia LIB30 no encontrada, saltando previas",
+      "full_message": "Materia LIB30 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB30 - BASES BIOMOLECULARES II (HASTA 2024)",
+        "materia_codigo": "LIB30"
+      },
+      "timestamp": "2025-11-16T22:42:22.951181",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - CSD21 - BASES HISTO-ANÁTOMO-FUNCIONALES HUMANAS",
+      "message": "Materia CSD21 no encontrada, saltando previas",
+      "full_message": "Materia CSD21 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "CSD21 - BASES HISTO-ANÁTOMO-FUNCIONALES HUMANAS",
+        "materia_codigo": "CSD21"
+      },
+      "timestamp": "2025-11-16T22:42:22.951444",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB31 - BASES HISTO-ANÁTOMO-FUNCIONALES HUMANAS (HASTA 2024)",
+      "message": "Materia LIB31 no encontrada, saltando previas",
+      "full_message": "Materia LIB31 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB31 - BASES HISTO-ANÁTOMO-FUNCIONALES HUMANAS (HASTA 2024)",
+        "materia_codigo": "LIB31"
+      },
+      "timestamp": "2025-11-16T22:42:22.951698",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB33 - BIOINSTRUMENTACIÓN",
+      "message": "Materia LIB33 no encontrada, saltando previas",
+      "full_message": "Materia LIB33 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB33 - BIOINSTRUMENTACIÓN",
+        "materia_codigo": "LIB33"
+      },
+      "timestamp": "2025-11-16T22:42:22.951941",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB32 - BIOMECÁNICA",
+      "message": "Materia LIB32 no encontrada, saltando previas",
+      "full_message": "Materia LIB32 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB32 - BIOMECÁNICA",
+        "materia_codigo": "LIB32"
+      },
+      "timestamp": "2025-11-16T22:42:22.952178",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB40 - ELECTRÓNICA I",
+      "message": "Materia LIB40 no encontrada, saltando previas",
+      "full_message": "Materia LIB40 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB40 - ELECTRÓNICA I",
+        "materia_codigo": "LIB40"
+      },
+      "timestamp": "2025-11-16T22:42:23.095246",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB41 - EQUIPAMIENTO BIOMÉDICO",
+      "message": "Materia LIB41 no encontrada, saltando previas",
+      "full_message": "Materia LIB41 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB41 - EQUIPAMIENTO BIOMÉDICO",
+        "materia_codigo": "LIB41"
+      },
+      "timestamp": "2025-11-16T22:42:23.095552",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB45 - GESTIÓN DE PROYECTOS",
+      "message": "Materia LIB45 no encontrada, saltando previas",
+      "full_message": "Materia LIB45 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB45 - GESTIÓN DE PROYECTOS",
+        "materia_codigo": "LIB45"
+      },
+      "timestamp": "2025-11-16T22:42:23.235412",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB44 - IMÁGENES EN BIOLOGÍA Y MEDICINA",
+      "message": "Materia LIB44 no encontrada, saltando previas",
+      "full_message": "Materia LIB44 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB44 - IMÁGENES EN BIOLOGÍA Y MEDICINA",
+        "materia_codigo": "LIB44"
+      },
+      "timestamp": "2025-11-16T22:42:23.235699",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB46 - INFORMÁTICA AVANZADA EN BIOLOGÍA Y MEDICINA",
+      "message": "Materia LIB46 no encontrada, saltando previas",
+      "full_message": "Materia LIB46 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB46 - INFORMÁTICA AVANZADA EN BIOLOGÍA Y MEDICINA",
+        "materia_codigo": "LIB46"
+      },
+      "timestamp": "2025-11-16T22:42:23.235968",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LB36A - INFORMÁTICA EN BIOLOGÍA Y MEDICINA",
+      "message": "Materia LB36A no encontrada, saltando previas",
+      "full_message": "Materia LB36A no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LB36A - INFORMÁTICA EN BIOLOGÍA Y MEDICINA",
+        "materia_codigo": "LB36A"
+      },
+      "timestamp": "2025-11-16T22:42:23.236226",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB39 - MODELOS Y SIMULA.DE SISTEMAS BIOLÓGICOS",
+      "message": "Materia LIB39 no encontrada, saltando previas",
+      "full_message": "Materia LIB39 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB39 - MODELOS Y SIMULA.DE SISTEMAS BIOLÓGICOS",
+        "materia_codigo": "LIB39"
+      },
+      "timestamp": "2025-11-16T22:42:23.265233",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB37 - PASANTÍA DE LIC.EN INGENIERÍA BIOLÓGICA",
+      "message": "Materia LIB37 no encontrada, saltando previas",
+      "full_message": "Materia LIB37 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB37 - PASANTÍA DE LIC.EN INGENIERÍA BIOLÓGICA",
+        "materia_codigo": "LIB37"
+      },
+      "timestamp": "2025-11-16T22:42:23.265513",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB15 - PROCESAMIENTO ANALÓGICO DE SEÑALES",
+      "message": "Materia LIB15 no encontrada, saltando previas",
+      "full_message": "Materia LIB15 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB15 - PROCESAMIENTO ANALÓGICO DE SEÑALES",
+        "materia_codigo": "LIB15"
+      },
+      "timestamp": "2025-11-16T22:42:23.339058",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB51 - PROCESAMIENTO ANALÓGICO DE SEÑALES-2023",
+      "message": "Materia LIB51 no encontrada, saltando previas",
+      "full_message": "Materia LIB51 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB51 - PROCESAMIENTO ANALÓGICO DE SEÑALES-2023",
+        "materia_codigo": "LIB51"
+      },
+      "timestamp": "2025-11-16T22:42:23.339325",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB35 - PROCESAMIENTO DIGITAL DE SEÑALES",
+      "message": "Materia LIB35 no encontrada, saltando previas",
+      "full_message": "Materia LIB35 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB35 - PROCESAMIENTO DIGITAL DE SEÑALES",
+        "materia_codigo": "LIB35"
+      },
+      "timestamp": "2025-11-16T22:42:23.346609",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB12 - SEÑALES Y SISTEMAS",
+      "message": "Materia LIB12 no encontrada, saltando previas",
+      "full_message": "Materia LIB12 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB12 - SEÑALES Y SISTEMAS",
+        "materia_codigo": "LIB12"
+      },
+      "timestamp": "2025-11-16T22:42:23.365572",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB50 - SISTEMAS EMBEBIDOS",
+      "message": "Materia LIB50 no encontrada, saltando previas",
+      "full_message": "Materia LIB50 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB50 - SISTEMAS EMBEBIDOS",
+        "materia_codigo": "LIB50"
+      },
+      "timestamp": "2025-11-16T22:42:23.365861",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB14 - TALLER DE INGENIERIA BIOLÓGICA III",
+      "message": "Materia LIB14 no encontrada, saltando previas",
+      "full_message": "Materia LIB14 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB14 - TALLER DE INGENIERIA BIOLÓGICA III",
+        "materia_codigo": "LIB14"
+      },
+      "timestamp": "2025-11-16T22:42:23.366126",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB49 - TALLER DE INGENIERÍA BIOLÓGICA I",
+      "message": "Materia LIB49 no encontrada, saltando previas",
+      "full_message": "Materia LIB49 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB49 - TALLER DE INGENIERÍA BIOLÓGICA I",
+        "materia_codigo": "LIB49"
+      },
+      "timestamp": "2025-11-16T22:42:23.366376",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB42 - TALLER DE INGENIERÍA BIOLÓGICA III",
+      "message": "Materia LIB42 no encontrada, saltando previas",
+      "full_message": "Materia LIB42 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB42 - TALLER DE INGENIERÍA BIOLÓGICA III",
+        "materia_codigo": "LIB42"
+      },
+      "timestamp": "2025-11-16T22:42:23.369448",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - 1455 - TEORIA DE CIRCUITOS (LIC ING BIOL)",
+      "message": "Materia 1455 no encontrada, saltando previas",
+      "full_message": "Materia 1455 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "1455 - TEORIA DE CIRCUITOS (LIC ING BIOL)",
+        "materia_codigo": "1455"
+      },
+      "timestamp": "2025-11-16T22:42:23.369718",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB55 - TEORIA DE LOS CIRCUITOS",
+      "message": "Materia LIB55 no encontrada, saltando previas",
+      "full_message": "Materia LIB55 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB55 - TEORIA DE LOS CIRCUITOS",
+        "materia_codigo": "LIB55"
+      },
+      "timestamp": "2025-11-16T22:42:23.369984",
+      "stage": "previas"
+    },
+    {
+      "type": "previas_materia_no_encontrada",
+      "item": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013 - LIB43 - TESINA - TALLER DE INGENIERÍA BIOLÓGICA IV",
+      "message": "Materia LIB43 no encontrada, saltando previas",
+      "full_message": "Materia LIB43 no encontrada, saltando previas",
+      "context": {
+        "plan": "LIC EN INGENIERÍA BIOLÓGICA - Plan 2013",
+        "course_code": "LIB43 - TESINA - TALLER DE INGENIERÍA BIOLÓGICA IV",
+        "materia_codigo": "LIB43"
+      },
+      "timestamp": "2025-11-16T22:42:23.370257",
+      "stage": "previas"
+    },
     {
       "type": "posprevias_materia_destino",
       "item": "1021 -> 1612",
@@ -8652,394 +9047,2461 @@
       "full_message": "Materia destino 1422 no encontrada"
     },
     {
-      "type": "posprevias_materia_destino",
-      "item": "TIM52 -> IMF",
-      "message": "Materia destino IMF no encontrada",
-      "full_message": "Materia destino IMF no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM52 -> IT",
-      "message": "Materia destino IT no encontrada",
-      "full_message": "Materia destino IT no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM52 -> TMF1",
-      "message": "Materia destino TMF1 no encontrada",
-      "full_message": "Materia destino TMF1 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM52 -> MD4",
-      "message": "Materia destino MD4 no encontrada",
-      "full_message": "Materia destino MD4 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM52 -> MD4",
-      "message": "Materia destino MD4 no encontrada",
-      "full_message": "Materia destino MD4 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM56 -> MD8",
-      "message": "Materia destino MD8 no encontrada",
-      "full_message": "Materia destino MD8 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM56 -> MD8",
-      "message": "Materia destino MD8 no encontrada",
-      "full_message": "Materia destino MD8 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM60 -> IP4",
-      "message": "Materia destino IP4 no encontrada",
-      "full_message": "Materia destino IP4 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM60 -> IP4",
-      "message": "Materia destino IP4 no encontrada",
-      "full_message": "Materia destino IP4 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM60 -> IP3",
-      "message": "Materia destino IP3 no encontrada",
-      "full_message": "Materia destino IP3 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM60 -> IP3",
-      "message": "Materia destino IP3 no encontrada",
-      "full_message": "Materia destino IP3 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM55 -> MD7",
-      "message": "Materia destino MD7 no encontrada",
-      "full_message": "Materia destino MD7 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM55 -> MD7",
-      "message": "Materia destino MD7 no encontrada",
-      "full_message": "Materia destino MD7 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM30 -> IMF",
-      "message": "Materia destino IMF no encontrada",
-      "full_message": "Materia destino IMF no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM30 -> IT",
-      "message": "Materia destino IT no encontrada",
-      "full_message": "Materia destino IT no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM30 -> MD3",
-      "message": "Materia destino MD3 no encontrada",
-      "full_message": "Materia destino MD3 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM31 -> EL1",
-      "message": "Materia destino EL1 no encontrada",
-      "full_message": "Materia destino EL1 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM72 -> EL5",
-      "message": "Materia destino EL5 no encontrada",
-      "full_message": "Materia destino EL5 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM72 -> EL5",
-      "message": "Materia destino EL5 no encontrada",
-      "full_message": "Materia destino EL5 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM50 -> IP4",
-      "message": "Materia destino IP4 no encontrada",
-      "full_message": "Materia destino IP4 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM50 -> IP4",
-      "message": "Materia destino IP4 no encontrada",
-      "full_message": "Materia destino IP4 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM50 -> IP3",
-      "message": "Materia destino IP3 no encontrada",
-      "full_message": "Materia destino IP3 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM50 -> IP3",
-      "message": "Materia destino IP3 no encontrada",
-      "full_message": "Materia destino IP3 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM50 -> MD2",
-      "message": "Materia destino MD2 no encontrada",
-      "full_message": "Materia destino MD2 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM50 -> MD2",
-      "message": "Materia destino MD2 no encontrada",
-      "full_message": "Materia destino MD2 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM70 -> EL5",
-      "message": "Materia destino EL5 no encontrada",
-      "full_message": "Materia destino EL5 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM70 -> EL2",
-      "message": "Materia destino EL2 no encontrada",
-      "full_message": "Materia destino EL2 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM71 -> EL4",
-      "message": "Materia destino EL4 no encontrada",
-      "full_message": "Materia destino EL4 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM20 -> MAT3",
-      "message": "Materia destino MAT3 no encontrada",
-      "full_message": "Materia destino MAT3 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM20 -> FIS1",
-      "message": "Materia destino FIS1 no encontrada",
-      "full_message": "Materia destino FIS1 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM20 -> MD6",
-      "message": "Materia destino MD6 no encontrada",
-      "full_message": "Materia destino MD6 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM21 -> FIS2",
-      "message": "Materia destino FIS2 no encontrada",
-      "full_message": "Materia destino FIS2 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM21 -> IMF",
-      "message": "Materia destino IMF no encontrada",
-      "full_message": "Materia destino IMF no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM21 -> IT",
-      "message": "Materia destino IT no encontrada",
-      "full_message": "Materia destino IT no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM21 -> TMF1",
-      "message": "Materia destino TMF1 no encontrada",
-      "full_message": "Materia destino TMF1 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM22 -> TMF1",
-      "message": "Materia destino TMF1 no encontrada",
-      "full_message": "Materia destino TMF1 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM22 -> IMF",
-      "message": "Materia destino IMF no encontrada",
-      "full_message": "Materia destino IMF no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM22 -> IT",
-      "message": "Materia destino IT no encontrada",
-      "full_message": "Materia destino IT no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM22 -> EL1",
-      "message": "Materia destino EL1 no encontrada",
-      "full_message": "Materia destino EL1 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM54 -> EN7",
-      "message": "Materia destino EN7 no encontrada",
-      "full_message": "Materia destino EN7 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM54 -> EN7",
-      "message": "Materia destino EN7 no encontrada",
-      "full_message": "Materia destino EN7 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM51 -> IMF",
-      "message": "Materia destino IMF no encontrada",
-      "full_message": "Materia destino IMF no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM51 -> IT",
-      "message": "Materia destino IT no encontrada",
-      "full_message": "Materia destino IT no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM51 -> TMF1",
-      "message": "Materia destino TMF1 no encontrada",
-      "full_message": "Materia destino TMF1 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM51 -> MD3",
-      "message": "Materia destino MD3 no encontrada",
-      "full_message": "Materia destino MD3 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM51 -> MD3",
-      "message": "Materia destino MD3 no encontrada",
-      "full_message": "Materia destino MD3 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM51 -> MD5",
-      "message": "Materia destino MD5 no encontrada",
-      "full_message": "Materia destino MD5 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM10 -> EN3",
-      "message": "Materia destino EN3 no encontrada",
-      "full_message": "Materia destino EN3 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM10 -> EN7",
-      "message": "Materia destino EN7 no encontrada",
-      "full_message": "Materia destino EN7 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM11 -> EN3",
-      "message": "Materia destino EN3 no encontrada",
-      "full_message": "Materia destino EN3 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM11 -> EN7",
-      "message": "Materia destino EN7 no encontrada",
-      "full_message": "Materia destino EN7 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM12 -> EN3",
-      "message": "Materia destino EN3 no encontrada",
-      "full_message": "Materia destino EN3 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM12 -> EN7",
-      "message": "Materia destino EN7 no encontrada",
-      "full_message": "Materia destino EN7 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM13 -> EN3",
-      "message": "Materia destino EN3 no encontrada",
-      "full_message": "Materia destino EN3 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM13 -> EN7",
-      "message": "Materia destino EN7 no encontrada",
-      "full_message": "Materia destino EN7 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM14 -> EN3",
-      "message": "Materia destino EN3 no encontrada",
-      "full_message": "Materia destino EN3 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM14 -> EN7",
-      "message": "Materia destino EN7 no encontrada",
-      "full_message": "Materia destino EN7 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM41 -> EN7",
-      "message": "Materia destino EN7 no encontrada",
-      "full_message": "Materia destino EN7 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM41 -> EN5",
-      "message": "Materia destino EN5 no encontrada",
-      "full_message": "Materia destino EN5 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM41 -> EN5",
-      "message": "Materia destino EN5 no encontrada",
-      "full_message": "Materia destino EN5 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM41 -> EN4",
-      "message": "Materia destino EN4 no encontrada",
-      "full_message": "Materia destino EN4 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM41 -> EN4",
-      "message": "Materia destino EN4 no encontrada",
-      "full_message": "Materia destino EN4 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM41 -> EN7",
-      "message": "Materia destino EN7 no encontrada",
-      "full_message": "Materia destino EN7 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM41 -> EN6",
-      "message": "Materia destino EN6 no encontrada",
-      "full_message": "Materia destino EN6 no encontrada"
-    },
-    {
-      "type": "posprevias_materia_destino",
-      "item": "TIM41 -> EN6",
-      "message": "Materia destino EN6 no encontrada",
-      "full_message": "Materia destino EN6 no encontrada"
+      "type": "posprevias_plan_destino",
+      "item": "TIM74 -> TIM74 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM74"
+      },
+      "timestamp": "2025-11-16T22:53:01.110690",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM52 -> IMF (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IMF"
+      },
+      "timestamp": "2025-11-16T22:53:01.129211",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM52 -> IT (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IT"
+      },
+      "timestamp": "2025-11-16T22:53:01.131363",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM52 -> TMF1 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TMF1"
+      },
+      "timestamp": "2025-11-16T22:53:01.133564",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM52 -> TIM53 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM53"
+      },
+      "timestamp": "2025-11-16T22:53:01.135672",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM52 -> MD4 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "MD4"
+      },
+      "timestamp": "2025-11-16T22:53:01.137766",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM52 -> MD4 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "MD4"
+      },
+      "timestamp": "2025-11-16T22:53:01.139818",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM52 -> TIM52 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM52"
+      },
+      "timestamp": "2025-11-16T22:53:01.141842",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM52 -> TIM53 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM53"
+      },
+      "timestamp": "2025-11-16T22:53:01.143892",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM61 -> TIM61 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM61"
+      },
+      "timestamp": "2025-11-16T22:53:01.152786",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM56 -> TIM57 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM57"
+      },
+      "timestamp": "2025-11-16T22:53:01.161138",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM56 -> MD8 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "MD8"
+      },
+      "timestamp": "2025-11-16T22:53:01.163290",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM56 -> MD8 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "MD8"
+      },
+      "timestamp": "2025-11-16T22:53:01.165410",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM60 -> TIM64 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM64"
+      },
+      "timestamp": "2025-11-16T22:53:01.197892",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM60 -> TIM61 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM61"
+      },
+      "timestamp": "2025-11-16T22:53:01.200163",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM60 -> IP4 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IP4"
+      },
+      "timestamp": "2025-11-16T22:53:01.202271",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM60 -> IP4 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IP4"
+      },
+      "timestamp": "2025-11-16T22:53:01.204351",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM60 -> TIM62 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM62"
+      },
+      "timestamp": "2025-11-16T22:53:01.206391",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM60 -> IP3 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IP3"
+      },
+      "timestamp": "2025-11-16T22:53:01.208449",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM60 -> IP3 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IP3"
+      },
+      "timestamp": "2025-11-16T22:53:01.210497",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM60 -> TIM60 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM60"
+      },
+      "timestamp": "2025-11-16T22:53:01.212584",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM60 -> TIM62 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM62"
+      },
+      "timestamp": "2025-11-16T22:53:01.214645",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM60 -> TIM64 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM64"
+      },
+      "timestamp": "2025-11-16T22:53:01.216865",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM60 -> TIM63 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM63"
+      },
+      "timestamp": "2025-11-16T22:53:01.219027",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM55 -> TIM56 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM56"
+      },
+      "timestamp": "2025-11-16T22:53:01.232681",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM55 -> MD7 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "MD7"
+      },
+      "timestamp": "2025-11-16T22:53:01.234818",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM55 -> MD7 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "MD7"
+      },
+      "timestamp": "2025-11-16T22:53:01.236927",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM55 -> TIM55 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM55"
+      },
+      "timestamp": "2025-11-16T22:53:01.239009",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM53 -> TIM53 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM53"
+      },
+      "timestamp": "2025-11-16T22:53:01.247977",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM59 -> TIM59 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM59"
+      },
+      "timestamp": "2025-11-16T22:53:01.257549",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM63 -> TIM63 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM63"
+      },
+      "timestamp": "2025-11-16T22:53:01.266256",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM30 -> IMF (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IMF"
+      },
+      "timestamp": "2025-11-16T22:53:01.303023",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM30 -> IT (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IT"
+      },
+      "timestamp": "2025-11-16T22:53:01.305125",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM30 -> TIM32 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM32"
+      },
+      "timestamp": "2025-11-16T22:53:01.307210",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM30 -> MD3 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "MD3"
+      },
+      "timestamp": "2025-11-16T22:53:01.309271",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM30 -> TIM52 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM52"
+      },
+      "timestamp": "2025-11-16T22:53:01.311338",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM30 -> TIM55 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM55"
+      },
+      "timestamp": "2025-11-16T22:53:01.313393",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM30 -> TIM53 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM53"
+      },
+      "timestamp": "2025-11-16T22:53:01.315573",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM30 -> TIM40 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM40"
+      },
+      "timestamp": "2025-11-16T22:53:01.317715",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM30 -> TIM52 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM52"
+      },
+      "timestamp": "2025-11-16T22:53:01.319812",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM31 -> EL1 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EL1"
+      },
+      "timestamp": "2025-11-16T22:53:01.334388",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM31 -> TIM70 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM70"
+      },
+      "timestamp": "2025-11-16T22:53:01.336559",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM31 -> TIM70 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM70"
+      },
+      "timestamp": "2025-11-16T22:53:01.338715",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM44 -> TIM44 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM44"
+      },
+      "timestamp": "2025-11-16T22:53:01.347271",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM62 -> TIM62 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM62"
+      },
+      "timestamp": "2025-11-16T22:53:01.356324",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM73 -> TIM73 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM73"
+      },
+      "timestamp": "2025-11-16T22:53:01.371115",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM46 -> TIM46 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM46"
+      },
+      "timestamp": "2025-11-16T22:53:01.379497",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM72 -> EL5 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EL5"
+      },
+      "timestamp": "2025-11-16T22:53:01.398222",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM72 -> EL5 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EL5"
+      },
+      "timestamp": "2025-11-16T22:53:01.400501",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM72 -> TIM74 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM74"
+      },
+      "timestamp": "2025-11-16T22:53:01.402643",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM72 -> TIM74 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM74"
+      },
+      "timestamp": "2025-11-16T22:53:01.404736",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM72 -> TIM72 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM72"
+      },
+      "timestamp": "2025-11-16T22:53:01.406811",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM50 -> TIM51 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM51"
+      },
+      "timestamp": "2025-11-16T22:53:01.429504",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM50 -> IP4 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IP4"
+      },
+      "timestamp": "2025-11-16T22:53:01.431601",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM50 -> IP4 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IP4"
+      },
+      "timestamp": "2025-11-16T22:53:01.433882",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM50 -> IP3 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IP3"
+      },
+      "timestamp": "2025-11-16T22:53:01.436046",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM50 -> IP3 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IP3"
+      },
+      "timestamp": "2025-11-16T22:53:01.438163",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM50 -> MD2 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "MD2"
+      },
+      "timestamp": "2025-11-16T22:53:01.440249",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM50 -> MD2 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "MD2"
+      },
+      "timestamp": "2025-11-16T22:53:01.442285",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM50 -> TIM50 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM50"
+      },
+      "timestamp": "2025-11-16T22:53:01.444350",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM50 -> TIM51 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM51"
+      },
+      "timestamp": "2025-11-16T22:53:01.446460",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM50 -> TIM63 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM63"
+      },
+      "timestamp": "2025-11-16T22:53:01.448618",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM47 -> TIM47 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM47"
+      },
+      "timestamp": "2025-11-16T22:53:01.457373",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM70 -> TIM73 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM73"
+      },
+      "timestamp": "2025-11-16T22:53:01.492144",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM70 -> TIM71 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM71"
+      },
+      "timestamp": "2025-11-16T22:53:01.494246",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM70 -> EL5 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EL5"
+      },
+      "timestamp": "2025-11-16T22:53:01.496317",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM70 -> EL2 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EL2"
+      },
+      "timestamp": "2025-11-16T22:53:01.498453",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM70 -> TIM72 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM72"
+      },
+      "timestamp": "2025-11-16T22:53:01.500584",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM70 -> TIM72 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM72"
+      },
+      "timestamp": "2025-11-16T22:53:01.502693",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM70 -> TIM70 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM70"
+      },
+      "timestamp": "2025-11-16T22:53:01.504841",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM70 -> TIM71 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM71"
+      },
+      "timestamp": "2025-11-16T22:53:01.506945",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM40 -> TIM43 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM43"
+      },
+      "timestamp": "2025-11-16T22:53:01.574188",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM40 -> TIM46 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM46"
+      },
+      "timestamp": "2025-11-16T22:53:01.576279",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM40 -> TIM72 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM72"
+      },
+      "timestamp": "2025-11-16T22:53:01.578354",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM40 -> TIM41 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM41"
+      },
+      "timestamp": "2025-11-16T22:53:01.580405",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM40 -> TIM42 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM42"
+      },
+      "timestamp": "2025-11-16T22:53:01.582490",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM40 -> TIM54 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM54"
+      },
+      "timestamp": "2025-11-16T22:53:01.584566",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM40 -> TIM40 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM40"
+      },
+      "timestamp": "2025-11-16T22:53:01.586629",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM40 -> TIM43 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM43"
+      },
+      "timestamp": "2025-11-16T22:53:01.588691",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM40 -> TIM41 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM41"
+      },
+      "timestamp": "2025-11-16T22:53:01.590821",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM40 -> TIM42 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM42"
+      },
+      "timestamp": "2025-11-16T22:53:01.592942",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM40 -> TIM47 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM47"
+      },
+      "timestamp": "2025-11-16T22:53:01.595064",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM32 -> TIM43 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM43"
+      },
+      "timestamp": "2025-11-16T22:53:01.662009",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM32 -> TIM46 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM46"
+      },
+      "timestamp": "2025-11-16T22:53:01.664144",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM32 -> TIM72 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM72"
+      },
+      "timestamp": "2025-11-16T22:53:01.666292",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM32 -> TIM41 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM41"
+      },
+      "timestamp": "2025-11-16T22:53:01.668401",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM32 -> TIM42 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM42"
+      },
+      "timestamp": "2025-11-16T22:53:01.670479",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM32 -> TIM54 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM54"
+      },
+      "timestamp": "2025-11-16T22:53:01.672596",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM32 -> TIM32 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM32"
+      },
+      "timestamp": "2025-11-16T22:53:01.674703",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM32 -> TIM43 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM43"
+      },
+      "timestamp": "2025-11-16T22:53:01.676840",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM32 -> TIM41 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM41"
+      },
+      "timestamp": "2025-11-16T22:53:01.678992",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM32 -> TIM42 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM42"
+      },
+      "timestamp": "2025-11-16T22:53:01.681169",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM32 -> TIM47 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM47"
+      },
+      "timestamp": "2025-11-16T22:53:01.683423",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM32 -> TIM47 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM47"
+      },
+      "timestamp": "2025-11-16T22:53:01.685618",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM71 -> TIM73 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM73"
+      },
+      "timestamp": "2025-11-16T22:53:01.706090",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM71 -> TIM73 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM73"
+      },
+      "timestamp": "2025-11-16T22:53:01.708234",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM71 -> EL4 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EL4"
+      },
+      "timestamp": "2025-11-16T22:53:01.710322",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM71 -> TIM71 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM71"
+      },
+      "timestamp": "2025-11-16T22:53:01.712409",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM42 -> TIM42 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM42"
+      },
+      "timestamp": "2025-11-16T22:53:01.722086",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM20 -> TIM51 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM51"
+      },
+      "timestamp": "2025-11-16T22:53:01.837024",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM20 -> TIM21 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM21"
+      },
+      "timestamp": "2025-11-16T22:53:01.839113",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM20 -> TIM55 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM55"
+      },
+      "timestamp": "2025-11-16T22:53:01.841202",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM20 -> MAT3 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "MAT3"
+      },
+      "timestamp": "2025-11-16T22:53:01.843284",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM20 -> FIS1 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "FIS1"
+      },
+      "timestamp": "2025-11-16T22:53:01.845363",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM20 -> MD6 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "MD6"
+      },
+      "timestamp": "2025-11-16T22:53:01.847469",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM20 -> MAT2 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "MAT2"
+      },
+      "timestamp": "2025-11-16T22:53:01.849633",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM20 -> TIM30 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM30"
+      },
+      "timestamp": "2025-11-16T22:53:01.851772",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM20 -> TIM60 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM60"
+      },
+      "timestamp": "2025-11-16T22:53:01.853885",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM21 -> FIS2 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "FIS2"
+      },
+      "timestamp": "2025-11-16T22:53:01.908002",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM21 -> IMF (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IMF"
+      },
+      "timestamp": "2025-11-16T22:53:01.910141",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM21 -> IT (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IT"
+      },
+      "timestamp": "2025-11-16T22:53:01.912248",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM21 -> TIM31 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM31"
+      },
+      "timestamp": "2025-11-16T22:53:01.914347",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM21 -> TMF1 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TMF1"
+      },
+      "timestamp": "2025-11-16T22:53:01.916500",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM21 -> TIM52 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM52"
+      },
+      "timestamp": "2025-11-16T22:53:01.918612",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM21 -> TIM22 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM22"
+      },
+      "timestamp": "2025-11-16T22:53:01.920738",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM21 -> TIM22 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM22"
+      },
+      "timestamp": "2025-11-16T22:53:01.922797",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM22 -> TMF1 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TMF1"
+      },
+      "timestamp": "2025-11-16T22:53:01.991177",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM22 -> TIM70 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM70"
+      },
+      "timestamp": "2025-11-16T22:53:01.993289",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM22 -> IMF (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IMF"
+      },
+      "timestamp": "2025-11-16T22:53:01.995367",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM22 -> IT (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IT"
+      },
+      "timestamp": "2025-11-16T22:53:01.997417",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM22 -> TIM32 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM32"
+      },
+      "timestamp": "2025-11-16T22:53:01.999500",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM22 -> TIM32 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM32"
+      },
+      "timestamp": "2025-11-16T22:53:02.001624",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM22 -> TIM61 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM61"
+      },
+      "timestamp": "2025-11-16T22:53:02.003709",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM22 -> TIM40 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM40"
+      },
+      "timestamp": "2025-11-16T22:53:02.005794",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM22 -> TIM40 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM40"
+      },
+      "timestamp": "2025-11-16T22:53:02.007899",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM22 -> TIM53 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM53"
+      },
+      "timestamp": "2025-11-16T22:53:02.010023",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM22 -> TIM62 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM62"
+      },
+      "timestamp": "2025-11-16T22:53:02.012202",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM22 -> TIM61 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM61"
+      },
+      "timestamp": "2025-11-16T22:53:02.014361",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM22 -> TIM62 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM62"
+      },
+      "timestamp": "2025-11-16T22:53:02.016549",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM22 -> EL1 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EL1"
+      },
+      "timestamp": "2025-11-16T22:53:02.018660",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM22 -> TIM70 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM70"
+      },
+      "timestamp": "2025-11-16T22:53:02.020766",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM54 -> EN7 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN7"
+      },
+      "timestamp": "2025-11-16T22:53:02.049194",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM54 -> TIM46 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM46"
+      },
+      "timestamp": "2025-11-16T22:53:02.051353",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM54 -> EN7 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN7"
+      },
+      "timestamp": "2025-11-16T22:53:02.053430",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM54 -> TIM46 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM46"
+      },
+      "timestamp": "2025-11-16T22:53:02.055499",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM54 -> TIM54 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM54"
+      },
+      "timestamp": "2025-11-16T22:53:02.057505",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM54 -> TIM59 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM59"
+      },
+      "timestamp": "2025-11-16T22:53:02.059583",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM51 -> IMF (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IMF"
+      },
+      "timestamp": "2025-11-16T22:53:02.084188",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM51 -> IT (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "IT"
+      },
+      "timestamp": "2025-11-16T22:53:02.086276",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM51 -> TMF1 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TMF1"
+      },
+      "timestamp": "2025-11-16T22:53:02.088340",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM51 -> MD3 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "MD3"
+      },
+      "timestamp": "2025-11-16T22:53:02.090439",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM51 -> MD3 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "MD3"
+      },
+      "timestamp": "2025-11-16T22:53:02.092512",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM51 -> TIM52 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM52"
+      },
+      "timestamp": "2025-11-16T22:53:02.094561",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM51 -> MD5 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "MD5"
+      },
+      "timestamp": "2025-11-16T22:53:02.096665",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM51 -> TIM54 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM54"
+      },
+      "timestamp": "2025-11-16T22:53:02.098764",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM51 -> TIM51 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM51"
+      },
+      "timestamp": "2025-11-16T22:53:02.100903",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM43 -> TIM43 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM43"
+      },
+      "timestamp": "2025-11-16T22:53:02.110718",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM64 -> TIM64 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM64"
+      },
+      "timestamp": "2025-11-16T22:53:02.126634",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM45 -> TIM45 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM45"
+      },
+      "timestamp": "2025-11-16T22:53:02.135205",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM65 -> TIM65 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM65"
+      },
+      "timestamp": "2025-11-16T22:53:02.143626",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM10 -> EN3 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN3"
+      },
+      "timestamp": "2025-11-16T22:53:02.171370",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM10 -> TIM56 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM56"
+      },
+      "timestamp": "2025-11-16T22:53:02.173468",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM10 -> TIM62 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM62"
+      },
+      "timestamp": "2025-11-16T22:53:02.175526",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM10 -> TIM46 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM46"
+      },
+      "timestamp": "2025-11-16T22:53:02.177645",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM10 -> EN7 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN7"
+      },
+      "timestamp": "2025-11-16T22:53:02.179711",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM11 -> EN3 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN3"
+      },
+      "timestamp": "2025-11-16T22:53:02.210461",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM11 -> TIM56 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM56"
+      },
+      "timestamp": "2025-11-16T22:53:02.212559",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM11 -> TIM62 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM62"
+      },
+      "timestamp": "2025-11-16T22:53:02.214651",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM11 -> TIM46 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM46"
+      },
+      "timestamp": "2025-11-16T22:53:02.216853",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM11 -> EN7 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN7"
+      },
+      "timestamp": "2025-11-16T22:53:02.218995",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM12 -> EN3 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN3"
+      },
+      "timestamp": "2025-11-16T22:53:02.252779",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM12 -> TIM56 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM56"
+      },
+      "timestamp": "2025-11-16T22:53:02.254986",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM12 -> TIM62 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM62"
+      },
+      "timestamp": "2025-11-16T22:53:02.257294",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM12 -> TIM46 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM46"
+      },
+      "timestamp": "2025-11-16T22:53:02.259551",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM12 -> EN7 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN7"
+      },
+      "timestamp": "2025-11-16T22:53:02.261711",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM13 -> TIM43 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM43"
+      },
+      "timestamp": "2025-11-16T22:53:02.297418",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM13 -> EN3 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN3"
+      },
+      "timestamp": "2025-11-16T22:53:02.299641",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM13 -> TIM62 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM62"
+      },
+      "timestamp": "2025-11-16T22:53:02.301779",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM13 -> TIM46 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM46"
+      },
+      "timestamp": "2025-11-16T22:53:02.303862",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM13 -> EN7 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN7"
+      },
+      "timestamp": "2025-11-16T22:53:02.305986",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM14 -> EN3 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN3"
+      },
+      "timestamp": "2025-11-16T22:53:02.337276",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM14 -> TIM62 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM62"
+      },
+      "timestamp": "2025-11-16T22:53:02.339381",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM14 -> TIM46 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM46"
+      },
+      "timestamp": "2025-11-16T22:53:02.341479",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM14 -> EN7 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN7"
+      },
+      "timestamp": "2025-11-16T22:53:02.343562",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM41 -> EN7 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN7"
+      },
+      "timestamp": "2025-11-16T22:53:02.395184",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM41 -> EN5 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN5"
+      },
+      "timestamp": "2025-11-16T22:53:02.397303",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM41 -> EN5 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN5"
+      },
+      "timestamp": "2025-11-16T22:53:02.399426",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM41 -> TIM44 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM44"
+      },
+      "timestamp": "2025-11-16T22:53:02.401587",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM41 -> EN4 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN4"
+      },
+      "timestamp": "2025-11-16T22:53:02.403657",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM41 -> EN4 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN4"
+      },
+      "timestamp": "2025-11-16T22:53:02.405739",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM41 -> TIM46 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM46"
+      },
+      "timestamp": "2025-11-16T22:53:02.407905",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM41 -> EN7 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN7"
+      },
+      "timestamp": "2025-11-16T22:53:02.410053",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM41 -> EN6 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN6"
+      },
+      "timestamp": "2025-11-16T22:53:02.412239",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM41 -> EN6 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "EN6"
+      },
+      "timestamp": "2025-11-16T22:53:02.414467",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM41 -> TIM45 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM45"
+      },
+      "timestamp": "2025-11-16T22:53:02.416633",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM41 -> TIM46 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM46"
+      },
+      "timestamp": "2025-11-16T22:53:02.418774",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM41 -> TIM45 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM45"
+      },
+      "timestamp": "2025-11-16T22:53:02.420925",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM41 -> TIM41 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM41"
+      },
+      "timestamp": "2025-11-16T22:53:02.423075",
+      "stage": "posprevias"
+    },
+    {
+      "type": "posprevias_plan_destino",
+      "item": "TIM41 -> TIM44 (TECNOLOGO MECANICO 1994)",
+      "message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "full_message": "Plan destino TECNOLOGO MECANICO 1994 no encontrado (ni ningún otro plan para esa carrera)",
+      "context": {
+        "carrera_nombre": "TECNOLOGO MECANICO",
+        "anio_plan": "1994",
+        "materia_codigo": "TIM44"
+      },
+      "timestamp": "2025-11-16T22:53:02.425218",
+      "stage": "posprevias"
     }
   ]
 }
