@@ -222,18 +222,19 @@ SPECTACULAR_SETTINGS = {
     Bedelia Course Management API
     
     This API provides access to university course data including:
-    - Programs and academic plans
-    - Subjects/courses with prerequisites
-    - Course offerings and schedules  
-    - Requirement trees and dependencies
-    - Smart course recommendations
-    - Course pathway planning
+    - **Carreras**: Academic degree programs
+    - **Materias**: Courses/subjects with codes and credits
+    - **Planes de Estudio**: Study plans for each carrera
+    - **Unidades Aprobables**: Approvable units (courses, exams, modules)
+    - **Requisitos**: Prerequisite requirement trees with logical operators (AND, OR, NOT)
     
-    ## Smart Features:
-    - **Available Courses**: Check what you can take based on completed courses
-    - **Course Unlocking**: See what courses become available after completing others
-    - **Recommendations**: Get prioritized course suggestions
-    - **Pathway Planning**: Find the optimal path to reach a target course
+    ## Data Structure:
+    - Each **Carrera** (degree program) has multiple **Planes de Estudio** (study plans)
+    - Each **Plan de Estudio** contains multiple **Materias** (courses)
+    - Each **Materia** can have multiple **Unidades Aprobables** (approvable units)
+    - Each **PlanMateria** has a **RequisitoNodo** tree structure defining prerequisites
+    - **RequisitoNodos** can be ROOT, AND, OR, NOT, or LEAF types
+    - **LEAF** nodes contain **RequisitoItems** that specify actual requirements
     ''',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
@@ -243,20 +244,17 @@ SPECTACULAR_SETTINGS = {
         {'url': 'http://localhost:8000', 'description': 'Development server'},
     ],
     'TAGS': [
-        {'name': 'programs', 'description': 'Academic programs and plans'},
-        {'name': 'subjects', 'description': 'Course subjects and smart queries'},
-        {'name': 'offerings', 'description': 'Course offerings and instances'},
-        {'name': 'requirements', 'description': 'Course requirements and prerequisites'},
-        {'name': 'smart', 'description': 'Intelligent course planning endpoints'},
+        {'name': 'carreras', 'description': 'Academic degree programs (carreras)'},
+        {'name': 'materias', 'description': 'Courses/subjects (materias)'},
+        {'name': 'planes-estudio', 'description': 'Study plans (planes de estudio)'},
+        {'name': 'planes-materias', 'description': 'Materias within study plans'},
+        {'name': 'unidades-aprobables', 'description': 'Approvable units (unidades aprobables)'},
+        {'name': 'requisitos', 'description': 'Course requirements and prerequisites (requisitos)'},
     ],
     'ENUM_NAME_OVERRIDES': {
-        'OfferingTypeEnum': 'api.models.OfferingType',
-        'GroupScopeEnum': 'api.models.GroupScope',
-        'GroupFlavorEnum': 'api.models.GroupFlavor',
-        'ReqConditionEnum': 'api.models.ReqCondition',
-        'TargetTypeEnum': 'api.models.TargetType',
-        'DepKindEnum': 'api.models.DepKind',
-        'EquivalenceKindEnum': 'api.models.EquivalenceKind',
+        'UnidadAprobableTipoEnum': 'api.models.UnidadAprobable.Tipo',
+        'RequisitoNodoTipoEnum': 'api.models.RequisitoNodo.Tipo',
+        'RequisitoItemTipoEnum': 'api.models.RequisitoItem.TipoItem',
     },
 }
 

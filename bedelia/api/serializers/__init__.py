@@ -2,7 +2,6 @@
 Serializers for the API.
 """
 from .materias import (
-    CarreraSerializer,
     MateriaSerializer,
     MateriaDetailSerializer,
     PlanEstudioSerializer,
@@ -14,7 +13,6 @@ from .materias import (
 )
 
 __all__ = [
-    'CarreraSerializer',
     'MateriaSerializer',
     'MateriaDetailSerializer',
     'PlanEstudioSerializer',

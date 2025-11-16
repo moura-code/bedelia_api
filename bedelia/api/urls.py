@@ -2,7 +2,6 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from api.views.materias import (
-    CarreraViewSet,
     MateriaViewSet,
     PlanEstudioViewSet,
     PlanMateriaViewSet,
@@ -14,7 +13,6 @@ from api.views.materias import (
 router = DefaultRouter()
 
 # Register all viewsets
-router.register(r'carreras', CarreraViewSet, basename='carrera')
 router.register(r'materias', MateriaViewSet, basename='materia')
 router.register(r'planes-estudio', PlanEstudioViewSet, basename='plan-estudio')
 router.register(r'planes-materias', PlanMateriaViewSet, basename='plan-materia')

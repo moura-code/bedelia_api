@@ -2,7 +2,6 @@
 Views for the API.
 """
 from .materias import (
-    CarreraViewSet,
     MateriaViewSet,
     PlanEstudioViewSet,
     PlanMateriaViewSet,
@@ -12,7 +11,6 @@ from .materias import (
 )
 
 __all__ = [
-    'CarreraViewSet',
     'MateriaViewSet',
     'PlanEstudioViewSet',
     'PlanMateriaViewSet',

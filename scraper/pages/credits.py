@@ -81,15 +81,38 @@ class Credits(Scraper, PlanSection):
                         raw = span.text
                         self.logger.debug(f"Raw material text: {raw}")
 
-                        # Split by hyphen into exactly 3 parts: [codigo, nombre, tail]
-                        parts = re.split(r"\s*-\s*", raw, maxsplit=2)
-                        if len(parts) < 3:
-                            # If something odd, pad to always have 3 fields
+                        # Parse format: "CODE - NAME - créditos: X" or "CODE-WITH-HYPHEN - NAME - créditos: X"
+                        # We need to handle codes that may contain hyphens (e.g., "FF1-7")
+                        
+                        # First, extract credits (always at the end with "créditos: ")
+                        creditos_match = re.search(r'créditos:\s*(\S+)', raw, re.IGNORECASE)
+                        if not creditos_match:
+                            self.logger.warning(f"Could not find 'créditos:' in material: {raw}")
+                            continue
+                        
+                        creditos = creditos_match.group(1).strip()
+                        
+                        # Remove the credits part to get code and name
+                        raw_without_creditos = re.sub(r'\s*-\s*créditos:\s*\S+.*$', '', raw, flags=re.IGNORECASE).strip()
+                        
+                        # Now split the remaining text by the first " - " (space-hyphen-space)
+                        # This handles codes with hyphens correctly
+                        parts = re.split(r'\s+-\s+', raw_without_creditos, maxsplit=1)
+                        
+                        if len(parts) == 2:
+                            codigo, nombre = [p.strip() for p in parts]
+                        elif len(parts) == 1:
+                            # Fallback: if no " - " separator, try to split by any hyphen
+                            # This handles edge cases where format might be slightly different
+                            parts_fallback = raw_without_creditos.split('-', 1)
+                            if len(parts_fallback) == 2:
+                                codigo, nombre = [p.strip() for p in parts_fallback]
+                            else:
+                                self.logger.warning(f"Unexpected format for material (no separator found): {raw}")
+                                continue
+                        else:
                             self.logger.warning(f"Unexpected format for material: {raw}")
                             continue
-
-                        codigo, nombre, creditos = [p.strip() for p in parts]
-                        creditos = creditos.replace("créditos: ", "")
                         
                         item = {
                             "codigo": codigo,
@@ -124,7 +147,7 @@ class Credits(Scraper, PlanSection):
     
     def run(self):
         """Navigate to the credits section and trigger extraction logic."""
-        backup_file = "../../data/credits_data_backup.json"
+        backup_file = "../data/credits_data_backup.json"
         
         # Load existing backup data
         all_plans_data = self._load_backup_data(backup_file)

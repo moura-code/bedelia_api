@@ -141,7 +141,7 @@ class Vigentes(Scraper, PlanSection):
     # TODO: Essa pagina nao esta consistente, da muito erro as veses
     def run(self):
         """Extract prerequisite (materias vigentes) data and store in database."""
-        backup_file = "../../data/vigentes_data_backup.json"
+        backup_file = "../data/vigentes_data_backup.json"
         
         # Load existing backup data
         all_plans_data = self._load_backup_data(backup_file)

@@ -8,22 +8,6 @@ from django.db import models
 # Núcleo académico
 # ============================================================
 
-class Carrera(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    nombre = models.CharField(max_length=255, unique=True, verbose_name="Nombre de la carrera")
-
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
-    fecha_modificacion = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = "carreras"
-        verbose_name = "Carrera"
-        verbose_name_plural = "Carreras"
-
-    def __str__(self) -> str:
-        return self.nombre
-
-
 class Materia(models.Model):
     """
     Materia lógica: Programación 1, Programación 2, etc.
@@ -53,7 +37,7 @@ class PlanEstudio(models.Model):
     Plan de estudios de una carrera (ej: Ing. en Computación 2010, 2020, etc.)
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE, related_name="planes")
+    nombre_carrera = models.CharField(max_length=255, verbose_name="Nombre de la carrera", db_index=True)
     anio = models.CharField(max_length=10, verbose_name="Año del plan")
     descripcion = models.CharField(max_length=255, blank=True)
     activo = models.BooleanField(default=True)
@@ -65,13 +49,13 @@ class PlanEstudio(models.Model):
         db_table = "planes_estudio"
         verbose_name = "Plan de estudio"
         verbose_name_plural = "Planes de estudio"
-        unique_together = ("carrera", "anio")
+        unique_together = ("nombre_carrera", "anio")
         indexes = [
-            models.Index(fields=["carrera", "anio"], name="idx_plan_carrera_anio"),
+            models.Index(fields=["nombre_carrera", "anio"], name="idx_plan_carrera_anio"),
         ]
 
     def __str__(self) -> str:
-        return f"{self.carrera.nombre} - Plan {self.anio}"
+        return f"{self.nombre_carrera} - Plan {self.anio}"
 
 
 class PlanMateria(models.Model):
@@ -82,9 +66,6 @@ class PlanMateria(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     plan = models.ForeignKey(PlanEstudio, on_delete=models.CASCADE, related_name="materias_plan")
     materia = models.ForeignKey(Materia, on_delete=models.CASCADE, related_name="planes")
-
-    obligatorio = models.BooleanField(default=True)
-    semestre_sugerido = models.IntegerField(null=True, blank=True)
 
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_modificacion = models.DateTimeField(auto_now=True)

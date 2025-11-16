@@ -519,7 +519,7 @@ class Previas(Scraper, PlanSection):
     
     def run(self):
         """Extract prerequisite (previas) data and store in database."""
-        backup_file = "../../data/previas_data_backup.json"
+        backup_file = "../data/previas_data_backup.json"
         
         # Load existing backup data
         all_plans_data = self._load_backup_data(backup_file)

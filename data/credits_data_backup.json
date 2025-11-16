@@ -95,15 +95,15 @@
       "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
       "creditos": "13"
     },
-    "FF1_7": {
-      "codigo": "FF1",
-      "nombre": "7",
-      "creditos": "CREDITOS ASIGNADOS POR REVALIDA - 7"
+    "FF1-7_CREDITOS ASIGNADOS POR REVALIDA": {
+      "codigo": "FF1-7",
+      "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+      "creditos": "7"
     },
-    "FF2_7": {
-      "codigo": "FF2",
-      "nombre": "7",
-      "creditos": "CREDITOS ASIGNADOS POR REVALIDA - 7"
+    "FF2-7_CREDITOS ASIGNADOS POR REVALIDA": {
+      "codigo": "FF2-7",
+      "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
+      "creditos": "7"
     },
     "FISI8_CREDITOS ASIGNADOS POR REVALIDA": {
       "codigo": "FISI8",
@@ -1020,10 +1020,10 @@
       "nombre": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO A",
       "creditos": "4"
     },
-    "1267_TALLER REPR. Y COM. GRAFICA": {
+    "1267_TALLER REPR. Y COM. GRAFICA - MODULO_CIVIL": {
       "codigo": "1267",
-      "nombre": "TALLER REPR. Y COM. GRAFICA",
-      "creditos": "MODULO_CIVIL - 4"
+      "nombre": "TALLER REPR. Y COM. GRAFICA - MODULO_CIVIL",
+      "creditos": "4"
     },
     "CP55_TALLER LABORATORIO I (MODULO DE DIBUJO)": {
       "codigo": "CP55",
@@ -1775,10 +1775,10 @@
       "nombre": "PASANTIA (CIVIL)",
       "creditos": "12"
     },
-    "CP266_PASANTIA (HIDRAULICA": {
+    "CP266_PASANTIA (HIDRAULICA-AMBIENTAL)": {
       "codigo": "CP266",
-      "nombre": "PASANTIA (HIDRAULICA",
-      "creditos": "AMBIENTAL) - 12"
+      "nombre": "PASANTIA (HIDRAULICA-AMBIENTAL)",
+      "creditos": "12"
     },
     "CP241_PASANTIA A": {
       "codigo": "CP241",
@@ -1885,10 +1885,10 @@
       "nombre": "PROYECTO HIDR. Y AMBIENTAL II",
       "creditos": "16"
     },
-    "2405_PROYECTO HIDRAULICA": {
+    "2405_PROYECTO HIDRAULICA-AMBIENTAL": {
       "codigo": "2405",
-      "nombre": "PROYECTO HIDRAULICA",
-      "creditos": "AMBIENTAL - 25"
+      "nombre": "PROYECTO HIDRAULICA-AMBIENTAL",
+      "creditos": "25"
     },
     "2400_PROYECTO TRANSPORTE 1": {
       "codigo": "2400",
@@ -2040,10 +2040,10 @@
       "nombre": "RESISTENCIA DE MATERIALES 2",
       "creditos": "10"
     },
-    "1319_RESISTENCIA DE MATERIALES 2": {
+    "1319_RESISTENCIA DE MATERIALES 2-N": {
       "codigo": "1319",
-      "nombre": "RESISTENCIA DE MATERIALES 2",
-      "creditos": "N - 13"
+      "nombre": "RESISTENCIA DE MATERIALES 2-N",
+      "creditos": "13"
     },
     "1313_RESISTENCIA DE MATERIALES 2 N": {
       "codigo": "1313",
@@ -2567,20 +2567,20 @@
       "nombre": "CREDITOS POR PROYECTO INDUSTRIAL",
       "creditos": "28"
     },
-    "A88_PASANTIA": {
+    "A88_PASANTIA-TRABAJO PRACTICO DE GRADO,MOD.1": {
       "codigo": "A88",
-      "nombre": "PASANTIA",
-      "creditos": "TRABAJO PRACTICO DE GRADO,MOD.1 - 15"
+      "nombre": "PASANTIA-TRABAJO PRACTICO DE GRADO,MOD.1",
+      "creditos": "15"
     },
-    "A76_PASANTIA": {
+    "A76_PASANTIA-TRABAJO PRACTICO DE GRADO,MOD.2": {
       "codigo": "A76",
-      "nombre": "PASANTIA",
-      "creditos": "TRABAJO PRACTICO DE GRADO,MOD.2 - 5"
+      "nombre": "PASANTIA-TRABAJO PRACTICO DE GRADO,MOD.2",
+      "creditos": "5"
     },
-    "A77_PASANTIA": {
+    "A77_PASANTIA-TRABAJO PRACTICO DE GRADO,MOD.3": {
       "codigo": "A77",
-      "nombre": "PASANTIA",
-      "creditos": "TRABAJO PRACTICO DE GRADO,MOD.3 - 10"
+      "nombre": "PASANTIA-TRABAJO PRACTICO DE GRADO,MOD.3",
+      "creditos": "10"
     },
     "Q80_PROYECTO INDUSTRIAL 1": {
       "codigo": "Q80",
@@ -2602,15 +2602,15 @@
       "nombre": "APLICACIONES DE MICROBIOLOGÍA MOLECULAR",
       "creditos": "4"
     },
-    "MHC19_BIOINGENIERÍA MOLECULAR Y CELULAR": {
+    "MHC19_BIOINGENIERÍA MOLECULAR Y CELULAR - MÓDULOS 1, 2 Y 3 (2018-2024)": {
       "codigo": "MHC19",
-      "nombre": "BIOINGENIERÍA MOLECULAR Y CELULAR",
-      "creditos": "MÓDULOS 1, 2 Y 3 (2018-2024) - 10"
+      "nombre": "BIOINGENIERÍA MOLECULAR Y CELULAR - MÓDULOS 1, 2 Y 3 (2018-2024)",
+      "creditos": "10"
     },
-    "MHC17_BIOLOGÍA MOLECULAR (2020": {
+    "MHC17_BIOLOGÍA MOLECULAR (2020-": {
       "codigo": "MHC17",
-      "nombre": "BIOLOGÍA MOLECULAR (2020",
-      "creditos": "- 12"
+      "nombre": "BIOLOGÍA MOLECULAR (2020-",
+      "creditos": "12"
     },
     "514_BIOQUÍMICA OP. I (PLAN 2000)": {
       "codigo": "514",
@@ -2662,10 +2662,10 @@
       "nombre": "FISIOLOGÍA (DESDE 2012)",
       "creditos": "7"
     },
-    "MHC20_GENÓMICA (2021": {
+    "MHC20_GENÓMICA (2021-2024)": {
       "codigo": "MHC20",
-      "nombre": "GENÓMICA (2021",
-      "creditos": "2024) - 10"
+      "nombre": "GENÓMICA (2021-2024)",
+      "creditos": "10"
     },
     "103A_INT. A LAS C. BIOLÓGICAS I (DESDE 2002)": {
       "codigo": "103A",
@@ -3127,10 +3127,10 @@
       "nombre": "MAT. 05 (ESTADÍSTICA)",
       "creditos": "11"
     },
-    "05A_MAT. 05 (ESTADÍSTICA) (DESDE 2015": {
+    "05A_MAT. 05 (ESTADÍSTICA) (DESDE 2015 - HASTA 2023)": {
       "codigo": "05A",
-      "nombre": "MAT. 05 (ESTADÍSTICA) (DESDE 2015",
-      "creditos": "HASTA 2023) - 11"
+      "nombre": "MAT. 05 (ESTADÍSTICA) (DESDE 2015 - HASTA 2023)",
+      "creditos": "11"
     },
     "07_MAT. 07 (ECUACIONES DIF. ORDINARIAS)": {
       "codigo": "07",
@@ -3362,15 +3362,15 @@
       "nombre": "QUÍMICA ANALÍTICA II",
       "creditos": "7"
     },
-    "503_QUÍMICA ANALÍTICA III": {
+    "503_QUÍMICA ANALÍTICA III - ANÁLISIS INSTRUMENTAL": {
       "codigo": "503",
-      "nombre": "QUÍMICA ANALÍTICA III",
-      "creditos": "ANÁLISIS INSTRUMENTAL - 10"
+      "nombre": "QUÍMICA ANALÍTICA III - ANÁLISIS INSTRUMENTAL",
+      "creditos": "10"
     },
-    "503A_QUÍMICA ANALÍTICA III": {
+    "503A_QUÍMICA ANALÍTICA III - ANÁLISIS INSTRUMENTAL": {
       "codigo": "503A",
-      "nombre": "QUÍMICA ANALÍTICA III",
-      "creditos": "ANÁLISIS INSTRUMENTAL - 10"
+      "nombre": "QUÍMICA ANALÍTICA III - ANÁLISIS INSTRUMENTAL",
+      "creditos": "10"
     },
     "405_QCA. ANALÍTICA P/ING.ALIMENTOS": {
       "codigo": "405",
@@ -3407,15 +3407,15 @@
       "nombre": "QUÍMICA ORGÁNICA 102",
       "creditos": "6"
     },
-    "501_QCA. ORGÁNICA 103": {
+    "501_QCA. ORGÁNICA 103 - LABORATORIO": {
       "codigo": "501",
-      "nombre": "QCA. ORGÁNICA 103",
-      "creditos": "LABORATORIO - 5"
+      "nombre": "QCA. ORGÁNICA 103 - LABORATORIO",
+      "creditos": "5"
     },
-    "501C_QCA. ORGÁNICA 103": {
+    "501C_QCA. ORGÁNICA 103 - LABORATORIO": {
       "codigo": "501C",
-      "nombre": "QCA. ORGÁNICA 103",
-      "creditos": "LABORATORIO - 5"
+      "nombre": "QCA. ORGÁNICA 103 - LABORATORIO",
+      "creditos": "5"
     },
     "502X_QUÍMICA ORGÁNICA 104": {
       "codigo": "502X",
@@ -3437,10 +3437,10 @@
       "nombre": "QUÍMICA ORGÁNICA 102 (A PARTIR DE 2024)",
       "creditos": "5"
     },
-    "15L_TUTORÍAS ENTRE PARES": {
+    "15L_TUTORÍAS ENTRE PARES - FISICOQUÍMICA 101": {
       "codigo": "15L",
-      "nombre": "TUTORÍAS ENTRE PARES",
-      "creditos": "FISICOQUÍMICA 101 - 4"
+      "nombre": "TUTORÍAS ENTRE PARES - FISICOQUÍMICA 101",
+      "creditos": "4"
     },
     "D10_AGENDA 2030: OBJETIVOS DE DESARROLLO SOSTENIBLE": {
       "codigo": "D10",
@@ -3457,10 +3457,10 @@
       "nombre": "CIENCIA TECNOLOGÍA Y SOCIEDAD (REVÁLIDA)",
       "creditos": "8"
     },
-    "AA504_CIENCIAS AMBIENTALES III": {
+    "AA504_CIENCIAS AMBIENTALES III - INSTRUMENTOS DE GESTION AMBIENTAL": {
       "codigo": "AA504",
-      "nombre": "CIENCIAS AMBIENTALES III",
-      "creditos": "INSTRUMENTOS DE GESTION AMBIENTAL - 5"
+      "nombre": "CIENCIAS AMBIENTALES III - INSTRUMENTOS DE GESTION AMBIENTAL",
+      "creditos": "5"
     },
     "937A_CRED. POR DERECHO ADMINISTRATIVO (CCEE)": {
       "codigo": "937A",
@@ -3567,10 +3567,10 @@
       "nombre": "TALLER DE DISEÑO",
       "creditos": "6"
     },
-    "15B_TUTORIA ENTRE PARES": {
+    "15B_TUTORIA ENTRE PARES - MATEMÁTICA 04": {
       "codigo": "15B",
-      "nombre": "TUTORIA ENTRE PARES",
-      "creditos": "MATEMÁTICA 04 - 4"
+      "nombre": "TUTORIA ENTRE PARES - MATEMÁTICA 04",
+      "creditos": "4"
     },
     "15E_TUTORIAS ENTRE PARES MOD.1 (PROGRESA)": {
       "codigo": "15E",
@@ -3582,25 +3582,25 @@
       "nombre": "TUTORIAS ENTRE PARES MOD.2 (PROGRESA)",
       "creditos": "4"
     },
-    "15A_TUTORÍA ENTRE PARES": {
+    "15A_TUTORÍA ENTRE PARES - MATEMÁTICA 01": {
       "codigo": "15A",
-      "nombre": "TUTORÍA ENTRE PARES",
-      "creditos": "MATEMÁTICA 01 - 4"
+      "nombre": "TUTORÍA ENTRE PARES - MATEMÁTICA 01",
+      "creditos": "4"
     },
-    "15H_TUTORÍA ENTRE PARES": {
+    "15H_TUTORÍA ENTRE PARES - QUÍMICA GENERAL I": {
       "codigo": "15H",
-      "nombre": "TUTORÍA ENTRE PARES",
-      "creditos": "QUÍMICA GENERAL I - 4"
+      "nombre": "TUTORÍA ENTRE PARES - QUÍMICA GENERAL I",
+      "creditos": "4"
     },
-    "15I_TUTORÍA ENTRE PARES": {
+    "15I_TUTORÍA ENTRE PARES - QUÍMICA GENERAL II": {
       "codigo": "15I",
-      "nombre": "TUTORÍA ENTRE PARES",
-      "creditos": "QUÍMICA GENERAL II - 4"
+      "nombre": "TUTORÍA ENTRE PARES - QUÍMICA GENERAL II",
+      "creditos": "4"
     },
-    "15G_TUTORÍAS ENTRE PARES": {
+    "15G_TUTORÍAS ENTRE PARES - FÍSICA 101": {
       "codigo": "15G",
-      "nombre": "TUTORÍAS ENTRE PARES",
-      "creditos": "FÍSICA 101 - 4"
+      "nombre": "TUTORÍAS ENTRE PARES - FÍSICA 101",
+      "creditos": "4"
     },
     "CA34_CREDITOS POR LEGISLACION ALIMENTARIA": {
       "codigo": "CA34",
@@ -3712,10 +3712,10 @@
       "nombre": "ALIMENTOS PROCESO SALUD ENFERMEDAD",
       "creditos": "6"
     },
-    "830_ALIMENTOS Y PROCESO SALUD": {
+    "830_ALIMENTOS Y PROCESO SALUD - ENF": {
       "codigo": "830",
-      "nombre": "ALIMENTOS Y PROCESO SALUD",
-      "creditos": "ENF - 6"
+      "nombre": "ALIMENTOS Y PROCESO SALUD - ENF",
+      "creditos": "6"
     },
     "709_BROMATOLOGÍA Y NUTRICIÓN (PLAN 2000)": {
       "codigo": "709",
@@ -4057,10 +4057,10 @@
       "nombre": "MICROBIOLOGIA DE LACTEOS",
       "creditos": "7"
     },
-    "A85_MICROBIOLOGIA DE LACTEOS": {
+    "A85_MICROBIOLOGIA DE LACTEOS- MODULO II": {
       "codigo": "A85",
-      "nombre": "MICROBIOLOGIA DE LACTEOS",
-      "creditos": "MODULO II - 3"
+      "nombre": "MICROBIOLOGIA DE LACTEOS- MODULO II",
+      "creditos": "3"
     },
     "17250_MICROBIOLOGIA DE LACTEOS 5TO": {
       "codigo": "17250",
@@ -4322,10 +4322,10 @@
       "nombre": "QUIMICA Y TEC. DE GRASAS Y ACEITES OP.C",
       "creditos": "3"
     },
-    "462_QUÍMICA Y TECNOLOGÍA DE CEREALES": {
+    "462_QUÍMICA Y TECNOLOGÍA DE CEREALES - DESARROLLO DE PRODUCTOS A BASE DE HARINAS": {
       "codigo": "462",
-      "nombre": "QUÍMICA Y TECNOLOGÍA DE CEREALES",
-      "creditos": "DESARROLLO DE PRODUCTOS A BASE DE HARINAS - 5"
+      "nombre": "QUÍMICA Y TECNOLOGÍA DE CEREALES - DESARROLLO DE PRODUCTOS A BASE DE HARINAS",
+      "creditos": "5"
     },
     "791_QUÍMICA Y TECNOLOGÍA DE GRASAS Y ACEITES (T+L) OP. A (DESDE 2016)": {
       "codigo": "791",
@@ -4419,10 +4419,10 @@
       "nombre": "MATEMÁTICA INICIAL",
       "creditos": "4"
     },
-    "CIM11_MATEMÁTICA DISCRETA 2": {
+    "CIM11_MATEMÁTICA DISCRETA 2- CIM-CIOCT": {
       "codigo": "CIM11",
-      "nombre": "MATEMÁTICA DISCRETA 2",
-      "creditos": "CIM-CIOCT - 10"
+      "nombre": "MATEMÁTICA DISCRETA 2- CIM-CIOCT",
+      "creditos": "10"
     },
     "SRN14_MATEMÁTICA DISCRETA I": {
       "codigo": "SRN14",
@@ -4999,10 +4999,10 @@
       "nombre": "OPTIMIZACION BAJO INCERTIDUMBRE",
       "creditos": "8"
     },
-    "2032_MODULO DE EXTENSION": {
+    "2032_MODULO DE EXTENSION- INGENIERIA MECANICA": {
       "codigo": "2032",
-      "nombre": "MODULO DE EXTENSION",
-      "creditos": "INGENIERIA MECANICA - 3"
+      "nombre": "MODULO DE EXTENSION- INGENIERIA MECANICA",
+      "creditos": "3"
     },
     "CP102_CONTROL DE CALIDAD": {
       "codigo": "CP102",
@@ -5766,10 +5766,10 @@
       "nombre": "PRINCIPIOS DE QUÍMICA PARA ING. FORESTAL",
       "creditos": "10"
     },
-    "SRN47_PRINCIPIOS DE QUÍMICA GENERAL": {
+    "SRN47_PRINCIPIOS DE QUÍMICA GENERAL - CIOCT-RH-AGR": {
       "codigo": "SRN47",
-      "nombre": "PRINCIPIOS DE QUÍMICA GENERAL",
-      "creditos": "CIOCT-RH-AGR - 10"
+      "nombre": "PRINCIPIOS DE QUÍMICA GENERAL - CIOCT-RH-AGR",
+      "creditos": "10"
     },
     "1620_PRINCIPIOS DE QUIMICA GENERAL": {
       "codigo": "1620",
@@ -5786,10 +5786,10 @@
       "nombre": "FISIOLOGÍA CUANTITATIVA",
       "creditos": "10"
     },
-    "BG827_BIOFÍSICA (2020": {
+    "BG827_BIOFÍSICA (2020-": {
       "codigo": "BG827",
-      "nombre": "BIOFÍSICA (2020",
-      "creditos": "- 14"
+      "nombre": "BIOFÍSICA (2020-",
+      "creditos": "14"
     },
     "1235_FUNDAMENTOS CELULARES DE CIRCUITOS NEURALES": {
       "codigo": "1235",
@@ -5866,10 +5866,10 @@
       "nombre": "VISION POR COMPUTADORA",
       "creditos": "10"
     },
-    "5908_HERRAMIENTAS DE REPRESENTACION TIEMPO": {
+    "5908_HERRAMIENTAS DE REPRESENTACION TIEMPO-FRECUENCIA": {
       "codigo": "5908",
-      "nombre": "HERRAMIENTAS DE REPRESENTACION TIEMPO",
-      "creditos": "FRECUENCIA - 7"
+      "nombre": "HERRAMIENTAS DE REPRESENTACION TIEMPO-FRECUENCIA",
+      "creditos": "7"
     },
     "5852_FUNDAMENTOS DE APRENDIZAJE AUTOMATICO Y RECONOCIMIENTO DE PATRONES": {
       "codigo": "5852",
@@ -6426,10 +6426,10 @@
       "nombre": "TALLER DE DISEÑO",
       "creditos": "6"
     },
-    "SRN30_TALLER DE ROBÓTICA": {
+    "SRN30_TALLER DE ROBÓTICA-CIO CT- INGBIOL": {
       "codigo": "SRN30",
-      "nombre": "TALLER DE ROBÓTICA",
-      "creditos": "CIO CT- INGBIOL - 2"
+      "nombre": "TALLER DE ROBÓTICA-CIO CT- INGBIOL",
+      "creditos": "2"
     },
     "1275_TALLER BASICO DE ESTRATEGIAS Y ORIENTACION (TBEO)": {
       "codigo": "1275",
@@ -6501,20 +6501,20 @@
       "nombre": "TALLER: HERRAMIENTAS PARA LA INNOVACION",
       "creditos": "4"
     },
-    "O6521_TEORÍAS Y PRÁCTICAS DE LA ACCESIBILIDAD EN LA COMUNICACIÓN": {
+    "O6521_TEORÍAS Y PRÁCTICAS DE LA ACCESIBILIDAD EN LA COMUNICACIÓN - LIM": {
       "codigo": "O6521",
-      "nombre": "TEORÍAS Y PRÁCTICAS DE LA ACCESIBILIDAD EN LA COMUNICACIÓN",
-      "creditos": "LIM - 8"
+      "nombre": "TEORÍAS Y PRÁCTICAS DE LA ACCESIBILIDAD EN LA COMUNICACIÓN - LIM",
+      "creditos": "8"
     },
     "O7246_TECNOLOGÍAS DE DIGITALIZACIÓN Y TRANSCODIFICACIÓN. IDENTIFICACIÓN Y PRESERVACIÓN": {
       "codigo": "O7246",
       "nombre": "TECNOLOGÍAS DE DIGITALIZACIÓN Y TRANSCODIFICACIÓN. IDENTIFICACIÓN Y PRESERVACIÓN",
       "creditos": "8"
     },
-    "O6221_LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV.": {
+    "O6221_LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV. - EXT.)": {
       "codigo": "O6221",
-      "nombre": "LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV.",
-      "creditos": "EXT.) - 10"
+      "nombre": "LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV. - EXT.)",
+      "creditos": "10"
     },
     "O6211_TECNOLOGÍA DE MEDIOS AL SERVICIO DE LA PRESERVACIÓN DEL PATRIMONIO HISTÓRICO DOC": {
       "codigo": "O6211",
@@ -7010,10 +7010,10 @@
       "nombre": "GEOMETRIA Y ALGEBRA LINEAL 1 INTERACTIVA",
       "creditos": "9"
     },
-    "SRN45_MATEMATICA INICIAL": {
+    "SRN45_MATEMATICA INICIAL-OPTATIVA": {
       "codigo": "SRN45",
-      "nombre": "MATEMATICA INICIAL",
-      "creditos": "OPTATIVA - 4"
+      "nombre": "MATEMATICA INICIAL-OPTATIVA",
+      "creditos": "4"
     },
     "CIM22_TOPOLOGÍA": {
       "codigo": "CIM22",
@@ -7025,10 +7025,10 @@
       "nombre": "MATEMÁTICA DISCRETA I",
       "creditos": "10"
     },
-    "CIM11_MATEMÁTICA DISCRETA 2": {
+    "CIM11_MATEMÁTICA DISCRETA 2- CIM-CIOCT": {
       "codigo": "CIM11",
-      "nombre": "MATEMÁTICA DISCRETA 2",
-      "creditos": "CIM-CIOCT - 10"
+      "nombre": "MATEMÁTICA DISCRETA 2- CIM-CIOCT",
+      "creditos": "10"
     },
     "CH201_PROBABILIDAD Y ESTADÍSTICA": {
       "codigo": "CH201",
@@ -7520,10 +7520,10 @@
       "nombre": "INT. A LA FISICA MODERNA",
       "creditos": "10"
     },
-    "MHC39_BIOQUÍMICA I (2025": {
+    "MHC39_BIOQUÍMICA I (2025-": {
       "codigo": "MHC39",
-      "nombre": "BIOQUÍMICA I (2025",
-      "creditos": "- 11"
+      "nombre": "BIOQUÍMICA I (2025-",
+      "creditos": "11"
     },
     "102EU_QUÍMICA GENERAL I": {
       "codigo": "102EU",
@@ -7545,10 +7545,10 @@
       "nombre": "FISICA 1A CIOCT 2023",
       "creditos": "4"
     },
-    "REF05_FÍSICA IA": {
+    "REF05_FÍSICA IA- LDI.CIOCT": {
       "codigo": "REF05",
-      "nombre": "FÍSICA IA",
-      "creditos": "LDI.CIOCT - 4"
+      "nombre": "FÍSICA IA- LDI.CIOCT",
+      "creditos": "4"
     },
     "RN252_FISICA 1 BIOCIENCIAS 2017": {
       "codigo": "RN252",
@@ -7560,10 +7560,10 @@
       "nombre": "FISICA 2 BIOCIENCIAS 2017",
       "creditos": "12"
     },
-    "REF06_FÍSICA I B CIO CT": {
+    "REF06_FÍSICA I B CIO CT-LDI": {
       "codigo": "REF06",
-      "nombre": "FÍSICA I B CIO CT",
-      "creditos": "LDI - 6"
+      "nombre": "FÍSICA I B CIO CT-LDI",
+      "creditos": "6"
     },
     "SRN26_FÍSICA 3": {
       "codigo": "SRN26",
@@ -7580,25 +7580,25 @@
       "nombre": "FÍSICA 1",
       "creditos": "10"
     },
-    "MHC16_BIOQUÍMICA 1 (2020": {
+    "MHC16_BIOQUÍMICA 1 (2020-2024)": {
       "codigo": "MHC16",
-      "nombre": "BIOQUÍMICA 1 (2020",
-      "creditos": "2024) - 13"
+      "nombre": "BIOQUÍMICA 1 (2020-2024)",
+      "creditos": "13"
     },
     "MHC24_GENÉTICA GENERAL": {
       "codigo": "MHC24",
       "nombre": "GENÉTICA GENERAL",
       "creditos": "14"
     },
-    "MHC20_GENÓMICA (2021": {
+    "MHC20_GENÓMICA (2021-2024)": {
       "codigo": "MHC20",
-      "nombre": "GENÓMICA (2021",
-      "creditos": "2024) - 10"
+      "nombre": "GENÓMICA (2021-2024)",
+      "creditos": "10"
     },
-    "M000_METODOS CUANTITATIVOS III": {
+    "M000_METODOS CUANTITATIVOS III - PAYSANDU": {
       "codigo": "M000",
-      "nombre": "METODOS CUANTITATIVOS III",
-      "creditos": "PAYSANDU - 6"
+      "nombre": "METODOS CUANTITATIVOS III - PAYSANDU",
+      "creditos": "6"
     },
     "CCT20_FÍSICA II": {
       "codigo": "CCT20",
@@ -7825,10 +7825,10 @@
       "nombre": "CONCEPTOS DE LENGUAJES DE PROGRAMACION",
       "creditos": "6"
     },
-    "SRN17_PROGRAMACIÓN I": {
+    "SRN17_PROGRAMACIÓN I- CIO CT-LHRH": {
       "codigo": "SRN17",
-      "nombre": "PROGRAMACIÓN I",
-      "creditos": "CIO CT-LHRH - 10"
+      "nombre": "PROGRAMACIÓN I- CIO CT-LHRH",
+      "creditos": "10"
     },
     "1373_PROGRAMACION 1": {
       "codigo": "1373",
@@ -7885,10 +7885,10 @@
       "nombre": "ANALISIS NUMERICO II (P. 74)",
       "creditos": "12"
     },
-    "1343_BIO": {
+    "1343_BIO-COMPUTACION PARALELA": {
       "codigo": "1343",
-      "nombre": "BIO",
-      "creditos": "COMPUTACION PARALELA - 6"
+      "nombre": "BIO-COMPUTACION PARALELA",
+      "creditos": "6"
     },
     "1351_COMBINATORIA ANALITICA Y APLICACIONES": {
       "codigo": "1351",
@@ -8195,10 +8195,10 @@
       "nombre": "TALLER DE SEGURIDAD INFORMÁTICA",
       "creditos": "10"
     },
-    "1888_TALLER DE INICIACION A LOS SISTEMAS CIBER": {
+    "1888_TALLER DE INICIACION A LOS SISTEMAS CIBER-FISICOS": {
       "codigo": "1888",
-      "nombre": "TALLER DE INICIACION A LOS SISTEMAS CIBER",
-      "creditos": "FISICOS - 4"
+      "nombre": "TALLER DE INICIACION A LOS SISTEMAS CIBER-FISICOS",
+      "creditos": "4"
     },
     "1556_SISTEMAS EMBEBIDOS PARA TIEMPO REAL": {
       "codigo": "1556",
@@ -8210,10 +8210,10 @@
       "nombre": "SISTEMAS EMBEBIDOS PARA TIEMPO REAL",
       "creditos": "8"
     },
-    "1952_TALLER DE SISTEMAS CIBER": {
+    "1952_TALLER DE SISTEMAS CIBER-FISICOS": {
       "codigo": "1952",
-      "nombre": "TALLER DE SISTEMAS CIBER",
-      "creditos": "FISICOS - 6"
+      "nombre": "TALLER DE SISTEMAS CIBER-FISICOS",
+      "creditos": "6"
     },
     "GP6_PLAN.DE SIST.COMP.CLUSTER, GRID Y CLOUD": {
       "codigo": "GP6",
@@ -8535,10 +8535,10 @@
       "nombre": "TALLER DE APRENDIZAJE AUTOMATICO",
       "creditos": "8"
     },
-    "SRN30_TALLER DE ROBÓTICA": {
+    "SRN30_TALLER DE ROBÓTICA-CIO CT- INGBIOL": {
       "codigo": "SRN30",
-      "nombre": "TALLER DE ROBÓTICA",
-      "creditos": "CIO CT- INGBIOL - 2"
+      "nombre": "TALLER DE ROBÓTICA-CIO CT- INGBIOL",
+      "creditos": "2"
     },
     "1880_CIENCIA DE DATOS Y LENGUAJE NATURAL": {
       "codigo": "1880",
@@ -8945,10 +8945,10 @@
       "nombre": "TALLER INTRODUCTORIO DE INGENIERÍA DE SOFTWARE",
       "creditos": "10"
     },
-    "O6221_LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV.": {
+    "O6221_LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV. - EXT.)": {
       "codigo": "O6221",
-      "nombre": "LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV.",
-      "creditos": "EXT.) - 10"
+      "nombre": "LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV. - EXT.)",
+      "creditos": "10"
     },
     "O6311_TALLER DE INTERACCIÓN": {
       "codigo": "O6311",
@@ -9710,10 +9710,10 @@
       "nombre": "CIENCIA,TECNOLOGÍA, INNOVACIÓN, SOCIEDAD Y DESARROLLO",
       "creditos": "6"
     },
-    "O6521_TEORÍAS Y PRÁCTICAS DE LA ACCESIBILIDAD EN LA COMUNICACIÓN": {
+    "O6521_TEORÍAS Y PRÁCTICAS DE LA ACCESIBILIDAD EN LA COMUNICACIÓN - LIM": {
       "codigo": "O6521",
-      "nombre": "TEORÍAS Y PRÁCTICAS DE LA ACCESIBILIDAD EN LA COMUNICACIÓN",
-      "creditos": "LIM - 8"
+      "nombre": "TEORÍAS Y PRÁCTICAS DE LA ACCESIBILIDAD EN LA COMUNICACIÓN - LIM",
+      "creditos": "8"
     },
     "O2525_COMUNICACIÓN E INTELIGENCIA ARTIFICIAL(PPP)": {
       "codigo": "O2525",
@@ -10887,10 +10887,10 @@
       "nombre": "VISION POR COMPUTADORA",
       "creditos": "10"
     },
-    "5908_HERRAMIENTAS DE REPRESENTACION TIEMPO": {
+    "5908_HERRAMIENTAS DE REPRESENTACION TIEMPO-FRECUENCIA": {
       "codigo": "5908",
-      "nombre": "HERRAMIENTAS DE REPRESENTACION TIEMPO",
-      "creditos": "FRECUENCIA - 7"
+      "nombre": "HERRAMIENTAS DE REPRESENTACION TIEMPO-FRECUENCIA",
+      "creditos": "7"
     },
     "1438_APLICACIONES DE TEORIA DE LA INFORMACION AL PROC. DE IMAG.": {
       "codigo": "1438",
@@ -11127,10 +11127,10 @@
       "nombre": "TUTORIAS ENTRE PARES 1",
       "creditos": "4"
     },
-    "O6221_LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV.": {
+    "O6221_LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV. - EXT.)": {
       "codigo": "O6221",
-      "nombre": "LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV.",
-      "creditos": "EXT.) - 10"
+      "nombre": "LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV. - EXT.)",
+      "creditos": "10"
     },
     "O6211_TECNOLOGÍA DE MEDIOS AL SERVICIO DE LA PRESERVACIÓN DEL PATRIMONIO HISTÓRICO DOC": {
       "codigo": "O6211",
@@ -11184,25 +11184,25 @@
       "nombre": "FISIOLOGÍA CUANTITATIVA",
       "creditos": "10"
     },
-    "MHC19_BIOINGENIERÍA MOLECULAR Y CELULAR": {
+    "MHC19_BIOINGENIERÍA MOLECULAR Y CELULAR - MÓDULOS 1, 2 Y 3 (2018-2024)": {
       "codigo": "MHC19",
-      "nombre": "BIOINGENIERÍA MOLECULAR Y CELULAR",
-      "creditos": "MÓDULOS 1, 2 Y 3 (2018-2024) - 10"
+      "nombre": "BIOINGENIERÍA MOLECULAR Y CELULAR - MÓDULOS 1, 2 Y 3 (2018-2024)",
+      "creditos": "10"
     },
-    "MHC39_BIOQUÍMICA I (2025": {
+    "MHC39_BIOQUÍMICA I (2025-": {
       "codigo": "MHC39",
-      "nombre": "BIOQUÍMICA I (2025",
-      "creditos": "- 11"
+      "nombre": "BIOQUÍMICA I (2025-",
+      "creditos": "11"
     },
-    "MHC32_ETOLOGÍA (2025": {
+    "MHC32_ETOLOGÍA (2025-": {
       "codigo": "MHC32",
-      "nombre": "ETOLOGÍA (2025",
-      "creditos": "- 8"
+      "nombre": "ETOLOGÍA (2025-",
+      "creditos": "8"
     },
-    "AA202_CIENCIAS AMBIENTALES I": {
+    "AA202_CIENCIAS AMBIENTALES I - FUNDAMENTOS DE ECOLOGÍA": {
       "codigo": "AA202",
-      "nombre": "CIENCIAS AMBIENTALES I",
-      "creditos": "FUNDAMENTOS DE ECOLOGÍA - 5"
+      "nombre": "CIENCIAS AMBIENTALES I - FUNDAMENTOS DE ECOLOGÍA",
+      "creditos": "5"
     },
     "908EU_BOTÁNICA": {
       "codigo": "908EU",
@@ -11214,10 +11214,10 @@
       "nombre": "BIOFISICA",
       "creditos": "3"
     },
-    "MHC18_BIOFÍSICA (2020": {
+    "MHC18_BIOFÍSICA (2020-": {
       "codigo": "MHC18",
-      "nombre": "BIOFÍSICA (2020",
-      "creditos": "- 13"
+      "nombre": "BIOFÍSICA (2020-",
+      "creditos": "13"
     },
     "2110A_BIOQUÌMICA DESCRIPTIVA": {
       "codigo": "2110A",
@@ -11229,20 +11229,20 @@
       "nombre": "ECOLOGÍA GENERAL",
       "creditos": "12"
     },
-    "ELIBC_ELECTIVA": {
+    "ELIBC_ELECTIVA - INTRODUCCION A LA BIOLOGIA CELULAR Y MOLECULAR": {
       "codigo": "ELIBC",
-      "nombre": "ELECTIVA",
-      "creditos": "INTRODUCCION A LA BIOLOGIA CELULAR Y MOLECULAR - 10"
+      "nombre": "ELECTIVA - INTRODUCCION A LA BIOLOGIA CELULAR Y MOLECULAR",
+      "creditos": "10"
     },
-    "MHC14_ETOLOGÍA (2021": {
+    "MHC14_ETOLOGÍA (2021-2024)": {
       "codigo": "MHC14",
-      "nombre": "ETOLOGÍA (2021",
-      "creditos": "2024) - 10"
+      "nombre": "ETOLOGÍA (2021-2024)",
+      "creditos": "10"
     },
-    "MHC28_VIROLOGÍA FUNDAMENTAL (2022": {
+    "MHC28_VIROLOGÍA FUNDAMENTAL (2022-2024)": {
       "codigo": "MHC28",
-      "nombre": "VIROLOGÍA FUNDAMENTAL (2022",
-      "creditos": "2024) - 12"
+      "nombre": "VIROLOGÍA FUNDAMENTAL (2022-2024)",
+      "creditos": "12"
     },
     "1159_INT. A LA FISICA MODERNA": {
       "codigo": "1159",
@@ -11399,10 +11399,10 @@
       "nombre": "MECÁNICA CLÁSICA",
       "creditos": "10"
     },
-    "MHC29_MECÁNICA CLÁSICA (2022": {
+    "MHC29_MECÁNICA CLÁSICA (2022-": {
       "codigo": "MHC29",
-      "nombre": "MECÁNICA CLÁSICA (2022",
-      "creditos": "- 14"
+      "nombre": "MECÁNICA CLÁSICA (2022-",
+      "creditos": "14"
     },
     "MHC08_ASTRONOMÍA FUNDAMENTAL": {
       "codigo": "MHC08",
@@ -11644,10 +11644,10 @@
       "nombre": "PROBABILIDAD Y ESTADÍSTICA",
       "creditos": "10"
     },
-    "ELBES_ELECTIVA": {
+    "ELBES_ELECTIVA - INTRODUCCION A LA BIOESTADISTICA": {
       "codigo": "ELBES",
-      "nombre": "ELECTIVA",
-      "creditos": "INTRODUCCION A LA BIOESTADISTICA - 5"
+      "nombre": "ELECTIVA - INTRODUCCION A LA BIOESTADISTICA",
+      "creditos": "5"
     },
     "DMA02_MATEMÁTICA DISCRETA": {
       "codigo": "DMA02",
@@ -11669,10 +11669,10 @@
       "nombre": "MATEMATICA DISCRETA 2",
       "creditos": "9"
     },
-    "CIM11_MATEMÁTICA DISCRETA 2": {
+    "CIM11_MATEMÁTICA DISCRETA 2- CIM-CIOCT": {
       "codigo": "CIM11",
-      "nombre": "MATEMÁTICA DISCRETA 2",
-      "creditos": "CIM-CIOCT - 10"
+      "nombre": "MATEMÁTICA DISCRETA 2- CIM-CIOCT",
+      "creditos": "10"
     },
     "463N_ESTADÍSTICA NO PARAMÉTRICA": {
       "codigo": "463N",
@@ -11999,20 +11999,20 @@
       "nombre": "CIENCIA,TECNOLOGÍA, INNOVACIÓN, SOCIEDAD Y DESARROLLO",
       "creditos": "6"
     },
-    "AA504_CIENCIAS AMBIENTALES III": {
+    "AA504_CIENCIAS AMBIENTALES III - INSTRUMENTOS DE GESTION AMBIENTAL": {
       "codigo": "AA504",
-      "nombre": "CIENCIAS AMBIENTALES III",
-      "creditos": "INSTRUMENTOS DE GESTION AMBIENTAL - 5"
+      "nombre": "CIENCIAS AMBIENTALES III - INSTRUMENTOS DE GESTION AMBIENTAL",
+      "creditos": "5"
     },
     "C34B_DESARROLLO ECONÓMICO EN EL URUGUAY CONTEMPORÁNEO": {
       "codigo": "C34B",
       "nombre": "DESARROLLO ECONÓMICO EN EL URUGUAY CONTEMPORÁNEO",
       "creditos": "9"
     },
-    "D92_DESARROLLO SOCIO": {
+    "D92_DESARROLLO SOCIO-TERRITORIAL": {
       "codigo": "D92",
-      "nombre": "DESARROLLO SOCIO",
-      "creditos": "TERRITORIAL - 6"
+      "nombre": "DESARROLLO SOCIO-TERRITORIAL",
+      "creditos": "6"
     },
     "D54_DISEÑOS DE INVESTIGACIÓN": {
       "codigo": "D54",
@@ -12034,10 +12034,10 @@
       "nombre": "EFI:DETERMINANTES DEL ABANDONO DE ESTUDIANTES UNIVERSITARIOS",
       "creditos": "10"
     },
-    "ELSPH_ELECTIVA": {
+    "ELSPH_ELECTIVA - SALUD PUBLICA Y HUMANIDADES": {
       "codigo": "ELSPH",
-      "nombre": "ELECTIVA",
-      "creditos": "SALUD PUBLICA Y HUMANIDADES - 11"
+      "nombre": "ELECTIVA - SALUD PUBLICA Y HUMANIDADES",
+      "creditos": "11"
     },
     "D80A_ESTADO, DESARROLLO Y POLÍTICAS PÚBLICAS": {
       "codigo": "D80A",
@@ -12169,10 +12169,10 @@
       "nombre": "PSICOLOGÍA",
       "creditos": "4"
     },
-    "AA607_SIG": {
+    "AA607_SIG - SISTEMAS DE INFO.GEOGRÁFICA-NIVEL BÁSICO": {
       "codigo": "AA607",
-      "nombre": "SIG",
-      "creditos": "SISTEMAS DE INFO.GEOGRÁFICA-NIVEL BÁSICO - 5"
+      "nombre": "SIG - SISTEMAS DE INFO.GEOGRÁFICA-NIVEL BÁSICO",
+      "creditos": "5"
     },
     "2107A_TALLER DE COMUNICACIÓN ORAL Y ESCRITA": {
       "codigo": "2107A",
@@ -12298,6 +12298,11 @@
       "codigo": "AT028",
       "nombre": "TRANSVERSAL 1 SUSTENTABILIDAD",
       "creditos": "6"
+    },
+    "2382_HORMIGON ESTRUCTURAL 1": {
+      "codigo": "2382",
+      "nombre": "HORMIGON ESTRUCTURAL 1",
+      "creditos": "11"
     },
     "1513_INT. A LOS MICROPROCESADORES": {
       "codigo": "1513",
@@ -12494,10 +12499,10 @@
       "nombre": "ENERGIA 1",
       "creditos": "10"
     },
-    "1850_ENERGIA 1": {
+    "1850_ENERGIA 1- COMBUSTION": {
       "codigo": "1850",
-      "nombre": "ENERGIA 1",
-      "creditos": "COMBUSTION - 10"
+      "nombre": "ENERGIA 1- COMBUSTION",
+      "creditos": "10"
     },
     "1911_FUNDAMENTOS DE BASES DE DATOS": {
       "codigo": "1911",
@@ -12579,15 +12584,15 @@
       "nombre": "TRANSPORTE DE ENERGIA ELECTRICA",
       "creditos": "8"
     },
-    "18887_PASANTIA INGENIERIA FISICO": {
+    "18887_PASANTIA INGENIERIA FISICO-MATEMATICA": {
       "codigo": "18887",
-      "nombre": "PASANTIA INGENIERIA FISICO",
-      "creditos": "MATEMATICA - 10"
+      "nombre": "PASANTIA INGENIERIA FISICO-MATEMATICA",
+      "creditos": "10"
     },
-    "1885_PROYECTO (ING FÍSICO": {
+    "1885_PROYECTO (ING FÍSICO-MAT)": {
       "codigo": "1885",
-      "nombre": "PROYECTO (ING FÍSICO",
-      "creditos": "MAT) - 35"
+      "nombre": "PROYECTO (ING FÍSICO-MAT)",
+      "creditos": "35"
     },
     "1990_TALLER DE PROCESAMIENTO DE AUDIO Y VIDEO CON PURE DATA/GEM": {
       "codigo": "1990",
@@ -12604,10 +12609,10 @@
       "nombre": "LABORATORIO 3",
       "creditos": "4"
     },
-    "1889_TALLER DE INGENIERIA FISICO": {
+    "1889_TALLER DE INGENIERIA FISICO-MATEMATICA": {
       "codigo": "1889",
-      "nombre": "TALLER DE INGENIERIA FISICO",
-      "creditos": "MATEMATICA - 6"
+      "nombre": "TALLER DE INGENIERIA FISICO-MATEMATICA",
+      "creditos": "6"
     },
     "1266_TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO A": {
       "codigo": "1266",
@@ -13511,10 +13516,10 @@
       "nombre": "ENERGIA 1",
       "creditos": "10"
     },
-    "1850_ENERGIA 1": {
+    "1850_ENERGIA 1- COMBUSTION": {
       "codigo": "1850",
-      "nombre": "ENERGIA 1",
-      "creditos": "COMBUSTION - 10"
+      "nombre": "ENERGIA 1- COMBUSTION",
+      "creditos": "10"
     },
     "2394_ENERGIA 2:GEN ENERG PLANTAS VAPOR Y GAS": {
       "codigo": "2394",
@@ -13561,10 +13566,10 @@
       "nombre": "GENERADORES DE VAPOR",
       "creditos": "10"
     },
-    "1839_LABORATORIO COMBUSTIBLES": {
+    "1839_LABORATORIO COMBUSTIBLES-LUBRICANTES": {
       "codigo": "1839",
-      "nombre": "LABORATORIO COMBUSTIBLES",
-      "creditos": "LUBRICANTES - 3"
+      "nombre": "LABORATORIO COMBUSTIBLES-LUBRICANTES",
+      "creditos": "3"
     },
     "CP326_MAQUINAS I (P. 74)": {
       "codigo": "CP326",
@@ -14126,10 +14131,10 @@
       "nombre": "GESTION DE MANTENIMIENTO",
       "creditos": "8"
     },
-    "192_0": {
-      "codigo": "192",
-      "nombre": "0",
-      "creditos": "GESTION DE MANTENIMIENTO - 8"
+    "192-0_GESTION DE MANTENIMIENTO": {
+      "codigo": "192-0",
+      "nombre": "GESTION DE MANTENIMIENTO",
+      "creditos": "8"
     },
     "CP160_GESTION EMPRESARIAL (P. 74)": {
       "codigo": "CP160",
@@ -14561,10 +14566,10 @@
       "nombre": "ECONOMIA Y FINANZAS (P. 74)",
       "creditos": "7"
     },
-    "2032_MODULO DE EXTENSION": {
+    "2032_MODULO DE EXTENSION- INGENIERIA MECANICA": {
       "codigo": "2032",
-      "nombre": "MODULO DE EXTENSION",
-      "creditos": "INGENIERIA MECANICA - 3"
+      "nombre": "MODULO DE EXTENSION- INGENIERIA MECANICA",
+      "creditos": "3"
     },
     "1220_TALLER DE DISEÑO, COM. Y REPRES. GRAFICA": {
       "codigo": "1220",
@@ -14656,10 +14661,10 @@
       "nombre": "CREDITOS ASIGNADOS POR REVALIDA",
       "creditos": "2"
     },
-    "2030_MODULO DE TALLER": {
+    "2030_MODULO DE TALLER- INGENIERIA MECANICA": {
       "codigo": "2030",
-      "nombre": "MODULO DE TALLER",
-      "creditos": "INGENIERIA MECANICA - 3"
+      "nombre": "MODULO DE TALLER- INGENIERIA MECANICA",
+      "creditos": "3"
     },
     "2001_TALLER": {
       "codigo": "2001",
@@ -15373,15 +15378,15 @@
       "nombre": "ENERGIA 2:GEN ENERG PLANTAS VAPOR Y GAS",
       "creditos": "10"
     },
-    "1839_LABORATORIO COMBUSTIBLES": {
+    "1839_LABORATORIO COMBUSTIBLES-LUBRICANTES": {
       "codigo": "1839",
-      "nombre": "LABORATORIO COMBUSTIBLES",
-      "creditos": "LUBRICANTES - 3"
+      "nombre": "LABORATORIO COMBUSTIBLES-LUBRICANTES",
+      "creditos": "3"
     },
-    "1850_ENERGIA 1": {
+    "1850_ENERGIA 1- COMBUSTION": {
       "codigo": "1850",
-      "nombre": "ENERGIA 1",
-      "creditos": "COMBUSTION - 10"
+      "nombre": "ENERGIA 1- COMBUSTION",
+      "creditos": "10"
     },
     "1856_MAQUINAS PARA FLUIDOS I": {
       "codigo": "1856",
@@ -16188,10 +16193,10 @@
       "nombre": "INTRODUCCION AL CONOCIMIENTO DEL AMBIENTE Y LA SUSTENTABILIDAD (RETEMA)",
       "creditos": "4"
     },
-    "2032_MODULO DE EXTENSION": {
+    "2032_MODULO DE EXTENSION- INGENIERIA MECANICA": {
       "codigo": "2032",
-      "nombre": "MODULO DE EXTENSION",
-      "creditos": "INGENIERIA MECANICA - 3"
+      "nombre": "MODULO DE EXTENSION- INGENIERIA MECANICA",
+      "creditos": "3"
     },
     "1220_TALLER DE DISEÑO, COM. Y REPRES. GRAFICA": {
       "codigo": "1220",
@@ -16298,10 +16303,10 @@
       "nombre": "PROYECTO (ING.NAVAL)",
       "creditos": "15"
     },
-    "2030_MODULO DE TALLER": {
+    "2030_MODULO DE TALLER- INGENIERIA MECANICA": {
       "codigo": "2030",
-      "nombre": "MODULO DE TALLER",
-      "creditos": "INGENIERIA MECANICA - 3"
+      "nombre": "MODULO DE TALLER- INGENIERIA MECANICA",
+      "creditos": "3"
     },
     "2001_TALLER": {
       "codigo": "2001",
@@ -16490,10 +16495,10 @@
       "nombre": "MAT. 06 (CÁLCULO NUMÉRICO)",
       "creditos": "7"
     },
-    "05A_MAT. 05 (ESTADÍSTICA) (DESDE 2015": {
+    "05A_MAT. 05 (ESTADÍSTICA) (DESDE 2015 - HASTA 2023)": {
       "codigo": "05A",
-      "nombre": "MAT. 05 (ESTADÍSTICA) (DESDE 2015",
-      "creditos": "HASTA 2023) - 11"
+      "nombre": "MAT. 05 (ESTADÍSTICA) (DESDE 2015 - HASTA 2023)",
+      "creditos": "11"
     },
     "05_MAT. 05 (ESTADÍSTICA)": {
       "codigo": "05",
@@ -16955,15 +16960,15 @@
       "nombre": "QUÍMICA GENERAL II (F. QUÍMICA)",
       "creditos": "8"
     },
-    "501C_QCA. ORGÁNICA 103": {
+    "501C_QCA. ORGÁNICA 103 - LABORATORIO": {
       "codigo": "501C",
-      "nombre": "QCA. ORGÁNICA 103",
-      "creditos": "LABORATORIO - 5"
+      "nombre": "QCA. ORGÁNICA 103 - LABORATORIO",
+      "creditos": "5"
     },
-    "501_QCA. ORGÁNICA 103": {
+    "501_QCA. ORGÁNICA 103 - LABORATORIO": {
       "codigo": "501",
-      "nombre": "QCA. ORGÁNICA 103",
-      "creditos": "LABORATORIO - 5"
+      "nombre": "QCA. ORGÁNICA 103 - LABORATORIO",
+      "creditos": "5"
     },
     "401C_QUÍMICA ORGÁNICA 102": {
       "codigo": "401C",
@@ -17020,15 +17025,15 @@
       "nombre": "QCA. BIOINORGÁNICA OP. II (T) DESDE 2015",
       "creditos": "6"
     },
-    "546A_QCA. BIOINORGÁNICA OP. I (T": {
+    "546A_QCA. BIOINORGÁNICA OP. I (T-L)": {
       "codigo": "546A",
-      "nombre": "QCA. BIOINORGÁNICA OP. I (T",
-      "creditos": "L) - 8"
+      "nombre": "QCA. BIOINORGÁNICA OP. I (T-L)",
+      "creditos": "8"
     },
-    "503_QUÍMICA ANALÍTICA III": {
+    "503_QUÍMICA ANALÍTICA III - ANÁLISIS INSTRUMENTAL": {
       "codigo": "503",
-      "nombre": "QUÍMICA ANALÍTICA III",
-      "creditos": "ANÁLISIS INSTRUMENTAL - 10"
+      "nombre": "QUÍMICA ANALÍTICA III - ANÁLISIS INSTRUMENTAL",
+      "creditos": "10"
     },
     "402_QUÍMICA ANALÍTICA II": {
       "codigo": "402",
@@ -17485,10 +17490,10 @@
       "nombre": "TALLER DE DISEÑO DE PROCESOS",
       "creditos": "5"
     },
-    "Q92_TALLER": {
+    "Q92_TALLER- LABORATORIO DE PROCESOS QUIMICOS": {
       "codigo": "Q92",
-      "nombre": "TALLER",
-      "creditos": "LABORATORIO DE PROCESOS QUIMICOS - 6"
+      "nombre": "TALLER- LABORATORIO DE PROCESOS QUIMICOS",
+      "creditos": "6"
     },
     "791T_QUÍMICA Y TECNOLOGÍA DE GRASAS Y ACEITES (T) OP. B (DESDE 2016)": {
       "codigo": "791T",
@@ -17530,20 +17535,20 @@
       "nombre": "PROC. TERMOQ.PARA OBT. DE ENER. BIOMASA",
       "creditos": "5"
     },
-    "Q82_PASANTIA": {
+    "Q82_PASANTIA-TRABAJO EXPERIM. MOD.1 BASICO": {
       "codigo": "Q82",
-      "nombre": "PASANTIA",
-      "creditos": "TRABAJO EXPERIM. MOD.1 BASICO - 12"
+      "nombre": "PASANTIA-TRABAJO EXPERIM. MOD.1 BASICO",
+      "creditos": "12"
     },
-    "Q83_PASANTIA": {
+    "Q83_PASANTIA-TRABAJO EXPERIM. MOD.2": {
       "codigo": "Q83",
-      "nombre": "PASANTIA",
-      "creditos": "TRABAJO EXPERIM. MOD.2 - 4"
+      "nombre": "PASANTIA-TRABAJO EXPERIM. MOD.2",
+      "creditos": "4"
     },
-    "Q84_PASANTIA": {
+    "Q84_PASANTIA-TRABAJO EXPERIM. MOD.3": {
       "codigo": "Q84",
-      "nombre": "PASANTIA",
-      "creditos": "TRABAJO EXPERIM. MOD.3 - 8"
+      "nombre": "PASANTIA-TRABAJO EXPERIM. MOD.3",
+      "creditos": "8"
     },
     "Q17_MODELADO, SIMULACION Y OPTIMIZACION DE PROCESOS": {
       "codigo": "Q17",
@@ -17610,10 +17615,10 @@
       "nombre": "INDUSTRIA CARNICA",
       "creditos": "6"
     },
-    "458_HIDRÓGENO FUENTE DE ENERGÍA": {
+    "458_HIDRÓGENO FUENTE DE ENERGÍA-PROD. Y USO": {
       "codigo": "458",
-      "nombre": "HIDRÓGENO FUENTE DE ENERGÍA",
-      "creditos": "PROD. Y USO - 6"
+      "nombre": "HIDRÓGENO FUENTE DE ENERGÍA-PROD. Y USO",
+      "creditos": "6"
     },
     "Q87_FUNDAMENTOS DE MATERIALES CERAMICOS": {
       "codigo": "Q87",
@@ -17695,25 +17700,25 @@
       "nombre": "BIODIESEL",
       "creditos": "4"
     },
-    "773B_BIODIESEL": {
+    "773B_BIODIESEL - CURSO TEÓRICO": {
       "codigo": "773B",
-      "nombre": "BIODIESEL",
-      "creditos": "CURSO TEÓRICO - 4"
+      "nombre": "BIODIESEL - CURSO TEÓRICO",
+      "creditos": "4"
     },
-    "798_BIODIESEL": {
+    "798_BIODIESEL - CURSO DE LABORATORIO": {
       "codigo": "798",
-      "nombre": "BIODIESEL",
-      "creditos": "CURSO DE LABORATORIO - 2"
+      "nombre": "BIODIESEL - CURSO DE LABORATORIO",
+      "creditos": "2"
     },
     "AA808_GESTION DE LA ENERGÍA": {
       "codigo": "AA808",
       "nombre": "GESTION DE LA ENERGÍA",
       "creditos": "6"
     },
-    "AA504_CIENCIAS AMBIENTALES III": {
+    "AA504_CIENCIAS AMBIENTALES III - INSTRUMENTOS DE GESTION AMBIENTAL": {
       "codigo": "AA504",
-      "nombre": "CIENCIAS AMBIENTALES III",
-      "creditos": "INSTRUMENTOS DE GESTION AMBIENTAL - 5"
+      "nombre": "CIENCIAS AMBIENTALES III - INSTRUMENTOS DE GESTION AMBIENTAL",
+      "creditos": "5"
     },
     "1927_TEORIA DE RESTRICCIONES": {
       "codigo": "1927",
@@ -17955,10 +17960,10 @@
       "nombre": "DISEÑO Y MONTAJE DE LAS INDUSTRIAS DE PROCESOS",
       "creditos": "5"
     },
-    "15A_TUTORÍA ENTRE PARES": {
+    "15A_TUTORÍA ENTRE PARES - MATEMÁTICA 01": {
       "codigo": "15A",
-      "nombre": "TUTORÍA ENTRE PARES",
-      "creditos": "MATEMÁTICA 01 - 4"
+      "nombre": "TUTORÍA ENTRE PARES - MATEMÁTICA 01",
+      "creditos": "4"
     },
     "2216_TUTORIAS ENTRE PARES 1": {
       "codigo": "2216",
@@ -17970,10 +17975,10 @@
       "nombre": "TUTORIAS ENTRE PARES 2",
       "creditos": "4"
     },
-    "15B_TUTORIA ENTRE PARES": {
+    "15B_TUTORIA ENTRE PARES - MATEMÁTICA 04": {
       "codigo": "15B",
-      "nombre": "TUTORIA ENTRE PARES",
-      "creditos": "MATEMÁTICA 04 - 4"
+      "nombre": "TUTORIA ENTRE PARES - MATEMÁTICA 04",
+      "creditos": "4"
     },
     "122A_TALLER DE DISEÑO,COM Y REP.GRAFICA": {
       "codigo": "122A",
@@ -18005,10 +18010,10 @@
       "nombre": "REPRESENTACION GRAFICA PARA INDUSTRIAS DE PROC.",
       "creditos": "4"
     },
-    "Q19_MODULO DE EXTENSION": {
+    "Q19_MODULO DE EXTENSION - INGENIERIA QUIMICA": {
       "codigo": "Q19",
-      "nombre": "MODULO DE EXTENSION",
-      "creditos": "INGENIERIA QUIMICA - 3"
+      "nombre": "MODULO DE EXTENSION - INGENIERIA QUIMICA",
+      "creditos": "3"
     },
     "AT009_MODELADO 3D PARA PRODUCCION DIGITAL (PERFIL PRODUCTO)": {
       "codigo": "AT009",
@@ -18103,20 +18108,20 @@
       "nombre": "AGROMETEOROLOGIA",
       "creditos": "0"
     },
-    "B01_ALFABETIZACIÓN EN INFORMACIÓN I (TC": {
+    "B01_ALFABETIZACIÓN EN INFORMACIÓN I (TC-RCYFG)": {
       "codigo": "B01",
-      "nombre": "ALFABETIZACIÓN EN INFORMACIÓN I (TC",
-      "creditos": "RCYFG) - 1"
+      "nombre": "ALFABETIZACIÓN EN INFORMACIÓN I (TC-RCYFG)",
+      "creditos": "1"
     },
-    "B06_ALFABETIZACIÓN EN INFORMACIÓN II (TC": {
+    "B06_ALFABETIZACIÓN EN INFORMACIÓN II (TC-RCYFG)(2023-": {
       "codigo": "B06",
-      "nombre": "ALFABETIZACIÓN EN INFORMACIÓN II (TC",
-      "creditos": "RCYFG)(2023- - 1"
+      "nombre": "ALFABETIZACIÓN EN INFORMACIÓN II (TC-RCYFG)(2023-",
+      "creditos": "1"
     },
-    "B02_ALFABETIZACIÓN EN INFORMACIÓN II (TC": {
+    "B02_ALFABETIZACIÓN EN INFORMACIÓN II (TC-RCYFG) (2015 AL 2022)": {
       "codigo": "B02",
-      "nombre": "ALFABETIZACIÓN EN INFORMACIÓN II (TC",
-      "creditos": "RCYFG) (2015 AL 2022) - 1"
+      "nombre": "ALFABETIZACIÓN EN INFORMACIÓN II (TC-RCYFG) (2015 AL 2022)",
+      "creditos": "1"
     },
     "FI285_CLUB DE ARTÍCULOS DE FÍSICA": {
       "codigo": "FI285",
@@ -18128,35 +18133,35 @@
       "nombre": "CURSO DE APOYO A LA ESCRITURA ACADÉMICA PARA TRABAJO FINAL DE GRADO",
       "creditos": "3"
     },
-    "BG955_EFI": {
+    "BG955_EFI - CLUBES DE CIENCIAS COMO ESTRATEGIA DE ENSEÑANZA (TC04) (2022-2023)": {
       "codigo": "BG955",
-      "nombre": "EFI",
-      "creditos": "CLUBES DE CIENCIAS COMO ESTRATEGIA DE ENSEÑANZA (TC04) (2022-2023) - 7"
+      "nombre": "EFI - CLUBES DE CIENCIAS COMO ESTRATEGIA DE ENSEÑANZA (TC04) (2022-2023)",
+      "creditos": "7"
     },
-    "BG803_EFI": {
+    "BG803_EFI - CLUBES DE CIENCIAS COMO ESTRATEGIAS DE ENSEÑANZA (ELEC.)(2020 Y 2021)": {
       "codigo": "BG803",
-      "nombre": "EFI",
-      "creditos": "CLUBES DE CIENCIAS COMO ESTRATEGIAS DE ENSEÑANZA (ELEC.)(2020 Y 2021) - 7"
+      "nombre": "EFI - CLUBES DE CIENCIAS COMO ESTRATEGIAS DE ENSEÑANZA (ELEC.)(2020 Y 2021)",
+      "creditos": "7"
     },
-    "EXT01_EFI": {
+    "EXT01_EFI - ACOMPAÑAMIENTO PARA LA FORMACIÓN DE AGENTES AMBIENTALES": {
       "codigo": "EXT01",
-      "nombre": "EFI",
-      "creditos": "ACOMPAÑAMIENTO PARA LA FORMACIÓN DE AGENTES AMBIENTALES - 5"
+      "nombre": "EFI - ACOMPAÑAMIENTO PARA LA FORMACIÓN DE AGENTES AMBIENTALES",
+      "creditos": "5"
     },
-    "EXT02_EFI": {
+    "EXT02_EFI - CLUBES DE CIENCIA COMO ESTRATEGIA DE ENSEÑANZA (2025-": {
       "codigo": "EXT02",
-      "nombre": "EFI",
-      "creditos": "CLUBES DE CIENCIA COMO ESTRATEGIA DE ENSEÑANZA (2025- - 7"
+      "nombre": "EFI - CLUBES DE CIENCIA COMO ESTRATEGIA DE ENSEÑANZA (2025-",
+      "creditos": "7"
     },
-    "BQ436_EFI": {
+    "BQ436_EFI - DERECHOS DE LAS INFANCIAS, ADOLESCENCIAS Y NATURALEZA EN UNIÓN-MN (2024)": {
       "codigo": "BQ436",
-      "nombre": "EFI",
-      "creditos": "DERECHOS DE LAS INFANCIAS, ADOLESCENCIAS Y NATURALEZA EN UNIÓN-MN (2024) - 8"
+      "nombre": "EFI - DERECHOS DE LAS INFANCIAS, ADOLESCENCIAS Y NATURALEZA EN UNIÓN-MN (2024)",
+      "creditos": "8"
     },
-    "B0057_EFI": {
+    "B0057_EFI - DERECHOS DE LAS INFANCIAS, ADOLESCENCIAS Y NATURALEZA EN UNIÓN-MN (2025-": {
       "codigo": "B0057",
-      "nombre": "EFI",
-      "creditos": "DERECHOS DE LAS INFANCIAS, ADOLESCENCIAS Y NATURALEZA EN UNIÓN-MN (2025- - 8"
+      "nombre": "EFI - DERECHOS DE LAS INFANCIAS, ADOLESCENCIAS Y NATURALEZA EN UNIÓN-MN (2025-",
+      "creditos": "8"
     },
     "1154_FISICA EXPERIMENTAL 1": {
       "codigo": "1154",
@@ -18173,10 +18178,10 @@
       "nombre": "INESTABILIDADES EN FLUIDOS",
       "creditos": "4"
     },
-    "IFC4_INGLÉS I (2021": {
+    "IFC4_INGLÉS I (2021-": {
       "codigo": "IFC4",
-      "nombre": "INGLÉS I (2021",
-      "creditos": "- 4"
+      "nombre": "INGLÉS I (2021-",
+      "creditos": "4"
     },
     "FI07_INTRODUCCIÓN A LA CIENCIA DE LA TIERRA Y EL ESPACIO I": {
       "codigo": "FI07",
@@ -18188,10 +18193,10 @@
       "nombre": "INTRODUCCIÓN A LA CIENCIA DE LA TIERRA Y EL ESPACIO II",
       "creditos": "10"
     },
-    "BG463_INTRODUCCIÓN A LA INVESTIGACIÓN ANTÁRTICA (2017": {
+    "BG463_INTRODUCCIÓN A LA INVESTIGACIÓN ANTÁRTICA (2017-2024)": {
       "codigo": "BG463",
-      "nombre": "INTRODUCCIÓN A LA INVESTIGACIÓN ANTÁRTICA (2017",
-      "creditos": "2024) - 3"
+      "nombre": "INTRODUCCIÓN A LA INVESTIGACIÓN ANTÁRTICA (2017-2024)",
+      "creditos": "3"
     },
     "B0049_INTRODUCCIÓN A LA INVESTIGACIÓN ANTÁRTICA (2025": {
       "codigo": "B0049",
@@ -18208,25 +18213,25 @@
       "nombre": "PRINCIPIOS BÁSICOS DE MEDICIONES ATMOSFÉRICAS",
       "creditos": "10"
     },
-    "FI29_TALLER I (1980": {
+    "FI29_TALLER I (1980-2024)": {
       "codigo": "FI29",
-      "nombre": "TALLER I (1980",
-      "creditos": "2024) - 9"
+      "nombre": "TALLER I (1980-2024)",
+      "creditos": "9"
     },
-    "FI282_TALLER I (2025": {
+    "FI282_TALLER I (2025-": {
       "codigo": "FI282",
-      "nombre": "TALLER I (2025",
-      "creditos": "- 10"
+      "nombre": "TALLER I (2025-",
+      "creditos": "10"
     },
-    "FI41_TALLER II (1991": {
+    "FI41_TALLER II (1991-2024)": {
       "codigo": "FI41",
-      "nombre": "TALLER II (1991",
-      "creditos": "2024) - 8"
+      "nombre": "TALLER II (1991-2024)",
+      "creditos": "8"
     },
-    "FI284_TALLER II (2025": {
+    "FI284_TALLER II (2025-": {
       "codigo": "FI284",
-      "nombre": "TALLER II (2025",
-      "creditos": "- 10"
+      "nombre": "TALLER II (2025-",
+      "creditos": "10"
     },
     "1275_TALLER BASICO DE ESTRATEGIAS Y ORIENTACION (TBEO)": {
       "codigo": "1275",
@@ -18243,15 +18248,15 @@
       "nombre": "TALLER DE INTRODUCCIÓN A LAS CIENCIAS DE LA ATMÓSFERA",
       "creditos": "5"
     },
-    "ME16_TALLER INT.A LA METEOROLOGIA C2011": {
+    "ME16_TALLER INT.A LA METEOROLOGIA C2011-2013": {
       "codigo": "ME16",
-      "nombre": "TALLER INT.A LA METEOROLOGIA C2011",
-      "creditos": "2013 - 4"
+      "nombre": "TALLER INT.A LA METEOROLOGIA C2011-2013",
+      "creditos": "4"
     },
-    "ME08_TALLER INTR.A LA METEOROLOGIA(2007": {
+    "ME08_TALLER INTR.A LA METEOROLOGIA(2007-2010)": {
       "codigo": "ME08",
-      "nombre": "TALLER INTR.A LA METEOROLOGIA(2007",
-      "creditos": "2010) - 8"
+      "nombre": "TALLER INTR.A LA METEOROLOGIA(2007-2010)",
+      "creditos": "8"
     },
     "CP55_TALLER LABORATORIO I (MODULO DE DIBUJO)": {
       "codigo": "CP55",
@@ -18268,10 +18273,10 @@
       "nombre": "TRABAJO ESPECIAL",
       "creditos": "15"
     },
-    "BG725_BIOÉTICA (2019": {
+    "BG725_BIOÉTICA (2019-2020)": {
       "codigo": "BG725",
-      "nombre": "BIOÉTICA (2019",
-      "creditos": "2020) - 7"
+      "nombre": "BIOÉTICA (2019-2020)",
+      "creditos": "7"
     },
     "BL01_BIOÉTICA Y ÉTICA DEL INVESTIGADOR": {
       "codigo": "BL01",
@@ -18298,40 +18303,40 @@
       "nombre": "ECONOMÍA (AREA)",
       "creditos": "7"
     },
-    "BG968_EFI": {
+    "BG968_EFI - EDUCACIÓN AMBIENTAL Y PATRIMONIAL EN CLAVE INTERDISCIPLINARIA (2022)": {
       "codigo": "BG968",
-      "nombre": "EFI",
-      "creditos": "EDUCACIÓN AMBIENTAL Y PATRIMONIAL EN CLAVE INTERDISCIPLINARIA (2022) - 6"
+      "nombre": "EFI - EDUCACIÓN AMBIENTAL Y PATRIMONIAL EN CLAVE INTERDISCIPLINARIA (2022)",
+      "creditos": "6"
     },
-    "BG925_ENSEÑANZA DE LAS CIENCIAS (2021": {
+    "BG925_ENSEÑANZA DE LAS CIENCIAS (2021-": {
       "codigo": "BG925",
-      "nombre": "ENSEÑANZA DE LAS CIENCIAS (2021",
-      "creditos": "- 4"
+      "nombre": "ENSEÑANZA DE LAS CIENCIAS (2021-",
+      "creditos": "4"
     },
-    "H01_EPISTEMOLOGÍA I (FHCE) (1977": {
+    "H01_EPISTEMOLOGÍA I (FHCE) (1977-2016)": {
       "codigo": "H01",
-      "nombre": "EPISTEMOLOGÍA I (FHCE) (1977",
-      "creditos": "2016) - 8"
+      "nombre": "EPISTEMOLOGÍA I (FHCE) (1977-2016)",
+      "creditos": "8"
     },
     "BL03_EVOLUCION DE LAS IDEAS CIENTIFICAS": {
       "codigo": "BL03",
       "nombre": "EVOLUCION DE LAS IDEAS CIENTIFICAS",
       "creditos": "8"
     },
-    "BG914_ÉTICA Y CIENCIA: LA BIOÉTICA COMO PUENTE (2021": {
+    "BG914_ÉTICA Y CIENCIA: LA BIOÉTICA COMO PUENTE (2021-2024)": {
       "codigo": "BG914",
-      "nombre": "ÉTICA Y CIENCIA: LA BIOÉTICA COMO PUENTE (2021",
-      "creditos": "2024) - 10"
+      "nombre": "ÉTICA Y CIENCIA: LA BIOÉTICA COMO PUENTE (2021-2024)",
+      "creditos": "10"
     },
-    "BG042_ÉTICA Y CIENCIA: LA BIOÉTICA COMO PUENTE (2025": {
+    "BG042_ÉTICA Y CIENCIA: LA BIOÉTICA COMO PUENTE (2025-": {
       "codigo": "BG042",
-      "nombre": "ÉTICA Y CIENCIA: LA BIOÉTICA COMO PUENTE (2025",
-      "creditos": "- 10"
+      "nombre": "ÉTICA Y CIENCIA: LA BIOÉTICA COMO PUENTE (2025-",
+      "creditos": "10"
     },
-    "BG928_MENTORÍAS INTERGENERACIONALES (2021": {
+    "BG928_MENTORÍAS INTERGENERACIONALES (2021-": {
       "codigo": "BG928",
-      "nombre": "MENTORÍAS INTERGENERACIONALES (2021",
-      "creditos": "- 7"
+      "nombre": "MENTORÍAS INTERGENERACIONALES (2021-",
+      "creditos": "7"
     },
     "BG786_POLÍTICA Y GESTIÓN DE LA INVESTIGACIÓN": {
       "codigo": "BG786",
@@ -18368,10 +18373,10 @@
       "nombre": "TUTORIAS ENTRE PARES 2",
       "creditos": "4"
     },
-    "BL07_UNIVERSIDAD, CIENCIA Y SOCIEDAD (2010": {
+    "BL07_UNIVERSIDAD, CIENCIA Y SOCIEDAD (2010-2018) TC/RCYFG": {
       "codigo": "BL07",
-      "nombre": "UNIVERSIDAD, CIENCIA Y SOCIEDAD (2010",
-      "creditos": "2018) TC/RCYFG - 8"
+      "nombre": "UNIVERSIDAD, CIENCIA Y SOCIEDAD (2010-2018) TC/RCYFG",
+      "creditos": "8"
     },
     "BL02_UNIVERSIDAD, CIENCIA Y TECNOLOGIA": {
       "codigo": "BL02",
@@ -18383,10 +18388,10 @@
       "nombre": "UNIVERSIDAD Y SOCIEDAD (2019)",
       "creditos": "4"
     },
-    "BG793_UNIVERSIDAD Y SOCIEDAD (2020": {
+    "BG793_UNIVERSIDAD Y SOCIEDAD (2020-2024)": {
       "codigo": "BG793",
-      "nombre": "UNIVERSIDAD Y SOCIEDAD (2020",
-      "creditos": "2024) - 6"
+      "nombre": "UNIVERSIDAD Y SOCIEDAD (2020-2024)",
+      "creditos": "6"
     },
     "BG947_VINCULACIÓN Y TRANSFERENCIA DE CONOCIMIENTOS": {
       "codigo": "BG947",
@@ -18483,15 +18488,15 @@
       "nombre": "FÍSICA GENERAL I",
       "creditos": "15"
     },
-    "FI184_FÍSICA GENERAL II (2019": {
+    "FI184_FÍSICA GENERAL II (2019-2020)": {
       "codigo": "FI184",
-      "nombre": "FÍSICA GENERAL II (2019",
-      "creditos": "2020) - 13"
+      "nombre": "FÍSICA GENERAL II (2019-2020)",
+      "creditos": "13"
     },
-    "FI267_FÍSICA GENERAL II (2021": {
+    "FI267_FÍSICA GENERAL II (2021-": {
       "codigo": "FI267",
-      "nombre": "FÍSICA GENERAL II (2021",
-      "creditos": "- 13"
+      "nombre": "FÍSICA GENERAL II (2021-",
+      "creditos": "13"
     },
     "FI01_FÍSICA I (FIS. Y MAT.) (1980 AL 2020)": {
       "codigo": "FI01",
@@ -18553,15 +18558,15 @@
       "nombre": "MECÁNICA CLÁSICA (AL 2021)",
       "creditos": "11"
     },
-    "FI58_MECÁNICA CLÁSICA (2022": {
+    "FI58_MECÁNICA CLÁSICA (2022-": {
       "codigo": "FI58",
-      "nombre": "MECÁNICA CLÁSICA (2022",
-      "creditos": "- 14"
+      "nombre": "MECÁNICA CLÁSICA (2022-",
+      "creditos": "14"
     },
-    "FI20_MECÁNICA ESTADÍSTICA (2019": {
+    "FI20_MECÁNICA ESTADÍSTICA (2019-2020)": {
       "codigo": "FI20",
-      "nombre": "MECÁNICA ESTADÍSTICA (2019",
-      "creditos": "2020) - 12"
+      "nombre": "MECÁNICA ESTADÍSTICA (2019-2020)",
+      "creditos": "12"
     },
     "FI05_ONDAS": {
       "codigo": "FI05",
@@ -18643,15 +18648,15 @@
       "nombre": "ÁLGEBRA LINEAL Y GEOMETRÍA 1",
       "creditos": "12"
     },
-    "MA426_ÁLGEBRA LINEAL Y GEOMETRÍA 2 (2020": {
+    "MA426_ÁLGEBRA LINEAL Y GEOMETRÍA 2 (2020-2021)": {
       "codigo": "MA426",
-      "nombre": "ÁLGEBRA LINEAL Y GEOMETRÍA 2 (2020",
-      "creditos": "2021) - 12"
+      "nombre": "ÁLGEBRA LINEAL Y GEOMETRÍA 2 (2020-2021)",
+      "creditos": "12"
     },
-    "MA472_ÁLGEBRA LINEAL Y GEOMETRÍA 2 (2022": {
+    "MA472_ÁLGEBRA LINEAL Y GEOMETRÍA 2 (2022-": {
       "codigo": "MA472",
-      "nombre": "ÁLGEBRA LINEAL Y GEOMETRÍA 2 (2022",
-      "creditos": "- 12"
+      "nombre": "ÁLGEBRA LINEAL Y GEOMETRÍA 2 (2022-",
+      "creditos": "12"
     },
     "1061_CALCULO DIF. E INTEGRAL EN UNA VARIABLE": {
       "codigo": "1061",
@@ -18723,15 +18728,15 @@
       "nombre": "CÁLCULO DIFERENCIAL E INTEGRAL 1",
       "creditos": "15"
     },
-    "MA430_CÁLCULO DIFERENCIAL E INTEGRAL 2 (2020": {
+    "MA430_CÁLCULO DIFERENCIAL E INTEGRAL 2 (2020-2021)": {
       "codigo": "MA430",
-      "nombre": "CÁLCULO DIFERENCIAL E INTEGRAL 2 (2020",
-      "creditos": "2021) - 15"
+      "nombre": "CÁLCULO DIFERENCIAL E INTEGRAL 2 (2020-2021)",
+      "creditos": "15"
     },
-    "MA473_CÁLCULO DIFERENCIAL E INTEGRAL 2 (2022": {
+    "MA473_CÁLCULO DIFERENCIAL E INTEGRAL 2 (2022-": {
       "codigo": "MA473",
-      "nombre": "CÁLCULO DIFERENCIAL E INTEGRAL 2 (2022",
-      "creditos": "- 15"
+      "nombre": "CÁLCULO DIFERENCIAL E INTEGRAL 2 (2022-",
+      "creditos": "15"
     },
     "MA07_CÁLCULO VECTORIAL Y ANÁLISIS COMPLEJO": {
       "codigo": "MA07",
@@ -18753,10 +18758,10 @@
       "nombre": "ECUACIONES DIFERENCIALES (HASTA 2022)",
       "creditos": "13"
     },
-    "MA486_ECUACIONES DIFERENCIALES (2023": {
+    "MA486_ECUACIONES DIFERENCIALES (2023-": {
       "codigo": "MA486",
-      "nombre": "ECUACIONES DIFERENCIALES (2023",
-      "creditos": "- 12"
+      "nombre": "ECUACIONES DIFERENCIALES (2023-",
+      "creditos": "12"
     },
     "CP2_GEOMETRIA Y ALGEBRA LINEAL": {
       "codigo": "CP2",
@@ -18838,10 +18843,10 @@
       "nombre": "CLIMATOLOGÍA (AL 2022)",
       "creditos": "8"
     },
-    "ME32_CLIMATOLOGÍA (2023": {
+    "ME32_CLIMATOLOGÍA (2023 -": {
       "codigo": "ME32",
-      "nombre": "CLIMATOLOGÍA (2023",
-      "creditos": "- 8"
+      "nombre": "CLIMATOLOGÍA (2023 -",
+      "creditos": "8"
     },
     "ME03_COMPLEMENTOS EN METEOROLOGIA": {
       "codigo": "ME03",
@@ -18938,10 +18943,10 @@
       "nombre": "PROCESOS DE CAPA LÍMITE EN MODELOS DE ATMÓSFERA",
       "creditos": "8"
     },
-    "ME17_TALLER: PROCES. MESOESCALA EN EL SUR": {
+    "ME17_TALLER: PROCES. MESOESCALA EN EL SUR-SUD": {
       "codigo": "ME17",
-      "nombre": "TALLER: PROCES. MESOESCALA EN EL SUR",
-      "creditos": "SUD - 5"
+      "nombre": "TALLER: PROCES. MESOESCALA EN EL SUR-SUD",
+      "creditos": "5"
     },
     "ME05_TALLER DE PRONOSTICO": {
       "codigo": "ME05",
@@ -18988,10 +18993,10 @@
       "nombre": "FISICA COMPUTACIONAL (AL 2019)",
       "creditos": "10"
     },
-    "FI57_FÍSICA COMPUTACIONAL (2020": {
+    "FI57_FÍSICA COMPUTACIONAL (2020-": {
       "codigo": "FI57",
-      "nombre": "FÍSICA COMPUTACIONAL (2020",
-      "creditos": "- 14"
+      "nombre": "FÍSICA COMPUTACIONAL (2020-",
+      "creditos": "14"
     },
     "FI19_INTRODUCCIÓN A LA COMPUTACIÓN (FÍSICA)": {
       "codigo": "FI19",
@@ -19053,20 +19058,20 @@
       "nombre": "QUIMICA DE LA ATMOSFERA Y POLUCION",
       "creditos": "10"
     },
-    "ME12_QUIMICA GENERAL (2007": {
+    "ME12_QUIMICA GENERAL (2007 - 2013)": {
       "codigo": "ME12",
-      "nombre": "QUIMICA GENERAL (2007",
-      "creditos": "2013) - 10"
+      "nombre": "QUIMICA GENERAL (2007 - 2013)",
+      "creditos": "10"
     },
-    "GL044_QUIMICA I (1992": {
+    "GL044_QUIMICA I (1992 - 2012)": {
       "codigo": "GL044",
-      "nombre": "QUIMICA I (1992",
-      "creditos": "2012) - 10"
+      "nombre": "QUIMICA I (1992 - 2012)",
+      "creditos": "10"
     },
-    "BG1_QUÍMICA I/QUÍMICA GENERAL (2013": {
+    "BG1_QUÍMICA I/QUÍMICA GENERAL (2013-": {
       "codigo": "BG1",
-      "nombre": "QUÍMICA I/QUÍMICA GENERAL (2013",
-      "creditos": "- 10"
+      "nombre": "QUÍMICA I/QUÍMICA GENERAL (2013-",
+      "creditos": "10"
     },
     "TCI24_CAPTURA DE DATOS POR PERCEPCION REMOTA": {
       "codigo": "TCI24",
@@ -19138,20 +19143,20 @@
       "nombre": "SISTEMAS DE INFORMACION GEOGRAFICA",
       "creditos": "8"
     },
-    "GF02_SISTEMAS DE INFORMACIÓN GEOGRÁFICA (1998": {
+    "GF02_SISTEMAS DE INFORMACIÓN GEOGRÁFICA (1998-2024)": {
       "codigo": "GF02",
-      "nombre": "SISTEMAS DE INFORMACIÓN GEOGRÁFICA (1998",
-      "creditos": "2024) - 8"
+      "nombre": "SISTEMAS DE INFORMACIÓN GEOGRÁFICA (1998-2024)",
+      "creditos": "8"
     },
-    "GF203_SISTEMAS DE INFORMACIÓN GEOGRÁFICA (2025": {
+    "GF203_SISTEMAS DE INFORMACIÓN GEOGRÁFICA (2025-": {
       "codigo": "GF203",
-      "nombre": "SISTEMAS DE INFORMACIÓN GEOGRÁFICA (2025",
-      "creditos": "- 12"
+      "nombre": "SISTEMAS DE INFORMACIÓN GEOGRÁFICA (2025-",
+      "creditos": "12"
     },
-    "MA291_PROBABILIDAD Y ESTADÍSTICA (2025": {
+    "MA291_PROBABILIDAD Y ESTADÍSTICA (2025-": {
       "codigo": "MA291",
-      "nombre": "PROBABILIDAD Y ESTADÍSTICA (2025",
-      "creditos": "- 12"
+      "nombre": "PROBABILIDAD Y ESTADÍSTICA (2025-",
+      "creditos": "12"
     },
     "463N_ESTADÍSTICA NO PARAMÉTRICA": {
       "codigo": "463N",
@@ -19163,25 +19168,25 @@
       "nombre": "ANALISIS MULTIVARIADO II",
       "creditos": "10"
     },
-    "FI35_ANÁLISIS ESTADÍSTICO DE DATOS CLIMÁTICOS (2008": {
+    "FI35_ANÁLISIS ESTADÍSTICO DE DATOS CLIMÁTICOS (2008-": {
       "codigo": "FI35",
-      "nombre": "ANÁLISIS ESTADÍSTICO DE DATOS CLIMÁTICOS (2008",
-      "creditos": "- 10"
+      "nombre": "ANÁLISIS ESTADÍSTICO DE DATOS CLIMÁTICOS (2008-",
+      "creditos": "10"
     },
     "FI273_ANÁLISIS Y PROCESAMIENTO DE SEÑALES DIGITALES": {
       "codigo": "FI273",
       "nombre": "ANÁLISIS Y PROCESAMIENTO DE SEÑALES DIGITALES",
       "creditos": "12"
     },
-    "MA402_BIOESTADÍSTICA (2017": {
+    "MA402_BIOESTADÍSTICA (2017-2022)": {
       "codigo": "MA402",
-      "nombre": "BIOESTADÍSTICA (2017",
-      "creditos": "2022) - 10"
+      "nombre": "BIOESTADÍSTICA (2017-2022)",
+      "creditos": "10"
     },
-    "MA485_BIOESTADÍSTICA (2023": {
+    "MA485_BIOESTADÍSTICA (2023-2024)": {
       "codigo": "MA485",
-      "nombre": "BIOESTADÍSTICA (2023",
-      "creditos": "2024) - 12"
+      "nombre": "BIOESTADÍSTICA (2023-2024)",
+      "creditos": "12"
     },
     "ME02_CAMBIO CLIMATICO Y EVENTOS EXTREMOS": {
       "codigo": "ME02",
@@ -19285,10 +19290,10 @@
       "nombre": "TEORIA DE CODIGOS AVANZADO",
       "creditos": "6"
     },
-    "MHC39_BIOQUÍMICA I (2025": {
+    "MHC39_BIOQUÍMICA I (2025-": {
       "codigo": "MHC39",
-      "nombre": "BIOQUÍMICA I (2025",
-      "creditos": "- 11"
+      "nombre": "BIOQUÍMICA I (2025-",
+      "creditos": "11"
     },
     "102EU_QUÍMICA GENERAL I": {
       "codigo": "102EU",
@@ -19300,25 +19305,25 @@
       "nombre": "INT. A LAS C. BIOLÓGICAS I",
       "creditos": "5"
     },
-    "M000_METODOS CUANTITATIVOS III": {
+    "M000_METODOS CUANTITATIVOS III - PAYSANDU": {
       "codigo": "M000",
-      "nombre": "METODOS CUANTITATIVOS III",
-      "creditos": "PAYSANDU - 6"
+      "nombre": "METODOS CUANTITATIVOS III - PAYSANDU",
+      "creditos": "6"
     },
-    "MHC20_GENÓMICA (2021": {
+    "MHC20_GENÓMICA (2021-2024)": {
       "codigo": "MHC20",
-      "nombre": "GENÓMICA (2021",
-      "creditos": "2024) - 10"
+      "nombre": "GENÓMICA (2021-2024)",
+      "creditos": "10"
     },
     "MHC24_GENÉTICA GENERAL": {
       "codigo": "MHC24",
       "nombre": "GENÉTICA GENERAL",
       "creditos": "14"
     },
-    "MHC16_BIOQUÍMICA 1 (2020": {
+    "MHC16_BIOQUÍMICA 1 (2020-2024)": {
       "codigo": "MHC16",
-      "nombre": "BIOQUÍMICA 1 (2020",
-      "creditos": "2024) - 13"
+      "nombre": "BIOQUÍMICA 1 (2020-2024)",
+      "creditos": "13"
     },
     "2042_OPTIMIZACIÓN COMBINATORIA CON METAHEURÍSTICAS": {
       "codigo": "2042",
@@ -19455,10 +19460,10 @@
       "nombre": "TALLER DE APRENDIZAJE AUTOMATICO",
       "creditos": "8"
     },
-    "1888_TALLER DE INICIACION A LOS SISTEMAS CIBER": {
+    "1888_TALLER DE INICIACION A LOS SISTEMAS CIBER-FISICOS": {
       "codigo": "1888",
-      "nombre": "TALLER DE INICIACION A LOS SISTEMAS CIBER",
-      "creditos": "FISICOS - 4"
+      "nombre": "TALLER DE INICIACION A LOS SISTEMAS CIBER-FISICOS",
+      "creditos": "4"
     },
     "1848_ROBOTICA BASADA EN COMPORTAMIENTOS": {
       "codigo": "1848",
@@ -19490,10 +19495,10 @@
       "nombre": "GRAMATICAS FORMALES PARA EL LENG.NATURAL",
       "creditos": "10"
     },
-    "1952_TALLER DE SISTEMAS CIBER": {
+    "1952_TALLER DE SISTEMAS CIBER-FISICOS": {
       "codigo": "1952",
-      "nombre": "TALLER DE SISTEMAS CIBER",
-      "creditos": "FISICOS - 6"
+      "nombre": "TALLER DE SISTEMAS CIBER-FISICOS",
+      "creditos": "6"
     },
     "1866_APRENDIZAJE AUTOMATICO": {
       "codigo": "1866",
@@ -19875,10 +19880,10 @@
       "nombre": "TALLER INTRODUCTORIO DE INGENIERÍA DE SOFTWARE",
       "creditos": "10"
     },
-    "O6221_LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV.": {
+    "O6221_LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV. - EXT.)": {
       "codigo": "O6221",
-      "nombre": "LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV.",
-      "creditos": "EXT.) - 10"
+      "nombre": "LABORATORIO DE ACCESIBILIDAD A LOS MEDIOS (INV. - EXT.)",
+      "creditos": "10"
     },
     "O6311_TALLER DE INTERACCIÓN": {
       "codigo": "O6311",
@@ -20145,10 +20150,10 @@
       "nombre": "CIENCIA, TECNOLOGIA Y SOCIEDAD",
       "creditos": "8"
     },
-    "O6521_TEORÍAS Y PRÁCTICAS DE LA ACCESIBILIDAD EN LA COMUNICACIÓN": {
+    "O6521_TEORÍAS Y PRÁCTICAS DE LA ACCESIBILIDAD EN LA COMUNICACIÓN - LIM": {
       "codigo": "O6521",
-      "nombre": "TEORÍAS Y PRÁCTICAS DE LA ACCESIBILIDAD EN LA COMUNICACIÓN",
-      "creditos": "LIM - 8"
+      "nombre": "TEORÍAS Y PRÁCTICAS DE LA ACCESIBILIDAD EN LA COMUNICACIÓN - LIM",
+      "creditos": "8"
     },
     "O2525_COMUNICACIÓN E INTELIGENCIA ARTIFICIAL(PPP)": {
       "codigo": "O2525",
@@ -20312,10 +20317,10 @@
       "nombre": "ESTADÍSTICA PARA CIENCIAS",
       "creditos": "12"
     },
-    "MA485_BIOESTADÍSTICA (2023": {
+    "MA485_BIOESTADÍSTICA (2023-2024)": {
       "codigo": "MA485",
-      "nombre": "BIOESTADÍSTICA (2023",
-      "creditos": "2024) - 12"
+      "nombre": "BIOESTADÍSTICA (2023-2024)",
+      "creditos": "12"
     },
     "MA404_MATEMÁTICA 2 (MÓDULO 2)": {
       "codigo": "MA404",
@@ -20327,25 +20332,25 @@
       "nombre": "MATEMÁTICA 2 (MÓDULO 1)",
       "creditos": "6"
     },
-    "MA402_BIOESTADÍSTICA (2017": {
+    "MA402_BIOESTADÍSTICA (2017-2022)": {
       "codigo": "MA402",
-      "nombre": "BIOESTADÍSTICA (2017",
-      "creditos": "2022) - 12"
+      "nombre": "BIOESTADÍSTICA (2017-2022)",
+      "creditos": "12"
     },
     "2247_GEOESTADISTICA APLICADA": {
       "codigo": "2247",
       "nombre": "GEOESTADISTICA APLICADA",
       "creditos": "9"
     },
-    "MA400_MATEMÁTICA 1 (2017": {
+    "MA400_MATEMÁTICA 1 (2017-": {
       "codigo": "MA400",
-      "nombre": "MATEMÁTICA 1 (2017",
-      "creditos": "- 14"
+      "nombre": "MATEMÁTICA 1 (2017-",
+      "creditos": "14"
     },
-    "MA401_MATEMÁTICA 2 (2017": {
+    "MA401_MATEMÁTICA 2 (2017-2019)": {
       "codigo": "MA401",
-      "nombre": "MATEMÁTICA 2 (2017",
-      "creditos": "2019) - 12"
+      "nombre": "MATEMÁTICA 2 (2017-2019)",
+      "creditos": "12"
     },
     "TIM21_MATEMATICA 2": {
       "codigo": "TIM21",
@@ -20381,6 +20386,11 @@
       "codigo": "TCI14",
       "nombre": "ESTADISTICA Y GEOESTADISTICA",
       "creditos": "11"
+    },
+    "1480_CARTOGRAFIA MATEMATICA": {
+      "codigo": "1480",
+      "nombre": "CARTOGRAFIA MATEMATICA",
+      "creditos": "10"
     },
     "TCI30_COORDENADAS Y SISTEMAS DE REFERENCIA EN GEODESIA": {
       "codigo": "TCI30",
@@ -20427,30 +20437,30 @@
       "nombre": "ANALISIS ESPACIAL CON MODELOS DIGITALES DE ELEVACION",
       "creditos": "5"
     },
-    "GF183_HIDROLOGÍA (2020": {
+    "GF183_HIDROLOGÍA (2020-": {
       "codigo": "GF183",
-      "nombre": "HIDROLOGÍA (2020",
-      "creditos": "- 8"
+      "nombre": "HIDROLOGÍA (2020-",
+      "creditos": "8"
     },
     "BG852_EVALUACIÓN DE RECURSOS NATURALES E IMPACTO AMBIENTAL (2020)": {
       "codigo": "BG852",
       "nombre": "EVALUACIÓN DE RECURSOS NATURALES E IMPACTO AMBIENTAL (2020)",
       "creditos": "10"
     },
-    "GF161_GEOGRAFÍA URBANA (2018": {
+    "GF161_GEOGRAFÍA URBANA (2018-": {
       "codigo": "GF161",
-      "nombre": "GEOGRAFÍA URBANA (2018",
-      "creditos": "- 12"
+      "nombre": "GEOGRAFÍA URBANA (2018-",
+      "creditos": "12"
     },
     "GF003_GEOLOGÍA (HASTA 2021)": {
       "codigo": "GF003",
       "nombre": "GEOLOGÍA (HASTA 2021)",
       "creditos": "12"
     },
-    "GF163_EVALUACIÓN DE RECURSOS NATURALES E IMPACTO AMBIENTAL (2019, 2022": {
+    "GF163_EVALUACIÓN DE RECURSOS NATURALES E IMPACTO AMBIENTAL (2019, 2022-": {
       "codigo": "GF163",
-      "nombre": "EVALUACIÓN DE RECURSOS NATURALES E IMPACTO AMBIENTAL (2019, 2022",
-      "creditos": "- 8"
+      "nombre": "EVALUACIÓN DE RECURSOS NATURALES E IMPACTO AMBIENTAL (2019, 2022-",
+      "creditos": "8"
     },
     "GF064_GEORRIESGOS (OP. GENERAL)": {
       "codigo": "GF064",
@@ -20462,10 +20472,10 @@
       "nombre": "GEOLOGÍA GENERAL I",
       "creditos": "12"
     },
-    "GF068_GEOMORFOLOGÍA (2014": {
+    "GF068_GEOMORFOLOGÍA (2014 -": {
       "codigo": "GF068",
-      "nombre": "GEOMORFOLOGÍA (2014",
-      "creditos": "- 7"
+      "nombre": "GEOMORFOLOGÍA (2014 -",
+      "creditos": "7"
     },
     "GF012_GEOGRAFIA URBANA (AL 2017)": {
       "codigo": "GF012",
@@ -20839,10 +20849,10 @@
       "nombre": "BUTIA: ROBOTICA EDUCATIVA",
       "creditos": "8"
     },
-    "TI45_COMPETENCIAS ROBOTICAS": {
+    "TI45_COMPETENCIAS ROBOTICAS-IEEE SEK": {
       "codigo": "TI45",
-      "nombre": "COMPETENCIAS ROBOTICAS",
-      "creditos": "IEEE SEK - 4"
+      "nombre": "COMPETENCIAS ROBOTICAS-IEEE SEK",
+      "creditos": "4"
     },
     "TI22_DESARR.DE APLIC.BASAD.EN TECNOL.GENEXUS": {
       "codigo": "TI22",
@@ -21483,10 +21493,10 @@
       "nombre": "INGLES TECNICO",
       "creditos": "8"
     },
-    "TIM82_MODULO DE EXTENSION": {
+    "TIM82_MODULO DE EXTENSION - TECNOLOGO MECANICO": {
       "codigo": "TIM82",
-      "nombre": "MODULO DE EXTENSION",
-      "creditos": "TECNOLOGO MECANICO - 3"
+      "nombre": "MODULO DE EXTENSION - TECNOLOGO MECANICO",
+      "creditos": "3"
     }
   }
 }

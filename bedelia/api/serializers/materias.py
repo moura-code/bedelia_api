@@ -4,7 +4,6 @@ Serializers for Materia-related models.
 from rest_framework import serializers
 
 from api.models import (
-    Carrera,
     Materia,
     PlanEstudio,
     PlanMateria,
@@ -12,20 +11,6 @@ from api.models import (
     RequisitoNodo,
     RequisitoItem,
 )
-
-
-class CarreraSerializer(serializers.ModelSerializer):
-    """Serializer for Carrera model."""
-    
-    class Meta:
-        model = Carrera
-        fields = [
-            'id',
-            'nombre',
-            'fecha_creacion',
-            'fecha_modificacion',
-        ]
-        read_only_fields = fields
 
 
 class MateriaSerializer(serializers.ModelSerializer):
@@ -89,18 +74,13 @@ class MateriaDetailSerializer(serializers.ModelSerializer):
 class PlanEstudioSerializer(serializers.ModelSerializer):
     """Serializer for PlanEstudio with carrera info."""
     
-    carrera = CarreraSerializer(read_only=True)
-    carrera_id = serializers.UUIDField(source='carrera.id', read_only=True)
-    carrera_nombre = serializers.CharField(source='carrera.nombre', read_only=True)
     materias_count = serializers.SerializerMethodField()
     
     class Meta:
         model = PlanEstudio
         fields = [
             'id',
-            'carrera',
-            'carrera_id',
-            'carrera_nombre',
+            'nombre_carrera',
             'anio',
             'descripcion',
             'activo',
