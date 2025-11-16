@@ -2,40 +2,39 @@
 Comando de Django para cargar datos de Bedelia desde archivos JSON a la base de datos.
 
 Este comando importa los archivos JSON de la carpeta data/:
-- vigentes_data_backup.json: Cursos vigentes
-- credits_data_backup.json: Créditos de cursos
-- previas_data_backup.json: Requisitos (estructura de árbol)
-- posprevias_data_backup.json: Materias que dependen de un curso
+- credits_data_backup.json: Carreras, planes de estudio, materias y relaciones plan-materia
+- vigentes_data_backup.json: Cursos vigentes (para marcar materias como activas)
+
+El comando procesa los datos en el siguiente orden:
+1. Extrae y crea carreras únicas desde las claves "CARRERA_ANIO"
+2. Extrae y crea planes de estudio (carrera + año)
+3. Extrae y crea materias únicas (deduplicadas por código)
+4. Crea relaciones PlanMateria (qué materias están en cada plan)
+5. Marca materias como activas según vigentes_data
 
 Uso:
     python manage.py load_bedelia_data
     python manage.py load_bedelia_data --dry-run
     python manage.py load_bedelia_data --verbose
     python manage.py load_bedelia_data --clear
+    python manage.py load_bedelia_data --credits ../data/credits_data_backup.json --vigentes ../data/vigentes_data_backup.json
 """
 import json
 from pathlib import Path
-from typing import Dict, Any, Optional, List
+from typing import Dict, Set
 
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
-from django.utils import timezone
 
-from api.models import Carrera, Curso, Previa, ItemPrevia, Posprevia
+from api.models import Carrera, Materia, PlanEstudio, PlanMateria
 
 
 class Command(BaseCommand):
     """Cargar datos de Bedelia desde archivos JSON."""
     
-    help = 'Importar datos de cursos de Bedelia desde archivos JSON'
+    help = 'Importar carreras, planes de estudio y materias de Bedelia desde archivos JSON'
     
     def add_arguments(self, parser):
-        parser.add_argument(
-            '--vigentes',
-            type=str,
-            default='../data/vigentes_data_backup.json',
-            help='Ruta al archivo vigentes_data_backup.json'
-        )
         parser.add_argument(
             '--credits',
             type=str,
@@ -43,16 +42,10 @@ class Command(BaseCommand):
             help='Ruta al archivo credits_data_backup.json'
         )
         parser.add_argument(
-            '--previas',
+            '--vigentes',
             type=str,
-            default='../data/previas_data_backup.json',
-            help='Ruta al archivo previas_data_backup.json'
-        )
-        parser.add_argument(
-            '--posprevias',
-            type=str,
-            default='../data/posprevias_data_backup.json',
-            help='Ruta al archivo posprevias_data_backup.json'
+            default='../data/vigentes_data_backup.json',
+            help='Ruta al archivo vigentes_data_backup.json'
         )
         parser.add_argument(
             '--dry-run',
@@ -67,7 +60,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--clear',
             action='store_true',
-            help='Limpiar la base de datos antes de cargar'
+            help='Limpiar todas las carreras, planes y materias antes de cargar'
         )
     
     def __init__(self, *args, **kwargs):
@@ -77,18 +70,20 @@ class Command(BaseCommand):
         
         # Estadísticas
         self.stats = {
-            'carreras': 0,
-            'cursos': 0,  # Todos los cursos (desde credits)
-            'previas': 0,
-            'items_previa': 0,
-            'posprevias': 0,
-            'warnings': 0,
+            'carreras_creadas': 0,
+            'planes_creados': 0,
+            'plan_materias_creadas': 0,
+            'materias_creadas': 0,
+            'materias_actualizadas': 0,
+            'materias_marcadas_activas': 0,
+            'materias_totales': 0,
             'errors': 0,
         }
         
-        # Cachés
+        # Cachés para evitar consultas repetidas
         self.carrera_cache: Dict[str, Carrera] = {}
-        self.curso_cache: Dict[str, Curso] = {}
+        self.plan_cache: Dict[str, PlanEstudio] = {}
+        self.materia_cache: Dict[str, Materia] = {}
     
     def handle(self, *args, **options):
         """Punto de entrada principal del comando."""
@@ -99,19 +94,14 @@ class Command(BaseCommand):
             self.stdout.write(self.style.WARNING('🔄 Modo DRY RUN - No se guardará nada en la base de datos'))
         
         # Verificar archivos
-        vigentes_path = Path(options['vigentes'])
         credits_path = Path(options['credits'])
-        previas_path = Path(options['previas'])
-        posprevias_path = Path(options['posprevias'])
+        vigentes_path = Path(options['vigentes'])
         
-        for path, name in [
-            (vigentes_path, 'vigentes'),
-            (credits_path, 'credits'),
-            (previas_path, 'previas'),
-            (posprevias_path, 'posprevias')
-        ]:
-            if not path.exists():
-                raise CommandError(f'❌ Archivo no encontrado: {path}')
+        if not credits_path.exists():
+            raise CommandError(f'❌ Archivo no encontrado: {credits_path}')
+        
+        if not vigentes_path.exists():
+            raise CommandError(f'❌ Archivo no encontrado: {vigentes_path}')
         
         try:
             with transaction.atomic():
@@ -121,24 +111,24 @@ class Command(BaseCommand):
                 
                 # Cargar datos
                 self.stdout.write('📖 Cargando archivos JSON...')
-                vigentes_data = self.load_json(vigentes_path)
                 credits_data = self.load_json(credits_path)
-                previas_data = self.load_json(previas_path)
-                posprevias_data = self.load_json(posprevias_path)
+                vigentes_data = self.load_json(vigentes_path)
                 
-                # Procesar en orden
-                self.stdout.write('🎓 Procesando carreras y cursos...')
-                self.stdout.write('   Paso 1: Creando TODOS los cursos desde credits...')
-                self.process_credits(credits_data)
+                # Paso 1: Crear carreras y planes de estudio
+                self.stdout.write('🎓 Procesando carreras y planes de estudio desde credits_data...')
+                self.process_carreras_y_planes(credits_data)
                 
-                self.stdout.write('   Paso 2: Marcando cursos activos desde vigentes...')
-                self.mark_active_courses(vigentes_data)
+                # Paso 2: Extraer y crear materias desde credits
+                self.stdout.write('📚 Procesando materias desde credits_data...')
+                self.process_materias(credits_data)
                 
-                self.stdout.write('🌳 Procesando previas (requisitos)...')
-                self.process_previas(previas_data)
+                # Paso 3: Crear relaciones PlanMateria
+                self.stdout.write('🔗 Creando relaciones plan-materia...')
+                self.process_plan_materias(credits_data)
                 
-                self.stdout.write('🔗 Procesando posprevias...')
-                self.process_posprevias(posprevias_data)
+                # Paso 4: Marcar materias activas desde vigentes
+                self.stdout.write('✅ Marcando materias activas desde vigentes_data...')
+                self.mark_active_materias(vigentes_data)
                 
                 # Si es dry-run, hacer rollback
                 if self.dry_run:
@@ -158,559 +148,40 @@ class Command(BaseCommand):
             raise
     
     def clear_database(self):
-        """Limpiar la base de datos."""
+        """Limpiar todas las carreras, planes y materias de la base de datos."""
         self.stdout.write(self.style.WARNING('🗑️  Limpiando base de datos...'))
         
         if not self.dry_run:
-            Posprevia.objects.all().delete()
-            ItemPrevia.objects.all().delete()
-            Previa.objects.all().delete()
-            Curso.objects.all().delete()
+            plan_materias_count = PlanMateria.objects.count()
+            PlanMateria.objects.all().delete()
+            
+            planes_count = PlanEstudio.objects.count()
+            PlanEstudio.objects.all().delete()
+            
+            materias_count = Materia.objects.count()
+            Materia.objects.all().delete()
+            
+            carreras_count = Carrera.objects.count()
             Carrera.objects.all().delete()
             
-            self.stdout.write(self.style.SUCCESS('✅ Base de datos limpiada'))
+            self.stdout.write(self.style.SUCCESS(
+                f'✅ {plan_materias_count} plan-materias, {planes_count} planes, '
+                f'{materias_count} materias, {carreras_count} carreras eliminadas'
+            ))
+        else:
+            plan_materias_count = PlanMateria.objects.count()
+            planes_count = PlanEstudio.objects.count()
+            materias_count = Materia.objects.count()
+            carreras_count = Carrera.objects.count()
+            self.stdout.write(self.style.SUCCESS(
+                f'✅ {plan_materias_count} plan-materias, {planes_count} planes, '
+                f'{materias_count} materias, {carreras_count} carreras serían eliminadas (dry-run)'
+            ))
     
     def load_json(self, path: Path) -> Dict:
         """Cargar archivo JSON."""
         with open(path, 'r', encoding='utf-8') as f:
             return json.load(f)
-    
-    def get_or_create_carrera(self, nombre: str, anio_plan: str = None) -> Optional[Carrera]:
-        """Obtener o crear una carrera."""
-        cache_key = f"{nombre}_{anio_plan or ''}"
-        
-        if cache_key in self.carrera_cache:
-            return self.carrera_cache[cache_key]
-        
-        if self.dry_run:
-            # En dry-run, crear objeto temporal
-            carrera = Carrera(nombre=nombre, anio_plan=anio_plan)
-        else:
-            carrera, created = Carrera.objects.get_or_create(
-                nombre=nombre,
-                anio_plan=anio_plan,
-                defaults={}
-            )
-            if created:
-                self.stats['carreras'] += 1
-                if self.verbose:
-                    self.stdout.write(f'  ✨ Nueva carrera: {carrera}')
-        
-        self.carrera_cache[cache_key] = carrera
-        return carrera
-    
-    def process_credits(self, credits_data: Dict):
-        """
-        Procesar TODOS los cursos desde credits_data.
-        
-        Este es el paso principal: credits contiene TODOS los cursos (activos e históricos).
-        
-        Estructura de credits_data:
-        {
-            "CARRERA_PLAN": {
-                "codigo_nombre": {
-                    "codigo": "CIM40",
-                    "nombre": "ELECTROMAGNETÍSMO CIM",
-                    "creditos": "10"
-                }
-            }
-        }
-        """
-        total_programs = len(credits_data)
-        
-        for idx, (carrera_plan, cursos) in enumerate(credits_data.items(), 1):
-            if self.verbose:
-                self.stdout.write(f'     [{idx}/{total_programs}] Procesando: {carrera_plan}')
-            
-            # Parsear carrera y año
-            carrera_nombre, anio_plan = self.parse_carrera_plan(carrera_plan)
-            
-            # Crear carrera
-            carrera = self.get_or_create_carrera(carrera_nombre, anio_plan)
-            
-            # Procesar cada curso
-            for codigo_nombre, curso_data in cursos.items():
-                codigo_curso = curso_data.get('codigo', '')
-                nombre_curso = curso_data.get('nombre', '')
-                creditos_str = curso_data.get('creditos', '0')
-                
-                try:
-                    creditos = int(creditos_str)
-                except (ValueError, TypeError):
-                    creditos = 0
-                
-                self.create_curso_from_credits(
-                    codigo_curso=codigo_curso,
-                    nombre_curso=nombre_curso,
-                    creditos=creditos,
-                    carrera=carrera
-                )
-        
-        self.stdout.write(
-            f'     ✅ {self.stats["cursos"]} cursos creados (activo=False por defecto)'
-        )
-    
-    def mark_active_courses(self, vigentes_data: Dict):
-        """
-        Marcar como activos los cursos que están en vigentes.
-        
-        Estructura de vigentes_data:
-        {
-            "CARRERA_PLAN": {
-                "codigo_curso": {
-                    "university_code": "FING",
-                    "course_code": "1267",
-                    "course_name": "TALLER REPR. Y COM. GRAFICA"
-                }
-            }
-        }
-        """
-        cursos_activos = 0
-        total_programs = len(vigentes_data)
-        
-        for idx, (carrera_plan, cursos) in enumerate(vigentes_data.items(), 1):
-            if self.verbose:
-                self.stdout.write(f'     [{idx}/{total_programs}] Procesando: {carrera_plan}')
-            
-            # Parsear carrera y año
-            carrera_nombre, anio_plan = self.parse_carrera_plan(carrera_plan)
-            carrera = self.get_or_create_carrera(carrera_nombre, anio_plan)
-            
-            # Marcar cursos como activos y actualizar info
-            for codigo_curso_key, curso_data in cursos.items():
-                codigo_curso = curso_data['course_code']
-                nombre_curso = curso_data['course_name']
-                codigo_universidad = curso_data['university_code']
-                
-                # Buscar el curso en el caché o base de datos
-                curso = None
-                for key, c in self.curso_cache.items():
-                    if c.codigo_curso == codigo_curso:
-                        curso = c
-                        break
-                
-                if not curso and not self.dry_run:
-                    try:
-                        curso = Curso.objects.get(codigo_curso=codigo_curso)
-                    except Curso.DoesNotExist:
-                        # Si no existe, crearlo (caso raro)
-                        curso = Curso.objects.create(
-                            codigo_universidad=codigo_universidad,
-                            codigo_curso=codigo_curso,
-                            nombre_curso=nombre_curso,
-                            creditos=0,
-                            activo=True
-                        )
-                        self.stats['cursos'] += 1
-                
-                if curso:
-                    # Actualizar a activo y info de universidad
-                    if not self.dry_run and not curso.activo:
-                        curso.activo = True
-                        curso.codigo_universidad = codigo_universidad
-                        curso.nombre_curso = nombre_curso
-                        curso.save()
-                        cursos_activos += 1
-                    elif self.dry_run:
-                        curso.activo = True
-                        curso.codigo_universidad = codigo_universidad
-                        cursos_activos += 1
-                    
-                    # Agregar carrera si no la tiene
-                    if not self.dry_run and carrera and carrera.pk:
-                        curso.carrera.add(carrera)
-                    
-                    # Actualizar caché
-                    cache_key = f"{codigo_universidad}_{codigo_curso}"
-                    self.curso_cache[cache_key] = curso
-        
-        cursos_historicos = self.stats['cursos'] - cursos_activos
-        self.stdout.write(
-            f'     ✅ {cursos_activos} cursos marcados como activos'
-        )
-        self.stdout.write(
-            f'     📜 {cursos_historicos} cursos históricos (activo=False)'
-        )
-    
-    def create_curso_from_credits(self, codigo_curso: str, nombre_curso: str,
-                                  creditos: int, carrera: Carrera):
-        """
-        Crear curso desde credits_data.
-        Por defecto se crea como inactivo (activo=False) y sin tipo_evaluacion.
-        """
-        cache_key = f"credits_{codigo_curso}_"
-        
-        # Si ya está en caché, solo agregar la carrera
-        if cache_key in self.curso_cache:
-            curso = self.curso_cache[cache_key]
-            if not self.dry_run and carrera and carrera.pk:
-                curso.carrera.add(carrera)
-            return curso
-        
-        # Buscar si ya existe en BD (sin tipo_evaluacion especificado)
-        if not self.dry_run:
-            try:
-                curso = Curso.objects.get(codigo_curso=codigo_curso, tipo_evaluacion='')
-                if carrera and carrera.pk:
-                    curso.carrera.add(carrera)
-                self.curso_cache[cache_key] = curso
-                return curso
-            except Curso.DoesNotExist:
-                pass
-        
-        # Crear nuevo curso (inactivo por defecto, sin tipo_evaluacion)
-        if self.dry_run:
-            curso = Curso(
-                codigo_universidad='',  # Se actualiza en mark_active_courses
-                codigo_curso=codigo_curso,
-                nombre_curso=nombre_curso,
-                tipo_evaluacion='',  # Sin tipo por defecto
-                creditos=creditos,
-                activo=False  # ← Por defecto inactivo
-            )
-        else:
-            curso = Curso.objects.create(
-                codigo_universidad='',  # Se actualiza en mark_active_courses
-                codigo_curso=codigo_curso,
-                nombre_curso=nombre_curso,
-                tipo_evaluacion='',  # Sin tipo por defecto
-                creditos=creditos,
-                activo=False  # ← Por defecto inactivo
-            )
-            
-            # Agregar carrera
-            if carrera and carrera.pk:
-                curso.carrera.add(carrera)
-            
-            self.stats['cursos'] += 1
-            
-            if self.verbose:
-                self.stdout.write(f'       💿 {codigo_curso} - {nombre_curso[:35]} ({creditos} créditos)')
-        
-        self.curso_cache[cache_key] = curso
-        return curso
-    
-    def process_previas(self, previas_data: Dict):
-        """
-        Procesar previas (requisitos).
-        
-        IMPORTANTE: NO todos los cursos tienen previas. Solo se procesan
-        los cursos que tienen requisitos definidos.
-        
-        Estructura:
-        {
-            "CARRERA_PLAN": {
-                "codigo - nombre": {
-                    "code": "1944 - ADMINISTRACION GENERAL PARA INGENIEROS",
-                    "name": "Examen",
-                    "requirements": {
-                        "type": "ALL",
-                        "title": "debe tener todas",
-                        "children": [...]
-                    }
-                }
-            }
-        }
-        """
-        total_programs = len(previas_data)
-        cursos_con_previas = 0
-        
-        for idx, (carrera_plan, previas) in enumerate(previas_data.items(), 1):
-            if self.verbose:
-                self.stdout.write(f'  [{idx}/{total_programs}] Procesando previas: {carrera_plan}')
-            
-            # Parsear carrera y año
-            carrera_nombre, anio_plan = self.parse_carrera_plan(carrera_plan)
-            carrera = self.get_or_create_carrera(carrera_nombre, anio_plan)
-            
-            # Procesar cada previa
-            for codigo_nombre, previa_data in previas.items():
-                try:
-                    # Extraer tipo_evaluacion del campo "name" (Examen o Curso)
-                    tipo_evaluacion = previa_data.get('name', '')
-                    
-                    previa_creada = self.create_previa_tree(
-                        codigo=previa_data['code'],
-                        nombre=tipo_evaluacion,
-                        tipo_evaluacion=tipo_evaluacion,
-                        requirements=previa_data.get('requirements'),
-                        carrera=carrera
-                    )
-                    if previa_creada:
-                        cursos_con_previas += 1
-                except Exception as e:
-                    self.stats['errors'] += 1
-                    if self.verbose:
-                        self.stdout.write(
-                            self.style.ERROR(f'    ❌ Error en {codigo_nombre}: {e}')
-                        )
-        
-        total_cursos = len(self.curso_cache)
-        cursos_sin_previas = total_cursos - cursos_con_previas
-        
-        self.stdout.write(
-            f'  ✅ Procesadas {self.stats["previas"]} previas con '
-            f'{self.stats["items_previa"]} items'
-        )
-        self.stdout.write(
-            f'  ℹ️  {cursos_con_previas} cursos con previas, '
-            f'{cursos_sin_previas} cursos sin previas (de {total_cursos} totales)'
-        )
-    
-    def create_previa_tree(self, codigo: str, nombre: str, tipo_evaluacion: str,
-                          requirements: Optional[Dict], carrera: Carrera,
-                          padre: Optional[Previa] = None) -> Optional[Previa]:
-        """
-        Crear árbol de previas recursivamente.
-        
-        Args:
-            codigo: Código del curso (ej: "1944 - ADMINISTRACION...")
-            nombre: Tipo de requisito (ej: "Examen", "Curso")
-            tipo_evaluacion: Tipo de evaluación del curso (Examen/Curso)
-            requirements: Diccionario con la estructura del árbol
-            carrera: Carrera a la que pertenece
-            padre: Nodo padre (None para raíz)
-        """
-        if not requirements:
-            return None
-        
-        tipo = requirements.get('type', 'LEAF')
-        titulo = requirements.get('title', '')
-        required_count = requirements.get('required_count', 0)
-        
-        # Buscar o crear el curso correspondiente
-        curso = None
-        if not padre:  # Solo para el nodo raíz
-            # Extraer el código del curso del string "codigo - nombre"
-            codigo_parts = codigo.split(' - ')
-            if codigo_parts:
-                codigo_limpio = codigo_parts[0].strip()
-                cache_key = f"prev_{codigo_limpio}_{tipo_evaluacion}"
-                
-                # Buscar curso en cache
-                if cache_key in self.curso_cache:
-                    curso = self.curso_cache[cache_key]
-                
-                # Si no está en caché, buscar o crear en BD
-                if not curso and codigo_limpio:
-                    if not self.dry_run:
-                        try:
-                            curso = Curso.objects.get(
-                                codigo_curso=codigo_limpio,
-                                tipo_evaluacion=tipo_evaluacion
-                            )
-                        except Curso.DoesNotExist:
-                            # Crear curso histórico con tipo_evaluacion
-                            nombre_curso = ' - '.join(codigo_parts[1:]) if len(codigo_parts) > 1 else ''
-                            curso = Curso.objects.create(
-                                codigo_universidad='HISTORICO',
-                                codigo_curso=codigo_limpio,
-                                nombre_curso=nombre_curso,
-                                tipo_evaluacion=tipo_evaluacion,
-                                creditos=0,
-                                activo=False
-                            )
-                            if self.verbose:
-                                self.stdout.write(
-                                    f'    📜 Curso histórico creado: {codigo_limpio} ({tipo_evaluacion})'
-                                )
-                    
-                    if curso:
-                        self.curso_cache[cache_key] = curso
-        
-        # Crear nodo previa
-        if self.dry_run:
-            previa = Previa(
-                curso=curso,
-                codigo=codigo if not padre else '',
-                nombre=nombre if not padre else '',
-                tipo=tipo,
-                titulo=titulo,
-                cantidad_requerida=required_count,
-                padre=padre,
-                carrera=carrera
-            )
-        else:
-            previa = Previa.objects.create(
-                curso=curso,
-                codigo=codigo if not padre else '',
-                nombre=nombre if not padre else '',
-                tipo=tipo,
-                titulo=titulo,
-                cantidad_requerida=required_count,
-                padre=padre,
-                carrera=carrera
-            )
-            self.stats['previas'] += 1
-        
-        # Procesar según el tipo
-        if tipo == 'LEAF':
-            # Crear items
-            items = requirements.get('items', [])
-            for orden, item_data in enumerate(items):
-                self.create_item_previa(previa, item_data, orden)
-        
-        else:
-            # Procesar hijos (ALL, ANY, NOT)
-            children = requirements.get('children', [])
-            for orden, child in enumerate(children):
-                self.create_previa_tree(
-                    codigo='',
-                    nombre='',
-                    tipo_evaluacion='',  # Los hijos no necesitan tipo
-                    requirements=child,
-                    carrera=carrera,
-                    padre=previa
-                )
-        
-        return previa
-    
-    def create_item_previa(self, previa: Previa, item_data: Dict, orden: int):
-        """
-        Crear un item de previa.
-        
-        Estructura de item_data:
-        {
-            "source": "UCB",
-            "modality": "exam",
-            "code": "FI15",
-            "title": "CREDITOS ASIGNADOS POR REVALIDA",
-            "notes": [],
-            "raw": "Examen de la U.C.B: FI15 - CREDITOS..."
-        }
-        """
-        if self.dry_run:
-            item = ItemPrevia(
-                previa=previa,
-                fuente=item_data.get('source', ''),
-                modalidad=item_data.get('modality', ''),
-                codigo=item_data.get('code', ''),
-                titulo=item_data.get('title', ''),
-                notas=item_data.get('notes', []),
-                texto_raw=item_data.get('raw', ''),
-                orden=orden
-            )
-        else:
-            item = ItemPrevia.objects.create(
-                previa=previa,
-                fuente=item_data.get('source', ''),
-                modalidad=item_data.get('modality', ''),
-                codigo=item_data.get('code', ''),
-                titulo=item_data.get('title', ''),
-                notas=item_data.get('notes', []),
-                texto_raw=item_data.get('raw', ''),
-                orden=orden
-            )
-            self.stats['items_previa'] += 1
-    
-    def process_posprevias(self, posprevias_data: Dict):
-        """
-        Procesar posprevias.
-        
-        Estructura:
-        {
-            "CARRERA_PLAN": {
-                "codigo": {
-                    "code": "CP228",
-                    "name": "ABASTECIMIENTO DE AGUA POTABLE",
-                    "posprevias": [
-                        {
-                            "anio_plan": "1997",
-                            "carrera": "INGENIERIA CIVIL",
-                            "fecha": "01/01/1997",
-                            "descripcion": "ING. CIVIL CURRICULAR",
-                            "tipo": "Curso",
-                            "materia_codigo": "2311",
-                            "materia_nombre": "CONDUCCION DE LIQUIDOS...",
-                            "materia_full": "2311-CONDUCCION DE LIQUIDOS..."
-                        }
-                    ]
-                }
-            }
-        }
-        """
-        total_programs = len(posprevias_data)
-        
-        for idx, (carrera_plan, posprevias) in enumerate(posprevias_data.items(), 1):
-            if self.verbose:
-                self.stdout.write(f'  [{idx}/{total_programs}] Procesando posprevias: {carrera_plan}')
-            
-            # Procesar cada posprevia
-            for codigo, posprevia_data in posprevias.items():
-                codigo_curso = posprevia_data['code']
-                nombre_curso = posprevia_data['name']
-                
-                # Crear posprevias para cada item (cada item tiene su tipo: Curso/Examen)
-                for posprevia_item in posprevia_data.get('posprevias', []):
-                    tipo_evaluacion = posprevia_item.get('tipo', '')  # Curso o Examen
-                    cache_key = f"posp_{codigo_curso}_{tipo_evaluacion}"
-                    
-                    # Buscar curso en caché
-                    curso = self.curso_cache.get(cache_key)
-                    
-                    # Si no está en caché, buscar o crear en BD
-                    if not curso:
-                        if not self.dry_run:
-                            try:
-                                curso = Curso.objects.get(
-                                    codigo_curso=codigo_curso,
-                                    tipo_evaluacion=tipo_evaluacion
-                                )
-                            except Curso.DoesNotExist:
-                                # Crear curso histórico
-                                curso = Curso.objects.create(
-                                    codigo_universidad='HISTORICO',
-                                    codigo_curso=codigo_curso,
-                                    nombre_curso=nombre_curso,
-                                    tipo_evaluacion=tipo_evaluacion,
-                                    creditos=0,
-                                    activo=False
-                                )
-                                if self.verbose:
-                                    self.stdout.write(
-                                        f'    📜 Curso histórico creado desde posprevia: {codigo_curso} ({tipo_evaluacion})'
-                                    )
-                            
-                            if curso:
-                                self.curso_cache[cache_key] = curso
-                    
-                    # Crear posprevia
-                    if curso:
-                        self.create_posprevia(curso, posprevia_data, posprevia_item)
-        
-        self.stdout.write(f'  ✅ Procesadas {self.stats["posprevias"]} posprevias')
-    
-    def create_posprevia(self, curso: Curso, posprevia_data: Dict, item: Dict):
-        """Crear una posprevia."""
-        if self.dry_run:
-            posprevia = Posprevia(
-                curso=curso,
-                codigo=posprevia_data['code'],
-                nombre=posprevia_data['name'],
-                anio_plan=item.get('anio_plan', ''),
-                carrera=item.get('carrera', ''),
-                fecha=item.get('fecha', ''),
-                descripcion=item.get('descripcion', ''),
-                tipo=item.get('tipo', ''),
-                materia_codigo=item.get('materia_codigo', ''),
-                materia_nombre=item.get('materia_nombre', ''),
-                materia_full=item.get('materia_full', '')
-            )
-        else:
-            posprevia = Posprevia.objects.create(
-                curso=curso,
-                codigo=posprevia_data['code'],
-                nombre=posprevia_data['name'],
-                anio_plan=item.get('anio_plan', ''),
-                carrera=item.get('carrera', ''),
-                fecha=item.get('fecha', ''),
-                descripcion=item.get('descripcion', ''),
-                tipo=item.get('tipo', ''),
-                materia_codigo=item.get('materia_codigo', ''),
-                materia_nombre=item.get('materia_nombre', ''),
-                materia_full=item.get('materia_full', '')
-            )
-            self.stats['posprevias'] += 1
     
     def parse_carrera_plan(self, carrera_plan: str) -> tuple:
         """
@@ -725,35 +196,370 @@ class Command(BaseCommand):
             return parts[0], parts[1]
         return carrera_plan, None
     
+    def get_or_create_carrera(self, nombre: str) -> Carrera:
+        """Obtener o crear una carrera."""
+        if nombre in self.carrera_cache:
+            return self.carrera_cache[nombre]
+        
+        if self.dry_run:
+            carrera = Carrera(nombre=nombre)
+        else:
+            carrera, created = Carrera.objects.get_or_create(
+                nombre=nombre,
+                defaults={}
+            )
+            if created:
+                self.stats['carreras_creadas'] += 1
+                if self.verbose:
+                    self.stdout.write(f'       ✨ Nueva carrera: {nombre}')
+        
+        self.carrera_cache[nombre] = carrera
+        return carrera
+    
+    def get_or_create_plan(self, carrera: Carrera, anio: str) -> PlanEstudio:
+        """Obtener o crear un plan de estudio."""
+        cache_key = f"{carrera.nombre}_{anio}"
+        
+        if cache_key in self.plan_cache:
+            return self.plan_cache[cache_key]
+        
+        if self.dry_run:
+            plan = PlanEstudio(carrera=carrera, anio=anio)
+        else:
+            plan, created = PlanEstudio.objects.get_or_create(
+                carrera=carrera,
+                anio=anio,
+                defaults={}
+            )
+            if created:
+                self.stats['planes_creados'] += 1
+                if self.verbose:
+                    self.stdout.write(f'       ✨ Nuevo plan: {carrera.nombre} - {anio}')
+        
+        self.plan_cache[cache_key] = plan
+        return plan
+    
+    def get_or_create_materia(self, codigo: str, nombre: str, creditos: int) -> Materia:
+        """Obtener o crear una materia."""
+        if codigo in self.materia_cache:
+            return self.materia_cache[codigo]
+        
+        if self.dry_run:
+            materia = Materia(codigo=codigo, nombre=nombre, creditos=creditos, activo=False)
+        else:
+            materia, created = Materia.objects.get_or_create(
+                codigo=codigo,
+                defaults={
+                    'nombre': nombre,
+                    'creditos': creditos,
+                    'activo': False,
+                }
+            )
+            if created:
+                self.stats['materias_creadas'] += 1
+            else:
+                # Actualizar si es necesario
+                updated = False
+                if materia.nombre != nombre and nombre:
+                    materia.nombre = nombre
+                    updated = True
+                if materia.creditos != creditos and creditos > 0:
+                    materia.creditos = creditos
+                    updated = True
+                if updated:
+                    materia.save()
+                    self.stats['materias_actualizadas'] += 1
+        
+        self.materia_cache[codigo] = materia
+        return materia
+    
+    def process_carreras_y_planes(self, credits_data: Dict):
+        """
+        Procesar carreras y planes de estudio desde credits_data.
+        
+        Extrae carreras y planes únicos de las claves "CARRERA_ANIO".
+        """
+        carreras_set: Set[str] = set()
+        planes_set: Set[tuple] = set()  # (carrera_nombre, anio)
+        
+        total_programs = len(credits_data)
+        
+        # Primera pasada: extraer carreras y planes únicos
+        for idx, (carrera_plan, cursos) in enumerate(credits_data.items(), 1):
+            if self.verbose and idx % 10 == 0:
+                self.stdout.write(f'     [{idx}/{total_programs}] Procesando: {carrera_plan}')
+            
+            carrera_nombre, anio = self.parse_carrera_plan(carrera_plan)
+            
+            if carrera_nombre:
+                carreras_set.add(carrera_nombre)
+            if carrera_nombre and anio:
+                planes_set.add((carrera_nombre, anio))
+        
+        self.stdout.write(f'     📊 {len(carreras_set)} carreras únicas encontradas')
+        self.stdout.write(f'     📊 {len(planes_set)} planes únicos encontrados')
+        
+        # Crear carreras
+        self.stdout.write('     💾 Guardando carreras en la base de datos...')
+        for carrera_nombre in sorted(carreras_set):
+            self.get_or_create_carrera(carrera_nombre)
+        
+        # Crear planes de estudio
+        self.stdout.write('     💾 Guardando planes de estudio en la base de datos...')
+        for carrera_nombre, anio in sorted(planes_set):
+            carrera = self.get_or_create_carrera(carrera_nombre)
+            self.get_or_create_plan(carrera, anio)
+        
+        self.stdout.write(
+            f'     ✅ {self.stats["carreras_creadas"]} carreras creadas, '
+            f'{self.stats["planes_creados"]} planes creados'
+        )
+    
+    def process_materias(self, credits_data: Dict):
+        """
+        Procesar materias desde credits_data.
+        
+        Estructura de credits_data:
+        {
+            "CARRERA_PLAN": {
+                "codigo_nombre": {
+                    "codigo": "CIM40",
+                    "nombre": "ELECTROMAGNETÍSMO CIM",
+                    "creditos": "10"
+                }
+            }
+        }
+        
+        Se deduplican las materias por código (codigo es único).
+        """
+        # Diccionario para almacenar materias únicas por código
+        materias_dict: Dict[str, Dict] = {}
+        
+        total_programs = len(credits_data)
+        processed_items = 0
+        
+        # Primera pasada: extraer todas las materias únicas
+        for idx, (carrera_plan, cursos) in enumerate(credits_data.items(), 1):
+            if self.verbose and idx % 10 == 0:
+                self.stdout.write(f'     [{idx}/{total_programs}] Procesando: {carrera_plan}')
+            
+            for codigo_nombre, curso_data in cursos.items():
+                codigo = curso_data.get('codigo', '').strip()
+                nombre = curso_data.get('nombre', '').strip()
+                creditos_str = curso_data.get('creditos', '0')
+                
+                if not codigo:
+                    continue
+                
+                # Convertir créditos a int
+                try:
+                    creditos = int(creditos_str)
+                except (ValueError, TypeError):
+                    creditos = 0
+                    if self.verbose:
+                        self.stdout.write(
+                            self.style.WARNING(f'       ⚠️  Créditos inválidos para {codigo}: "{creditos_str}"')
+                        )
+                
+                # Si ya existe, usar la primera ocurrencia (o podemos actualizar si el nombre es mejor)
+                if codigo not in materias_dict:
+                    materias_dict[codigo] = {
+                        'codigo': codigo,
+                        'nombre': nombre,
+                        'creditos': creditos,
+                    }
+                else:
+                    # Si el nombre está vacío pero tenemos uno nuevo, actualizar
+                    if not materias_dict[codigo]['nombre'] and nombre:
+                        materias_dict[codigo]['nombre'] = nombre
+                    # Si los créditos son 0 pero tenemos uno nuevo, actualizar
+                    if materias_dict[codigo]['creditos'] == 0 and creditos > 0:
+                        materias_dict[codigo]['creditos'] = creditos
+                
+                processed_items += 1
+        
+        self.stdout.write(f'     📊 {processed_items} items procesados, {len(materias_dict)} materias únicas encontradas')
+        
+        # Segunda pasada: crear o actualizar materias en la base de datos
+        self.stdout.write('     💾 Guardando materias en la base de datos...')
+        
+        for idx, (codigo, materia_data) in enumerate(materias_dict.items(), 1):
+            if self.verbose and idx % 100 == 0:
+                self.stdout.write(f'       [{idx}/{len(materias_dict)}] Procesando: {codigo}')
+            
+            try:
+                self.get_or_create_materia(
+                    codigo=materia_data['codigo'],
+                    nombre=materia_data['nombre'],
+                    creditos=materia_data['creditos']
+                )
+            except Exception as e:
+                self.stats['errors'] += 1
+                self.stdout.write(
+                    self.style.ERROR(f'       ❌ Error procesando {codigo}: {e}')
+                )
+        
+        self.stats['materias_totales'] = len(materias_dict)
+        self.stdout.write(
+            f'     ✅ {self.stats["materias_creadas"]} materias creadas, '
+            f'{self.stats["materias_actualizadas"]} actualizadas'
+        )
+    
+    def process_plan_materias(self, credits_data: Dict):
+        """
+        Crear relaciones PlanMateria desde credits_data.
+        
+        Crea las relaciones entre planes de estudio y materias.
+        """
+        total_programs = len(credits_data)
+        processed_relations = 0
+        
+        self.stdout.write('     💾 Guardando relaciones plan-materia en la base de datos...')
+        
+        for idx, (carrera_plan, cursos) in enumerate(credits_data.items(), 1):
+            if self.verbose and idx % 10 == 0:
+                self.stdout.write(f'     [{idx}/{total_programs}] Procesando: {carrera_plan}')
+            
+            carrera_nombre, anio = self.parse_carrera_plan(carrera_plan)
+            
+            if not carrera_nombre or not anio:
+                continue
+            
+            # Obtener carrera y plan
+            carrera = self.get_or_create_carrera(carrera_nombre)
+            plan = self.get_or_create_plan(carrera, anio)
+            
+            # Crear relaciones PlanMateria para cada materia en este plan
+            for codigo_nombre, curso_data in cursos.items():
+                codigo = curso_data.get('codigo', '').strip()
+                
+                if not codigo:
+                    continue
+                
+                try:
+                    # Obtener materia
+                    materia = self.get_or_create_materia(
+                        codigo=codigo,
+                        nombre=curso_data.get('nombre', '').strip(),
+                        creditos=int(curso_data.get('creditos', '0') or '0')
+                    )
+                    
+                    # Crear relación PlanMateria
+                    if self.dry_run:
+                        # En dry-run, solo contar
+                        try:
+                            PlanMateria.objects.get(plan=plan, materia=materia)
+                        except PlanMateria.DoesNotExist:
+                            self.stats['plan_materias_creadas'] += 1
+                    else:
+                        plan_materia, created = PlanMateria.objects.get_or_create(
+                            plan=plan,
+                            materia=materia,
+                            defaults={
+                                'obligatorio': True,
+                            }
+                        )
+                        if created:
+                            self.stats['plan_materias_creadas'] += 1
+                            processed_relations += 1
+                
+                except Exception as e:
+                    self.stats['errors'] += 1
+                    if self.verbose:
+                        self.stdout.write(
+                            self.style.ERROR(f'       ❌ Error creando relación {carrera_plan} - {codigo}: {e}')
+                        )
+        
+        self.stdout.write(
+            f'     ✅ {self.stats["plan_materias_creadas"]} relaciones plan-materia creadas'
+        )
+    
+    def mark_active_materias(self, vigentes_data: Dict):
+        """
+        Marcar como activas las materias que aparecen en vigentes_data.
+        
+        Estructura de vigentes_data:
+        {
+            "CARRERA_PLAN": {
+                "course_code": {
+                    "university_code": "FING",
+                    "course_code": "1267",
+                    "course_name": "TALLER REPR. Y COM. GRAFICA"
+                }
+            }
+        }
+        """
+        # Extraer todos los códigos activos
+        codigos_activos: Set[str] = set()
+        
+        total_programs = len(vigentes_data)
+        
+        for idx, (carrera_plan, cursos) in enumerate(vigentes_data.items(), 1):
+            if self.verbose and idx % 10 == 0:
+                self.stdout.write(f'     [{idx}/{total_programs}] Procesando: {carrera_plan}')
+            
+            for course_code_key, curso_data in cursos.items():
+                course_code = curso_data.get('course_code', '').strip()
+                if course_code:
+                    codigos_activos.add(course_code)
+        
+        self.stdout.write(f'     📊 {len(codigos_activos)} códigos únicos encontrados en vigentes')
+        
+        # Marcar materias como activas
+        if self.dry_run:
+            # En dry-run, contar cuántas se marcarían como activas
+            materias_a_activar = Materia.objects.filter(codigo__in=codigos_activos, activo=False).count()
+            self.stats['materias_marcadas_activas'] = materias_a_activar
+            self.stdout.write(f'     ✅ {materias_a_activar} materias serían marcadas como activas (dry-run)')
+        else:
+            # Actualizar materias activas
+            updated_count = Materia.objects.filter(
+                codigo__in=codigos_activos,
+                activo=False
+            ).update(activo=True)
+            
+            self.stats['materias_marcadas_activas'] = updated_count
+            self.stdout.write(f'     ✅ {updated_count} materias marcadas como activas')
+            
+            # También marcar como inactivas las que no están en vigentes pero estaban activas
+            # (opcional, comentado por ahora)
+            # materias_inactivadas = Materia.objects.filter(
+            #     activo=True
+            # ).exclude(codigo__in=codigos_activos).update(activo=False)
+            # if materias_inactivadas > 0:
+            #     self.stdout.write(f'     📜 {materias_inactivadas} materias marcadas como inactivas')
+    
     def print_stats(self):
-        """Imprimir estadísticas."""
+        """Imprimir estadísticas finales."""
         self.stdout.write('\n' + '=' * 70)
         self.stdout.write(self.style.SUCCESS('📊 ESTADÍSTICAS FINALES'))
         self.stdout.write('=' * 70)
-        self.stdout.write(f'🎓 Carreras creadas:      {self.stats["carreras"]}')
-        self.stdout.write(f'📚 Cursos totales:        {self.stats["cursos"]}')
+        self.stdout.write(f'🎓 Carreras creadas:            {self.stats["carreras_creadas"]}')
+        self.stdout.write(f'📋 Planes de estudio creados:   {self.stats["planes_creados"]}')
+        self.stdout.write(f'🔗 Relaciones plan-materia:     {self.stats["plan_materias_creadas"]}')
+        self.stdout.write(f'📚 Materias totales procesadas: {self.stats["materias_totales"]}')
+        self.stdout.write(f'✨ Materias creadas:            {self.stats["materias_creadas"]}')
+        self.stdout.write(f'🔄 Materias actualizadas:        {self.stats["materias_actualizadas"]}')
+        self.stdout.write(f'✅ Materias marcadas como activas: {self.stats["materias_marcadas_activas"]}')
         
-        # Contar cursos activos e inactivos
         if not self.dry_run:
-            cursos_activos = Curso.objects.filter(activo=True).count()
-            cursos_inactivos = Curso.objects.filter(activo=False).count()
-            self.stdout.write(f'   ✅ Activos:            {cursos_activos}')
-            self.stdout.write(f'   📜 Históricos:         {cursos_inactivos}')
-        
-        self.stdout.write(f'🌳 Previas creadas:       {self.stats["previas"]}')
-        self.stdout.write(f'📝 Items creados:         {self.stats["items_previa"]}')
-        self.stdout.write(f'🔗 Posprevias creadas:    {self.stats["posprevias"]}')
-        
-        if self.stats['warnings'] > 0:
+            # Contar en la base de datos
+            carreras_count = Carrera.objects.count()
+            planes_count = PlanEstudio.objects.count()
+            plan_materias_count = PlanMateria.objects.count()
+            materias_activas = Materia.objects.filter(activo=True).count()
+            materias_inactivas = Materia.objects.filter(activo=False).count()
+            
             self.stdout.write('')
-            self.stdout.write(self.style.WARNING(
-                f'⚠️  Advertencias:          {self.stats["warnings"]}'
-            ))
-            self.stdout.write('   (Cursos referenciados en previas/posprevias que no están en credits)')
+            self.stdout.write('   En base de datos:')
+            self.stdout.write(f'   🎓 Carreras:                 {carreras_count}')
+            self.stdout.write(f'   📋 Planes:                  {planes_count}')
+            self.stdout.write(f'   🔗 Plan-Materias:           {plan_materias_count}')
+            self.stdout.write(f'   ✅ Materias activas:         {materias_activas}')
+            self.stdout.write(f'   📜 Materias inactivas:      {materias_inactivas}')
         
         if self.stats['errors'] > 0:
             self.stdout.write('')
-            self.stdout.write(self.style.ERROR(f'❌ Errores:               {self.stats["errors"]}'))
+            self.stdout.write(self.style.ERROR(f'❌ Errores:                  {self.stats["errors"]}'))
         
         self.stdout.write('=' * 70 + '\n')
-

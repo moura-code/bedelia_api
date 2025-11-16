@@ -1,33 +1,23 @@
 """
 Views for the API.
 """
-from .bedelia import (
-    ProgramViewSet,
-    SubjectViewSet,
-    OfferingViewSet,
-    RequirementGroupViewSet,
-    RequirementGroupLinkViewSet,
-    RequirementItemViewSet,
-    SubjectEquivalenceViewSet,
-    DependencyEdgeViewSet,
-    course_recommendations,
-    course_pathway,
-    semester_planning,
-    program_progress,
+from .materias import (
+    CarreraViewSet,
+    MateriaViewSet,
+    PlanEstudioViewSet,
+    PlanMateriaViewSet,
+    UnidadAprobableViewSet,
+    RequisitoNodoViewSet,
+    RequisitoItemViewSet,
 )
 
 __all__ = [
-    'ProgramViewSet',
-    'SubjectViewSet',
-    'OfferingViewSet',
-    'RequirementGroupViewSet',
-    'RequirementGroupLinkViewSet',
-    'RequirementItemViewSet',
-    'SubjectEquivalenceViewSet',
-    'DependencyEdgeViewSet',
-    'course_recommendations',
-    'course_pathway',
-    'semester_planning',
-    'program_progress',
+    'CarreraViewSet',
+    'MateriaViewSet',
+    'PlanEstudioViewSet',
+    'PlanMateriaViewSet',
+    'UnidadAprobableViewSet',
+    'RequisitoNodoViewSet',
+    'RequisitoItemViewSet',
 ]
 

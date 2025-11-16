@@ -2,975 +2,1002 @@
 	"info": {
 		"_postman_id": "bedelia-api-collection",
 		"name": "Bedelia API",
-		"description": "API endpoints for Bedelia course management system. This collection includes all endpoints for managing programs, subjects, offerings, requirements, and dependencies.",
+		"description": "REST API for Bedelia Course Management System\n\nThis collection provides read-only access to:\n- Carreras (Academic Programs)\n- Materias (Subjects/Courses)\n- Planes de Estudio (Study Plans)\n- Planes-Materias (Plan-Subject relationships)\n- Unidades Aprobables (Approvable Units)\n- Requisitos Nodos (Requirement Nodes)\n- Requisitos Items (Requirement Items)\n\nAll endpoints support filtering, searching, and ordering. Pagination is enabled with a default page size of 50 items.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Programs",
+			"name": "Carreras",
 			"item": [
 				{
-					"name": "List all programs",
+					"name": "List Carreras",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/programs/",
-							"host": ["{{base_url}}"],
-							"path": ["programs", ""]
-						},
-						"description": "Get a paginated list of all academic programs."
-					},
-					"response": []
-				},
-				{
-					"name": "Get program by ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/programs/{{program_id}}/",
-							"host": ["{{base_url}}"],
-							"path": ["programs", "{{program_id}}", ""]
-						},
-						"description": "Get detailed information about a specific program."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by plan year",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/programs/?plan_year=1997",
-							"host": ["{{base_url}}"],
-							"path": ["programs", ""],
-							"query": [
-								{
-									"key": "plan_year",
-									"value": "1997",
-									"description": "Filter programs by plan year"
-								}
-							]
-						},
-						"description": "Filter programs by their plan year (e.g., 1997, 2023)."
-					},
-					"response": []
-				},
-				{
-					"name": "Search by name",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/programs/?search=INGENIERIA",
-							"host": ["{{base_url}}"],
-							"path": ["programs", ""],
+							"raw": "{{base_url}}/api/carreras/?search=&ordering=&page=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"carreras",
+								""
+							],
 							"query": [
 								{
 									"key": "search",
-									"value": "INGENIERIA",
-									"description": "Search programs by name (case-insensitive)"
-								}
-							]
-						},
-						"description": "Search programs by name using full-text search."
-					},
-					"response": []
-				}
-			],
-			"description": "Endpoints for managing academic programs."
-		},
-		{
-			"name": "Subjects",
-			"item": [
-				{
-					"name": "List all subjects",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/subjects/",
-							"host": ["{{base_url}}"],
-							"path": ["subjects", ""]
-						},
-						"description": "Get a paginated list of all subjects/courses."
-					},
-					"response": []
-				},
-				{
-					"name": "Get subject by ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/subjects/{{subject_id}}/",
-							"host": ["{{base_url}}"],
-							"path": ["subjects", "{{subject_id}}", ""]
-						},
-						"description": "Get detailed information about a specific subject including all offerings and aliases."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by program",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/subjects/?program={{program_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["subjects", ""],
-							"query": [
-								{
-									"key": "program",
-									"value": "{{program_id}}",
-									"description": "Filter subjects by program ID"
-								}
-							]
-						},
-						"description": "Filter subjects by their associated program."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by credits (range)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/subjects/?credits__gte=10&credits__lte=15",
-							"host": ["{{base_url}}"],
-							"path": ["subjects", ""],
-							"query": [
-								{
-									"key": "credits__gte",
-									"value": "10",
-									"description": "Minimum credits"
+									"value": "",
+									"description": "Search by carrera nombre",
+									"disabled": true
 								},
 								{
-									"key": "credits__lte",
-									"value": "15",
-									"description": "Maximum credits"
-								}
-							]
-						},
-						"description": "Filter subjects by credit range (between 10 and 15 credits)."
-					},
-					"response": []
-				},
-				{
-					"name": "Search by code or name",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/subjects/?search=CALCULO",
-							"host": ["{{base_url}}"],
-							"path": ["subjects", ""],
-							"query": [
-								{
-									"key": "search",
-									"value": "CALCULO",
-									"description": "Search in subject code and name"
-								}
-							]
-						},
-						"description": "Search subjects by code or name using full-text search."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by subject code (contains)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/subjects/?code__icontains=DMA",
-							"host": ["{{base_url}}"],
-							"path": ["subjects", ""],
-							"query": [
-								{
-									"key": "code__icontains",
-									"value": "DMA",
-									"description": "Filter by code containing text (case-insensitive)"
-								}
-							]
-						},
-						"description": "Filter subjects whose code contains specific text."
-					},
-					"response": []
-				}
-			],
-			"description": "Endpoints for managing subjects/courses."
-		},
-		{
-			"name": "Offerings",
-			"item": [
-				{
-					"name": "List all offerings",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/offerings/",
-							"host": ["{{base_url}}"],
-							"path": ["offerings", ""]
-						},
-						"description": "Get a paginated list of all course/exam offerings."
-					},
-					"response": []
-				},
-				{
-					"name": "Get offering by ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/offerings/{{offering_id}}/",
-							"host": ["{{base_url}}"],
-							"path": ["offerings", "{{offering_id}}", ""]
-						},
-						"description": "Get detailed information about a specific offering including all requirement groups and links."
-					},
-					"response": []
-				},
-				{
-					"name": "Get requirement tree",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/offerings/{{offering_id}}/requirement_tree/",
-							"host": ["{{base_url}}"],
-							"path": ["offerings", "{{offering_id}}", "requirement_tree", ""]
-						},
-						"description": "Get the full recursive requirement tree for this offering. Returns all requirement groups in a nested tree structure."
-					},
-					"response": []
-				},
-				{
-					"name": "Search by requirements (custom)",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/offerings/search_by_requirements/?requires_subject=DMA01&scope=ALL",
-							"host": ["{{base_url}}"],
-							"path": ["offerings", "search_by_requirements", ""],
-							"query": [
-								{
-									"key": "requires_subject",
-									"value": "DMA01",
-									"description": "Subject code that must be in requirements"
+									"key": "ordering",
+									"value": "",
+									"description": "Order by: nombre, fecha_creacion (prefix with - for descending)",
+									"disabled": true
 								},
 								{
-									"key": "scope",
-									"value": "ALL",
-									"description": "Filter by requirement group scope (ALL/ANY/NONE)"
-								},
-								{
-									"key": "min_credits",
-									"value": "10",
-									"description": "Minimum total credits required",
+									"key": "page",
+									"value": "",
+									"description": "Page number for pagination",
 									"disabled": true
 								}
 							]
 						},
-						"description": "Custom action to search offerings by requirement patterns."
+						"description": "List all carreras (academic programs).\n\n**Query Parameters:**\n- `search`: Search by carrera nombre\n- `ordering`: Order results by 'nombre' or 'fecha_creacion' (prefix with '-' for descending)\n- `page`: Page number for pagination (default page size: 50)\n\n**Example:**\n- `GET /api/carreras/?search=INGENIERIA&ordering=nombre`"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/carreras/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"carreras",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n    \"count\": 10,\n    \"next\": null,\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n            \"nombre\": \"INGENIERÍA CIVIL\",\n            \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n            \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
-					"name": "Filter by subject",
+					"name": "Get Carrera by ID",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/offerings/?subject={{subject_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["offerings", ""],
-							"query": [
+							"raw": "{{base_url}}/api/carreras/:id/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"carreras",
+								":id",
+								""
+							],
+							"variable": [
 								{
-									"key": "subject",
-									"value": "{{subject_id}}",
-									"description": "Filter by subject ID"
+									"key": "id",
+									"value": "123e4567-e89b-12d3-a456-426614174000",
+									"description": "UUID of the carrera"
 								}
 							]
 						},
-						"description": "Filter offerings by their associated subject."
+						"description": "Retrieve a specific carrera by its UUID.\n\n**Path Parameters:**\n- `id`: UUID of the carrera\n\n**Example:**\n- `GET /api/carreras/123e4567-e89b-12d3-a456-426614174000/`"
 					},
-					"response": []
-				},
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/carreras/123e4567-e89b-12d3-a456-426614174000/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"carreras",
+										"123e4567-e89b-12d3-a456-426614174000",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"nombre\": \"INGENIERÍA CIVIL\",\n    \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n    \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Endpoints for managing carreras (academic programs)"
+		},
+		{
+			"name": "Materias",
+			"item": [
 				{
-					"name": "Filter by type (COURSE or EXAM)",
+					"name": "List Materias",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/offerings/?type=EXAM",
-							"host": ["{{base_url}}"],
-							"path": ["offerings", ""],
+							"raw": "{{base_url}}/api/materias/?codigo=&activo=&search=&ordering=&page=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"materias",
+								""
+							],
 							"query": [
 								{
-									"key": "type",
-									"value": "EXAM",
-									"description": "Filter by offering type (COURSE or EXAM)"
-								}
-							]
-						},
-						"description": "Filter offerings by type - either COURSE or EXAM."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by term",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/offerings/?term=2025S1",
-							"host": ["{{base_url}}"],
-							"path": ["offerings", ""],
-							"query": [
+									"key": "codigo",
+									"value": "",
+									"description": "Filter by materia codigo (exact match)",
+									"disabled": true
+								},
 								{
-									"key": "term",
-									"value": "2025S1",
-									"description": "Filter by academic term (e.g., 2025S1, 2024S2)"
-								}
-							]
-						},
-						"description": "Filter offerings by academic term."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by active status",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/offerings/?is_active=true",
-							"host": ["{{base_url}}"],
-							"path": ["offerings", ""],
-							"query": [
-								{
-									"key": "is_active",
-									"value": "true",
-									"description": "Filter by active status"
-								}
-							]
-						},
-						"description": "Filter offerings by their active status."
-					},
-					"response": []
-				},
-				{
-					"name": "Search by subject code/name",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/offerings/?search=CALCULO",
-							"host": ["{{base_url}}"],
-							"path": ["offerings", ""],
-							"query": [
+									"key": "activo",
+									"value": "",
+									"description": "Filter by active status (true/false)",
+									"disabled": true
+								},
 								{
 									"key": "search",
-									"value": "CALCULO",
-									"description": "Search in subject code and name"
+									"value": "",
+									"description": "Search by codigo or nombre",
+									"disabled": true
+								},
+								{
+									"key": "ordering",
+									"value": "",
+									"description": "Order by: codigo, nombre, creditos, fecha_creacion",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "",
+									"description": "Page number for pagination",
+									"disabled": true
 								}
 							]
 						},
-						"description": "Search offerings by their subject's code or name."
+						"description": "List all materias (subjects/courses).\n\n**Query Parameters:**\n- `codigo`: Filter by exact materia codigo\n- `activo`: Filter by active status (true/false)\n- `search`: Search by codigo or nombre\n- `ordering`: Order results by 'codigo', 'nombre', 'creditos', or 'fecha_creacion' (prefix with '-' for descending)\n- `page`: Page number for pagination\n\n**Examples:**\n- `GET /api/materias/?activo=true` - Get only active materias\n- `GET /api/materias/?search=PROGRAMACION&ordering=nombre` - Search and order by nombre"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/materias/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"materias",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n    \"count\": 100,\n    \"next\": \"{{base_url}}/api/materias/?page=2\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n            \"codigo\": \"CIM40\",\n            \"nombre\": \"ELECTROMAGNETÍSMO CIM\",\n            \"creditos\": 10,\n            \"activo\": true,\n            \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n            \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Materia by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/materias/:id/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"materias",
+								":id",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "123e4567-e89b-12d3-a456-426614174000",
+									"description": "UUID of the materia"
+								}
+							]
+						},
+						"description": "Retrieve a specific materia with detailed information including unidades and planes count.\n\n**Path Parameters:**\n- `id`: UUID of the materia\n\n**Response includes:**\n- Basic materia information\n- List of unidades aprobables\n- Count of plans that include this materia\n\n**Example:**\n- `GET /api/materias/123e4567-e89b-12d3-a456-426614174000/`"
+					},
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/materias/123e4567-e89b-12d3-a456-426614174000/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"materias",
+										"123e4567-e89b-12d3-a456-426614174000",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"codigo\": \"CIM40\",\n    \"nombre\": \"ELECTROMAGNETÍSMO CIM\",\n    \"creditos\": 10,\n    \"activo\": true,\n    \"unidades\": [\n        {\n            \"id\": \"223e4567-e89b-12d3-a456-426614174001\",\n            \"tipo\": \"CURSO\",\n            \"tipo_display\": \"Curso\",\n            \"codigo_bedelias\": \"1267\",\n            \"nombre\": \"\",\n            \"activo\": true\n        }\n    ],\n    \"planes_count\": 3,\n    \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n    \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n}"
+						}
+					]
 				}
 			],
-			"description": "Endpoints for managing course and exam offerings."
+			"description": "Endpoints for managing materias (subjects/courses)"
 		},
 		{
-			"name": "Requirement Groups",
+			"name": "Planes de Estudio",
 			"item": [
 				{
-					"name": "List all requirement groups",
+					"name": "List Planes de Estudio",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/requirement-groups/",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-groups", ""]
-						},
-						"description": "Get a paginated list of all requirement groups."
-					},
-					"response": []
-				},
-				{
-					"name": "Get requirement group by ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-groups/{{group_id}}/",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-groups", "{{group_id}}", ""]
-						},
-						"description": "Get detailed information about a specific requirement group including all items and child links."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by offering",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-groups/?offering={{offering_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-groups", ""],
+							"raw": "{{base_url}}/api/planes-estudio/?carrera=&anio=&activo=&search=&ordering=&page=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"planes-estudio",
+								""
+							],
 							"query": [
 								{
-									"key": "offering",
-									"value": "{{offering_id}}",
-									"description": "Filter by offering ID"
-								}
-							]
-						},
-						"description": "Filter requirement groups by their associated offering."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by scope",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-groups/?scope=ANY",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-groups", ""],
-							"query": [
+									"key": "carrera",
+									"value": "",
+									"description": "Filter by carrera UUID",
+									"disabled": true
+								},
 								{
-									"key": "scope",
-									"value": "ANY",
-									"description": "Filter by scope (ALL/ANY/NONE)"
-								}
-							]
-						},
-						"description": "Filter requirement groups by their scope (ALL, ANY, or NONE)."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by flavor",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-groups/?flavor=APPROVALS",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-groups", ""],
-							"query": [
+									"key": "anio",
+									"value": "",
+									"description": "Filter by plan year",
+									"disabled": true
+								},
 								{
-									"key": "flavor",
-									"value": "APPROVALS",
-									"description": "Filter by flavor (GENERIC, APPROVALS, etc.)"
-								}
-							]
-						},
-						"description": "Filter requirement groups by their semantic flavor."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by min_required",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-groups/?min_required__gte=2",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-groups", ""],
-							"query": [
-								{
-									"key": "min_required__gte",
-									"value": "2",
-									"description": "Minimum value for min_required"
-								}
-							]
-						},
-						"description": "Filter requirement groups by their min_required value (for ANY scope groups)."
-					},
-					"response": []
-				}
-			],
-			"description": "Endpoints for managing requirement groups."
-		},
-		{
-			"name": "Requirement Group Links",
-			"item": [
-				{
-					"name": "List all links",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-group-links/",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-group-links", ""]
-						},
-						"description": "Get a paginated list of all requirement group links (parent-child relationships)."
-					},
-					"response": []
-				},
-				{
-					"name": "Get link by ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-group-links/{{link_id}}/",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-group-links", "{{link_id}}", ""]
-						},
-						"description": "Get detailed information about a specific requirement group link."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by parent group",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-group-links/?parent_group={{group_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-group-links", ""],
-							"query": [
-								{
-									"key": "parent_group",
-									"value": "{{group_id}}",
-									"description": "Filter by parent group ID"
-								}
-							]
-						},
-						"description": "Filter links by their parent requirement group."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by child group",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-group-links/?child_group={{group_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-group-links", ""],
-							"query": [
-								{
-									"key": "child_group",
-									"value": "{{group_id}}",
-									"description": "Filter by child group ID"
-								}
-							]
-						},
-						"description": "Filter links by their child requirement group."
-					},
-					"response": []
-				}
-			],
-			"description": "Endpoints for managing requirement group links (parent-child relationships)."
-		},
-		{
-			"name": "Requirement Items",
-			"item": [
-				{
-					"name": "List all items",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-items/",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-items", ""]
-						},
-						"description": "Get a paginated list of all requirement items (leaf requirements)."
-					},
-					"response": []
-				},
-				{
-					"name": "Get item by ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-items/{{item_id}}/",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-items", "{{item_id}}", ""]
-						},
-						"description": "Get detailed information about a specific requirement item."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by group",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-items/?group={{group_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-items", ""],
-							"query": [
-								{
-									"key": "group",
-									"value": "{{group_id}}",
-									"description": "Filter by requirement group ID"
-								}
-							]
-						},
-						"description": "Filter requirement items by their parent requirement group."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by target type",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-items/?target_type=SUBJECT",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-items", ""],
-							"query": [
-								{
-									"key": "target_type",
-									"value": "SUBJECT",
-									"description": "Filter by target type (SUBJECT or OFFERING)"
-								}
-							]
-						},
-						"description": "Filter requirement items by their target type (SUBJECT or OFFERING)."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by target subject",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-items/?target_subject={{subject_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-items", ""],
-							"query": [
-								{
-									"key": "target_subject",
-									"value": "{{subject_id}}",
-									"description": "Filter by target subject ID"
-								}
-							]
-						},
-						"description": "Filter requirement items by their target subject."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by condition",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-items/?condition=APPROVED",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-items", ""],
-							"query": [
-								{
-									"key": "condition",
-									"value": "APPROVED",
-									"description": "Filter by condition (APPROVED/ENROLLED/CREDITED)"
-								}
-							]
-						},
-						"description": "Filter requirement items by their required condition."
-					},
-					"response": []
-				},
-				{
-					"name": "Search by alt_code or alt_label",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/requirement-items/?search=DMA01",
-							"host": ["{{base_url}}"],
-							"path": ["requirement-items", ""],
-							"query": [
+									"key": "activo",
+									"value": "",
+									"description": "Filter by active status (true/false)",
+									"disabled": true
+								},
 								{
 									"key": "search",
-									"value": "DMA01",
-									"description": "Search in alt_code and alt_label"
+									"value": "",
+									"description": "Search by carrera nombre, anio, or descripcion",
+									"disabled": true
+								},
+								{
+									"key": "ordering",
+									"value": "",
+									"description": "Order by: anio, fecha_creacion",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "",
+									"description": "Page number for pagination",
+									"disabled": true
 								}
 							]
 						},
-						"description": "Search requirement items by their alternative code or label."
+						"description": "List all planes de estudio (study plans).\n\n**Query Parameters:**\n- `carrera`: Filter by carrera UUID\n- `anio`: Filter by plan year\n- `activo`: Filter by active status (true/false)\n- `search`: Search by carrera nombre, anio, or descripcion\n- `ordering`: Order results by 'anio' or 'fecha_creacion' (prefix with '-' for descending)\n- `page`: Page number for pagination\n\n**Examples:**\n- `GET /api/planes-estudio/?carrera=<uuid>&activo=true` - Get active plans for a carrera\n- `GET /api/planes-estudio/?anio=2021` - Get plans for a specific year"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/planes-estudio/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"planes-estudio",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n    \"count\": 25,\n    \"next\": \"{{base_url}}/api/planes-estudio/?page=2\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n            \"carrera\": {\n                \"id\": \"223e4567-e89b-12d3-a456-426614174001\",\n                \"nombre\": \"INGENIERÍA CIVIL\",\n                \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n                \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n            },\n            \"carrera_id\": \"223e4567-e89b-12d3-a456-426614174001\",\n            \"carrera_nombre\": \"INGENIERÍA CIVIL\",\n            \"anio\": \"2021\",\n            \"descripcion\": \"\",\n            \"activo\": true,\n            \"materias_count\": 45,\n            \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n            \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Plan de Estudio by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/planes-estudio/:id/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"planes-estudio",
+								":id",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "123e4567-e89b-12d3-a456-426614174000",
+									"description": "UUID of the plan de estudio"
+								}
+							]
+						},
+						"description": "Retrieve a specific plan de estudio by its UUID.\n\n**Path Parameters:**\n- `id`: UUID of the plan de estudio\n\n**Example:**\n- `GET /api/planes-estudio/123e4567-e89b-12d3-a456-426614174000/`"
+					},
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/planes-estudio/123e4567-e89b-12d3-a456-426614174000/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"planes-estudio",
+										"123e4567-e89b-12d3-a456-426614174000",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"carrera\": {\n        \"id\": \"223e4567-e89b-12d3-a456-426614174001\",\n        \"nombre\": \"INGENIERÍA CIVIL\",\n        \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n        \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n    },\n    \"carrera_id\": \"223e4567-e89b-12d3-a456-426614174001\",\n    \"carrera_nombre\": \"INGENIERÍA CIVIL\",\n    \"anio\": \"2021\",\n    \"descripcion\": \"\",\n    \"activo\": true,\n    \"materias_count\": 45,\n    \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n    \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n}"
+						}
+					]
 				}
 			],
-			"description": "Endpoints for managing requirement items (leaf requirements)."
+			"description": "Endpoints for managing planes de estudio (study plans)"
 		},
 		{
-			"name": "Subject Equivalences",
+			"name": "Planes-Materias",
 			"item": [
 				{
-					"name": "List all equivalences",
+					"name": "List Planes-Materias",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/subject-equivalences/",
-							"host": ["{{base_url}}"],
-							"path": ["subject-equivalences", ""]
-						},
-						"description": "Get a paginated list of all subject equivalences."
-					},
-					"response": []
-				},
-				{
-					"name": "Get equivalence by ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/subject-equivalences/{{equivalence_id}}/",
-							"host": ["{{base_url}}"],
-							"path": ["subject-equivalences", "{{equivalence_id}}", ""]
-						},
-						"description": "Get detailed information about a specific subject equivalence."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by subject_a",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/subject-equivalences/?subject_a={{subject_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["subject-equivalences", ""],
+							"raw": "{{base_url}}/api/planes-materias/?plan=&materia=&obligatorio=&search=&ordering=&page=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"planes-materias",
+								""
+							],
 							"query": [
 								{
-									"key": "subject_a",
-									"value": "{{subject_id}}",
-									"description": "Filter by first subject ID"
+									"key": "plan",
+									"value": "",
+									"description": "Filter by plan UUID",
+									"disabled": true
+								},
+								{
+									"key": "materia",
+									"value": "",
+									"description": "Filter by materia UUID",
+									"disabled": true
+								},
+								{
+									"key": "obligatorio",
+									"value": "",
+									"description": "Filter by obligatorio status (true/false)",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Search by carrera nombre, plan anio, materia codigo, or materia nombre",
+									"disabled": true
+								},
+								{
+									"key": "ordering",
+									"value": "",
+									"description": "Order by: semestre_sugerido, fecha_creacion",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "",
+									"description": "Page number for pagination",
+									"disabled": true
 								}
 							]
 						},
-						"description": "Filter equivalences by the first subject."
+						"description": "List all plan-materia relationships.\n\n**Query Parameters:**\n- `plan`: Filter by plan UUID\n- `materia`: Filter by materia UUID\n- `obligatorio`: Filter by obligatorio status (true/false)\n- `search`: Search by carrera nombre, plan anio, materia codigo, or materia nombre\n- `ordering`: Order results by 'semestre_sugerido' or 'fecha_creacion' (prefix with '-' for descending)\n- `page`: Page number for pagination\n\n**Examples:**\n- `GET /api/planes-materias/?plan=<uuid>` - Get all materias in a specific plan\n- `GET /api/planes-materias/?materia=<uuid>` - Get all plans that include a specific materia"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/planes-materias/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"planes-materias",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n    \"count\": 500,\n    \"next\": \"{{base_url}}/api/planes-materias/?page=2\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n            \"plan\": {\n                \"id\": \"223e4567-e89b-12d3-a456-426614174001\",\n                \"carrera\": {\n                    \"id\": \"323e4567-e89b-12d3-a456-426614174002\",\n                    \"nombre\": \"INGENIERÍA CIVIL\",\n                    \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n                    \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n                },\n                \"carrera_id\": \"323e4567-e89b-12d3-a456-426614174002\",\n                \"carrera_nombre\": \"INGENIERÍA CIVIL\",\n                \"anio\": \"2021\",\n                \"descripcion\": \"\",\n                \"activo\": true,\n                \"materias_count\": 45,\n                \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n                \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n            },\n            \"plan_id\": \"223e4567-e89b-12d3-a456-426614174001\",\n            \"materia\": {\n                \"id\": \"423e4567-e89b-12d3-a456-426614174003\",\n                \"codigo\": \"CIM40\",\n                \"nombre\": \"ELECTROMAGNETÍSMO CIM\",\n                \"creditos\": 10,\n                \"activo\": true,\n                \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n                \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n            },\n            \"materia_id\": \"423e4567-e89b-12d3-a456-426614174003\",\n            \"materia_codigo\": \"CIM40\",\n            \"materia_nombre\": \"ELECTROMAGNETÍSMO CIM\",\n            \"obligatorio\": true,\n            \"semestre_sugerido\": 3,\n            \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n            \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
-					"name": "Filter by subject_b",
+					"name": "Get Plan-Materia by ID",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/subject-equivalences/?subject_b={{subject_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["subject-equivalences", ""],
-							"query": [
+							"raw": "{{base_url}}/api/planes-materias/:id/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"planes-materias",
+								":id",
+								""
+							],
+							"variable": [
 								{
-									"key": "subject_b",
-									"value": "{{subject_id}}",
-									"description": "Filter by second subject ID"
+									"key": "id",
+									"value": "123e4567-e89b-12d3-a456-426614174000",
+									"description": "UUID of the plan-materia relationship"
 								}
 							]
 						},
-						"description": "Filter equivalences by the second subject."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by kind",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/subject-equivalences/?kind=FULL",
-							"host": ["{{base_url}}"],
-							"path": ["subject-equivalences", ""],
-							"query": [
-								{
-									"key": "kind",
-									"value": "FULL",
-									"description": "Filter by equivalence kind (FULL or PARTIAL)"
-								}
-							]
-						},
-						"description": "Filter equivalences by their kind (FULL or PARTIAL)."
+						"description": "Retrieve a specific plan-materia relationship by its UUID.\n\n**Path Parameters:**\n- `id`: UUID of the plan-materia relationship\n\n**Example:**\n- `GET /api/planes-materias/123e4567-e89b-12d3-a456-426614174000/`"
 					},
 					"response": []
 				}
 			],
-			"description": "Endpoints for managing subject equivalences."
+			"description": "Endpoints for managing plan-materia relationships"
 		},
 		{
-			"name": "Dependency Edges",
+			"name": "Unidades Aprobables",
 			"item": [
 				{
-					"name": "List all edges",
+					"name": "List Unidades Aprobables",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/dependency-edges/",
-							"host": ["{{base_url}}"],
-							"path": ["dependency-edges", ""]
-						},
-						"description": "Get a paginated list of all dependency edges."
-					},
-					"response": []
-				},
-				{
-					"name": "Get edge by ID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/dependency-edges/{{edge_id}}/",
-							"host": ["{{base_url}}"],
-							"path": ["dependency-edges", "{{edge_id}}", ""]
-						},
-						"description": "Get detailed information about a specific dependency edge."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by source offering",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/dependency-edges/?source_offering={{offering_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["dependency-edges", ""],
+							"raw": "{{base_url}}/api/unidades-aprobables/?materia=&tipo=&activo=&search=&ordering=&page=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"unidades-aprobables",
+								""
+							],
 							"query": [
 								{
-									"key": "source_offering",
-									"value": "{{offering_id}}",
-									"description": "Filter by source offering ID"
+									"key": "materia",
+									"value": "",
+									"description": "Filter by materia UUID",
+									"disabled": true
+								},
+								{
+									"key": "tipo",
+									"value": "",
+									"description": "Filter by tipo: CURSO, EXAMEN, UCB, OTRO",
+									"disabled": true
+								},
+								{
+									"key": "activo",
+									"value": "",
+									"description": "Filter by active status (true/false)",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Search by materia codigo, materia nombre, codigo_bedelias, or nombre",
+									"disabled": true
+								},
+								{
+									"key": "ordering",
+									"value": "",
+									"description": "Order by: materia__codigo, tipo, fecha_creacion",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "",
+									"description": "Page number for pagination",
+									"disabled": true
 								}
 							]
 						},
-						"description": "Filter dependency edges by their source offering."
+						"description": "List all unidades aprobables (approvable units: courses, exams, UCB modules, etc.).\n\n**Query Parameters:**\n- `materia`: Filter by materia UUID\n- `tipo`: Filter by tipo (CURSO, EXAMEN, UCB, OTRO)\n- `activo`: Filter by active status (true/false)\n- `search`: Search by materia codigo, materia nombre, codigo_bedelias, or nombre\n- `ordering`: Order results by 'materia__codigo', 'tipo', or 'fecha_creacion' (prefix with '-' for descending)\n- `page`: Page number for pagination\n\n**Examples:**\n- `GET /api/unidades-aprobables/?materia=<uuid>&tipo=CURSO` - Get curso unidades for a materia\n- `GET /api/unidades-aprobables/?activo=true` - Get only active unidades"
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/unidades-aprobables/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"unidades-aprobables",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n    \"count\": 200,\n    \"next\": \"{{base_url}}/api/unidades-aprobables/?page=2\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n            \"materia\": {\n                \"id\": \"223e4567-e89b-12d3-a456-426614174001\",\n                \"codigo\": \"CIM40\",\n                \"nombre\": \"ELECTROMAGNETÍSMO CIM\",\n                \"creditos\": 10,\n                \"activo\": true,\n                \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n                \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n            },\n            \"materia_id\": \"223e4567-e89b-12d3-a456-426614174001\",\n            \"materia_codigo\": \"CIM40\",\n            \"materia_nombre\": \"ELECTROMAGNETÍSMO CIM\",\n            \"tipo\": \"CURSO\",\n            \"tipo_display\": \"Curso\",\n            \"codigo_bedelias\": \"1267\",\n            \"nombre\": \"\",\n            \"activo\": true,\n            \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n            \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n        }\n    ]\n}"
+						}
+					]
 				},
 				{
-					"name": "Filter by target offering",
+					"name": "Get Unidad Aprobable by ID",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/dependency-edges/?target_offering={{offering_id}}",
-							"host": ["{{base_url}}"],
-							"path": ["dependency-edges", ""],
-							"query": [
+							"raw": "{{base_url}}/api/unidades-aprobables/:id/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"unidades-aprobables",
+								":id",
+								""
+							],
+							"variable": [
 								{
-									"key": "target_offering",
-									"value": "{{offering_id}}",
-									"description": "Filter by target offering ID"
+									"key": "id",
+									"value": "123e4567-e89b-12d3-a456-426614174000",
+									"description": "UUID of the unidad aprobable"
 								}
 							]
 						},
-						"description": "Filter dependency edges by their target offering."
-					},
-					"response": []
-				},
-				{
-					"name": "Filter by dependency kind",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{base_url}}/dependency-edges/?dep_kind=REQUIRES_ALL",
-							"host": ["{{base_url}}"],
-							"path": ["dependency-edges", ""],
-							"query": [
-								{
-									"key": "dep_kind",
-									"value": "REQUIRES_ALL",
-									"description": "Filter by dependency kind"
-								}
-							]
-						},
-						"description": "Filter dependency edges by their kind (REQUIRES_ALL, ALTERNATIVE_ANY, FORBIDDEN_NONE)."
+						"description": "Retrieve a specific unidad aprobable by its UUID.\n\n**Path Parameters:**\n- `id`: UUID of the unidad aprobable\n\n**Example:**\n- `GET /api/unidades-aprobables/123e4567-e89b-12d3-a456-426614174000/`"
 					},
 					"response": []
 				}
 			],
-			"description": "Endpoints for managing dependency edges between offerings."
+			"description": "Endpoints for managing unidades aprobables (approvable units)"
+		},
+		{
+			"name": "Requisitos Nodos",
+			"item": [
+				{
+					"name": "List Requisitos Nodos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/requisitos-nodos/?plan_materia=&tipo=&padre=&root_only=&search=&ordering=&page=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"requisitos-nodos",
+								""
+							],
+							"query": [
+								{
+									"key": "plan_materia",
+									"value": "",
+									"description": "Filter by plan_materia UUID",
+									"disabled": true
+								},
+								{
+									"key": "tipo",
+									"value": "",
+									"description": "Filter by tipo: ALL, ANY, NOT, LEAF",
+									"disabled": true
+								},
+								{
+									"key": "padre",
+									"value": "",
+									"description": "Filter by padre UUID",
+									"disabled": true
+								},
+								{
+									"key": "root_only",
+									"value": "",
+									"description": "Filter to show only root nodes (true/false)",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Search by descripcion",
+									"disabled": true
+								},
+								{
+									"key": "ordering",
+									"value": "",
+									"description": "Order by: orden, fecha_creacion",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "",
+									"description": "Page number for pagination",
+									"disabled": true
+								}
+							]
+						},
+						"description": "List all requisitos nodos (requirement nodes).\n\n**Query Parameters:**\n- `plan_materia`: Filter by plan_materia UUID\n- `tipo`: Filter by tipo (ALL, ANY, NOT, LEAF)\n- `padre`: Filter by padre UUID\n- `root_only`: Filter to show only root nodes (true/false)\n- `search`: Search by descripcion\n- `ordering`: Order results by 'orden' or 'fecha_creacion' (prefix with '-' for descending)\n- `page`: Page number for pagination\n\n**Examples:**\n- `GET /api/requisitos-nodos/?plan_materia=<uuid>` - Get all requisitos for a plan-materia\n- `GET /api/requisitos-nodos/?root_only=true` - Get only root nodes\n- `GET /api/requisitos-nodos/?tipo=LEAF` - Get only leaf nodes"
+					},
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/requisitos-nodos/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"requisitos-nodos",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n    \"count\": 150,\n    \"next\": \"{{base_url}}/api/requisitos-nodos/?page=2\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n            \"plan_materia_id\": \"223e4567-e89b-12d3-a456-426614174001\",\n            \"tipo\": \"ALL\",\n            \"tipo_display\": \"Debe cumplir todas\",\n            \"padre_id\": null,\n            \"cantidad_minima\": null,\n            \"orden\": 0,\n            \"descripcion\": \"\",\n            \"hijos_count\": 2,\n            \"items_count\": 0,\n            \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n            \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Requisito Nodo by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/requisitos-nodos/:id/?tree=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"requisitos-nodos",
+								":id",
+								""
+							],
+							"query": [
+								{
+									"key": "tree",
+									"value": "",
+									"description": "Return full tree structure (true/false)",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "123e4567-e89b-12d3-a456-426614174000",
+									"description": "UUID of the requisito nodo"
+								}
+							]
+						},
+						"description": "Retrieve a specific requisito nodo by its UUID.\n\n**Path Parameters:**\n- `id`: UUID of the requisito nodo\n\n**Query Parameters:**\n- `tree`: Set to 'true' to return the full recursive tree structure with hijos and items\n\n**Examples:**\n- `GET /api/requisitos-nodos/123e4567-e89b-12d3-a456-426614174000/` - Get basic nodo info\n- `GET /api/requisitos-nodos/123e4567-e89b-12d3-a456-426614174000/?tree=true` - Get full tree structure"
+					},
+					"response": [
+						{
+							"name": "Basic Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/requisitos-nodos/123e4567-e89b-12d3-a456-426614174000/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"requisitos-nodos",
+										"123e4567-e89b-12d3-a456-426614174000",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"plan_materia_id\": \"223e4567-e89b-12d3-a456-426614174001\",\n    \"tipo\": \"ALL\",\n    \"tipo_display\": \"Debe cumplir todas\",\n    \"padre_id\": null,\n    \"cantidad_minima\": null,\n    \"orden\": 0,\n    \"descripcion\": \"\",\n    \"hijos_count\": 2,\n    \"items_count\": 0,\n    \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n    \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n}"
+						},
+						{
+							"name": "Tree Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/requisitos-nodos/123e4567-e89b-12d3-a456-426614174000/?tree=true",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"requisitos-nodos",
+										"123e4567-e89b-12d3-a456-426614174000",
+										""
+									],
+									"query": [
+										{
+											"key": "tree",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"plan_materia_id\": \"223e4567-e89b-12d3-a456-426614174001\",\n    \"tipo\": \"ALL\",\n    \"tipo_display\": \"Debe cumplir todas\",\n    \"cantidad_minima\": null,\n    \"orden\": 0,\n    \"descripcion\": \"\",\n    \"hijos\": [\n        {\n            \"id\": \"323e4567-e89b-12d3-a456-426614174002\",\n            \"plan_materia_id\": null,\n            \"tipo\": \"LEAF\",\n            \"tipo_display\": \"Condición hoja\",\n            \"cantidad_minima\": null,\n            \"orden\": 0,\n            \"descripcion\": \"\",\n            \"hijos\": [],\n            \"items\": [\n                {\n                    \"id\": \"423e4567-e89b-12d3-a456-426614174003\",\n                    \"nodo_id\": \"323e4567-e89b-12d3-a456-426614174002\",\n                    \"tipo\": \"UNIDAD\",\n                    \"tipo_display\": \"Unidad aprobable específica\",\n                    \"unidad_requerida\": {\n                        \"id\": \"523e4567-e89b-12d3-a456-426614174004\",\n                        \"materia\": {\n                            \"id\": \"623e4567-e89b-12d3-a456-426614174005\",\n                            \"codigo\": \"CIM40\",\n                            \"nombre\": \"ELECTROMAGNETÍSMO CIM\",\n                            \"creditos\": 10,\n                            \"activo\": true,\n                            \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n                            \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n                        },\n                        \"materia_id\": \"623e4567-e89b-12d3-a456-426614174005\",\n                        \"materia_codigo\": \"CIM40\",\n                        \"materia_nombre\": \"ELECTROMAGNETÍSMO CIM\",\n                        \"tipo\": \"CURSO\",\n                        \"tipo_display\": \"Curso\",\n                        \"codigo_bedelias\": \"1267\",\n                        \"nombre\": \"\",\n                        \"activo\": true,\n                        \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n                        \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n                    },\n                    \"unidad_requerida_id\": \"523e4567-e89b-12d3-a456-426614174004\",\n                    \"creditos_minimos\": null,\n                    \"texto\": \"\",\n                    \"orden\": 0,\n                    \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n                    \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n                }\n            ],\n            \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n            \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n        }\n    ],\n    \"items\": [],\n    \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n    \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Endpoints for managing requisitos nodos (requirement nodes)"
+		},
+		{
+			"name": "Requisitos Items",
+			"item": [
+				{
+					"name": "List Requisitos Items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/requisitos-items/?nodo=&tipo=&search=&ordering=&page=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"requisitos-items",
+								""
+							],
+							"query": [
+								{
+									"key": "nodo",
+									"value": "",
+									"description": "Filter by nodo UUID",
+									"disabled": true
+								},
+								{
+									"key": "tipo",
+									"value": "",
+									"description": "Filter by tipo: UNIDAD, CREDITOS, TEXTO",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Search by texto",
+									"disabled": true
+								},
+								{
+									"key": "ordering",
+									"value": "",
+									"description": "Order by: orden, fecha_creacion",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "",
+									"description": "Page number for pagination",
+									"disabled": true
+								}
+							]
+						},
+						"description": "List all requisitos items (requirement items).\n\n**Query Parameters:**\n- `nodo`: Filter by nodo UUID\n- `tipo`: Filter by tipo (UNIDAD, CREDITOS, TEXTO)\n- `search`: Search by texto\n- `ordering`: Order results by 'orden' or 'fecha_creacion' (prefix with '-' for descending)\n- `page`: Page number for pagination\n\n**Examples:**\n- `GET /api/requisitos-items/?nodo=<uuid>` - Get all items for a specific nodo\n- `GET /api/requisitos-items/?tipo=UNIDAD` - Get only UNIDAD type items"
+					},
+					"response": [
+						{
+							"name": "Success Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/requisitos-items/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"requisitos-items",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n    \"count\": 300,\n    \"next\": \"{{base_url}}/api/requisitos-items/?page=2\",\n    \"previous\": null,\n    \"results\": [\n        {\n            \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n            \"nodo_id\": \"223e4567-e89b-12d3-a456-426614174001\",\n            \"tipo\": \"UNIDAD\",\n            \"tipo_display\": \"Unidad aprobable específica\",\n            \"unidad_requerida\": {\n                \"id\": \"323e4567-e89b-12d3-a456-426614174002\",\n                \"materia\": {\n                    \"id\": \"423e4567-e89b-12d3-a456-426614174003\",\n                    \"codigo\": \"CIM40\",\n                    \"nombre\": \"ELECTROMAGNETÍSMO CIM\",\n                    \"creditos\": 10,\n                    \"activo\": true,\n                    \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n                    \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n                },\n                \"materia_id\": \"423e4567-e89b-12d3-a456-426614174003\",\n                \"materia_codigo\": \"CIM40\",\n                \"materia_nombre\": \"ELECTROMAGNETÍSMO CIM\",\n                \"tipo\": \"CURSO\",\n                \"tipo_display\": \"Curso\",\n                \"codigo_bedelias\": \"1267\",\n                \"nombre\": \"\",\n                \"activo\": true,\n                \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n                \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n            },\n            \"unidad_requerida_id\": \"323e4567-e89b-12d3-a456-426614174002\",\n            \"creditos_minimos\": null,\n            \"texto\": \"\",\n            \"orden\": 0,\n            \"fecha_creacion\": \"2024-01-01T00:00:00Z\",\n            \"fecha_modificacion\": \"2024-01-01T00:00:00Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Requisito Item by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/requisitos-items/:id/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"requisitos-items",
+								":id",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "123e4567-e89b-12d3-a456-426614174000",
+									"description": "UUID of the requisito item"
+								}
+							]
+						},
+						"description": "Retrieve a specific requisito item by its UUID.\n\n**Path Parameters:**\n- `id`: UUID of the requisito item\n\n**Example:**\n- `GET /api/requisitos-items/123e4567-e89b-12d3-a456-426614174000/`"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for managing requisitos items (requirement items)"
 		}
 	],
 	"variable": [
 		{
 			"key": "base_url",
-			"value": "http://localhost:8000/api",
+			"value": "http://localhost:8000",
 			"type": "string"
-		},
-		{
-			"key": "program_id",
-			"value": "",
-			"type": "string",
-			"description": "UUID of a program - fill from responses"
-		},
-		{
-			"key": "subject_id",
-			"value": "",
-			"type": "string",
-			"description": "UUID of a subject - fill from responses"
-		},
-		{
-			"key": "offering_id",
-			"value": "",
-			"type": "string",
-			"description": "UUID of an offering - fill from responses"
-		},
-		{
-			"key": "group_id",
-			"value": "",
-			"type": "string",
-			"description": "UUID of a requirement group - fill from responses"
-		},
-		{
-			"key": "link_id",
-			"value": "",
-			"type": "string",
-			"description": "UUID of a requirement group link - fill from responses"
-		},
-		{
-			"key": "item_id",
-			"value": "",
-			"type": "string",
-			"description": "UUID of a requirement item - fill from responses"
-		},
-		{
-			"key": "equivalence_id",
-			"value": "",
-			"type": "string",
-			"description": "UUID of a subject equivalence - fill from responses"
-		},
-		{
-			"key": "edge_id",
-			"value": "",
-			"type": "string",
-			"description": "UUID of a dependency edge - fill from responses"
 		}
 	]
 }
