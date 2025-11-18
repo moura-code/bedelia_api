@@ -5,14 +5,14 @@ Este comando importa los archivos JSON de la carpeta data/:
 - credits_data_backup.json: Carreras, planes de estudio, materias y relaciones plan-materia
 - vigentes_data_backup.json: Cursos vigentes (para marcar materias como activas)
 - previas_data_backup.json: Previas (requisitos/prerequisitos) de cada materia
-- posprevias_data_backup.json: Posprevias (qué cursos requieren este curso como prerrequisito)
+- posprevias_data_backup.json: Posprevias (qu[#] cursos requieren este curso como prerrequisito)
 
 El comando procesa los datos en el siguiente orden:
-1. Extrae y crea carreras únicas desde las claves "CARRERA_ANIO"
-2. Extrae y crea planes de estudio (carrera + año)
-3. Extrae y crea materias únicas (deduplicadas por código)
-4. Crea relaciones PlanMateria (qué materias están en cada plan)
-5. Marca materias como activas según vigentes_data
+1. Extrae y crea carreras [#]nicas desde las claves "CARRERA_ANIO"
+2. Extrae y crea planes de estudio (carrera + a[#]o)
+3. Extrae y crea materias [#]nicas (deduplicadas por c[#]digo)
+4. Crea relaciones PlanMateria (qu[#] materias est[#]n en cada plan)
+5. Marca materias como activas seg[#]n vigentes_data
 6. Carga previas (requisitos) creando UnidadAprobable, RequisitoNodo y RequisitoItem
 7. Procesa posprevias (valida y completa relaciones de requisitos inversos)
 
@@ -114,7 +114,7 @@ class Command(BaseCommand):
         self.verbose = False
         self.dry_run = False
         
-        # Estadísticas
+        # Estad[#]sticas
         self.stats = {
             'planes_creados': 0,
             'plan_materias_creadas': 0,
@@ -132,7 +132,7 @@ class Command(BaseCommand):
         
         # Lista de errores para mostrar detalles
         # Estructura: {
-        #   'type': str,           # Tipo de error (categoría)
+        #   'type': str,           # Tipo de error (categor[#]a)
         #   'item': str,            # Item afectado (identificador)
         #   'message': str,          # Mensaje de error corto
         #   'full_message': str,     # Mensaje completo (opcional)
@@ -142,7 +142,7 @@ class Command(BaseCommand):
         # }
         self.error_list = []
         
-        # Cachés para evitar consultas repetidas
+        # Cach[#]s para evitar consultas repetidas
         self.plan_cache: Dict[str, PlanEstudio] = {}
         self.materia_cache: Dict[str, Materia] = {}
         
@@ -155,7 +155,7 @@ class Command(BaseCommand):
         self.dry_run = options['dry_run']
         
         if self.dry_run:
-            self.stdout.write(self.style.WARNING('🔄 Modo DRY RUN - No se guardará nada en la base de datos'))
+            self.stdout.write(self.style.WARNING('[#] Modo DRY RUN - No se guardar[#] nada en la base de datos'))
         
         # Verificar archivos
         credits_path = Path(options['credits'])
@@ -164,18 +164,18 @@ class Command(BaseCommand):
         posprevias_path = Path(options['posprevias']) if not options['skip_posprevias'] else None
         
         if not credits_path.exists():
-            raise CommandError(f'❌ Archivo no encontrado: {credits_path}')
+            raise CommandError(f'[X] Archivo no encontrado: {credits_path}')
         
         if not vigentes_path.exists():
-            raise CommandError(f'❌ Archivo no encontrado: {vigentes_path}')
+            raise CommandError(f'[X] Archivo no encontrado: {vigentes_path}')
         
         if previas_path and not previas_path.exists():
-            self.stdout.write(self.style.WARNING(f'⚠️  Archivo de previas no encontrado: {previas_path}'))
+            self.stdout.write(self.style.WARNING(f'[#]  Archivo de previas no encontrado: {previas_path}'))
             self.stdout.write(self.style.WARNING('   Continuando sin cargar previas...'))
             previas_path = None
         
         if posprevias_path and not posprevias_path.exists():
-            self.stdout.write(self.style.WARNING(f'⚠️  Archivo de posprevias no encontrado: {posprevias_path}'))
+            self.stdout.write(self.style.WARNING(f'[#]  Archivo de posprevias no encontrado: {posprevias_path}'))
             self.stdout.write(self.style.WARNING('   Continuando sin cargar posprevias...'))
             posprevias_path = None
         
@@ -186,7 +186,7 @@ class Command(BaseCommand):
                     self.clear_database()
                 
                 # Cargar datos
-                self.stdout.write('📖 Cargando archivos JSON...')
+                self.stdout.write('[*] Cargando archivos JSON...')
                 credits_data = self.load_json(credits_path)
                 vigentes_data = self.load_json(vigentes_path)
                 previas_data = self.load_json(previas_path) if previas_path else {}
@@ -194,46 +194,46 @@ class Command(BaseCommand):
                 
                 # Paso 1: Crear carreras y planes de estudio
                 self.current_stage = 'carreras_y_planes'
-                self.stdout.write('🎓 Procesando carreras y planes de estudio desde credits_data...')
+                self.stdout.write('[*] Procesando carreras y planes de estudio desde credits_data...')
                 self.process_carreras_y_planes(credits_data)
                 
                 # Paso 2: Extraer y crear materias desde credits
                 self.current_stage = 'materias'
-                self.stdout.write('📚 Procesando materias desde credits_data...')
+                self.stdout.write('[*] Procesando materias desde credits_data...')
                 self.process_materias(credits_data)
                 
                 # Paso 3: Crear relaciones PlanMateria
                 self.current_stage = 'plan_materias'
-                self.stdout.write('🔗 Creando relaciones plan-materia...')
+                self.stdout.write('[#] Creando relaciones plan-materia...')
                 self.process_plan_materias(credits_data)
                 
                 # Paso 4: Marcar materias activas desde vigentes
                 self.current_stage = 'marcar_activas'
-                self.stdout.write('✅ Marcando materias activas desde vigentes_data...')
+                self.stdout.write('[OK] Marcando materias activas desde vigentes_data...')
                 self.mark_active_materias(vigentes_data)
                 
-                # Paso 5: Cargar previas (requisitos) si está disponible
+                # Paso 5: Cargar previas (requisitos) si est[#] disponible
                 if previas_data:
                     self.current_stage = 'previas'
-                    self.stdout.write('📋 Procesando previas (requisitos) desde previas_data...')
+                    self.stdout.write('[#] Procesando previas (requisitos) desde previas_data...')
                     self.process_previas(previas_data)
                 else:
-                    self.stdout.write('⏭️  Saltando carga de previas (archivo no disponible o --skip-previas)')
+                    self.stdout.write('[#]  Saltando carga de previas (archivo no disponible o --skip-previas)')
                 
-                # Paso 6: Procesar posprevias (validar y completar previas) si está disponible
+                # Paso 6: Procesar posprevias (validar y completar previas) si est[#] disponible
                 if posprevias_data:
                     self.current_stage = 'posprevias'
-                    self.stdout.write('🔄 Procesando posprevias (validación de requisitos inversos)...')
+                    self.stdout.write('[#] Procesando posprevias (validaci[#]n de requisitos inversos)...')
                     self.process_posprevias(posprevias_data)
                 else:
-                    self.stdout.write('⏭️  Saltando carga de posprevias (archivo no disponible o --skip-posprevias)')
+                    self.stdout.write('[#]  Saltando carga de posprevias (archivo no disponible o --skip-posprevias)')
                 
                 # Si es dry-run, hacer rollback
                 if self.dry_run:
                     transaction.set_rollback(True)
-                    self.stdout.write(self.style.WARNING('🔙 Rollback aplicado (dry-run)'))
+                    self.stdout.write(self.style.WARNING('[#] Rollback aplicado (dry-run)'))
             
-            # Mostrar estadísticas
+            # Mostrar estad[#]sticas
             self.print_stats()
             
             # Exportar errores a archivos si hay errores
@@ -246,17 +246,17 @@ class Command(BaseCommand):
                     self.export_errors_to_text(Path(errors_text_file))
             
             if not self.dry_run:
-                self.stdout.write(self.style.SUCCESS('✅ Datos cargados exitosamente!'))
+                self.stdout.write(self.style.SUCCESS('[OK] Datos cargados exitosamente!'))
             
         except Exception as e:
-            self.stdout.write(self.style.ERROR(f'❌ Error: {e}'))
+            self.stdout.write(self.style.ERROR(f'[X] Error: {e}'))
             import traceback
             traceback.print_exc()
             raise
     
     def clear_database(self):
         """Limpiar todas las carreras, planes, materias y previas de la base de datos."""
-        self.stdout.write(self.style.WARNING('🗑️  Limpiando base de datos...'))
+        self.stdout.write(self.style.WARNING('[#]  Limpiando base de datos...'))
         
         if not self.dry_run:
             # Eliminar en orden de dependencias (hijos primero)
@@ -279,7 +279,7 @@ class Command(BaseCommand):
             Materia.objects.all().delete()
             
             self.stdout.write(self.style.SUCCESS(
-                f'✅ {requisitos_items_count} items de requisitos, '
+                f'[OK] {requisitos_items_count} items de requisitos, '
                 f'{requisitos_nodos_count} nodos de requisitos, '
                 f'{unidades_count} unidades aprobables, '
                 f'{plan_materias_count} plan-materias, {planes_count} planes, '
@@ -293,11 +293,11 @@ class Command(BaseCommand):
             planes_count = PlanEstudio.objects.count()
             materias_count = Materia.objects.count()
             self.stdout.write(self.style.SUCCESS(
-                f'✅ {requisitos_items_count} items de requisitos, '
+                f'[OK] {requisitos_items_count} items de requisitos, '
                 f'{requisitos_nodos_count} nodos de requisitos, '
                 f'{unidades_count} unidades aprobables, '
                 f'{plan_materias_count} plan-materias, {planes_count} planes, '
-                f'{materias_count} materias serían eliminadas (dry-run)'
+                f'{materias_count} materias ser[#]an eliminadas (dry-run)'
             ))
     
     def load_json(self, path: Path) -> Dict:
@@ -310,7 +310,7 @@ class Command(BaseCommand):
         Parsear string 'CARRERA_ANIO' a (carrera, anio).
         
         Ejemplos:
-        - "INGENIERÍA CIVIL_2021" -> ("INGENIERÍA CIVIL", "2021")
+        - "INGENIER[#]A CIVIL_2021" -> ("INGENIER[#]A CIVIL", "2021")
         - "DOCTOR EN INGENIERIA_2013" -> ("DOCTOR EN INGENIERIA", "2013")
         """
         parts = carrera_plan.rsplit('_', 1)
@@ -324,7 +324,7 @@ class Command(BaseCommand):
         Agregar un error estructurado a la lista de errores.
         
         Args:
-            error_type: Tipo/categoría del error
+            error_type: Tipo/categor[#]a del error
             item: Identificador del item afectado
             message: Mensaje de error corto
             full_message: Mensaje completo (opcional)
@@ -344,19 +344,19 @@ class Command(BaseCommand):
     
     def normalize_string(self, text: str) -> str:
         """
-        Normalizar string removiendo acentos y convirtiendo a mayúsculas.
-        Útil para comparar nombres de carreras que pueden tener o no acentos.
+        Normalizar string removiendo acentos y convirtiendo a may[#]sculas.
+        [#]til para comparar nombres de carreras que pueden tener o no acentos.
         """
         if not text:
             return ""
-        # Normalizar a NFD (decomposed form) y remover diacríticos
+        # Normalizar a NFD (decomposed form) y remover diacr[#]ticos
         normalized = unicodedata.normalize('NFD', text.upper().strip())
-        # Filtrar solo caracteres que no son diacríticos
+        # Filtrar solo caracteres que no son diacr[#]ticos
         return ''.join(c for c in normalized if unicodedata.category(c) != 'Mn')
     
     def find_plan_by_carrera_name(self, nombre_carrera: str, anio: str) -> Optional[PlanEstudio]:
         """
-        Buscar plan por nombre de carrera usando comparación flexible.
+        Buscar plan por nombre de carrera usando comparaci[#]n flexible.
         Maneja variaciones en acentos, abreviaciones y nombres parciales.
         """
         if not nombre_carrera or not anio:
@@ -364,7 +364,7 @@ class Command(BaseCommand):
         
         nombre_normalized = self.normalize_string(nombre_carrera)
         
-        # 1. Intentar búsqueda exacta (con y sin acentos)
+        # 1. Intentar b[#]squeda exacta (con y sin acentos)
         plan = PlanEstudio.objects.filter(nombre_carrera=nombre_carrera, anio=anio).first()
         if plan:
             return plan
@@ -374,8 +374,8 @@ class Command(BaseCommand):
             if self.normalize_string(plan.nombre_carrera) == nombre_normalized:
                 return plan
         
-        # 3. Buscar por palabras clave principales (más preciso que contención simple)
-        # Extraer palabras significativas (más de 3 caracteres) del nombre buscado
+        # 3. Buscar por palabras clave principales (m[#]s preciso que contenci[#]n simple)
+        # Extraer palabras significativas (m[#]s de 3 caracteres) del nombre buscado
         palabras_buscadas = [p for p in nombre_normalized.split() if len(p) > 3]
         
         if len(palabras_buscadas) >= 2:  # Si hay al menos 2 palabras significativas
@@ -383,9 +383,9 @@ class Command(BaseCommand):
             mejor_puntaje = 0
             for plan in PlanEstudio.objects.filter(anio=anio):
                 plan_normalized = self.normalize_string(plan.nombre_carrera)
-                # Contar cuántas palabras del nombre buscado están en el plan
+                # Contar cu[#]ntas palabras del nombre buscado est[#]n en el plan
                 palabras_encontradas = sum(1 for palabra in palabras_buscadas if palabra in plan_normalized)
-                # Requerir que al menos todas las palabras menos una estén presentes
+                # Requerir que al menos todas las palabras menos una est[#]n presentes
                 if palabras_encontradas > mejor_puntaje and palabras_encontradas >= len(palabras_buscadas) - 1:
                     mejor_puntaje = palabras_encontradas
                     mejor_coincidencia = plan
@@ -393,7 +393,7 @@ class Command(BaseCommand):
             if mejor_coincidencia:
                 return mejor_coincidencia
         
-        # 4. Buscar por palabra única significativa (útil para casos como "AGRIMENSURA")
+        # 4. Buscar por palabra [#]nica significativa ([#]til para casos como "AGRIMENSURA")
         if len(palabras_buscadas) == 1:
             palabra_clave = palabras_buscadas[0]
             if len(palabra_clave) >= 6:  # Solo si la palabra clave es suficientemente larga
@@ -402,16 +402,16 @@ class Command(BaseCommand):
                     if palabra_clave in plan_normalized:
                         return plan
         
-        # 5. Buscar si el nombre normalizado está contenido en algún plan
-        # (útil para abreviaciones como "AGRIMENSURA" -> "INGENIERÍA EN AGRIMENSURA")
+        # 5. Buscar si el nombre normalizado est[#] contenido en alg[#]n plan
+        # ([#]til para abreviaciones como "AGRIMENSURA" -> "INGENIER[#]A EN AGRIMENSURA")
         # Solo si el nombre buscado tiene al menos 6 caracteres para evitar coincidencias muy cortas
         if len(nombre_normalized) >= 6:
             for plan in PlanEstudio.objects.filter(anio=anio):
                 plan_normalized = self.normalize_string(plan.nombre_carrera)
-                # Preferir cuando el nombre buscado está contenido en el plan (abreviación)
+                # Preferir cuando el nombre buscado est[#] contenido en el plan (abreviaci[#]n)
                 if nombre_normalized in plan_normalized:
                     return plan
-                # También considerar cuando el plan está contenido en el nombre buscado
+                # Tambi[#]n considerar cuando el plan est[#] contenido en el nombre buscado
                 elif plan_normalized in nombre_normalized and len(plan_normalized) >= 8:
                     return plan
         
@@ -436,7 +436,7 @@ class Command(BaseCommand):
                 if created:
                     self.stats['planes_creados'] += 1
                     if self.verbose:
-                        self.stdout.write(f'       ✨ Nuevo plan: {nombre_carrera} - {anio}')
+                        self.stdout.write(f'       [#] Nuevo plan: {nombre_carrera} - {anio}')
             
             self.plan_cache[cache_key] = plan
             return plan
@@ -450,8 +450,8 @@ class Command(BaseCommand):
                 'full_message': error_msg
             })
             if self.verbose:
-                self.stdout.write(self.style.ERROR(f'       ❌ {error_msg}'))
-            # Re-raise para que el proceso falle si es crítico
+                self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
+            # Re-raise para que el proceso falle si es cr[#]tico
             raise
     
     def get_or_create_materia(self, codigo: str, nombre: str, creditos: int) -> Materia:
@@ -492,13 +492,13 @@ class Command(BaseCommand):
         """
         Procesar planes de estudio desde credits_data.
         
-        Extrae planes únicos de las claves "CARRERA_ANIO".
+        Extrae planes [#]nicos de las claves "CARRERA_ANIO".
         """
         planes_set: Set[tuple] = set()  # (carrera_nombre, anio)
         
         total_programs = len(credits_data)
         
-        # Primera pasada: extraer planes únicos
+        # Primera pasada: extraer planes [#]nicos
         for idx, (carrera_plan, cursos) in enumerate(credits_data.items(), 1):
             if self.verbose and idx % 10 == 0:
                 self.stdout.write(f'     [{idx}/{total_programs}] Procesando: {carrera_plan}')
@@ -508,15 +508,15 @@ class Command(BaseCommand):
             if carrera_nombre and anio:
                 planes_set.add((carrera_nombre, anio))
         
-        self.stdout.write(f'     📊 {len(planes_set)} planes únicos encontrados')
+        self.stdout.write(f'     [#] {len(planes_set)} planes [#]nicos encontrados')
         
         # Crear planes de estudio
-        self.stdout.write('     💾 Guardando planes de estudio en la base de datos...')
+        self.stdout.write('     [#] Guardando planes de estudio en la base de datos...')
         for carrera_nombre, anio in sorted(planes_set):
             self.get_or_create_plan(carrera_nombre, anio)
         
         self.stdout.write(
-            f'     ✅ {self.stats["planes_creados"]} planes creados'
+            f'     [OK] {self.stats["planes_creados"]} planes creados'
         )
     
     def process_materias(self, credits_data: Dict):
@@ -528,21 +528,21 @@ class Command(BaseCommand):
             "CARRERA_PLAN": {
                 "codigo_nombre": {
                     "codigo": "CIM40",
-                    "nombre": "ELECTROMAGNETÍSMO CIM",
+                    "nombre": "ELECTROMAGNET[#]SMO CIM",
                     "creditos": "10"
                 }
             }
         }
         
-        Se deduplican las materias por código (codigo es único).
+        Se deduplican las materias por c[#]digo (codigo es [#]nico).
         """
-        # Diccionario para almacenar materias únicas por código
+        # Diccionario para almacenar materias [#]nicas por c[#]digo
         materias_dict: Dict[str, Dict] = {}
         
         total_programs = len(credits_data)
         processed_items = 0
         
-        # Primera pasada: extraer todas las materias únicas
+        # Primera pasada: extraer todas las materias [#]nicas
         for idx, (carrera_plan, cursos) in enumerate(credits_data.items(), 1):
             if self.verbose and idx % 10 == 0:
                 self.stdout.write(f'     [{idx}/{total_programs}] Procesando: {carrera_plan}')
@@ -555,14 +555,14 @@ class Command(BaseCommand):
                 if not codigo:
                     continue
                 
-                # Convertir créditos a int
+                # Convertir cr[#]ditos a int
                 try:
                     creditos = int(creditos_str)
                 except (ValueError, TypeError):
                     creditos = 0
                     if self.verbose:
                         self.stdout.write(
-                            self.style.WARNING(f'       ⚠️  Créditos inválidos para {codigo}: "{creditos_str}"')
+                            self.style.WARNING(f'       [#]  Cr[#]ditos inv[#]lidos para {codigo}: "{creditos_str}"')
                         )
                 
                 # Si ya existe, usar la primera ocurrencia (o podemos actualizar si el nombre es mejor)
@@ -573,19 +573,19 @@ class Command(BaseCommand):
                         'creditos': creditos,
                     }
                 else:
-                    # Si el nombre está vacío pero tenemos uno nuevo, actualizar
+                    # Si el nombre est[#] vac[#]o pero tenemos uno nuevo, actualizar
                     if not materias_dict[codigo]['nombre'] and nombre:
                         materias_dict[codigo]['nombre'] = nombre
-                    # Si los créditos son 0 pero tenemos uno nuevo, actualizar
+                    # Si los cr[#]ditos son 0 pero tenemos uno nuevo, actualizar
                     if materias_dict[codigo]['creditos'] == 0 and creditos > 0:
                         materias_dict[codigo]['creditos'] = creditos
                 
                 processed_items += 1
         
-        self.stdout.write(f'     📊 {processed_items} items procesados, {len(materias_dict)} materias únicas encontradas')
+        self.stdout.write(f'     [#] {processed_items} items procesados, {len(materias_dict)} materias [#]nicas encontradas')
         
         # Segunda pasada: crear o actualizar materias en la base de datos
-        self.stdout.write('     💾 Guardando materias en la base de datos...')
+        self.stdout.write('     [#] Guardando materias en la base de datos...')
         
         for idx, (codigo, materia_data) in enumerate(materias_dict.items(), 1):
             if self.verbose and idx % 100 == 0:
@@ -608,12 +608,12 @@ class Command(BaseCommand):
                 })
                 if self.verbose:
                     self.stdout.write(
-                        self.style.ERROR(f'       ❌ {error_msg}')
+                        self.style.ERROR(f'       [X] {error_msg}')
                     )
         
         self.stats['materias_totales'] = len(materias_dict)
         self.stdout.write(
-            f'     ✅ {self.stats["materias_creadas"]} materias creadas, '
+            f'     [OK] {self.stats["materias_creadas"]} materias creadas, '
             f'{self.stats["materias_actualizadas"]} actualizadas'
         )
     
@@ -626,7 +626,7 @@ class Command(BaseCommand):
         total_programs = len(credits_data)
         processed_relations = 0
         
-        self.stdout.write('     💾 Guardando relaciones plan-materia en la base de datos...')
+        self.stdout.write('     [#] Guardando relaciones plan-materia en la base de datos...')
         
         for idx, (carrera_plan, cursos) in enumerate(credits_data.items(), 1):
             if self.verbose and idx % 10 == 0:
@@ -655,7 +655,7 @@ class Command(BaseCommand):
                         creditos=int(curso_data.get('creditos', '0') or '0')
                     )
                     
-                    # Crear relación PlanMateria
+                    # Crear relaci[#]n PlanMateria
                     if self.dry_run:
                         # En dry-run, solo contar
                         try:
@@ -673,7 +673,7 @@ class Command(BaseCommand):
                 
                 except Exception as e:
                     self.stats['errors'] += 1
-                    error_msg = f"Error creando relación plan-materia: {carrera_plan} - {codigo}: {str(e)}"
+                    error_msg = f"Error creando relaci[#]n plan-materia: {carrera_plan} - {codigo}: {str(e)}"
                     self.error_list.append({
                         'type': 'plan_materia',
                         'item': f"{carrera_plan} - {codigo}",
@@ -682,11 +682,11 @@ class Command(BaseCommand):
                     })
                     if self.verbose:
                         self.stdout.write(
-                            self.style.ERROR(f'       ❌ {error_msg}')
+                            self.style.ERROR(f'       [X] {error_msg}')
                         )
         
         self.stdout.write(
-            f'     ✅ {self.stats["plan_materias_creadas"]} relaciones plan-materia creadas'
+            f'     [OK] {self.stats["plan_materias_creadas"]} relaciones plan-materia creadas'
         )
     
     def mark_active_materias(self, vigentes_data: Dict):
@@ -704,7 +704,7 @@ class Command(BaseCommand):
             }
         }
         """
-        # Extraer todos los códigos activos
+        # Extraer todos los c[#]digos activos
         codigos_activos: Set[str] = set()
         
         total_programs = len(vigentes_data)
@@ -718,14 +718,14 @@ class Command(BaseCommand):
                 if course_code:
                     codigos_activos.add(course_code)
         
-        self.stdout.write(f'     📊 {len(codigos_activos)} códigos únicos encontrados en vigentes')
+        self.stdout.write(f'     [#] {len(codigos_activos)} c[#]digos [#]nicos encontrados en vigentes')
         
         # Marcar materias como activas
         if self.dry_run:
-            # En dry-run, contar cuántas se marcarían como activas
+            # En dry-run, contar cu[#]ntas se marcar[#]an como activas
             materias_a_activar = Materia.objects.filter(codigo__in=codigos_activos, activo=False).count()
             self.stats['materias_marcadas_activas'] = materias_a_activar
-            self.stdout.write(f'     ✅ {materias_a_activar} materias serían marcadas como activas (dry-run)')
+            self.stdout.write(f'     [OK] {materias_a_activar} materias ser[#]an marcadas como activas (dry-run)')
         else:
             # Actualizar materias activas
             updated_count = Materia.objects.filter(
@@ -734,15 +734,15 @@ class Command(BaseCommand):
             ).update(activo=True)
             
             self.stats['materias_marcadas_activas'] = updated_count
-            self.stdout.write(f'     ✅ {updated_count} materias marcadas como activas')
+            self.stdout.write(f'     [OK] {updated_count} materias marcadas como activas')
             
-            # También marcar como inactivas las que no están en vigentes pero estaban activas
+            # Tambi[#]n marcar como inactivas las que no est[#]n en vigentes pero estaban activas
             # (opcional, comentado por ahora)
             # materias_inactivadas = Materia.objects.filter(
             #     activo=True
             # ).exclude(codigo__in=codigos_activos).update(activo=False)
             # if materias_inactivadas > 0:
-            #     self.stdout.write(f'     📜 {materias_inactivadas} materias marcadas como inactivas')
+            #     self.stdout.write(f'     [#] {materias_inactivadas} materias marcadas como inactivas')
     
     def process_previas(self, previas_data: Dict):
         """
@@ -806,17 +806,17 @@ class Command(BaseCommand):
                     )
                     if self.verbose:
                         self.stdout.write(
-                            self.style.ERROR(f'       ❌ Error en {course_key}: {str(e)}')
+                            self.style.ERROR(f'       [X] Error en {course_key}: {str(e)}')
                         )
         
         self.stdout.write(
-            f'     ✅ {processed_courses} cursos procesados, '
+            f'     [OK] {processed_courses} cursos procesados, '
             f'{self.stats["unidades_creadas"]} unidades creadas, '
             f'{self.stats["requisitos_nodos_creados"]} nodos de requisitos creados'
         )
     
     def _process_course_previas(self, plan: PlanEstudio, course_key: str, course_data: Dict):
-        """Procesar las previas de un curso específico."""
+        """Procesar las previas de un curso espec[#]fico."""
         course_code = course_data.get('code', '').strip()
         course_name = course_data.get('name', '').strip()
         requirements = course_data.get('requirements')
@@ -826,7 +826,7 @@ class Command(BaseCommand):
         
         # Buscar o crear PlanMateria
         try:
-            # Extraer código de materia (puede ser "CODIGO - NOMBRE" o solo "CODIGO")
+            # Extraer c[#]digo de materia (puede ser "CODIGO - NOMBRE" o solo "CODIGO")
             materia_codigo = course_code.split(' - ')[0].strip() if ' - ' in course_code else course_code
             
             materia = Materia.objects.filter(codigo=materia_codigo).first()
@@ -839,7 +839,7 @@ class Command(BaseCommand):
                     context={'plan': str(plan), 'course_code': course_code, 'materia_codigo': materia_codigo}
                 )
                 if self.verbose:
-                    self.stdout.write(self.style.WARNING(f'       ⚠️  {error_msg}'))
+                    self.stdout.write(self.style.WARNING(f'       [#]  {error_msg}'))
                 return
             
             plan_materia, _ = PlanMateria.objects.get_or_create(
@@ -856,7 +856,7 @@ class Command(BaseCommand):
                 context={'plan': str(plan), 'course_code': course_code}
             )
             if self.verbose:
-                self.stdout.write(self.style.ERROR(f'       ❌ {error_msg}'))
+                self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
             return
         
         # Crear UnidadAprobable para este curso
@@ -878,15 +878,15 @@ class Command(BaseCommand):
                 context={'plan': str(plan), 'course_code': course_code, 'course_name': course_name}
             )
             if self.verbose:
-                self.stdout.write(self.style.ERROR(f'       ❌ {error_msg}'))
+                self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
             return
         
-        # Procesar árbol de requisitos
+        # Procesar [#]rbol de requisitos
         if requirements:
             try:
                 self._process_requirements_tree(plan_materia, requirements, parent_nodo=None)
             except Exception as e:
-                error_msg = f"Error procesando árbol de requisitos para {course_code}: {str(e)}"
+                error_msg = f"Error procesando [#]rbol de requisitos para {course_code}: {str(e)}"
                 self.add_error(
                     'previas_arbol',
                     f"{plan} - {course_code}",
@@ -895,7 +895,7 @@ class Command(BaseCommand):
                     context={'plan': str(plan), 'course_code': course_code, 'requirements': str(requirements)[:200]}
                 )
                 if self.verbose:
-                    self.stdout.write(self.style.ERROR(f'       ❌ {error_msg}'))
+                    self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
     
     def _map_name_to_tipo(self, name: str) -> UnidadAprobable.Tipo:
         """Mapear nombre a tipo de UnidadAprobable."""
@@ -904,7 +904,7 @@ class Command(BaseCommand):
             return UnidadAprobable.Tipo.EXAMEN
         elif 'curso' in name_lower:
             return UnidadAprobable.Tipo.CURSO
-        elif 'ucb' in name_lower or 'módulo' in name_lower:
+        elif 'ucb' in name_lower or 'm[#]dulo' in name_lower:
             return UnidadAprobable.Tipo.UCB
         else:
             return UnidadAprobable.Tipo.OTRO
@@ -934,7 +934,7 @@ class Command(BaseCommand):
     
     def _process_requirements_tree(self, plan_materia: PlanMateria, node_data: Dict, 
                                    parent_nodo: RequisitoNodo = None, orden: int = 0):
-        """Procesar recursivamente el árbol de requisitos."""
+        """Procesar recursivamente el [#]rbol de requisitos."""
         node_type = node_data.get('type', 'LEAF')
         title = node_data.get('title', '')
         required_count = node_data.get('required_count', 1)
@@ -1013,7 +1013,7 @@ class Command(BaseCommand):
                         context={'plan_materia': str(plan_materia), 'item_idx': item_idx, 'item_data': str(item_data)[:200]}
                     )
                     if self.verbose:
-                        self.stdout.write(self.style.ERROR(f'       ❌ {error_msg}'))
+                        self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
         
         # Procesar hijos recursivamente
         children = node_data.get('children', [])
@@ -1030,25 +1030,45 @@ class Command(BaseCommand):
                     context={'plan_materia': str(plan_materia), 'child_idx': child_idx, 'child_data': str(child_data)[:200]}
                 )
                 if self.verbose:
-                    self.stdout.write(self.style.ERROR(f'       ❌ {error_msg}'))
+                    self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
     
     def _process_requisito_item(self, nodo: RequisitoNodo, item_data: Dict, orden: int):
         """Procesar un item de requisito (LEAF)."""
-        modality = item_data.get('modality', '')
+        # Handle both 'modality' (new format) and 'kind' (old format)
+        modality = item_data.get('modality', '') or item_data.get('kind', '')
         code = item_data.get('code', '').strip()
-        title = item_data.get('title', '').strip()
+        title = item_data.get('title', '') or item_data.get('name', '')
+        title = title.strip()
         raw = item_data.get('raw', '')
         
         # Determinar tipo de item
-        if modality in ['ucb_module', 'course', 'exam', 'course_enrollment']:
+        # Map 'kind' values (old format) to expected values
+        modality_lower = modality.lower()
+        # Remove dots and spaces for easier matching
+        modality_normalized = modality_lower.replace('.', '').replace(' ', '')
+        
+        if 'ucb' in modality_normalized or 'módulo' in modality_lower or 'modulo' in modality_lower:
+            modality_mapped = 'ucb_module'
+        elif 'examen' in modality_lower or 'exam' in modality_lower:
+            modality_mapped = 'exam'
+        elif 'curso' in modality_lower or 'course' in modality_lower:
+            modality_mapped = 'course'
+        elif 'inscripción' in modality_lower or 'inscripcion' in modality_lower or 'enrollment' in modality_lower:
+            modality_mapped = 'course_enrollment'
+        elif modality in ['ucb_module', 'course', 'exam', 'course_enrollment']:
+            modality_mapped = modality
+        else:
+            modality_mapped = ''
+        
+        if modality_mapped in ['ucb_module', 'course', 'exam', 'course_enrollment']:
             try:
                 # Buscar materia y crear unidad
                 materia = Materia.objects.filter(codigo=code).first()
                 if materia:
                     # Determinar tipo de unidad
-                    if modality == 'ucb_module':
+                    if modality_mapped == 'ucb_module':
                         unidad_tipo = UnidadAprobable.Tipo.UCB
-                    elif modality in ['exam', 'course_enrollment']:
+                    elif modality_mapped in ['exam', 'course_enrollment']:
                         unidad_tipo = UnidadAprobable.Tipo.EXAMEN
                     else:
                         unidad_tipo = UnidadAprobable.Tipo.CURSO
@@ -1082,7 +1102,7 @@ class Command(BaseCommand):
                 # Si falla al crear como UNIDAD, continuar y crear como TEXTO
                 if self.verbose:
                     self.stdout.write(
-                        self.style.WARNING(f'       ⚠️  Error creando item UNIDAD para {code}: {str(e)}, usando TEXTO')
+                        self.style.WARNING(f'       [#]  Error creando item UNIDAD para {code}: {str(e)}, usando TEXTO')
                     )
         
         # Si no se pudo crear como UNIDAD, crear como TEXTO
@@ -1113,7 +1133,7 @@ class Command(BaseCommand):
         """
         Procesar posprevias (requisitos inversos) desde posprevias_data.
         
-        Posprevias muestran qué cursos requieren este curso como prerrequisito.
+        Posprevias muestran qu[#] cursos requieren este curso como prerrequisito.
         Esto se usa para validar y completar los datos de previas.
         
         Estructura esperada:
@@ -1182,11 +1202,11 @@ class Command(BaseCommand):
                     })
                     if self.verbose:
                         self.stdout.write(
-                            self.style.ERROR(f'       ❌ Error en {course_code}: {str(e)}')
+                            self.style.ERROR(f'       [X] Error en {course_code}: {str(e)}')
                         )
         
         self.stdout.write(
-            f'     ✅ {processed_courses} cursos procesados, '
+            f'     [OK] {processed_courses} cursos procesados, '
             f'{self.stats["posprevias_procesadas"]} posprevias encontradas, '
             f'{self.stats["posprevias_validadas"]} relaciones validadas/creadas'
         )
@@ -1196,7 +1216,7 @@ class Command(BaseCommand):
         """
         Procesar posprevias de un curso.
         
-        Para cada posprevia, valida que existe la relación de requisito correspondiente.
+        Para cada posprevia, valida que existe la relaci[#]n de requisito correspondiente.
         Si no existe, intenta crearla.
         """
         # Buscar materia fuente
@@ -1211,7 +1231,7 @@ class Command(BaseCommand):
                 'full_message': error_msg
             })
             if self.verbose:
-                self.stdout.write(self.style.WARNING(f'       ⚠️  {error_msg}'))
+                self.stdout.write(self.style.WARNING(f'       [#]  {error_msg}'))
             return
         
         # Obtener o crear PlanMateria fuente
@@ -1230,7 +1250,7 @@ class Command(BaseCommand):
                 'full_message': error_msg
             })
             if self.verbose:
-                self.stdout.write(self.style.ERROR(f'       ❌ {error_msg}'))
+                self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
             return
         
         # Crear UnidadAprobable para la materia fuente si no existe
@@ -1253,7 +1273,7 @@ class Command(BaseCommand):
                 'full_message': error_msg
             })
             if self.verbose:
-                self.stdout.write(self.style.ERROR(f'       ❌ {error_msg}'))
+                self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
             return
         
         # Procesar cada posprevia
@@ -1275,13 +1295,13 @@ class Command(BaseCommand):
                     'full_message': error_msg
                 })
                 if self.verbose:
-                    self.stdout.write(self.style.ERROR(f'       ❌ {error_msg}'))
+                    self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
     
     def _validate_or_create_posprevia_relationship(self, plan_materia_fuente: PlanMateria,
                                                    unidad_fuente: UnidadAprobable,
                                                    posprevia: Dict):
         """
-        Validar o crear la relación de requisito inversa.
+        Validar o crear la relaci[#]n de requisito inversa.
         
         Si curso A tiene posprevia B, entonces curso B debe tener previa A.
         """
@@ -1294,12 +1314,12 @@ class Command(BaseCommand):
         if not carrera_nombre or not anio_plan or not materia_codigo:
             return
         
-        # Buscar plan destino usando comparación sin acentos
+        # Buscar plan destino usando comparaci[#]n sin acentos
         # Intentar encontrar el plan exacto primero
         plan_destino = self.find_plan_by_carrera_name(carrera_nombre, anio_plan)
         
         # Si no se encuentra el plan exacto, intentar encontrar cualquier plan de esa carrera
-        # (útil cuando los datos de posprevias referencian planes antiguos que no existen)
+        # ([#]til cuando los datos de posprevias referencian planes antiguos que no existen)
         if not plan_destino:
             # Buscar por nombre de carrera normalizado
             nombre_normalized = self.normalize_string(carrera_nombre)
@@ -1308,7 +1328,7 @@ class Command(BaseCommand):
                     plan_destino = plan
                     break
             
-            # Si aún no se encuentra, buscar cualquier plan con el nombre contenido
+            # Si a[#]n no se encuentra, buscar cualquier plan con el nombre contenido
             if not plan_destino and len(nombre_normalized) >= 6:
                 for plan in PlanEstudio.objects.all():
                     plan_normalized = self.normalize_string(plan.nombre_carrera)
@@ -1316,14 +1336,14 @@ class Command(BaseCommand):
                         plan_destino = plan
                         break
             
-            # Si aún no se encuentra, tomar el más reciente de cualquier carrera con nombre similar
+            # Si a[#]n no se encuentra, tomar el m[#]s reciente de cualquier carrera con nombre similar
             if not plan_destino:
                 plan_destino = PlanEstudio.objects.filter(
                     nombre_carrera__icontains=carrera_nombre[:20] if len(carrera_nombre) > 20 else carrera_nombre
                 ).order_by('-anio').first()
         
         if not plan_destino:
-            error_msg = f"Plan destino {carrera_nombre} {anio_plan} no encontrado (ni ningún otro plan para esa carrera)"
+            error_msg = f"Plan destino {carrera_nombre} {anio_plan} no encontrado (ni ning[#]n otro plan para esa carrera)"
             self.add_error(
                 'posprevias_plan_destino',
                 f"{unidad_fuente.materia.codigo} -> {materia_codigo} ({carrera_nombre} {anio_plan})",
@@ -1331,7 +1351,7 @@ class Command(BaseCommand):
                 context={'carrera_nombre': carrera_nombre, 'anio_plan': anio_plan, 'materia_codigo': materia_codigo}
             )
             if self.verbose:
-                self.stdout.write(self.style.WARNING(f'       ⚠️  {error_msg}'))
+                self.stdout.write(self.style.WARNING(f'       [#]  {error_msg}'))
             return
         
         # Si usamos un plan diferente al solicitado, registrar una advertencia
@@ -1339,7 +1359,7 @@ class Command(BaseCommand):
             if self.verbose:
                 self.stdout.write(
                     self.style.WARNING(
-                        f'       ⚠️  Plan {carrera_nombre} {anio_plan} no encontrado, '
+                        f'       [#]  Plan {carrera_nombre} {anio_plan} no encontrado, '
                         f'usando plan {plan_destino.anio} en su lugar'
                     )
                 )
@@ -1356,7 +1376,7 @@ class Command(BaseCommand):
                 'full_message': error_msg
             })
             if self.verbose:
-                self.stdout.write(self.style.WARNING(f'       ⚠️  {error_msg}'))
+                self.stdout.write(self.style.WARNING(f'       [#]  {error_msg}'))
             return
         
         # Obtener o crear PlanMateria destino
@@ -1375,7 +1395,7 @@ class Command(BaseCommand):
                 'full_message': error_msg
             })
             if self.verbose:
-                self.stdout.write(self.style.ERROR(f'       ❌ {error_msg}'))
+                self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
             return
         
         # Crear UnidadAprobable destino si no existe
@@ -1397,32 +1417,32 @@ class Command(BaseCommand):
                 'full_message': error_msg
             })
             if self.verbose:
-                self.stdout.write(self.style.ERROR(f'       ❌ {error_msg}'))
+                self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
             return
         
-        # Verificar si ya existe la relación de requisito
-        # Buscar si plan_materia_destino tiene un RequisitoNodo raíz que requiera unidad_fuente
+        # Verificar si ya existe la relaci[#]n de requisito
+        # Buscar si plan_materia_destino tiene un RequisitoNodo ra[#]z que requiera unidad_fuente
         root_nodos = RequisitoNodo.objects.filter(
             plan_materia=plan_materia_destino,
             padre__isnull=True
         )
         
-        # Buscar en los items de requisitos si ya existe la relación
+        # Buscar en los items de requisitos si ya existe la relaci[#]n
         found = False
         for root_nodo in root_nodos:
-            # Buscar recursivamente en el árbol
+            # Buscar recursivamente en el [#]rbol
             if self._check_unidad_in_tree(root_nodo, unidad_fuente):
                 found = True
                 break
         
-        # Si no existe, crear la relación
+        # Si no existe, crear la relaci[#]n
         if not found and not self.dry_run:
             try:
                 # Crear un nodo LEAF con el requisito
                 leaf_nodo = RequisitoNodo.objects.create(
-                    plan_materia=None,  # No es raíz
+                    plan_materia=None,  # No es ra[#]z
                     tipo=RequisitoNodo.Tipo.LEAF,
-                    padre=None,  # Se conectará al root
+                    padre=None,  # Se conectar[#] al root
                     descripcion=f"Requisito validado desde posprevias"
                 )
                 self.stats['requisitos_nodos_creados'] += 1
@@ -1454,10 +1474,10 @@ class Command(BaseCommand):
                 
                 if self.verbose:
                     self.stdout.write(
-                        f'       ✨ Creada relación: {materia_destino.codigo} requiere {unidad_fuente.materia.codigo}'
+                        f'       [#] Creada relaci[#]n: {materia_destino.codigo} requiere {unidad_fuente.materia.codigo}'
                     )
             except Exception as e:
-                error_msg = f"Error creando relación de requisito desde posprevias: {str(e)}"
+                error_msg = f"Error creando relaci[#]n de requisito desde posprevias: {str(e)}"
                 self.stats['errors'] += 1
                 self.error_list.append({
                     'type': 'posprevias_crear_relacion',
@@ -1466,11 +1486,11 @@ class Command(BaseCommand):
                     'full_message': error_msg
                 })
                 if self.verbose:
-                    self.stdout.write(self.style.ERROR(f'       ❌ {error_msg}'))
+                    self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
                 raise  # Re-raise para que se capture en el nivel superior
     
     def _check_unidad_in_tree(self, nodo: RequisitoNodo, unidad: UnidadAprobable) -> bool:
-        """Verificar recursivamente si una unidad está en el árbol de requisitos."""
+        """Verificar recursivamente si una unidad est[#] en el [#]rbol de requisitos."""
         if nodo.tipo == RequisitoNodo.Tipo.LEAF:
             # Verificar items
             items = RequisitoItem.objects.filter(nodo=nodo, unidad_requerida=unidad)
@@ -1485,21 +1505,21 @@ class Command(BaseCommand):
         return False
     
     def print_stats(self):
-        """Imprimir estadísticas finales."""
+        """Imprimir estad[#]sticas finales."""
         self.stdout.write('\n' + '=' * 70)
-        self.stdout.write(self.style.SUCCESS('📊 ESTADÍSTICAS FINALES'))
+        self.stdout.write(self.style.SUCCESS('[#] ESTAD[#]STICAS FINALES'))
         self.stdout.write('=' * 70)
-        self.stdout.write(f'📋 Planes de estudio creados:   {self.stats["planes_creados"]}')
-        self.stdout.write(f'🔗 Relaciones plan-materia:     {self.stats["plan_materias_creadas"]}')
-        self.stdout.write(f'📚 Materias totales procesadas: {self.stats["materias_totales"]}')
-        self.stdout.write(f'✨ Materias creadas:            {self.stats["materias_creadas"]}')
-        self.stdout.write(f'🔄 Materias actualizadas:        {self.stats["materias_actualizadas"]}')
-        self.stdout.write(f'✅ Materias marcadas como activas: {self.stats["materias_marcadas_activas"]}')
-        self.stdout.write(f'📦 Unidades aprobables creadas:   {self.stats["unidades_creadas"]}')
-        self.stdout.write(f'🌳 Nodos de requisitos creados:  {self.stats["requisitos_nodos_creados"]}')
-        self.stdout.write(f'📝 Items de requisitos creados:  {self.stats["requisitos_items_creados"]}')
-        self.stdout.write(f'🔄 Posprevias procesadas:         {self.stats["posprevias_procesadas"]}')
-        self.stdout.write(f'✅ Posprevias validadas:          {self.stats["posprevias_validadas"]}')
+        self.stdout.write(f'[#] Planes de estudio creados:   {self.stats["planes_creados"]}')
+        self.stdout.write(f'[#] Relaciones plan-materia:     {self.stats["plan_materias_creadas"]}')
+        self.stdout.write(f'[*] Materias totales procesadas: {self.stats["materias_totales"]}')
+        self.stdout.write(f'[#] Materias creadas:            {self.stats["materias_creadas"]}')
+        self.stdout.write(f'[#] Materias actualizadas:        {self.stats["materias_actualizadas"]}')
+        self.stdout.write(f'[OK] Materias marcadas como activas: {self.stats["materias_marcadas_activas"]}')
+        self.stdout.write(f'[#] Unidades aprobables creadas:   {self.stats["unidades_creadas"]}')
+        self.stdout.write(f'[#] Nodos de requisitos creados:  {self.stats["requisitos_nodos_creados"]}')
+        self.stdout.write(f'[#] Items de requisitos creados:  {self.stats["requisitos_items_creados"]}')
+        self.stdout.write(f'[#] Posprevias procesadas:         {self.stats["posprevias_procesadas"]}')
+        self.stdout.write(f'[OK] Posprevias validadas:          {self.stats["posprevias_validadas"]}')
         
         if not self.dry_run:
             # Contar en la base de datos
@@ -1513,18 +1533,18 @@ class Command(BaseCommand):
             
             self.stdout.write('')
             self.stdout.write('   En base de datos:')
-            self.stdout.write(f'   📋 Planes:                  {planes_count}')
-            self.stdout.write(f'   🔗 Plan-Materias:           {plan_materias_count}')
-            self.stdout.write(f'   ✅ Materias activas:         {materias_activas}')
-            self.stdout.write(f'   📜 Materias inactivas:      {materias_inactivas}')
-            self.stdout.write(f'   📦 Unidades aprobables:      {unidades_count}')
-            self.stdout.write(f'   🌳 Nodos de requisitos:     {requisitos_nodos_count}')
-            self.stdout.write(f'   📝 Items de requisitos:     {requisitos_items_count}')
-            self.stdout.write(f'   🔄 Posprevias procesadas:   {self.stats["posprevias_procesadas"]}')
+            self.stdout.write(f'   [#] Planes:                  {planes_count}')
+            self.stdout.write(f'   [#] Plan-Materias:           {plan_materias_count}')
+            self.stdout.write(f'   [OK] Materias activas:         {materias_activas}')
+            self.stdout.write(f'   [#] Materias inactivas:      {materias_inactivas}')
+            self.stdout.write(f'   [#] Unidades aprobables:      {unidades_count}')
+            self.stdout.write(f'   [#] Nodos de requisitos:     {requisitos_nodos_count}')
+            self.stdout.write(f'   [#] Items de requisitos:     {requisitos_items_count}')
+            self.stdout.write(f'   [#] Posprevias procesadas:   {self.stats["posprevias_procesadas"]}')
         
         if self.stats['errors'] > 0:
             self.stdout.write('')
-            self.stdout.write(self.style.ERROR(f'❌ Errores encontrados:     {self.stats["errors"]}'))
+            self.stdout.write(self.style.ERROR(f'[X] Errores encontrados:     {self.stats["errors"]}'))
             self.stdout.write('')
             self.print_error_details()
         
@@ -1535,7 +1555,7 @@ class Command(BaseCommand):
         if not self.error_list:
             return
         
-        self.stdout.write(self.style.WARNING('📋 DETALLES DE ERRORES:'))
+        self.stdout.write(self.style.WARNING('[#] DETALLES DE ERRORES:'))
         self.stdout.write('-' * 70)
         
         # Agrupar errores por tipo
@@ -1546,12 +1566,12 @@ class Command(BaseCommand):
                 errors_by_type[error_type] = []
             errors_by_type[error_type].append(error)
         
-        # Contar total de tipos de errores únicos
+        # Contar total de tipos de errores [#]nicos
         all_error_messages = set()
         
         # Mostrar resumen por tipo
         for error_type, errors in errors_by_type.items():
-            self.stdout.write(f'\n🔸 Errores de tipo "{error_type}": {len(errors)}')
+            self.stdout.write(f'\n[#] Errores de tipo "{error_type}": {len(errors)}')
             
             # Agrupar por mensaje de error (errores similares)
             errors_by_message = {}
@@ -1563,33 +1583,33 @@ class Command(BaseCommand):
                 errors_by_message[msg].append(error['item'])
             
             # Mostrar cada tipo de error con ejemplos
-            for msg, items in list(errors_by_message.items())[:10]:  # Máximo 10 tipos diferentes
+            for msg, items in list(errors_by_message.items())[:10]:  # M[#]ximo 10 tipos diferentes
                 items_count = len(items)
                 examples = items[:3]  # Primeros 3 ejemplos
                 examples_str = ', '.join(examples)
                 if items_count > 3:
-                    examples_str += f' ... y {items_count - 3} más'
+                    examples_str += f' ... y {items_count - 3} m[#]s'
                 
-                self.stdout.write(f'   ❌ {msg}')
+                self.stdout.write(f'   [X] {msg}')
                 self.stdout.write(f'      Afecta: {examples_str}')
                 if items_count > 3:
                     self.stdout.write(f'      (Total: {items_count} items afectados)')
             
-            # Si hay más de 10 tipos de errores en este tipo, mostrar advertencia
+            # Si hay m[#]s de 10 tipos de errores en este tipo, mostrar advertencia
             if len(errors_by_message) > 10:
-                self.stdout.write(f'   ⚠️  Hay {len(errors_by_message)} tipos diferentes de errores en esta categoría.')
+                self.stdout.write(f'   [#]  Hay {len(errors_by_message)} tipos diferentes de errores en esta categor[#]a.')
         
-        # Si hay muchos tipos de errores únicos, mostrar advertencia general
+        # Si hay muchos tipos de errores [#]nicos, mostrar advertencia general
         if len(all_error_messages) > 10:
-            self.stdout.write(f'\n⚠️  Hay {len(all_error_messages)} tipos diferentes de errores en total. Use --verbose para ver todos los detalles.')
+            self.stdout.write(f'\n[#]  Hay {len(all_error_messages)} tipos diferentes de errores en total. Use --verbose para ver todos los detalles.')
         
         # Mostrar los primeros 5 errores completos como ejemplos
-        self.stdout.write('\n📝 Primeros errores detallados:')
+        self.stdout.write('\n[#] Primeros errores detallados:')
         for error in self.error_list[:5]:
-            self.stdout.write(f'   • [{error["type"]}] {error["item"]}: {error["message"]}')
+            self.stdout.write(f'   [#] [{error["type"]}] {error["item"]}: {error["message"]}')
         
         if len(self.error_list) > 5:
-            self.stdout.write(f'   ... y {len(self.error_list) - 5} errores más')
+            self.stdout.write(f'   ... y {len(self.error_list) - 5} errores m[#]s')
             self.stdout.write('   Use --verbose para ver todos los errores durante el procesamiento.')
         
         self.stdout.write('-' * 70)
@@ -1602,7 +1622,7 @@ class Command(BaseCommand):
             file_path: Ruta del archivo JSON donde guardar los errores
         """
         try:
-            # Agrupar errores por tipo para análisis
+            # Agrupar errores por tipo para an[#]lisis
             errors_by_type = defaultdict(list)
             for error in self.error_list:
                 errors_by_type[error['type']].append(error)
@@ -1656,13 +1676,13 @@ class Command(BaseCommand):
             
             self.stdout.write(
                 self.style.SUCCESS(
-                    f'\n📄 Errores exportados a JSON: {file_path.absolute()}'
+                    f'\n[#] Errores exportados a JSON: {file_path.absolute()}'
                 )
             )
             
         except Exception as e:
             self.stdout.write(
-                self.style.ERROR(f'❌ Error al exportar errores a JSON: {e}')
+                self.style.ERROR(f'[X] Error al exportar errores a JSON: {e}')
             )
     
     def export_errors_to_text(self, file_path: Path):
@@ -1682,11 +1702,11 @@ class Command(BaseCommand):
                 f.write('=' * 80 + '\n')
                 f.write(f'Generado: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}\n')
                 f.write(f'Total de errores: {len(self.error_list)}\n')
-                f.write(f'Modo dry-run: {"Sí" if self.dry_run else "No"}\n')
+                f.write(f'Modo dry-run: {"S[#]" if self.dry_run else "No"}\n')
                 f.write('=' * 80 + '\n\n')
                 
-                # Estadísticas
-                f.write('ESTADÍSTICAS\n')
+                # Estad[#]sticas
+                f.write('ESTAD[#]STICAS\n')
                 f.write('-' * 80 + '\n')
                 for key, value in self.stats.items():
                     f.write(f'{key}: {value}\n')
@@ -1716,7 +1736,7 @@ class Command(BaseCommand):
                         for item in items[:5]:
                             f.write(f'    - {item["item"]}\n')
                         if len(items) > 5:
-                            f.write(f'    ... y {len(items) - 5} más\n')
+                            f.write(f'    ... y {len(items) - 5} m[#]s\n')
                 
                 # Lista completa de errores
                 f.write('\n\n' + '=' * 80 + '\n')
@@ -1736,11 +1756,11 @@ class Command(BaseCommand):
             
             self.stdout.write(
                 self.style.SUCCESS(
-                    f'📄 Errores exportados a texto: {file_path.absolute()}'
+                    f'[#] Errores exportados a texto: {file_path.absolute()}'
                 )
             )
             
         except Exception as e:
             self.stdout.write(
-                self.style.ERROR(f'❌ Error al exportar errores a texto: {e}')
+                self.style.ERROR(f'[X] Error al exportar errores a texto: {e}')
             )

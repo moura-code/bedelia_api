@@ -8,6 +8,8 @@ from .materias import (
     UnidadAprobableViewSet,
     RequisitoNodoViewSet,
     RequisitoItemViewSet,
+    PreviasViewSet,
+    PosPreviasViewSet,
 )
 
 __all__ = [
@@ -17,5 +19,7 @@ __all__ = [
     'UnidadAprobableViewSet',
     'RequisitoNodoViewSet',
     'RequisitoItemViewSet',
+    'PreviasViewSet',
+    'PosPreviasViewSet',
 ]
 

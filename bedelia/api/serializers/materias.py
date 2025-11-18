@@ -1,7 +1,9 @@
 """
 Serializers for Materia-related models.
 """
+from typing import List, Dict, Any
 from rest_framework import serializers
+from drf_spectacular.utils import extend_schema_field
 
 from api.models import (
     Materia,
@@ -14,13 +16,13 @@ from api.models import (
 
 
 class MateriaSerializer(serializers.ModelSerializer):
-    """Basic serializer for Materia model."""
+    """Serializador básico para el modelo Materia."""
     
     class Meta:
         model = Materia
         fields = [
             'id',
-            'codigo',
+            'codigo',   
             'nombre',
             'creditos',
             'activo',
@@ -31,7 +33,7 @@ class MateriaSerializer(serializers.ModelSerializer):
 
 
 class MateriaDetailSerializer(serializers.ModelSerializer):
-    """Detailed serializer for Materia with nested relationships."""
+    """Serializador detallado para Materia con relaciones anidadas."""
     
     unidades = serializers.SerializerMethodField()
     planes_count = serializers.SerializerMethodField()
@@ -51,8 +53,9 @@ class MateriaDetailSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = fields
     
-    def get_unidades(self, obj):
-        """Get unidades aprobables for this materia."""
+    @extend_schema_field(serializers.ListField(child=serializers.DictField()))
+    def get_unidades(self, obj: Materia) -> List[Dict[str, Any]]:
+        """Obtener unidades aprobables para esta materia."""
         unidades = obj.unidades.all()
         return [
             {
@@ -66,13 +69,14 @@ class MateriaDetailSerializer(serializers.ModelSerializer):
             for u in unidades
         ]
     
-    def get_planes_count(self, obj):
-        """Get count of plans that include this materia."""
+    @extend_schema_field(serializers.IntegerField())
+    def get_planes_count(self, obj: Materia) -> int:
+        """Obtener cantidad de planes que incluyen esta materia."""
         return obj.planes.count()
 
 
 class PlanEstudioSerializer(serializers.ModelSerializer):
-    """Serializer for PlanEstudio with carrera info."""
+    """Serializador para PlanEstudio con información de carrera."""
     
     materias_count = serializers.SerializerMethodField()
     
@@ -90,13 +94,14 @@ class PlanEstudioSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = fields
     
-    def get_materias_count(self, obj):
-        """Get count of materias in this plan."""
+    @extend_schema_field(serializers.IntegerField())
+    def get_materias_count(self, obj: PlanEstudio) -> int:
+        """Obtener cantidad de materias en este plan."""
         return obj.materias_plan.count()
 
 
 class PlanMateriaSerializer(serializers.ModelSerializer):
-    """Serializer for PlanMateria with plan and materia details."""
+    """Serializador para PlanMateria (relación plan-materia)."""
     
     plan = PlanEstudioSerializer(read_only=True)
     plan_id = serializers.UUIDField(source='plan.id', read_only=True)
@@ -110,13 +115,37 @@ class PlanMateriaSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'plan',
-            'plan_id',
+            'plan_id',  
             'materia',
             'materia_id',
             'materia_codigo',
             'materia_nombre',
-            'obligatorio',
-            'semestre_sugerido',
+            'activo',
+            'fecha_creacion',
+            'fecha_modificacion',
+        ]
+        read_only_fields = fields
+
+
+class PlanEstudioMateriaSerializer(serializers.ModelSerializer):
+    """Serializador para PlanEstudio con detalles de materia."""
+    
+    plan = PlanEstudioSerializer(read_only=True)
+    plan_id = serializers.UUIDField(source='plan.id', read_only=True)
+    materia = MateriaSerializer(read_only=True)
+    materia_id = serializers.UUIDField(source='materia.id', read_only=True)
+    materia_codigo = serializers.CharField(source='materia.codigo', read_only=True)
+    materia_nombre = serializers.CharField(source='materia.nombre', read_only=True)
+    class Meta:
+        model = PlanEstudio
+        fields = [
+            'id',
+            'plan',
+            'plan_id',  
+            'materia',
+            'materia_id',
+            'materia_codigo',
+            'materia_nombre',
             'fecha_creacion',
             'fecha_modificacion',
         ]
@@ -124,7 +153,7 @@ class PlanMateriaSerializer(serializers.ModelSerializer):
 
 
 class UnidadAprobableSerializer(serializers.ModelSerializer):
-    """Serializer for UnidadAprobable with materia info."""
+    """Serializador para UnidadAprobable con información de materia."""
     
     materia = MateriaSerializer(read_only=True)
     materia_id = serializers.UUIDField(source='materia.id', read_only=True)
@@ -152,7 +181,7 @@ class UnidadAprobableSerializer(serializers.ModelSerializer):
 
 
 class RequisitoItemSerializer(serializers.ModelSerializer):
-    """Serializer for RequisitoItem."""
+    """Serializador para RequisitoItem."""
     
     nodo_id = serializers.UUIDField(source='nodo.id', read_only=True)
     tipo_display = serializers.CharField(source='get_tipo_display', read_only=True)
@@ -178,7 +207,7 @@ class RequisitoItemSerializer(serializers.ModelSerializer):
 
 
 class RequisitoNodoSerializer(serializers.ModelSerializer):
-    """Basic serializer for RequisitoNodo."""
+    """Serializador básico para RequisitoNodo."""
     
     plan_materia_id = serializers.UUIDField(source='plan_materia.id', read_only=True, allow_null=True)
     padre_id = serializers.UUIDField(source='padre.id', read_only=True, allow_null=True)
@@ -204,17 +233,19 @@ class RequisitoNodoSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = fields
     
-    def get_hijos_count(self, obj):
-        """Get count of child nodes."""
+    @extend_schema_field(serializers.IntegerField())
+    def get_hijos_count(self, obj: RequisitoNodo) -> int:
+        """Obtener cantidad de nodos hijos."""
         return obj.hijos.count()
     
-    def get_items_count(self, obj):
-        """Get count of items (only for LEAF nodes)."""
+    @extend_schema_field(serializers.IntegerField())
+    def get_items_count(self, obj: RequisitoNodo) -> int:
+        """Obtener cantidad de items (solo para nodos LEAF)."""
         return obj.items.count() if obj.tipo == RequisitoNodo.Tipo.LEAF else 0
 
 
 class RequisitoNodoTreeSerializer(serializers.ModelSerializer):
-    """Recursive serializer for RequisitoNodo tree structure."""
+    """Serializador recursivo para estructura de árbol de RequisitoNodo."""
     
     plan_materia_id = serializers.UUIDField(source='plan_materia.id', read_only=True, allow_null=True)
     tipo_display = serializers.CharField(source='get_tipo_display', read_only=True)
@@ -238,8 +269,9 @@ class RequisitoNodoTreeSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = fields
     
-    def get_hijos(self, obj):
-        """Recursively serialize child nodes."""
+    @extend_schema_field(serializers.ListField(child=serializers.DictField()))
+    def get_hijos(self, obj: RequisitoNodo) -> List[Dict[str, Any]]:
+        """Serializar recursivamente nodos hijos."""
         hijos = obj.hijos_ordenados()
         return RequisitoNodoTreeSerializer(hijos, many=True).data
 

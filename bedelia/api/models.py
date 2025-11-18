@@ -60,20 +60,31 @@ class PlanEstudio(models.Model):
 
 class PlanMateria(models.Model):
     """
-    Materia dentro de un plan concreto de una carrera.
-    Es la unidad sobre la que se definen las previas.
+    Relación entre un Plan de Estudio y una Materia.
+    Representa que una materia específica está incluida en un plan de estudio específico.
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    plan = models.ForeignKey(PlanEstudio, on_delete=models.CASCADE, related_name="materias_plan")
-    materia = models.ForeignKey(Materia, on_delete=models.CASCADE, related_name="planes")
+    plan = models.ForeignKey(
+        PlanEstudio,
+        on_delete=models.CASCADE,
+        related_name="materias_plan",
+        verbose_name="Plan de estudio"
+    )
+    materia = models.ForeignKey(
+        Materia,
+        on_delete=models.CASCADE,
+        related_name="planes",
+        verbose_name="Materia"
+    )
+    activo = models.BooleanField(default=True)
 
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_modificacion = models.DateTimeField(auto_now=True)
 
     class Meta:
-        db_table = "planes_materias"
-        verbose_name = "Materia en plan"
-        verbose_name_plural = "Materias en plan"
+        db_table = "plan_materias"
+        verbose_name = "Plan-Materia"
+        verbose_name_plural = "Plan-Materias"
         unique_together = ("plan", "materia")
         indexes = [
             models.Index(fields=["plan"], name="idx_plan_materia_plan"),
@@ -81,7 +92,8 @@ class PlanMateria(models.Model):
         ]
 
     def __str__(self) -> str:
-        return f"{self.plan} :: {self.materia.codigo}"
+        return f"{self.plan} :: {self.materia}"
+
 
 
 # ============================================================
@@ -161,9 +173,9 @@ class RequisitoNodo(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
-    # Normalmente sólo la raíz referencia a qué PlanMateria aplica.
+    # Relación con PlanMateria (solo para nodos raíz)
     plan_materia = models.ForeignKey(
-        PlanMateria,
+        "PlanMateria",
         on_delete=models.CASCADE,
         related_name="requisitos",
         null=True,

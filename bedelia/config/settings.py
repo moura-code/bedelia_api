@@ -217,44 +217,60 @@ REST_FRAMEWORK = {
 
 # drf-spectacular (OpenAPI/Swagger) configuration
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Bedelia API',
+    'TITLE': 'API de Bedelia',
     'DESCRIPTION': '''
-    Bedelia Course Management API
+    API de Gestión de Cursos de Bedelia
     
-    This API provides access to university course data including:
-    - **Carreras**: Academic degree programs
-    - **Materias**: Courses/subjects with codes and credits
-    - **Planes de Estudio**: Study plans for each carrera
-    - **Unidades Aprobables**: Approvable units (courses, exams, modules)
-    - **Requisitos**: Prerequisite requirement trees with logical operators (AND, OR, NOT)
+    Esta API proporciona acceso a datos de cursos universitarios incluyendo:
+    - **Carreras**: Programas de grado académico
+    - **Materias**: Cursos/asignaturas con códigos y créditos
+    - **Planes de Estudio**: Planes de estudio para cada carrera
+    - **Unidades Aprobables**: Unidades aprobables (cursos, exámenes, módulos)
+    - **Requisitos**: Árboles de requisitos previos con operadores lógicos (AND, OR, NOT)
     
-    ## Data Structure:
-    - Each **Carrera** (degree program) has multiple **Planes de Estudio** (study plans)
-    - Each **Plan de Estudio** contains multiple **Materias** (courses)
-    - Each **Materia** can have multiple **Unidades Aprobables** (approvable units)
-    - Each **PlanMateria** has a **RequisitoNodo** tree structure defining prerequisites
-    - **RequisitoNodos** can be ROOT, AND, OR, NOT, or LEAF types
-    - **LEAF** nodes contain **RequisitoItems** that specify actual requirements
+    ## Estructura de Datos:
+    - Cada **Carrera** (programa de grado) tiene múltiples **Planes de Estudio**
+    - Cada **Plan de Estudio** contiene múltiples **Materias** (cursos)
+    - Cada **Materia** puede tener múltiples **Unidades Aprobables** (unidades aprobables)
+    - Cada **PlanMateria** tiene una estructura de árbol **RequisitoNodo** que define los requisitos previos
+    - Los **RequisitoNodos** pueden ser de tipo ROOT, AND, OR, NOT o LEAF
+    - Los nodos **LEAF** contienen **RequisitoItems** que especifican los requisitos reales
     ''',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
     'COMPONENT_SPLIT_REQUEST': True,
     'SCHEMA_PATH_PREFIX': '/api',
     'SERVERS': [
-        {'url': 'http://localhost:8000', 'description': 'Development server'},
+        {'url': 'http://localhost:8000', 'description': 'Servidor de desarrollo'},
     ],
     'TAGS': [
-        {'name': 'carreras', 'description': 'Academic degree programs (carreras)'},
-        {'name': 'materias', 'description': 'Courses/subjects (materias)'},
-        {'name': 'planes-estudio', 'description': 'Study plans (planes de estudio)'},
-        {'name': 'planes-materias', 'description': 'Materias within study plans'},
-        {'name': 'unidades-aprobables', 'description': 'Approvable units (unidades aprobables)'},
-        {'name': 'requisitos', 'description': 'Course requirements and prerequisites (requisitos)'},
+        {'name': 'carreras', 'description': 'Programas de grado académico (carreras)'},
+        {'name': 'materias', 'description': 'Cursos/asignaturas (materias)'},
+        {'name': 'planes-estudio', 'description': 'Planes de estudio'},
+        {'name': 'planes-materias', 'description': 'Materias dentro de los planes de estudio'},
+        {'name': 'unidades-aprobables', 'description': 'Unidades aprobables'},
+        {'name': 'requisitos', 'description': 'Requisitos de cursos y requisitos previos'},
+        {'name': 'previas', 'description': 'Requisitos previos (previas) para PlanMaterias'},
+        {'name': 'posprevias', 'description': 'Cursos dependientes (posprevias) que requieren una PlanMateria'},
     ],
     'ENUM_NAME_OVERRIDES': {
         'UnidadAprobableTipoEnum': 'api.models.UnidadAprobable.Tipo',
         'RequisitoNodoTipoEnum': 'api.models.RequisitoNodo.Tipo',
         'RequisitoItemTipoEnum': 'api.models.RequisitoItem.TipoItem',
+    },
+    'SWAGGER_UI_SETTINGS': {
+        'deepLinking': True,
+        'displayOperationId': False,
+        'defaultModelsExpandDepth': 2,
+        'defaultModelExpandDepth': 2,
+        'defaultModelRendering': 'model',
+        'displayRequestDuration': True,
+        'docExpansion': 'list',  # 'none', 'list', or 'full'
+        'filter': True,
+        'showExtensions': True,
+        'showCommonExtensions': True,
+        'tryItOutEnabled': True,
+        'persistAuthorization': False,
     },
 }
 

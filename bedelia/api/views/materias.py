@@ -2,10 +2,13 @@
 Read-only viewsets for Materia-related models.
 """
 from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiParameter
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 from rest_framework.response import Response
+from rest_framework.decorators import action
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters import FilterSet, BooleanFilter
+from django.db.models import Q
 
 from api.models import (
     Materia,
@@ -27,43 +30,75 @@ from api.serializers.materias import (
 )
 
 
+
+
+class RequisitoNodoFilter(FilterSet):
+    """FilterSet for RequisitoNodo with active status filtering via related models."""
+    activo = BooleanFilter(method='filter_activo')
+    
+    class Meta:
+        model = RequisitoNodo
+        fields = ['tipo', 'padre']
+    
+    def filter_activo(self, queryset, name, value):
+        """Filter by active status of plan."""
+        if value is not None:
+            return queryset.filter(plan__activo=value)
+        return queryset
+
+
+class RequisitoItemFilter(FilterSet):
+    """FilterSet for RequisitoItem with active status filtering via related models."""
+    activo = BooleanFilter(method='filter_activo')
+    
+    class Meta:
+        model = RequisitoItem
+        fields = ['nodo', 'tipo']
+    
+    def filter_activo(self, queryset, name, value):
+        """Filter by active status of unidad_requerida."""
+        if value is not None:
+            return queryset.filter(unidad_requerida__activo=value)
+        return queryset
+
+
 @extend_schema_view(
     list=extend_schema(
-        summary="List all materias",
-        description="Retrieve a paginated list of all materias (courses/subjects). Supports filtering by code and active status, and searching by code or name.",
+        summary="Listar todas las materias",
+        description="Obtener una lista paginada de todas las materias (cursos/asignaturas). Soporta filtrado por código y estado activo, y búsqueda por código o nombre.",
         tags=["materias"],
         parameters=[
             OpenApiParameter(
                 name='codigo',
                 type=str,
                 location=OpenApiParameter.QUERY,
-                description='Filter by materia code (exact match)',
+                description='Filtrar por código de materia (coincidencia exacta)',
             ),
             OpenApiParameter(
                 name='activo',
                 type=bool,
                 location=OpenApiParameter.QUERY,
-                description='Filter by active status (true/false)',
+                description='Filtrar por estado activo (true/false)',
             ),
             OpenApiParameter(
                 name='search',
                 type=str,
                 location=OpenApiParameter.QUERY,
-                description='Search in codigo and nombre fields',
+                description='Buscar en los campos código y nombre',
             ),
         ],
     ),
     retrieve=extend_schema(
-        summary="Get materia details",
-        description="Retrieve detailed information about a specific materia, including its unidades aprobables and plan count.",
+        summary="Obtener detalles de una materia",
+        description="Obtener información detallada sobre una materia específica, incluyendo sus unidades aprobables y cantidad de planes.",
         tags=["materias"],
     ),
 )
 class MateriaViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    Read-only viewset for Materia (Courses/Subjects).
+    Viewset de solo lectura para Materia (Cursos/Asignaturas).
     
-    Provides access to all materias in the system with filtering and search capabilities.
+    Proporciona acceso a todas las materias en el sistema con capacidades de filtrado y búsqueda.
     """
     queryset = Materia.objects.all().order_by('codigo')
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
@@ -81,41 +116,41 @@ class MateriaViewSet(viewsets.ReadOnlyModelViewSet):
 
 @extend_schema_view(
     list=extend_schema(
-        summary="List all study plans",
-        description="Retrieve a paginated list of all study plans (planes de estudio). Supports filtering by carrera, year, and active status.",
-        tags=["planes-estudio"],
+        summary="Listar todos los planes de estudio",
+        description="Obtener una lista paginada de todos los planes de estudio. Soporta filtrado por carrera, año y estado activo.",
+        tags=["carreras"],
         parameters=[
             OpenApiParameter(
                 name='nombre_carrera',
                 type=str,
                 location=OpenApiParameter.QUERY,
-                description='Filter by carrera name',
+                description='Filtrar por nombre de carrera',
             ),
             OpenApiParameter(
                 name='anio',
                 type=str,
                 location=OpenApiParameter.QUERY,
-                description='Filter by plan year',
+                description='Filtrar por año del plan',
             ),
             OpenApiParameter(
                 name='activo',
                 type=bool,
                 location=OpenApiParameter.QUERY,
-                description='Filter by active status (true/false)',
+                description='Filtrar por estado activo (true/false)',
             ),
         ],
     ),
     retrieve=extend_schema(
-        summary="Get study plan details",
-        description="Retrieve detailed information about a specific study plan, including carrera name and materia count.",
-        tags=["planes-estudio"],
+        summary="Obtener detalles de un plan de estudio",
+        description="Obtener información detallada sobre un plan de estudio específico, incluyendo el nombre de la carrera y la cantidad de materias.",
+        tags=["carreras"],
     ),
 )
 class PlanEstudioViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    Read-only viewset for PlanEstudio (Study Plans).
+    Viewset de solo lectura para PlanEstudio (Planes de Estudio).
     
-    Provides access to all study plans with filtering capabilities.
+    Proporciona acceso a todos los planes de estudio con capacidades de filtrado.
     """
     queryset = PlanEstudio.objects.all().order_by('nombre_carrera', 'anio')
     serializer_class = PlanEstudioSerializer
@@ -128,88 +163,88 @@ class PlanEstudioViewSet(viewsets.ReadOnlyModelViewSet):
 
 @extend_schema_view(
     list=extend_schema(
-        summary="List all plan-materia relationships",
-        description="Retrieve a paginated list of all plan-materia relationships (materias within study plans). Supports filtering by plan, materia, and obligatorio status.",
+        summary="Listar todas las relaciones plan-materia",
+        description="Obtener una lista paginada de todas las relaciones plan-materia (materias dentro de planes de estudio). Soporta filtrado por plan, materia y estado activo.",
         tags=["planes-materias"],
         parameters=[
             OpenApiParameter(
                 name='plan',
                 type=str,
                 location=OpenApiParameter.QUERY,
-                description='Filter by plan ID (UUID)',
+                description='Filtrar por ID de plan (UUID)',
             ),
             OpenApiParameter(
                 name='materia',
                 type=str,
                 location=OpenApiParameter.QUERY,
-                description='Filter by materia ID (UUID)',
+                description='Filtrar por ID de materia (UUID)',
             ),
             OpenApiParameter(
-                name='obligatorio',
+                name='activo',
                 type=bool,
                 location=OpenApiParameter.QUERY,
-                description='Filter by obligatorio status (true/false)',
+                description='Filtrar por estado activo del plan y la materia (true/false)',
             ),
         ],
     ),
     retrieve=extend_schema(
-        summary="Get plan-materia relationship details",
-        description="Retrieve detailed information about a specific plan-materia relationship, including plan and materia details.",
+        summary="Obtener detalles de una relación plan-materia",
+        description="Obtener información detallada sobre una relación plan-materia específica, incluyendo detalles del plan y la materia.",
         tags=["planes-materias"],
     ),
 )
 class PlanMateriaViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    Read-only viewset for PlanMateria (Materias within Study Plans).
+    Viewset de solo lectura para PlanMateria (Materias dentro de Planes de Estudio).
     
-    Provides access to all plan-materia relationships with filtering capabilities.
+    Proporciona acceso a todas las relaciones plan-materia con capacidades de filtrado.
     """
     queryset = PlanMateria.objects.select_related('plan', 'materia').all().order_by('plan__nombre_carrera', 'plan__anio', 'materia__codigo')
     serializer_class = PlanMateriaSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ['plan', 'materia', 'obligatorio']
+    filterset_fields = ['plan', 'materia', 'activo']
     search_fields = ['plan__nombre_carrera', 'plan__anio', 'materia__codigo', 'materia__nombre']
-    ordering_fields = ['semestre_sugerido', 'fecha_creacion']
-    ordering = ['plan__nombre_carrera', 'plan__anio', 'semestre_sugerido']
+    ordering_fields = ['plan__nombre_carrera', 'plan__anio', 'materia__codigo', 'fecha_creacion']
+    ordering = ['plan__nombre_carrera', 'plan__anio', 'materia__codigo']
 
 
 @extend_schema_view(
     list=extend_schema(
-        summary="List all unidades aprobables",
-        description="Retrieve a paginated list of all unidades aprobables (approvable units). Supports filtering by materia, tipo, and active status.",
+        summary="Listar todas las unidades aprobables",
+        description="Obtener una lista paginada de todas las unidades aprobables. Soporta filtrado por materia, tipo y estado activo.",
         tags=["unidades-aprobables"],
         parameters=[
             OpenApiParameter(
                 name='materia',
                 type=str,
                 location=OpenApiParameter.QUERY,
-                description='Filter by materia ID (UUID)',
+                description='Filtrar por ID de materia (UUID)',
             ),
             OpenApiParameter(
                 name='tipo',
                 type=str,
                 location=OpenApiParameter.QUERY,
-                description='Filter by tipo: MATERIA, CURSO, GRUPO, EXAMEN',
+                description='Filtrar por tipo: MATERIA, CURSO, GRUPO, EXAMEN',
             ),
             OpenApiParameter(
                 name='activo',
                 type=bool,
                 location=OpenApiParameter.QUERY,
-                description='Filter by active status (true/false)',
+                description='Filtrar por estado activo (true/false)',
             ),
         ],
     ),
     retrieve=extend_schema(
-        summary="Get unidad aprobable details",
-        description="Retrieve detailed information about a specific unidad aprobable, including materia information.",
+        summary="Obtener detalles de una unidad aprobable",
+        description="Obtener información detallada sobre una unidad aprobable específica, incluyendo información de la materia.",
         tags=["unidades-aprobables"],
     ),
 )
 class UnidadAprobableViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    Read-only viewset for UnidadAprobable (Approvable Units).
+    Viewset de solo lectura para UnidadAprobable (Unidades Aprobables).
     
-    Provides access to all unidades aprobables with filtering capabilities.
+    Proporciona acceso a todas las unidades aprobables con capacidades de filtrado.
     """
     queryset = UnidadAprobable.objects.select_related('materia').all().order_by('materia__codigo', 'tipo')
     serializer_class = UnidadAprobableSerializer
@@ -222,60 +257,66 @@ class UnidadAprobableViewSet(viewsets.ReadOnlyModelViewSet):
 
 @extend_schema_view(
     list=extend_schema(
-        summary="List all requisito nodos",
-        description="Retrieve a paginated list of all requisito nodos (requirement tree nodes). Supports filtering by plan_materia, tipo, padre, and root_only option.",
+        summary="Listar todos los nodos de requisitos",
+        description="Obtener una lista paginada de todos los nodos de requisitos (nodos del árbol de requisitos). Soporta filtrado por plan_materia, tipo, padre, opción root_only y estado activo.",
         tags=["requisitos"],
         parameters=[
             OpenApiParameter(
                 name='plan_materia',
                 type=str,
                 location=OpenApiParameter.QUERY,
-                description='Filter by plan_materia ID (UUID)',
+                description='Filtrar por ID de plan_materia (UUID)',
             ),
             OpenApiParameter(
                 name='tipo',
                 type=str,
                 location=OpenApiParameter.QUERY,
-                description='Filter by tipo: ROOT, AND, OR, LEAF',
+                description='Filtrar por tipo: ALL, ANY, NOT, LEAF',
             ),
             OpenApiParameter(
                 name='padre',
                 type=str,
                 location=OpenApiParameter.QUERY,
-                description='Filter by parent node ID (UUID)',
+                description='Filtrar por ID de nodo padre (UUID)',
             ),
             OpenApiParameter(
                 name='root_only',
                 type=bool,
                 location=OpenApiParameter.QUERY,
-                description='Filter to show only root nodes (true/false)',
+                description='Filtrar para mostrar solo nodos raíz (true/false)',
+            ),
+            OpenApiParameter(
+                name='activo',
+                type=bool,
+                location=OpenApiParameter.QUERY,
+                description='Filtrar por estado activo del plan y la materia de plan_materia (true/false)',
             ),
         ],
     ),
     retrieve=extend_schema(
-        summary="Get requisito nodo details",
-        description="Retrieve detailed information about a specific requisito nodo. Use tree=true query parameter to get the full tree structure with nested hijos and items.",
+        summary="Obtener detalles de un nodo de requisito",
+        description="Obtener información detallada sobre un nodo de requisito específico. Usar el parámetro tree=true para obtener la estructura completa del árbol con hijos e items anidados.",
         tags=["requisitos"],
         parameters=[
             OpenApiParameter(
                 name='tree',
                 type=bool,
                 location=OpenApiParameter.QUERY,
-                description='Return full tree structure with nested hijos and items (true/false)',
+                description='Devolver estructura de árbol completa con hijos e items anidados (true/false)',
             ),
         ],
     ),
 )
 class RequisitoNodoViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    Read-only viewset for RequisitoNodo (Requirement Tree Nodes).
+    Viewset de solo lectura para RequisitoNodo (Nodos del Árbol de Requisitos).
     
-    Provides access to all requisito nodos with filtering capabilities.
-    Supports tree view for retrieving full requirement tree structures.
+    Proporciona acceso a todos los nodos de requisitos con capacidades de filtrado.
+    Soporta vista de árbol para recuperar estructuras completas de árboles de requisitos.
     """
     queryset = RequisitoNodo.objects.select_related('plan_materia', 'padre').prefetch_related('hijos', 'items').all().order_by('orden')
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ['plan_materia', 'tipo', 'padre']
+    filterset_class = RequisitoNodoFilter
     search_fields = ['descripcion']
     ordering_fields = ['orden', 'fecha_creacion']
     ordering = ['orden']
@@ -307,42 +348,421 @@ class RequisitoNodoViewSet(viewsets.ReadOnlyModelViewSet):
 
 @extend_schema_view(
     list=extend_schema(
-        summary="List all requisito items",
-        description="Retrieve a paginated list of all requisito items (requirement items within leaf nodes). Supports filtering by nodo and tipo.",
+        summary="Listar todos los items de requisitos",
+        description="Obtener una lista paginada de todos los items de requisitos (items de requisitos dentro de nodos hoja). Soporta filtrado por nodo, tipo y estado activo.",
         tags=["requisitos"],
         parameters=[
             OpenApiParameter(
                 name='nodo',
                 type=str,
                 location=OpenApiParameter.QUERY,
-                description='Filter by requisito nodo ID (UUID)',
+                description='Filtrar por ID de nodo de requisito (UUID)',
             ),
             OpenApiParameter(
                 name='tipo',
                 type=str,
                 location=OpenApiParameter.QUERY,
-                description='Filter by tipo: UNIDAD, TEXTO',
+                description='Filtrar por tipo: UNIDAD, CREDITOS, TEXTO',
+            ),
+            OpenApiParameter(
+                name='activo',
+                type=bool,
+                location=OpenApiParameter.QUERY,
+                description='Filtrar por estado activo de unidad_requerida (true/false)',
             ),
         ],
     ),
     retrieve=extend_schema(
-        summary="Get requisito item details",
-        description="Retrieve detailed information about a specific requisito item, including nodo and unidad_requerida information.",
+        summary="Obtener detalles de un item de requisito",
+        description="Obtener información detallada sobre un item de requisito específico, incluyendo información del nodo y unidad_requerida.",
         tags=["requisitos"],
     ),
 )
 class RequisitoItemViewSet(viewsets.ReadOnlyModelViewSet):
     """
-    Read-only viewset for RequisitoItem (Requirement Items).
+    Viewset de solo lectura para RequisitoItem (Items de Requisitos).
     
-    Provides access to all requisito items with filtering capabilities.
-    Items are associated with LEAF type requisito nodos.
+    Proporciona acceso a todos los items de requisitos con capacidades de filtrado.
+    Los items están asociados con nodos de requisitos de tipo LEAF.
     """
     queryset = RequisitoItem.objects.select_related('nodo', 'unidad_requerida').all().order_by('nodo', 'orden')
     serializer_class = RequisitoItemSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = ['nodo', 'tipo']
+    filterset_class = RequisitoItemFilter
     search_fields = ['texto']
     ordering_fields = ['orden', 'fecha_creacion']
     ordering = ['nodo', 'orden']
+
+
+@extend_schema_view(
+    list=extend_schema(
+        summary="Obtener previas (requisitos previos) para una PlanMateria",
+        description="""
+        Obtener todos los requisitos previos (previas) para una PlanMateria dada.
+        
+        Parámetros requeridos:
+        O bien:
+        - plan_id: UUID del plan de estudio
+        O bien:
+        - plan_year: Año del plan de estudio
+        - plan_name: Nombre del plan de estudio/carrera
+        
+        Identificación de PlanMateria (al menos uno requerido):
+        - plan_materia_id: UUID de la PlanMateria
+        - plan_materia_code: Código de la materia en el plan
+        - plan_materia_name: Nombre de la materia en el plan
+        
+        Filtros opcionales:
+        - unidad_tipo: Filtrar por tipo de unidad aprobable (CURSO, EXAMEN, UCB, OTRO)
+        - activo: Filtrar por estado activo (true/false)
+        """,
+        tags=["previas"],
+        parameters=[
+            OpenApiParameter(
+                name='plan_materia_id',
+                type=str,
+                location=OpenApiParameter.QUERY,
+                description='UUID de PlanMateria (proporciona información tanto del plan como de la materia)',
+            ),
+            OpenApiParameter(
+                name='plan_id',
+                type=str,
+                location=OpenApiParameter.QUERY,
+                description='UUID del plan de estudio (alternativa a plan_name/plan_year)',
+            ),
+            OpenApiParameter(
+                name='plan_year',
+                type=str,
+                location=OpenApiParameter.QUERY,
+                description='Año del plan de estudio (requerido si no se proporciona plan_id)',
+            ),
+            OpenApiParameter(
+                name='plan_name',
+                type=str,
+                location=OpenApiParameter.QUERY,
+                description='Nombre del plan de estudio/carrera (requerido si no se proporciona plan_id)',
+            ),
+            OpenApiParameter(
+                name='materia_code',
+                type=str,
+                location=OpenApiParameter.QUERY,
+                description='Código de la materia (ej., "1944")',
+                required=True,
+            ),
+            OpenApiParameter(
+                name='unidad_tipo',
+                type=str,
+                location=OpenApiParameter.QUERY,
+                description='Tipo de la UnidadAprobable: CURSO, EXAMEN, UCB, o OTRO',
+                required=True,
+            ),
+            OpenApiParameter(
+                name='activo',
+                type=bool,
+                location=OpenApiParameter.QUERY,
+                description='Filtrar por estado activo (true/false)',
+            ),
+        ],
+    ),
+)
+class PreviasViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+    """
+    Obtener previas para una UnidadAprobable específica.
+    
+    Ejemplo: Para obtener previas de "EXAMEN de la materia 1944 en INGENIERÍA CIVIL 2021":
+    /api/previas/?plan_year=2021&plan_name=INGENIERÍA CIVIL&materia_code=1944&unidad_tipo=EXAMEN
+    """
+    serializer_class = RequisitoNodoTreeSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    ordering_fields = ['orden', 'fecha_creacion']
+    ordering = ['orden']
+    
+    def get_queryset(self):
+        """Build queryset based on query parameters."""
+        # Get parameters
+        plan_materia_id = self.request.query_params.get('plan_materia_id')
+        plan_id = self.request.query_params.get('plan_id')
+        plan_year = self.request.query_params.get('plan_year')
+        plan_name = self.request.query_params.get('plan_name')
+        materia_code = self.request.query_params.get('materia_code')
+        unidad_tipo = self.request.query_params.get('unidad_tipo')
+        activo = self.request.query_params.get('activo')
+        
+        # Validate required parameters
+        if not unidad_tipo:
+            return RequisitoNodo.objects.none()
+        
+        # Step 1: Find the PlanEstudio
+        # Option A: Use plan_materia_id to get both plan and materia
+        if plan_materia_id:
+            plan_materia = PlanEstudio.objects.filter(id=plan_materia_id).first()
+            if not plan_materia:
+                return RequisitoNodo.objects.none()
+            
+            plans = PlanEstudio.objects.filter(id=plan_materia.plan.id)
+            # Override materia_code if not provided or different
+            if not materia_code:
+                materia_code = plan_materia.materia.codigo
+            elif materia_code != plan_materia.materia.codigo:
+                # materia_code doesn't match plan_materia's materia
+                return RequisitoNodo.objects.none()
+        # Option B: Use plan_id or plan_year+plan_name
+        else:
+            if not materia_code:
+                return RequisitoNodo.objects.none()
+            
+            plan_filter = Q()
+            if plan_id:
+                plan_filter = Q(id=plan_id)
+            elif plan_year and plan_name:
+                plan_filter = Q(anio=plan_year, nombre_carrera__icontains=plan_name)
+            else:
+                return RequisitoNodo.objects.none()
+            
+            plans = PlanEstudio.objects.filter(plan_filter)
+        
+        # Apply activo filter if not already filtered by plan_materia_id
+        if activo is not None and not plan_materia_id:
+            activo_bool = activo.lower() in ('true', '1', 'yes')
+            plans = plans.filter(activo=activo_bool)
+        
+        if not plans.exists():
+            return RequisitoNodo.objects.none()
+        
+        # Step 2: Find PlanEstudio for this materia in these plans
+        pm_filter = Q(
+            plan__in=plans,
+            materia__codigo=materia_code
+        )
+        
+        if activo is not None:
+            activo_bool = activo.lower() in ('true', '1', 'yes')
+            pm_filter &= Q(materia__activo=activo_bool)
+        
+        plan_estudios = PlanEstudio.objects.filter(pm_filter)
+        if not plan_estudios.exists():
+            return RequisitoNodo.objects.none()
+        
+        # Step 3: Verify that an UnidadAprobable exists with this tipo for this materia
+        # This ensures the materia is actually offered as this tipo
+        unidad_exists = UnidadAprobable.objects.filter(
+            materia__codigo=materia_code,
+            tipo=unidad_tipo
+        ).exists()
+        
+        if not unidad_exists:
+            return RequisitoNodo.objects.none()
+        
+        # Step 4: Get the RequisitoNodos for these PlanEstudio
+        queryset = RequisitoNodo.objects.select_related(
+            'plan',
+            'materia',
+            'padre'
+        ).prefetch_related(
+            'hijos',
+            'items__unidad_requerida__materia'
+        ).filter(
+            plan__in=plan_estudios,
+            padre__isnull=True  # Only root nodes
+        )
+        
+        return queryset.order_by('plan__anio', 'orden')
+
+
+@extend_schema_view(
+    list=extend_schema(
+        summary="Obtener posprevias (cursos dependientes) para un PlanEstudio",
+        description="""
+        Obtener todas las posprevias (PlanEstudio que requieren el PlanEstudio dado como requisito previo).
+        
+        Identificación de PlanMateria (al menos uno requerido):
+        - plan_id: UUID del PlanEstudio (información del plan no requerida si se usa esto)
+        - plan_year: Año del PlanEstudio
+        - plan_name: Nombre del PlanEstudio/carrera
+        
+        Identificación del Plan (requerido solo si se usa plan_materia_code o plan_materia_name):
+        O bien:
+        - plan_id: UUID del plan de estudio
+        O bien:
+        - plan_year: Año del plan de estudio
+        - plan_name: Nombre del plan de estudio/carrera
+        
+        Filtros opcionales:
+        - unidad_tipo: Filtrar por tipo de unidad aprobable (CURSO, EXAMEN, UCB, OTRO)
+        - activo: Filtrar por estado activo (true/false)
+        """,
+        tags=["posprevias"],
+        parameters=[
+            OpenApiParameter(
+                name='plan_materia_id',
+                type=str,
+                location=OpenApiParameter.QUERY,
+                description='UUID de la PlanMateria',
+            ),
+            OpenApiParameter(
+                name='plan_materia_code',
+                type=str,
+                location=OpenApiParameter.QUERY,
+                description='Código de la materia en el plan',
+            ),
+            OpenApiParameter(
+                name='plan_materia_name',
+                type=str,
+                location=OpenApiParameter.QUERY,
+                description='Nombre de la materia en el plan',
+            ),
+            OpenApiParameter(
+                name='plan_id',
+                type=str,
+                location=OpenApiParameter.QUERY,
+                description='UUID del plan de estudio (requerido si se usa plan_materia_code/plan_materia_name sin plan_materia_id)',
+            ),
+            OpenApiParameter(
+                name='plan_year',
+                type=str,
+                location=OpenApiParameter.QUERY,
+                description='Año del plan de estudio (requerido si se usa plan_materia_code/plan_materia_name sin plan_id)',
+            ),
+            OpenApiParameter(
+                name='plan_name',
+                type=str,
+                location=OpenApiParameter.QUERY,
+                description='Nombre del plan de estudio/carrera (requerido si se usa plan_materia_code/plan_materia_name sin plan_id)',
+            ),
+            OpenApiParameter(
+                name='unidad_tipo',
+                type=str,
+                location=OpenApiParameter.QUERY,
+                description='Filtrar por tipo de unidad aprobable (CURSO, EXAMEN, UCB, OTRO)',
+            ),
+            OpenApiParameter(
+                name='activo',
+                type=bool,
+                location=OpenApiParameter.QUERY,
+                description='Filtrar por estado activo (true/false)',
+            ),
+        ],
+    ),
+)
+class PosPreviasViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
+    """
+    Viewset para obtener posprevias (cursos dependientes) para una PlanMateria dada.
+    
+    Dada una PlanMateria (por plan_materia_id, plan_materia_code, o plan_materia_name)
+    y un PlanEstudio (ya sea por plan_id UUID o por plan_name + plan_year),
+    devuelve todas las PlanMaterias que la requieren como requisito previo.
+    """
+    serializer_class = PlanEstudioSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    ordering_fields = ['fecha_creacion']
+    ordering = ['nombre_carrera', 'anio']
+    
+    def get_queryset(self):
+        """Build queryset based on query parameters."""
+        # First, find the PlanEstudio
+        plan_materia_id = self.request.query_params.get('plan_materia_id')
+        plan_materia_code = self.request.query_params.get('plan_materia_code')
+        plan_materia_name = self.request.query_params.get('plan_materia_name')
+        
+        # Filter by plan: either plan_id OR (plan_name + plan_year) - optional if plan_materia_id is provided
+        plan_id = self.request.query_params.get('plan_id')
+        plan_year = self.request.query_params.get('plan_year')
+        plan_name = self.request.query_params.get('plan_name')
+        
+        # Build PlanMateria filter
+        plan_materia_filter = Q()
+        use_id = False
+        
+        # If plan_materia_id is provided, try to use it first
+        if plan_materia_id:
+            # Check if the ID exists
+            if PlanEstudio.objects.filter(id=plan_materia_id).exists():
+                plan_materia_filter &= Q(id=plan_materia_id)
+                use_id = True
+                # Optionally add plan filter if provided (for validation/extra filtering)
+                if plan_id:
+                    plan_materia_filter &= Q(plan_id=plan_id)
+                elif plan_year and plan_name:
+                    plan_materia_filter &= Q(plan__anio=plan_year, plan__nombre_carrera=plan_name)
+            # If ID doesn't exist but code is provided, fall back to code
+            elif plan_materia_code:
+                # Fall through to code handling below
+                pass
+            else:
+                # ID doesn't exist and no code provided
+                return PlanEstudio.objects.none()
+        
+        # If we didn't use the ID (either it wasn't provided or didn't exist), try code
+        if not use_id and plan_materia_code:
+            # If using code, we need plan info to uniquely identify
+            if plan_id:
+                plan_materia_filter &= Q(plan_id=plan_id, materia__codigo=plan_materia_code)
+            elif plan_year and plan_name:
+                plan_materia_filter &= Q(plan__anio=plan_year, plan__nombre_carrera=plan_name, materia__codigo=plan_materia_code)
+            else:
+                # Plan info is required when using plan_materia_code
+                return PlanEstudio.objects.none()
+        elif plan_materia_name:
+            # If using name, we need plan info to uniquely identify
+            if plan_id:
+                plan_materia_filter &= Q(plan_id=plan_id, materia__nombre__icontains=plan_materia_name)
+            elif plan_year and plan_name:
+                plan_materia_filter &= Q(plan__anio=plan_year, plan__nombre_carrera=plan_name, materia__nombre__icontains=plan_materia_name)
+            else:
+                # Plan info is required when using plan_materia_name
+                return PlanEstudio.objects.none()
+        else:
+            # At least one way to identify the PlanMateria is required
+            return PlanEstudio.objects.none()
+        
+        # Find the PlanMateria(s)
+        source_plan_estudios = PlanEstudio.objects.filter(plan_materia_filter)
+        
+        if not source_plan_estudios.exists():
+            return PlanEstudio.objects.none()
+        
+        # Get the materia(s) from the source PlanEstudio(s)
+        materias = source_plan_estudios.values_list('materia_id', flat=True).distinct()
+        
+        # Optional: Filter by unidad tipo
+        unidad_tipo = self.request.query_params.get('unidad_tipo')
+        
+        # Find RequisitoItems that reference unidades from these materias
+        item_filters = Q(
+            tipo=RequisitoItem.TipoItem.UNIDAD,
+            unidad_requerida__materia_id__in=materias
+        )
+        
+        if unidad_tipo:
+            item_filters &= Q(unidad_requerida__tipo=unidad_tipo)
+        
+        # Get RequisitoItems that match
+        matching_items = RequisitoItem.objects.filter(item_filters).select_related(
+            'nodo__plan_materia__plan',
+            'nodo__plan_materia__materia',
+            'unidad_requerida__materia'
+        ).distinct()
+        
+        # Get PlanMaterias from the RequisitoNodos (these are the posprevias)
+        plan_estudio_ids = matching_items.values_list('nodo__plan_materia_id', flat=True).distinct()
+        
+        # Exclude the source PlanMaterias themselves
+        source_ids = set(source_plan_estudios.values_list('id', flat=True))
+        
+        queryset = PlanEstudio.objects.select_related('plan', 'materia').filter(
+            id__in=plan_estudio_ids
+        ).exclude(
+            id__in=source_ids
+        ).order_by('plan__nombre_carrera', 'plan__anio', 'materia__codigo')
+        
+        # Optional: Filter by active status
+        activo = self.request.query_params.get('activo')
+        if activo is not None:
+            activo_bool = activo.lower() in ('true', '1', 'yes')
+            queryset = queryset.filter(
+                plan__activo=activo_bool,
+                materia__activo=activo_bool
+            )
+        
+        return queryset
 

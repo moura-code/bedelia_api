@@ -8,6 +8,8 @@ from api.views.materias import (
     UnidadAprobableViewSet,
     RequisitoNodoViewSet,
     RequisitoItemViewSet,
+    PreviasViewSet,
+    PosPreviasViewSet,
 )
 
 router = DefaultRouter()
@@ -19,6 +21,8 @@ router.register(r'planes-materias', PlanMateriaViewSet, basename='plan-materia')
 router.register(r'unidades-aprobables', UnidadAprobableViewSet, basename='unidad-aprobable')
 router.register(r'requisitos-nodos', RequisitoNodoViewSet, basename='requisito-nodo')
 router.register(r'requisitos-items', RequisitoItemViewSet, basename='requisito-item')
+router.register(r'previas', PreviasViewSet, basename='previas')
+router.register(r'posprevias', PosPreviasViewSet, basename='posprevias')
 
 urlpatterns = [
     path("", include(router.urls)),
