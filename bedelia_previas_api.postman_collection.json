@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "bedelia-api-collection-2025",
+		"name": "Bedelia API - Previas & Posprevias",
+		"description": "Complete API collection for Bedelia prerequisites (previas) and dependents (posprevias) system.\n\nThis collection includes endpoints for:\n- Plans and Materias (basic queries)\n- Previas (prerequisites for courses)\n- Posprevias (courses that depend on a given course)\n\nUse the Bedelia Environment to set base_url and plan IDs.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Plans & Materias (Basic)",
+			"item": [
+				{
+					"name": "List Plans",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/planes-estudio/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"planes-estudio",
+								""
+							]
+						},
+						"description": "Get all plans de estudio. Can be filtered by year (anio) or name (nombre_carrera).\n\nQuery parameters:\n- anio: Filter by year (e.g., 2021)\n- nombre_carrera: Filter by career name (partial match)"
+					},
+					"response": []
+				},
+				{
+					"name": "List Plans - Filter by Year",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/planes-estudio/?anio=2021",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"planes-estudio",
+								""
+							],
+							"query": [
+								{
+									"key": "anio",
+									"value": "2021",
+									"description": "Year of the plan"
+								}
+							]
+						},
+						"description": "Filter plans by year. Example shows plans from 2021."
+					},
+					"response": []
+				},
+				{
+					"name": "List Materias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/materias/?page_size=50",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"materias",
+								""
+							],
+							"query": [
+								{
+									"key": "page_size",
+									"value": "50",
+									"description": "Number of results per page"
+								}
+							]
+						},
+						"description": "Get all materias (courses/subjects) in the system.\n\nQuery parameters:\n- codigo: Filter by materia code\n- nombre: Filter by materia name (partial match)\n- page_size: Results per page"
+					},
+					"response": []
+				},
+				{
+					"name": "List Materias - Search by Code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/materias/?codigo=1944",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"materias",
+								""
+							],
+							"query": [
+								{
+									"key": "codigo",
+									"value": "1944",
+									"description": "Materia code to search"
+								}
+							]
+						},
+						"description": "Search for a specific materia by code. Example: 1944 (ADMINISTRACION GENERAL PARA INGENIEROS)"
+					},
+					"response": []
+				},
+				{
+					"name": "List PlanMaterias - Materias in a Plan",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/planes-materias/?plan_id={{plan_civil_2021_id}}&page_size=50",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"planes-materias",
+								""
+							],
+							"query": [
+								{
+									"key": "plan_id",
+									"value": "{{plan_civil_2021_id}}",
+									"description": "UUID of the plan"
+								},
+								{
+									"key": "page_size",
+									"value": "50"
+								}
+							]
+						},
+						"description": "Get all materias that belong to a specific plan.\n\nQuery parameters:\n- plan_id: UUID of the plan\n- materia__codigo: Filter by materia code\n- activo: Filter by active status (true/false)"
+					},
+					"response": []
+				},
+				{
+					"name": "List Unidades Aprobables",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/unidades-aprobables/?materia__codigo=1944",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"unidades-aprobables",
+								""
+							],
+							"query": [
+								{
+									"key": "materia__codigo",
+									"value": "1944",
+									"description": "Filter by materia code"
+								}
+							]
+						},
+						"description": "Get unidades aprobables (approvable units) for a materia.\n\nUnidad tipos:\n- CURSO: Course\n- EXAMEN: Exam\n- UCB: UCB Module\n- OTRO: Other\n\nQuery parameters:\n- materia__codigo: Filter by materia code\n- tipo: Filter by unit type"
+					},
+					"response": []
+				}
+			],
+			"description": "Basic endpoints for querying plans, materias, and related entities."
+		},
+		{
+			"name": "2. Previas (Prerequisites)",
+			"item": [
+				{
+					"name": "Get Previas - By Plan ID & Materia Code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/previas/?plan_id={{plan_civil_2021_id}}&materia_code=1944&unidad_tipo=CURSO",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"previas",
+								""
+							],
+							"query": [
+								{
+									"key": "plan_id",
+									"value": "{{plan_civil_2021_id}}",
+									"description": "UUID of the plan (INGENIERÍA CIVIL 2021)"
+								},
+								{
+									"key": "materia_code",
+									"value": "1944",
+									"description": "Materia code (ADMINISTRACION GENERAL PARA INGENIEROS)"
+								},
+								{
+									"key": "unidad_tipo",
+									"value": "CURSO",
+									"description": "Type: CURSO, EXAMEN, UCB, or OTRO"
+								}
+							]
+						},
+						"description": "Get prerequisites (previas) for a specific materia in a plan.\n\nThis is the PRIMARY method using plan_id.\n\nExample: Prerequisites for CURSO of materia 1944 in INGENIERÍA CIVIL 2021\n\nRequired parameters:\n- plan_id: UUID of the plan\n- materia_code: Code of the materia\n- unidad_tipo: Type of unit (CURSO, EXAMEN, UCB, OTRO)\n\nOptional parameters:\n- activo: Filter by active status (true/false)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Previas - By Plan Year/Name & Materia Code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/previas/?plan_year=1997&plan_name=INGENIERÍA EN COMPUTACIÓN&materia_code=1944&unidad_tipo=EXAMEN",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"previas",
+								""
+							],
+							"query": [
+								{
+									"key": "plan_year",
+									"value": "1997",
+									"description": "Year of the plan"
+								},
+								{
+									"key": "plan_name",
+									"value": "INGENIERÍA EN COMPUTACIÓN",
+									"description": "Name of the career/plan (partial match)"
+								},
+								{
+									"key": "materia_code",
+									"value": "1944",
+									"description": "Materia code"
+								},
+								{
+									"key": "unidad_tipo",
+									"value": "EXAMEN",
+									"description": "Type: CURSO, EXAMEN, UCB, or OTRO"
+								}
+							]
+						},
+						"description": "Get prerequisites using plan year and name instead of UUID.\n\nThis is an ALTERNATIVE method when you don't have the plan_id.\n\nExample: Prerequisites for EXAMEN of materia 1944 in INGENIERÍA EN COMPUTACIÓN 1997\n\nRequired parameters:\n- plan_year: Year of the plan\n- plan_name: Name of the career (case-insensitive partial match)\n- materia_code: Code of the materia\n- unidad_tipo: Type of unit (CURSO, EXAMEN, UCB, OTRO)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Previas - With Active Filter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/previas/?plan_id={{plan_civil_2021_id}}&materia_code=1944&unidad_tipo=CURSO&activo=true",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"previas",
+								""
+							],
+							"query": [
+								{
+									"key": "plan_id",
+									"value": "{{plan_civil_2021_id}}"
+								},
+								{
+									"key": "materia_code",
+									"value": "1944"
+								},
+								{
+									"key": "unidad_tipo",
+									"value": "CURSO"
+								},
+								{
+									"key": "activo",
+									"value": "true",
+									"description": "Filter by active status"
+								}
+							]
+						},
+						"description": "Get prerequisites filtered by active status.\n\nUse the 'activo' parameter to filter:\n- activo=true: Only active materias\n- activo=false: Only inactive materias"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Previas - By Plan Materia ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/previas/?plan_materia_id=0c3bd4c9-fa45-4ad2-8710-eed5f5503aa7&unidad_tipo=CURSO",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"previas",
+								""
+							],
+							"query": [
+								{
+									"key": "plan_materia_id",
+									"value": "0c3bd4c9-fa45-4ad2-8710-eed5f5503aa7",
+									"description": "UUID of the PlanMateria (identifies both plan and materia)"
+								},
+								{
+									"key": "unidad_tipo",
+									"value": "CURSO",
+									"description": "Type: CURSO, EXAMEN, UCB, or OTRO"
+								}
+							]
+						},
+						"description": "Get prerequisites using PlanMateria ID directly.\n\nThis method is useful when you already have the PlanMateria UUID.\n\nRequired parameters:\n- plan_materia_id: UUID of the PlanMateria\n- unidad_tipo: Type of unit"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for querying prerequisites (previas) - what courses are required before taking a given course."
+		},
+		{
+			"name": "3. Posprevias (Dependents)",
+			"item": [
+				{
+					"name": "Get Posprevias - By Plan Materia ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/posprevias/?plan_materia_id=0c3bd4c9-fa45-4ad2-8710-eed5f5503aa7&unidad_tipo=CURSO",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"posprevias",
+								""
+							],
+							"query": [
+								{
+									"key": "plan_materia_id",
+									"value": "0c3bd4c9-fa45-4ad2-8710-eed5f5503aa7",
+									"description": "UUID of the PlanMateria"
+								},
+								{
+									"key": "unidad_tipo",
+									"value": "CURSO",
+									"description": "Filter by unit type (optional)"
+								}
+							]
+						},
+						"description": "Get posprevias (dependent courses) - courses that require this course as a prerequisite.\n\nThis shows 'what courses can I take after completing this one'.\n\nRequired parameters:\n- plan_materia_id: UUID of the PlanMateria\n\nOptional parameters:\n- unidad_tipo: Filter by unit type (CURSO, EXAMEN, UCB, OTRO)\n- activo: Filter by active status"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Posprevias - By Materia Code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/posprevias/?plan_id={{plan_civil_2021_id}}&plan_materia_code=1944",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"posprevias",
+								""
+							],
+							"query": [
+								{
+									"key": "plan_id",
+									"value": "{{plan_civil_2021_id}}",
+									"description": "UUID of the plan"
+								},
+								{
+									"key": "plan_materia_code",
+									"value": "1944",
+									"description": "Code of the materia"
+								}
+							]
+						},
+						"description": "Get posprevias using materia code and plan ID.\n\nRequired parameters:\n- plan_id: UUID of the plan\n- plan_materia_code: Code of the materia\n\nOptional parameters:\n- unidad_tipo: Filter by unit type\n- activo: Filter by active status"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Posprevias - By Plan Year/Name & Materia Code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/posprevias/?plan_year=2021&plan_name=INGENIERÍA CIVIL&plan_materia_code=1944",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"posprevias",
+								""
+							],
+							"query": [
+								{
+									"key": "plan_year",
+									"value": "2021",
+									"description": "Year of the plan"
+								},
+								{
+									"key": "plan_name",
+									"value": "INGENIERÍA CIVIL",
+									"description": "Name of the career/plan"
+								},
+								{
+									"key": "plan_materia_code",
+									"value": "1944",
+									"description": "Code of the materia"
+								}
+							]
+						},
+						"description": "Get posprevias using plan year/name and materia code.\n\nAlternative method when you don't have plan_id.\n\nRequired parameters:\n- plan_year: Year of the plan\n- plan_name: Name of the career\n- plan_materia_code: Code of the materia"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints for querying posprevias (dependents) - what courses require a given course as a prerequisite."
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "plan_civil_2021_id",
+			"value": "3ed3612f-b5af-4563-a202-9dd103224e2f",
+			"type": "string"
+		},
+		{
+			"key": "plan_computacion_1997_id",
+			"value": "5b3bae4f-ea5a-4778-8c98-00a2388f3ea0",
+			"type": "string"
+		}
+	]
+}
+

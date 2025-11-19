@@ -87,7 +87,7 @@ class Previas(Scraper, PlanSection):
         """
         Parse a textual line (e.g. "Examen de la U.C.B: 1121 - FISICA GENERAL 2")
         into a structured dict.
-        Recognizes: exam | course | ucb_module | course_enrollment | unknown
+        Recognizes: exam | course | ucb_module | course_enrollment | exam_enrollment | unknown
         """
         original = line.strip()
         norm = re.sub(r"\s+", " ", original).strip().lower()
@@ -96,8 +96,13 @@ class Previas(Scraper, PlanSection):
         body = original
 
         # Order: most specific first
+        # Enrollment in exam
+        if re.search(r"^inscripci[oó]n\s+a?l?\s*examen\s+de\s+la\s+u\.?c\.?b\s*:\s*", norm):
+            modality = "exam_enrollment"
+            body = re.sub(r"(?i)^inscripci[oó]n\s+a?l?\s*examen\s+de\s+la\s+u\.?c\.?b\s*:\s*", "", original).strip()
+        
         # Enrollment in course
-        if re.search(r"^inscripci[oó]n\s+a?l?\s*curso\s+de\s+la\s+u\.?c\.?b\s*:\s*", norm):
+        elif re.search(r"^inscripci[oó]n\s+a?l?\s*curso\s+de\s+la\s+u\.?c\.?b\s*:\s*", norm):
             modality = "course_enrollment"
             body = re.sub(r"(?i)^inscripci[oó]n\s+a?l?\s*curso\s+de\s+la\s+u\.?c\.?b\s*:\s*", "", original).strip()
 
@@ -118,7 +123,9 @@ class Previas(Scraper, PlanSection):
             # use it as a hint for modality and clean the body.
             hint = prefix_hint.strip()
             low_hint = hint.lower()
-            if "inscripción" in low_hint and "curso" in low_hint:
+            if "inscripción" in low_hint and "examen" in low_hint:
+                modality = "exam_enrollment"
+            elif "inscripción" in low_hint and "curso" in low_hint:
                 modality = "course_enrollment"
             elif "examen" in low_hint:
                 modality = "exam"
@@ -133,7 +140,7 @@ class Previas(Scraper, PlanSection):
 
         return {
             "source": "UCB",
-            "modality": modality,  # exam | course | ucb_module | course_enrollment | unknown
+            "modality": modality,  # exam | course | ucb_module | course_enrollment | exam_enrollment | unknown
             "code": code,
             "title": title,
             "notes": notes,
@@ -154,6 +161,7 @@ class Previas(Scraper, PlanSection):
           - "Examen aprobado de la U.C.B: 1026 - MATEMATICA DISCRETA 2" (single item => required_count=1)
           - "Curso aprobado de la U.C.B: 1144 - VIBRACIONES Y ONDAS"
           - "Inscripción a(l) Curso de la U.C.B: MI2 - MATEMATICA INICIAL"
+          - "N créditos en el Plan: YEAR - PLAN_NAME" (e.g., "140 créditos en el Plan: 1997 - INGENIERIA EN COMPUTACION")
         """
         lines = self.norm_spaces(label_text).split("\n")
         if not lines:
@@ -185,10 +193,48 @@ class Previas(Scraper, PlanSection):
                 "title": first  # keep the header clean
             }
 
-        # 2) Cases "X aprobado de la U.C.B: CODE - NAME" (single one)
-        #    or "Inscripción a Curso de la U.C.B: CODE - NAME"
+        # 2) Case "N créditos en el Plan: YEAR - PLAN_NAME"
+        #    e.g., "140 créditos en el Plan: 1997 - INGENIERIA EN COMPUTACION"
+        credits_pattern = r"^(\d+)\s+cr[eé]ditos?\s+en\s+el\s+[Pp]lan\s*:\s*(.+)$"
+        m_credits = re.search(credits_pattern, first, re.IGNORECASE)
+        if m_credits:
+            credits_required = int(m_credits.group(1))
+            plan_info = m_credits.group(2).strip()
+            
+            # Parse plan_info which should be "YEAR - PLAN_NAME"
+            plan_year = ""
+            plan_name = ""
+            if " - " in plan_info:
+                parts = plan_info.split(" - ", 1)
+                plan_year = parts[0].strip()
+                plan_name = parts[1].strip()
+            else:
+                plan_name = plan_info
+            
+            # Create an item representing the credit requirement
+            item = {
+                "source": "PLAN",
+                "modality": "credits_in_plan",
+                "credits_required": credits_required,
+                "plan_year": plan_year,
+                "plan_name": plan_name,
+                "code": "",
+                "title": plan_info,
+                "raw": first
+            }
+            
+            return {
+                "type": "LEAF",
+                "required_count": 1,
+                "items": [item],
+                "title": first
+            }
+
+        # 3) Cases "X aprobado de la U.C.B: CODE - NAME" (single one)
+        #    or "Inscripción a Curso/Examen de la U.C.B: CODE - NAME"
         # Typical headers that come in <span class="negrita">...</span>
         APPROVED_PREFIXES = [
+            r"(?i)^inscripci[oó]n\s+a?l?\s*examen\s+de\s+la\s+u\.?c\.?b\s*:\s*",
             r"(?i)^examen\s+aprobado\s+de\s+la\s+u\.?c\.?b\s*:\s*",
             r"(?i)^curso\s+aprobado\s+de\s+la\s+u\.?c\.?b\s*:\s*",
             r"(?i)^u\.?c\.?b\s+aprobada?\s*:\s*",
@@ -282,7 +328,7 @@ class Previas(Scraper, PlanSection):
         # Search for direct child tds at the first level of tables under .ui-treenode-children
         child_tds = cont.find_elements(
             By.XPATH,
-            './/div[contains(@class,"ui-treenode-children")]/table/tbody/tr/td[@data-rowkey]'
+            './div[contains(@class,"ui-treenode-children")]/table/tbody/tr/td[@data-rowkey]'
         )
         return child_tds
 
@@ -310,6 +356,26 @@ class Previas(Scraper, PlanSection):
 
         return node
 
+    def _validate_tree(self, node: Dict[str, Any], path: str = "root") -> None:
+        """
+        Validate the requirements tree structure.
+        Raises exception if a non-leaf parent node has empty children.
+        """
+        node_type = node.get("type", "")
+        
+        # If this node has children key (parent node), validate it's not empty
+        if "children" in node:
+            children = node.get("children", [])
+            if not children:
+                raise ValueError(
+                    f"Parent node at '{path}' has empty children array. "
+                    f"Type: {node_type}, Title: {node.get('title', 'N/A')}"
+                )
+            
+            # Recursively validate children
+            for idx, child in enumerate(children):
+                self._validate_tree(child, f"{path}/child[{idx}]")
+
     def extract_requirements(self, root_id: str = "arbol") -> Dict[str, Any]:
         """
         Extract the requirements tree from the page.
@@ -326,7 +392,10 @@ class Previas(Scraper, PlanSection):
         # Root type adjustment: if not explicit in the label, convert "GROUP" to "ALL"
         if root.get("type") == "GROUP":
             root["type"] = "ALL"
-
+        
+        # Validate tree structure
+        self._validate_tree(root)
+        
         return root
 
     def expand_all_requirements(self):
@@ -343,16 +412,20 @@ class Previas(Scraper, PlanSection):
 
         if not plus_elements:
             return
-
+        tries = 0
         while self.try_find_element(
-            (By.XPATH, '//span[@class="ui-tree-toggler ui-icon ui-icon-plus"]'), 0.1
-        ):
+            (By.XPATH, '//span[@class="ui-tree-toggler ui-icon ui-icon-plus"]'), 0.2
+        ):  
+            if tries >=50:
+                self.driver.refresh()
+            if tries >= 90:
+                raise Exception("Failed to expand all requirements")
+            tries += 1
             plus_elements = self.driver.find_elements(
                 By.XPATH, '//span[@class="ui-tree-toggler ui-icon ui-icon-plus"]'
             )
             for plus_element in plus_elements:
                 self.scroll_to_element_and_click(plus_element)
-        sleep(0.1)
 
     def _load_backup_data(self, backup_file: str) -> dict:
         """Load existing backup data if available."""
@@ -442,8 +515,10 @@ class Previas(Scraper, PlanSection):
                                     raise Exception("Less than 3 cells found in row")
                     
                                 # Extract text immediately before any other operations
-                                code = cells[0].text.strip() if cells[0].text else ""
-                                name = cells[1].text.strip() if cells[1].text else ""
+                                code,name ,_= self._split_code_name(cells[0].text.strip() if cells[0].text else "")
+                                
+                                type_previas = cells[1].text.strip() if cells[1].text else ""
+
                                 break
                             except Exception as cell_error:
                                 cell_retry += 1
@@ -451,10 +526,12 @@ class Previas(Scraper, PlanSection):
                                     raise cell_error
                                 row = rows[i]
                                 sleep(0.1)
-
+                        # Example "2231 - CAMINOS Y CALLES 1 - Examen"
                         subject_info = {
                             "code": code,
                             "name": name,
+                            "type_previas": type_previas,
+                            "full": f"{code}-{name}-{type_previas}",
                         }
 
                         # Re-find the row and link to avoid stale element
@@ -479,7 +556,7 @@ class Previas(Scraper, PlanSection):
                         self.expand_all_requirements()
                         subject_info["requirements"] = self.extract_requirements()
 
-                        data[subject_info["code"]] = subject_info
+                        data[subject_info["full"]] = subject_info
                         self.logger.info(f"Requirements extracted for {subject_info['code']}")
                         
                         # Wait for modal overlay to disappear before clicking Volver

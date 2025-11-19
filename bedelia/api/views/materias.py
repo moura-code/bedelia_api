@@ -5,6 +5,7 @@ from drf_spectacular.utils import extend_schema, extend_schema_view, OpenApiPara
 from rest_framework import viewsets, mixins
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from rest_framework.exceptions import ValidationError
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters import FilterSet, BooleanFilter
@@ -490,14 +491,18 @@ class PreviasViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         
         # Validate required parameters
         if not unidad_tipo:
-            return RequisitoNodo.objects.none()
+            raise ValidationError({
+                'unidad_tipo': 'Este parámetro es requerido. Valores válidos: CURSO, EXAMEN, UCB, OTRO'
+            })
         
         # Step 1: Find the PlanEstudio
         # Option A: Use plan_materia_id to get both plan and materia
         if plan_materia_id:
-            plan_materia = PlanEstudio.objects.filter(id=plan_materia_id).first()
+            plan_materia = PlanMateria.objects.filter(id=plan_materia_id).first()
             if not plan_materia:
-                return RequisitoNodo.objects.none()
+                raise ValidationError({
+                    'plan_materia_id': f'No se encontró PlanMateria con id={plan_materia_id}'
+                })
             
             plans = PlanEstudio.objects.filter(id=plan_materia.plan.id)
             # Override materia_code if not provided or different
@@ -505,11 +510,15 @@ class PreviasViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
                 materia_code = plan_materia.materia.codigo
             elif materia_code != plan_materia.materia.codigo:
                 # materia_code doesn't match plan_materia's materia
-                return RequisitoNodo.objects.none()
+                raise ValidationError({
+                    'materia_code': f'El código de materia {materia_code} no coincide con la materia de la PlanMateria (código {plan_materia.materia.codigo})'
+                })
         # Option B: Use plan_id or plan_year+plan_name
         else:
             if not materia_code:
-                return RequisitoNodo.objects.none()
+                raise ValidationError({
+                    'materia_code': 'Este parámetro es requerido cuando no se proporciona plan_materia_id'
+                })
             
             plan_filter = Q()
             if plan_id:
@@ -517,7 +526,9 @@ class PreviasViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
             elif plan_year and plan_name:
                 plan_filter = Q(anio=plan_year, nombre_carrera__icontains=plan_name)
             else:
-                return RequisitoNodo.objects.none()
+                raise ValidationError({
+                    'plan_id': 'Debe proporcionar plan_id o ambos plan_year y plan_name'
+                })
             
             plans = PlanEstudio.objects.filter(plan_filter)
         
@@ -527,9 +538,20 @@ class PreviasViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
             plans = plans.filter(activo=activo_bool)
         
         if not plans.exists():
-            return RequisitoNodo.objects.none()
+            if plan_id:
+                raise ValidationError({
+                    'plan_id': f'No se encontró PlanEstudio con id={plan_id}'
+                })
+            elif plan_year and plan_name:
+                raise ValidationError({
+                    'plan_year/plan_name': f'No se encontró PlanEstudio con año={plan_year} y nombre que contenga "{plan_name}"'
+                })
+            else:
+                raise ValidationError({
+                    'plan': 'No se encontró ningún plan de estudio con los parámetros especificados'
+                })
         
-        # Step 2: Find PlanEstudio for this materia in these plans
+        # Step 2: Find PlanMateria for this materia in these plans
         pm_filter = Q(
             plan__in=plans,
             materia__codigo=materia_code
@@ -539,9 +561,12 @@ class PreviasViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
             activo_bool = activo.lower() in ('true', '1', 'yes')
             pm_filter &= Q(materia__activo=activo_bool)
         
-        plan_estudios = PlanEstudio.objects.filter(pm_filter)
-        if not plan_estudios.exists():
-            return RequisitoNodo.objects.none()
+        plan_materias = PlanMateria.objects.filter(pm_filter)
+        if not plan_materias.exists():
+            plan_info = f"{plans.first().nombre_carrera} {plans.first().anio}" if plans.exists() else "desconocido"
+            raise ValidationError({
+                'materia_code': f'No se encontró la materia con código {materia_code} en el plan {plan_info}'
+            })
         
         # Step 3: Verify that an UnidadAprobable exists with this tipo for this materia
         # This ensures the materia is actually offered as this tipo
@@ -551,22 +576,25 @@ class PreviasViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         ).exists()
         
         if not unidad_exists:
-            return RequisitoNodo.objects.none()
+            raise ValidationError({
+                'unidad_tipo': f'La materia {materia_code} no tiene una unidad aprobable de tipo {unidad_tipo}'
+            })
         
-        # Step 4: Get the RequisitoNodos for these PlanEstudio
+        # Step 4: Get the RequisitoNodos for these PlanMaterias
         queryset = RequisitoNodo.objects.select_related(
-            'plan',
-            'materia',
+            'plan_materia__plan',
+            'plan_materia__materia',
             'padre'
         ).prefetch_related(
             'hijos',
             'items__unidad_requerida__materia'
         ).filter(
-            plan__in=plan_estudios,
-            padre__isnull=True  # Only root nodes
+            plan_materia__in=plan_materias,
+            padre__isnull=True,  # Only root nodes
+            unidad_tipo=unidad_tipo  # Filter by unidad tipo to separate CURSO/EXAMEN requirements
         )
         
-        return queryset.order_by('plan__anio', 'orden')
+        return queryset.order_by('plan_materia__plan__anio', 'orden')
 
 
 @extend_schema_view(

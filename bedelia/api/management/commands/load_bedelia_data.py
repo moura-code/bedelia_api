@@ -751,9 +751,11 @@ class Command(BaseCommand):
         Estructura esperada:
         {
             "CARRERA_ANIO": {
-                "CODIGO - NOMBRE": {
-                    "code": "CODIGO",
-                    "name": "Examen" | "Curso" | etc,
+                "CODE-NAME-TYPE": {
+                    "code": "CODE",
+                    "name": "NAME",
+                    "type_previas": "Curso" | "Examen" | etc,
+                    "full": "CODE-NAME-TYPE",
                     "requirements": {
                         "type": "ALL" | "ANY" | "NOT" | "LEAF",
                         "title": "...",
@@ -819,6 +821,7 @@ class Command(BaseCommand):
         """Procesar las previas de un curso espec[#]fico."""
         course_code = course_data.get('code', '').strip()
         course_name = course_data.get('name', '').strip()
+        course_type = course_data.get('type_previas', '').strip()
         requirements = course_data.get('requirements')
         
         if not course_code or not requirements:
@@ -826,17 +829,17 @@ class Command(BaseCommand):
         
         # Buscar o crear PlanMateria
         try:
-            # Extraer c[#]digo de materia (puede ser "CODIGO - NOMBRE" o solo "CODIGO")
-            materia_codigo = course_code.split(' - ')[0].strip() if ' - ' in course_code else course_code
+            # El c[#]digo ya viene limpio en el nuevo formato
+            materia_codigo = course_code
             
             materia = Materia.objects.filter(codigo=materia_codigo).first()
             if not materia:
-                error_msg = f"Materia {materia_codigo} no encontrada, saltando previas"
+                error_msg = f"Materia {materia_codigo} no encontrada, saltando previas para {course_type}"
                 self.add_error(
                     'previas_materia_no_encontrada',
-                    f"{plan} - {course_code}",
+                    f"{plan} - {course_code}-{course_type}",
                     error_msg,
-                    context={'plan': str(plan), 'course_code': course_code, 'materia_codigo': materia_codigo}
+                    context={'plan': str(plan), 'course_code': course_code, 'course_type': course_type, 'materia_codigo': materia_codigo}
                 )
                 if self.verbose:
                     self.stdout.write(self.style.WARNING(f'       [#]  {error_msg}'))
@@ -847,13 +850,13 @@ class Command(BaseCommand):
                 materia=materia
             )
         except Exception as e:
-            error_msg = f"No se pudo obtener PlanMateria para {course_code}: {str(e)}"
+            error_msg = f"No se pudo obtener PlanMateria para {course_code}-{course_type}: {str(e)}"
             self.add_error(
                 'previas_plan_materia',
-                f"{plan} - {course_code}",
+                f"{plan} - {course_code}-{course_type}",
                 str(e),
                 full_message=error_msg,
-                context={'plan': str(plan), 'course_code': course_code}
+                context={'plan': str(plan), 'course_code': course_code, 'course_type': course_type}
             )
             if self.verbose:
                 self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
@@ -861,21 +864,21 @@ class Command(BaseCommand):
         
         # Crear UnidadAprobable para este curso
         try:
-            unidad_tipo = self._map_name_to_tipo(course_name)
+            unidad_tipo = self._map_name_to_tipo(course_type)
             unidad = self._get_or_create_unidad(
                 materia=materia,
                 tipo=unidad_tipo,
-                codigo_bedelias=course_code,
-                nombre=course_name
+                codigo_bedelias=f"{course_code}-{course_type}",
+                nombre=f"{course_name} - {course_type}"
             )
         except Exception as e:
-            error_msg = f"Error creando UnidadAprobable para {course_code}: {str(e)}"
+            error_msg = f"Error creando UnidadAprobable para {course_code}-{course_type}: {str(e)}"
             self.add_error(
                 'previas_unidad',
-                f"{plan} - {course_code}",
+                f"{plan} - {course_code}-{course_type}",
                 str(e),
                 full_message=error_msg,
-                context={'plan': str(plan), 'course_code': course_code, 'course_name': course_name}
+                context={'plan': str(plan), 'course_code': course_code, 'course_name': course_name, 'course_type': course_type}
             )
             if self.verbose:
                 self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
@@ -884,15 +887,15 @@ class Command(BaseCommand):
         # Procesar [#]rbol de requisitos
         if requirements:
             try:
-                self._process_requirements_tree(plan_materia, requirements, parent_nodo=None)
+                self._process_requirements_tree(plan_materia, requirements, parent_nodo=None, unidad_tipo=unidad_tipo)
             except Exception as e:
-                error_msg = f"Error procesando [#]rbol de requisitos para {course_code}: {str(e)}"
+                error_msg = f"Error procesando [#]rbol de requisitos para {course_code}-{course_type}: {str(e)}"
                 self.add_error(
                     'previas_arbol',
-                    f"{plan} - {course_code}",
+                    f"{plan} - {course_code}-{course_type}",
                     str(e),
                     full_message=error_msg,
-                    context={'plan': str(plan), 'course_code': course_code, 'requirements': str(requirements)[:200]}
+                    context={'plan': str(plan), 'course_code': course_code, 'course_type': course_type, 'requirements': str(requirements)[:200]}
                 )
                 if self.verbose:
                     self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
@@ -933,7 +936,7 @@ class Command(BaseCommand):
         return unidad
     
     def _process_requirements_tree(self, plan_materia: PlanMateria, node_data: Dict, 
-                                   parent_nodo: RequisitoNodo = None, orden: int = 0):
+                                   parent_nodo: RequisitoNodo = None, orden: int = 0, unidad_tipo: str = ''):
         """Procesar recursivamente el [#]rbol de requisitos."""
         node_type = node_data.get('type', 'LEAF')
         title = node_data.get('title', '')
@@ -956,7 +959,8 @@ class Command(BaseCommand):
                 padre=parent_nodo,
                 cantidad_minima=required_count if tipo == RequisitoNodo.Tipo.ANY else None,
                 orden=orden,
-                descripcion=title
+                descripcion=title,
+                unidad_tipo=unidad_tipo if parent_nodo is None else ''
             )
         else:
             # Buscar nodo existente o crear uno nuevo
@@ -967,6 +971,7 @@ class Command(BaseCommand):
             }
             if parent_nodo is None:
                 filters['plan_materia'] = plan_materia
+                filters['unidad_tipo'] = unidad_tipo  # Diferenciar por tipo de unidad
             else:
                 filters['plan_materia__isnull'] = True
             
@@ -979,7 +984,8 @@ class Command(BaseCommand):
                     padre=parent_nodo,
                     cantidad_minima=required_count if tipo == RequisitoNodo.Tipo.ANY else None,
                     orden=orden,
-                    descripcion=title
+                    descripcion=title,
+                    unidad_tipo=unidad_tipo if parent_nodo is None else ''
                 )
                 self.stats['requisitos_nodos_creados'] += 1
             else:
@@ -1019,7 +1025,7 @@ class Command(BaseCommand):
         children = node_data.get('children', [])
         for child_idx, child_data in enumerate(children):
             try:
-                self._process_requirements_tree(plan_materia, child_data, parent_nodo=nodo, orden=child_idx)
+                self._process_requirements_tree(plan_materia, child_data, parent_nodo=nodo, orden=child_idx, unidad_tipo=unidad_tipo)
             except Exception as e:
                 error_msg = f"Error procesando nodo hijo: {str(e)}"
                 self.add_error(
@@ -1040,6 +1046,44 @@ class Command(BaseCommand):
         title = item_data.get('title', '') or item_data.get('name', '')
         title = title.strip()
         raw = item_data.get('raw', '')
+        source = item_data.get('source', 'UCB')
+        
+        # Handle PLAN-based requirements (credits in plan)
+        if source == 'PLAN' and modality == 'credits_in_plan':
+            credits_required = item_data.get('credits_required', 0)
+            plan_year = item_data.get('plan_year', '')
+            plan_name = item_data.get('plan_name', '')
+            
+            # Create descriptive text
+            if plan_year and plan_name:
+                texto = f"{credits_required} créditos en el Plan: {plan_year} - {plan_name}"
+            else:
+                texto = raw or title or f"{credits_required} créditos requeridos"
+            
+            try:
+                if self.dry_run:
+                    item = RequisitoItem(
+                        nodo=nodo,
+                        tipo=RequisitoItem.TipoItem.TEXTO,
+                        texto=texto,
+                        orden=orden
+                    )
+                else:
+                    item, created = RequisitoItem.objects.get_or_create(
+                        nodo=nodo,
+                        tipo=RequisitoItem.TipoItem.TEXTO,
+                        texto=texto,
+                        defaults={'orden': orden}
+                    )
+                    if created:
+                        self.stats['requisitos_items_creados'] += 1
+                return
+            except Exception as e:
+                # Log error and continue to fallback
+                if self.verbose:
+                    self.stdout.write(
+                        self.style.WARNING(f'       [#]  Error creando item TEXTO para credits_in_plan: {str(e)}')
+                    )
         
         # Determinar tipo de item
         # Map 'kind' values (old format) to expected values

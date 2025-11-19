@@ -12,6 +12,10 @@ from api.models import (
     UnidadAprobable,
     RequisitoNodo,
     RequisitoItem,
+    PreviaNodo,
+    PreviaItem,
+    PospreviaNodo,
+    PosPreviaItem,
 )
 
 
@@ -275,3 +279,102 @@ class RequisitoNodoTreeSerializer(serializers.ModelSerializer):
         hijos = obj.hijos_ordenados()
         return RequisitoNodoTreeSerializer(hijos, many=True).data
 
+
+# ============================================================
+# Serializers for Previas (Separate Model)
+# ============================================================
+
+class PreviaItemSerializer(serializers.ModelSerializer):
+    """Serializador para PreviaItem."""
+    
+    nodo_id = serializers.UUIDField(source='nodo.id', read_only=True)
+    tipo_display = serializers.CharField(source='get_tipo_display', read_only=True)
+    unidad_requerida = UnidadAprobableSerializer(read_only=True)
+    unidad_requerida_id = serializers.UUIDField(source='unidad_requerida.id', read_only=True, allow_null=True)
+    
+    class Meta:
+        model = PreviaItem
+        fields = [
+            'id',
+            'nodo_id',
+            'tipo',
+            'tipo_display',
+            'unidad_requerida',
+            'unidad_requerida_id',
+            'creditos_minimos',
+            'texto',
+            'orden',
+            'fecha_creacion',
+            'fecha_modificacion',
+        ]
+        read_only_fields = fields
+
+
+class PreviaNodoSerializer(serializers.ModelSerializer):
+    """Serializador básico para PreviaNodo."""
+    
+    plan_materia_id = serializers.UUIDField(source='plan_materia.id', read_only=True, allow_null=True)
+    padre_id = serializers.UUIDField(source='padre.id', read_only=True, allow_null=True)
+    tipo_display = serializers.CharField(source='get_tipo_display', read_only=True)
+    hijos_count = serializers.SerializerMethodField()
+    items_count = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = PreviaNodo
+        fields = [
+            'id',
+            'plan_materia_id',
+            'tipo',
+            'tipo_display',
+            'padre_id',
+            'cantidad_minima',
+            'orden',
+            'descripcion',
+            'hijos_count',
+            'items_count',
+            'fecha_creacion',
+            'fecha_modificacion',
+        ]
+        read_only_fields = fields
+    
+    @extend_schema_field(serializers.IntegerField())
+    def get_hijos_count(self, obj: PreviaNodo) -> int:
+        """Obtener cantidad de nodos hijos."""
+        return obj.hijos.count()
+    
+    @extend_schema_field(serializers.IntegerField())
+    def get_items_count(self, obj: PreviaNodo) -> int:
+        """Obtener cantidad de items (solo para nodos LEAF)."""
+        return obj.items.count() if obj.tipo == PreviaNodo.Tipo.LEAF else 0
+
+
+class PreviaNodoTreeSerializer(serializers.ModelSerializer):
+    """Serializador recursivo para estructura de árbol de PreviaNodo."""
+    
+    plan_materia_id = serializers.UUIDField(source='plan_materia.id', read_only=True, allow_null=True)
+    tipo_display = serializers.CharField(source='get_tipo_display', read_only=True)
+    hijos = serializers.SerializerMethodField()
+    items = PreviaItemSerializer(many=True, read_only=True)
+    
+    class Meta:
+        model = PreviaNodo
+        fields = [
+            'id',
+            'plan_materia_id',
+            'tipo',
+            'tipo_display',
+            'cantidad_minima',
+            'orden',
+            'descripcion',
+            'hijos',
+            'items',
+            'fecha_creacion',
+            'fecha_modificacion',
+        ]
+        read_only_fields = fields
+    
+    @extend_schema_field(serializers.ListField(child=serializers.DictField()))
+    def get_hijos(self, obj: PreviaNodo) -> List[Dict[str, Any]]:
+        """Serializar recursivamente nodos hijos."""
+        hijos = obj.hijos_ordenados()
+        return PreviaNodoTreeSerializer(hijos, many=True).data
