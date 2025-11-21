@@ -110,9 +110,9 @@ class Previas(Scraper, PlanSection):
             modality = "exam"
             body = re.sub(r"(?i)^examen\s+de\s+la\s+u\.?c\.?b\s*:\s*", "", original).strip()
 
-        elif re.search(r"^curso\s+de\s+la\s+u\.?c\.?b\s*:\s*", norm):
+        elif re.search(r"^curso\s+(?:aprobado\s+)?de\s+la\s+u\.?c\.?b\s*:\s*", norm):
             modality = "course"
-            body = re.sub(r"(?i)^curso\s+de\s+la\s+u\.?c\.?b\s*:\s*", "", original).strip()
+            body = re.sub(r"(?i)^curso\s+(?:aprobado\s+)?de\s+la\s+u\.?c\.?b\s*:\s*", "", original).strip()
 
         elif re.search(r"^u\.?c\.?b\s+aprobad[ao]\s*:\s*", norm):
             modality = "ucb_module"

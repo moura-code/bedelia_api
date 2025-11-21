@@ -56,11 +56,12 @@ class Credits(Scraper, PlanSection):
                     plan_year=year,
                 )
                 
-                click_button = self.try_find_element((By.XPATH, '//td[@class="ui-selection-column selectionMode"]'))
+                click_button = self.try_find_element((By.XPATH, '//td[text()="GENERAL"]'))
+                self.wait_for_page_to_load()
                 if click_button:
+                    self.wait_for_element_to_be_clickable(click_button)
                     self.scroll_to_element_and_click(click_button)
                     self.wait_loading_to_finish()
-                
                 items = {}
                 self.logger.info("Open all nodes")
 
@@ -73,11 +74,15 @@ class Credits(Scraper, PlanSection):
                 self.logger.info("Searching for course materials...")
                 materia_elements = self.driver.find_elements(By.XPATH, '//*[@data-nodetype="Materia"]')
                 self.logger.info(f"Found {len(materia_elements)} course materials to process")
-                
+                if self.try_find_element((By.XPATH, './/td/span[@title="Código - Nombre - Créd.aportado"]')):
+                    x_path_title = './/td/span[@title="Código - Nombre - Créd.aportado"]'
+                else:
+                    x_path_title = './/td/span[@title="Código - Nombre"]'
                 for idx, li in enumerate(materia_elements, 1):
                         self.logger.debug(f"Processing material {idx}/{len(materia_elements)}")
                         # Get the span that holds the line "CODE - NAME - whatever"
-                        span = li.find_element(By.XPATH, './/td/span[@title="Código - Nombre - Créd.aportado"]')
+                        
+                        span = li.find_element(By.XPATH, x_path_title)
                         raw = span.text
                         self.logger.debug(f"Raw material text: {raw}")
 
@@ -88,9 +93,10 @@ class Credits(Scraper, PlanSection):
                         creditos_match = re.search(r'créditos:\s*(\S+)', raw, re.IGNORECASE)
                         if not creditos_match:
                             self.logger.warning(f"Could not find 'créditos:' in material: {raw}")
-                            continue
-                        
-                        creditos = creditos_match.group(1).strip()
+                            creditos = 0
+                        else:
+                            creditos = creditos_match.group(1).strip()
+                       
                         
                         # Remove the credits part to get code and name
                         raw_without_creditos = re.sub(r'\s*-\s*créditos:\s*\S+.*$', '', raw, flags=re.IGNORECASE).strip()

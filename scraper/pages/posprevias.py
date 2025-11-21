@@ -76,7 +76,7 @@ class PosPrevias(Scraper, PlanSection):
                     
                     while i < rows_len:
                         self.go_to_page(current_page)
-                        sleep(1)
+                        sleep(0.5)
                         
                         # Re-find rows to avoid stale element references
                         rows = self.wait_for_all_elements_to_be_visible(
@@ -113,7 +113,7 @@ class PosPrevias(Scraper, PlanSection):
                             "posprevias": [],
                         }
                         
-                        sleep(1)
+                        sleep(0.5)
                         
                         # Re-find info icons
                         info_icons = self.wait_for_all_elements_to_be_visible(
