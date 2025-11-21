@@ -7,9 +7,8 @@ from .materias import (
     PlanEstudioSerializer,
     PlanMateriaSerializer,
     UnidadAprobableSerializer,
-    RequisitoNodoSerializer,
-    RequisitoNodoTreeSerializer,
-    RequisitoItemSerializer,
+    PreviaItemSerializer,
+    PreviaNodoTreeSerializer,
 )
 
 __all__ = [
@@ -18,8 +17,7 @@ __all__ = [
     'PlanEstudioSerializer',
     'PlanMateriaSerializer',
     'UnidadAprobableSerializer',
-    'RequisitoNodoSerializer',
-    'RequisitoNodoTreeSerializer',
-    'RequisitoItemSerializer',
+    'PreviaItemSerializer',
+    'PreviaNodoTreeSerializer',
 ]
 

@@ -6,8 +6,6 @@ from api.views.materias import (
     PlanEstudioViewSet,
     PlanMateriaViewSet,
     UnidadAprobableViewSet,
-    RequisitoNodoViewSet,
-    RequisitoItemViewSet,
     PreviasViewSet,
     PosPreviasViewSet,
 )
@@ -19,8 +17,6 @@ router.register(r'materias', MateriaViewSet, basename='materia')
 router.register(r'planes-estudio', PlanEstudioViewSet, basename='plan-estudio')
 router.register(r'planes-materias', PlanMateriaViewSet, basename='plan-materia')
 router.register(r'unidades-aprobables', UnidadAprobableViewSet, basename='unidad-aprobable')
-router.register(r'requisitos-nodos', RequisitoNodoViewSet, basename='requisito-nodo')
-router.register(r'requisitos-items', RequisitoItemViewSet, basename='requisito-item')
 router.register(r'previas', PreviasViewSet, basename='previas')
 router.register(r'posprevias', PosPreviasViewSet, basename='posprevias')
 

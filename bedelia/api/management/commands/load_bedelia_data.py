@@ -13,7 +13,7 @@ El comando procesa los datos en el siguiente orden:
 3. Extrae y crea materias [#]nicas (deduplicadas por c[#]digo)
 4. Crea relaciones PlanMateria (qu[#] materias est[#]n en cada plan)
 5. Marca materias como activas seg[#]n vigentes_data
-6. Carga previas (requisitos) creando UnidadAprobable, RequisitoNodo y RequisitoItem
+6. Carga previas (requisitos) creando UnidadAprobable, PreviaNodo y Pre
 7. Procesa posprevias (valida y completa relaciones de requisitos inversos)
 
 Uso:
@@ -36,8 +36,8 @@ from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
 
 from api.models import (
-    Materia, PlanEstudio, PlanMateria,
-    UnidadAprobable, RequisitoNodo, RequisitoItem
+    Materia, PlanEstudio, PlanMateria, PosPreviaItem,
+    UnidadAprobable, PreviaNodo, PreviaItem
 )
 
 
@@ -62,7 +62,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--previas',
             type=str,
-            default='../data/previas_data_backup.json',
+            default='../data/previas_data_backup_.json',
             help='Ruta al archivo previas_data_backup.json'
         )
         parser.add_argument(
@@ -260,11 +260,11 @@ class Command(BaseCommand):
         
         if not self.dry_run:
             # Eliminar en orden de dependencias (hijos primero)
-            requisitos_items_count = RequisitoItem.objects.count()
-            RequisitoItem.objects.all().delete()
+            requisitos_items_count = PreviaItem.objects.count()
+            PreviaItem.objects.all().delete()
             
-            requisitos_nodos_count = RequisitoNodo.objects.count()
-            RequisitoNodo.objects.all().delete()
+            requisitos_nodos_count = PreviaNodo.objects.count()
+            PreviaNodo.objects.all().delete()
             
             unidades_count = UnidadAprobable.objects.count()
             UnidadAprobable.objects.all().delete()
@@ -286,8 +286,8 @@ class Command(BaseCommand):
                 f'{materias_count} materias eliminadas'
             ))
         else:
-            requisitos_items_count = RequisitoItem.objects.count()
-            requisitos_nodos_count = RequisitoNodo.objects.count()
+            requisitos_items_count = PreviaItem.objects.count()
+            requisitos_nodos_count = PreviaNodo.objects.count()
             unidades_count = UnidadAprobable.objects.count()
             plan_materias_count = PlanMateria.objects.count()
             planes_count = PlanEstudio.objects.count()
@@ -441,14 +441,14 @@ class Command(BaseCommand):
             self.plan_cache[cache_key] = plan
             return plan
         except Exception as e:
-            self.stats['errors'] += 1
             error_msg = f"Error creando/obteniendo plan '{nombre_carrera} - {anio}': {str(e)}"
-            self.error_list.append({
-                'type': 'plan',
-                'item': f"{nombre_carrera} - {anio}",
-                'message': str(e),
-                'full_message': error_msg
-            })
+            self.add_error(
+                'plan',
+                f"{nombre_carrera} - {anio}",
+                str(e),
+                full_message=error_msg,
+                context={'nombre_carrera': nombre_carrera, 'anio': anio}
+            )
             if self.verbose:
                 self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
             # Re-raise para que el proceso falle si es cr[#]tico
@@ -598,14 +598,14 @@ class Command(BaseCommand):
                     creditos=materia_data['creditos']
                 )
             except Exception as e:
-                self.stats['errors'] += 1
                 error_msg = f"Error procesando materia {materia_data['codigo']}: {str(e)}"
-                self.error_list.append({
-                    'type': 'materia',
-                    'item': materia_data['codigo'],
-                    'message': str(e),
-                    'full_message': error_msg
-                })
+                self.add_error(
+                    'materia',
+                    materia_data['codigo'],
+                    str(e),
+                    full_message=error_msg,
+                    context={'materia_data': materia_data}
+                )
                 if self.verbose:
                     self.stdout.write(
                         self.style.ERROR(f'       [X] {error_msg}')
@@ -672,14 +672,14 @@ class Command(BaseCommand):
                             processed_relations += 1
                 
                 except Exception as e:
-                    self.stats['errors'] += 1
                     error_msg = f"Error creando relaci[#]n plan-materia: {carrera_plan} - {codigo}: {str(e)}"
-                    self.error_list.append({
-                        'type': 'plan_materia',
-                        'item': f"{carrera_plan} - {codigo}",
-                        'message': str(e),
-                        'full_message': error_msg
-                    })
+                    self.add_error(
+                        'plan_materia',
+                        f"{carrera_plan} - {codigo}",
+                        str(e),
+                        full_message=error_msg,
+                        context={'carrera_plan': carrera_plan, 'codigo': codigo}
+                    )
                     if self.verbose:
                         self.stdout.write(
                             self.style.ERROR(f'       [X] {error_msg}')
@@ -936,7 +936,7 @@ class Command(BaseCommand):
         return unidad
     
     def _process_requirements_tree(self, plan_materia: PlanMateria, node_data: Dict, 
-                                   parent_nodo: RequisitoNodo = None, orden: int = 0, unidad_tipo: str = ''):
+                                   parent_nodo  = None, orden: int = 0, unidad_tipo: str = ''):
         """Procesar recursivamente el [#]rbol de requisitos."""
         node_type = node_data.get('type', 'LEAF')
         title = node_data.get('title', '')
@@ -944,20 +944,20 @@ class Command(BaseCommand):
         
         # Mapear tipo
         tipo_map = {
-            'ALL': RequisitoNodo.Tipo.ALL,
-            'ANY': RequisitoNodo.Tipo.ANY,
-            'NOT': RequisitoNodo.Tipo.NOT,
-            'LEAF': RequisitoNodo.Tipo.LEAF,
+            'ALL': PreviaNodo.Tipo.ALL,
+            'ANY': PreviaNodo.Tipo.ANY,
+            'NOT': PreviaNodo.Tipo.NOT,
+            'LEAF': PreviaNodo.Tipo.LEAF,
         }
-        tipo = tipo_map.get(node_type, RequisitoNodo.Tipo.LEAF)
+        tipo = tipo_map.get(node_type, PreviaNodo.Tipo.LEAF)
         
         # Crear nodo
         if self.dry_run:
-            nodo = RequisitoNodo(
+            nodo = PreviaNodo(
                 plan_materia=plan_materia if parent_nodo is None else None,
                 tipo=tipo,
                 padre=parent_nodo,
-                cantidad_minima=required_count if tipo == RequisitoNodo.Tipo.ANY else None,
+                cantidad_minima=required_count if tipo == PreviaNodo.Tipo.ANY else None,
                 orden=orden,
                 descripcion=title,
                 unidad_tipo=unidad_tipo if parent_nodo is None else ''
@@ -975,14 +975,14 @@ class Command(BaseCommand):
             else:
                 filters['plan_materia__isnull'] = True
             
-            nodo = RequisitoNodo.objects.filter(**filters).first()
+            nodo = PreviaNodo.objects.filter(**filters).first()
             
             if not nodo:
-                nodo = RequisitoNodo.objects.create(
+                nodo = PreviaNodo.objects.create(
                     plan_materia=plan_materia if parent_nodo is None else None,
                     tipo=tipo,
                     padre=parent_nodo,
-                    cantidad_minima=required_count if tipo == RequisitoNodo.Tipo.ANY else None,
+                    cantidad_minima=required_count if tipo == PreviaNodo.Tipo.ANY else None,
                     orden=orden,
                     descripcion=title,
                     unidad_tipo=unidad_tipo if parent_nodo is None else ''
@@ -997,7 +997,7 @@ class Command(BaseCommand):
                 if nodo.orden != orden:
                     nodo.orden = orden
                     updated = True
-                if tipo == RequisitoNodo.Tipo.ANY and nodo.cantidad_minima != required_count:
+                if tipo == PreviaNodo.Tipo.ANY and nodo.cantidad_minima != required_count:
                     nodo.cantidad_minima = required_count
                     updated = True
                 if updated:
@@ -1038,7 +1038,7 @@ class Command(BaseCommand):
                 if self.verbose:
                     self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
     
-    def _process_requisito_item(self, nodo: RequisitoNodo, item_data: Dict, orden: int):
+    def _process_requisito_item(self, nodo: PreviaNodo, item_data: Dict, orden: int):
         """Procesar un item de requisito (LEAF)."""
         # Handle both 'modality' (new format) and 'kind' (old format)
         modality = item_data.get('modality', '') or item_data.get('kind', '')
@@ -1062,16 +1062,16 @@ class Command(BaseCommand):
             
             try:
                 if self.dry_run:
-                    item = RequisitoItem(
+                    item = PreviaItem(
                         nodo=nodo,
-                        tipo=RequisitoItem.TipoItem.TEXTO,
+                        tipo=PreviaItem.TipoItem.TEXTO,
                         texto=texto,
                         orden=orden
                     )
                 else:
-                    item, created = RequisitoItem.objects.get_or_create(
+                    item, created = PreviaItem.objects.get_or_create(
                         nodo=nodo,
-                        tipo=RequisitoItem.TipoItem.TEXTO,
+                        tipo=PreviaItem.TipoItem.TEXTO,
                         texto=texto,
                         defaults={'orden': orden}
                     )
@@ -1124,18 +1124,18 @@ class Command(BaseCommand):
                         nombre=title
                     )
                     
-                    # Crear RequisitoItem de tipo UNIDAD
+                    # Crear Pre de tipo UNIDAD
                     if self.dry_run:
-                        item = RequisitoItem(
+                        item = PreviaItem(
                             nodo=nodo,
-                            tipo=RequisitoItem.TipoItem.UNIDAD,
+                            tipo=PreviaItem.TipoItem.UNIDAD,
                             unidad_requerida=unidad,
                             orden=orden
                         )
                     else:
-                        item, created = RequisitoItem.objects.get_or_create(
+                        item, created = PreviaItem.objects.get_or_create(
                             nodo=nodo,
-                            tipo=RequisitoItem.TipoItem.UNIDAD,
+                            tipo=PreviaItem.TipoItem.UNIDAD,
                             unidad_requerida=unidad,
                             defaults={'orden': orden}
                         )
@@ -1153,16 +1153,16 @@ class Command(BaseCommand):
         try:
             texto = raw or title or f"{code} - {title}"
             if self.dry_run:
-                item = RequisitoItem(
+                item = PreviaItem(
                     nodo=nodo,
-                    tipo=RequisitoItem.TipoItem.TEXTO,
+                    tipo=PreviaItem.TipoItem.TEXTO,
                     texto=texto,
                     orden=orden
                 )
             else:
-                item, created = RequisitoItem.objects.get_or_create(
+                item, created = PreviaItem.objects.get_or_create(
                     nodo=nodo,
-                    tipo=RequisitoItem.TipoItem.TEXTO,
+                    tipo=PreviaItem.TipoItem.TEXTO,
                     texto=texto,
                     defaults={'orden': orden}
                 )
@@ -1170,7 +1170,7 @@ class Command(BaseCommand):
                     self.stats['requisitos_items_creados'] += 1
         except Exception as e:
             # Re-raise para que se capture en el nivel superior
-            error_msg = f"Error creando RequisitoItem TEXTO: {str(e)}"
+            error_msg = f"Error creando Pre TEXTO: {str(e)}"
             raise Exception(error_msg)
     
     def process_posprevias(self, posprevias_data: Dict):
@@ -1210,20 +1210,17 @@ class Command(BaseCommand):
                 self.stdout.write(f'     [{idx}/{total_plans}] Procesando plan: {carrera_plan}')
             
             carrera_nombre, anio = self.parse_carrera_plan(carrera_plan)
-            if not carrera_nombre or not anio:
-                continue
-            
             # Obtener plan
             try:
                 plan = self.get_or_create_plan(carrera_nombre, anio)
             except Exception as e:
-                self.stats['errors'] += 1
-                self.error_list.append({
-                    'type': 'posprevias_plan',
-                    'item': carrera_plan,
-                    'message': str(e),
-                    'full_message': f"Error obteniendo plan para {carrera_plan}: {str(e)}"
-                })
+                self.add_error(
+                    'posprevias_plan',
+                    carrera_plan,
+                    str(e),
+                    full_message=f"Error obteniendo plan para {carrera_plan}: {str(e)}",
+                    context={'carrera_plan': carrera_plan, 'carrera_nombre': carrera_nombre, 'anio': anio}
+                )
                 continue
             
             # Procesar cada curso del plan
@@ -1237,13 +1234,13 @@ class Command(BaseCommand):
                     processed_courses += 1
                     self.stats['posprevias_procesadas'] += len(posprevias)
                 except Exception as e:
-                    self.stats['errors'] += 1
-                    self.error_list.append({
-                        'type': 'posprevias_curso',
-                        'item': f"{carrera_plan} - {course_code}",
-                        'message': str(e),
-                        'full_message': f"Error procesando posprevias para {course_code}: {str(e)}"
-                    })
+                    self.add_error(
+                        'posprevias_curso',
+                        f"{carrera_plan} - {course_code}",
+                        str(e),
+                        full_message=f"Error procesando posprevias para {course_code}: {str(e)}",
+                        context={'carrera_plan': carrera_plan, 'course_code': course_code, 'course_data': course_data}
+                    )
                     if self.verbose:
                         self.stdout.write(
                             self.style.ERROR(f'       [X] Error en {course_code}: {str(e)}')
@@ -1267,13 +1264,13 @@ class Command(BaseCommand):
         materia_fuente = Materia.objects.filter(codigo=source_course_code).first()
         if not materia_fuente:
             error_msg = f"Materia fuente {source_course_code} no encontrada"
-            self.stats['errors'] += 1
-            self.error_list.append({
-                'type': 'posprevias_materia_fuente',
-                'item': f"{source_plan} - {source_course_code}",
-                'message': error_msg,
-                'full_message': error_msg
-            })
+            self.add_error(
+                'posprevias_materia_fuente',
+                f"{source_plan} - {source_course_code}",
+                error_msg,
+                full_message=error_msg,
+                context={'source_plan': str(source_plan), 'source_course_code': source_course_code}
+            )
             if self.verbose:
                 self.stdout.write(self.style.WARNING(f'       [#]  {error_msg}'))
             return
@@ -1286,13 +1283,13 @@ class Command(BaseCommand):
             )
         except Exception as e:
             error_msg = f"Error obteniendo PlanMateria fuente para {source_course_code}: {str(e)}"
-            self.stats['errors'] += 1
-            self.error_list.append({
-                'type': 'posprevias_plan_materia_fuente',
-                'item': f"{source_plan} - {source_course_code}",
-                'message': str(e),
-                'full_message': error_msg
-            })
+            self.add_error(
+                'posprevias_plan_materia_fuente',
+                f"{source_plan} - {source_course_code}",
+                str(e),
+                full_message=error_msg,
+                context={'source_plan': str(source_plan), 'source_course_code': source_course_code, 'materia_fuente_id': str(materia_fuente.id) if materia_fuente else None}
+            )
             if self.verbose:
                 self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
             return
@@ -1309,13 +1306,13 @@ class Command(BaseCommand):
             )
         except Exception as e:
             error_msg = f"Error creando UnidadAprobable fuente para {source_course_code}: {str(e)}"
-            self.stats['errors'] += 1
-            self.error_list.append({
-                'type': 'posprevias_unidad_fuente',
-                'item': f"{source_plan} - {source_course_code}",
-                'message': str(e),
-                'full_message': error_msg
-            })
+            self.add_error(
+                'posprevias_unidad_fuente',
+                f"{source_plan} - {source_course_code}",
+                str(e),
+                full_message=error_msg,
+                context={'source_plan': str(source_plan), 'source_course_code': source_course_code, 'course_name': course_name, 'materia_fuente_id': str(materia_fuente.id) if materia_fuente else None}
+            )
             if self.verbose:
                 self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
             return
@@ -1331,13 +1328,13 @@ class Command(BaseCommand):
                 self.stats['posprevias_validadas'] += 1
             except Exception as e:
                 error_msg = f"Error validando posprevia: {str(e)}"
-                self.stats['errors'] += 1
-                self.error_list.append({
-                    'type': 'posprevias_validacion',
-                    'item': f"{source_course_code} -> {posprevia.get('materia_codigo', '?')}",
-                    'message': str(e),
-                    'full_message': error_msg
-                })
+                self.add_error(
+                    'posprevias_validacion',
+                    f"{source_course_code} -> {posprevia.get('materia_codigo', '?')}",
+                    str(e),
+                    full_message=error_msg,
+                    context={'source_course_code': source_course_code, 'posprevia': posprevia}
+                )
                 if self.verbose:
                     self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
     
@@ -1345,199 +1342,81 @@ class Command(BaseCommand):
                                                    unidad_fuente: UnidadAprobable,
                                                    posprevia: Dict):
         """
-        Validar o crear la relaci[#]n de requisito inversa.
+        Validar o crear relación de posprevia.
         
-        Si curso A tiene posprevia B, entonces curso B debe tener previa A.
+        Crea un PospreviaItem que representa que una materia específica en un plan
+        requiere la materia fuente como prerequisito.
+        
+        Args:
+            plan_materia_fuente: PlanMateria de la materia que es prerequisito (fuente)
+            unidad_fuente: UnidadAprobable de la materia fuente
+            posprevia: Dict con información de la materia dependiente y su plan
         """
-        carrera_nombre = posprevia.get('carrera', '').strip()
-        anio_plan = posprevia.get('anio_plan', '').strip()
-        materia_codigo = posprevia.get('materia_codigo', '').strip()
-        materia_nombre = posprevia.get('materia_nombre', '').strip()
-        tipo = posprevia.get('tipo', '').strip()
+        # 1. Extraer plan_estudio desde posprevia dict
+        carrera = posprevia.get('carrera')
+        anio_plan = posprevia.get('anio_plan')
         
-        if not carrera_nombre or not anio_plan or not materia_codigo:
-            return
+        if not carrera or not anio_plan:
+            raise ValueError(f"Faltan 'carrera' o 'anio_plan' en posprevia: {posprevia}")
         
-        # Buscar plan destino usando comparaci[#]n sin acentos
-        # Intentar encontrar el plan exacto primero
-        plan_destino = self.find_plan_by_carrera_name(carrera_nombre, anio_plan)
-        
-        # Si no se encuentra el plan exacto, intentar encontrar cualquier plan de esa carrera
-        # ([#]til cuando los datos de posprevias referencian planes antiguos que no existen)
-        if not plan_destino:
-            # Buscar por nombre de carrera normalizado
-            nombre_normalized = self.normalize_string(carrera_nombre)
-            for plan in PlanEstudio.objects.all():
-                if self.normalize_string(plan.nombre_carrera) == nombre_normalized:
-                    plan_destino = plan
-                    break
-            
-            # Si a[#]n no se encuentra, buscar cualquier plan con el nombre contenido
-            if not plan_destino and len(nombre_normalized) >= 6:
-                for plan in PlanEstudio.objects.all():
-                    plan_normalized = self.normalize_string(plan.nombre_carrera)
-                    if nombre_normalized in plan_normalized or plan_normalized in nombre_normalized:
-                        plan_destino = plan
-                        break
-            
-            # Si a[#]n no se encuentra, tomar el m[#]s reciente de cualquier carrera con nombre similar
-            if not plan_destino:
-                plan_destino = PlanEstudio.objects.filter(
-                    nombre_carrera__icontains=carrera_nombre[:20] if len(carrera_nombre) > 20 else carrera_nombre
-                ).order_by('-anio').first()
-        
-        if not plan_destino:
-            error_msg = f"Plan destino {carrera_nombre} {anio_plan} no encontrado (ni ning[#]n otro plan para esa carrera)"
-            self.add_error(
-                'posprevias_plan_destino',
-                f"{unidad_fuente.materia.codigo} -> {materia_codigo} ({carrera_nombre} {anio_plan})",
-                error_msg,
-                context={'carrera_nombre': carrera_nombre, 'anio_plan': anio_plan, 'materia_codigo': materia_codigo}
-            )
-            if self.verbose:
-                self.stdout.write(self.style.WARNING(f'       [#]  {error_msg}'))
-            return
-        
-        # Si usamos un plan diferente al solicitado, registrar una advertencia
-        if plan_destino.anio != anio_plan:
-            if self.verbose:
-                self.stdout.write(
-                    self.style.WARNING(
-                        f'       [#]  Plan {carrera_nombre} {anio_plan} no encontrado, '
-                        f'usando plan {plan_destino.anio} en su lugar'
-                    )
-                )
-        
-        # Buscar materia destino
-        materia_destino = Materia.objects.filter(codigo=materia_codigo).first()
-        if not materia_destino:
-            error_msg = f"Materia destino {materia_codigo} no encontrada"
-            self.stats['errors'] += 1
-            self.error_list.append({
-                'type': 'posprevias_materia_destino',
-                'item': f"{unidad_fuente.materia.codigo} -> {materia_codigo}",
-                'message': error_msg,
-                'full_message': error_msg
-            })
-            if self.verbose:
-                self.stdout.write(self.style.WARNING(f'       [#]  {error_msg}'))
-            return
-        
-        # Obtener o crear PlanMateria destino
         try:
-            plan_materia_destino, _ = PlanMateria.objects.get_or_create(
-                plan=plan_destino,
-                materia=materia_destino
-            )
+            plan_estudio = self.get_or_create_plan(carrera, anio_plan)
         except Exception as e:
-            error_msg = f"Error obteniendo PlanMateria destino: {str(e)}"
-            self.stats['errors'] += 1
-            self.error_list.append({
-                'type': 'posprevias_plan_materia_destino',
-                'item': f"{unidad_fuente.materia.codigo} -> {materia_codigo}",
-                'message': str(e),
-                'full_message': error_msg
-            })
-            if self.verbose:
-                self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
-            return
+            raise Exception(f"Error obteniendo plan '{carrera} - {anio_plan}': {str(e)}")
         
-        # Crear UnidadAprobable destino si no existe
+        # 2. Encontrar materia dependiente
+        materia_codigo = posprevia.get('materia_codigo')
+        if not materia_codigo:
+            raise ValueError(f"Falta 'materia_codigo' en posprevia: {posprevia}")
+        
+        materia_dependiente = Materia.objects.filter(codigo=materia_codigo).first()
+        if not materia_dependiente:
+            raise ValueError(f"Materia dependiente '{materia_codigo}' no encontrada")
+        
+        # 3. Mapear tipo y crear UnidadAprobable para materia dependiente
+        tipo_str = posprevia.get('tipo', 'Curso')
+        tipo_unidad = self._map_name_to_tipo(tipo_str)
+        
+        materia_nombre = posprevia.get('materia_nombre', materia_dependiente.nombre)
+        
         try:
-            unidad_tipo_destino = UnidadAprobable.Tipo.CURSO if 'curso' in tipo.lower() else UnidadAprobable.Tipo.EXAMEN
-            unidad_destino = self._get_or_create_unidad(
-                materia=materia_destino,
-                tipo=unidad_tipo_destino,
+            unidad_dependiente = self._get_or_create_unidad(
+                materia=materia_dependiente,
+                tipo=tipo_unidad,
                 codigo_bedelias=materia_codigo,
                 nombre=materia_nombre
             )
         except Exception as e:
-            error_msg = f"Error creando UnidadAprobable destino: {str(e)}"
-            self.stats['errors'] += 1
-            self.error_list.append({
-                'type': 'posprevias_unidad_destino',
-                'item': f"{unidad_fuente.materia.codigo} -> {materia_codigo}",
-                'message': str(e),
-                'full_message': error_msg
-            })
-            if self.verbose:
-                self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
-            return
+            raise Exception(f"Error creando UnidadAprobable para materia dependiente '{materia_codigo}': {str(e)}")
         
-        # Verificar si ya existe la relaci[#]n de requisito
-        # Buscar si plan_materia_destino tiene un RequisitoNodo ra[#]z que requiera unidad_fuente
-        root_nodos = RequisitoNodo.objects.filter(
-            plan_materia=plan_materia_destino,
-            padre__isnull=True
-        )
+        # 4. Crear o obtener PospreviaItem
+        materia_fuente = plan_materia_fuente.materia
+        descripcion = posprevia.get('descripcion', '')
         
-        # Buscar en los items de requisitos si ya existe la relaci[#]n
-        found = False
-        for root_nodo in root_nodos:
-            # Buscar recursivamente en el [#]rbol
-            if self._check_unidad_in_tree(root_nodo, unidad_fuente):
-                found = True
-                break
-        
-        # Si no existe, crear la relaci[#]n
-        if not found and not self.dry_run:
-            try:
-                # Crear un nodo LEAF con el requisito
-                leaf_nodo = RequisitoNodo.objects.create(
-                    plan_materia=None,  # No es ra[#]z
-                    tipo=RequisitoNodo.Tipo.LEAF,
-                    padre=None,  # Se conectar[#] al root
-                    descripcion=f"Requisito validado desde posprevias"
+        try:
+            if self.dry_run:
+                posprevia_item = PosPreviaItem(
+                    materia=materia_fuente,
+                    plan_estudio=plan_estudio,
+                    descripcion=descripcion
                 )
-                self.stats['requisitos_nodos_creados'] += 1
-                
-                # Si no hay root, crear uno
-                if not root_nodos.exists():
-                    root_nodo = RequisitoNodo.objects.create(
-                        plan_materia=plan_materia_destino,
-                        tipo=RequisitoNodo.Tipo.ALL,
-                        padre=None,
-                        descripcion="Requisitos"
-                    )
-                    self.stats['requisitos_nodos_creados'] += 1
-                else:
-                    root_nodo = root_nodos.first()
-                
-                # Conectar leaf al root
-                leaf_nodo.padre = root_nodo
-                leaf_nodo.save()
-                
-                # Crear RequisitoItem
-                RequisitoItem.objects.create(
-                    nodo=leaf_nodo,
-                    tipo=RequisitoItem.TipoItem.UNIDAD,
-                    unidad_requerida=unidad_fuente,
-                    orden=0
+            else:
+                posprevia_item, created = PosPreviaItem.objects.get_or_create(
+                    materia=materia_fuente,
+                    plan_estudio=plan_estudio,
+                    defaults={'descripcion': descripcion}
                 )
-                self.stats['requisitos_items_creados'] += 1
                 
-                if self.verbose:
-                    self.stdout.write(
-                        f'       [#] Creada relaci[#]n: {materia_destino.codigo} requiere {unidad_fuente.materia.codigo}'
-                    )
-            except Exception as e:
-                error_msg = f"Error creando relaci[#]n de requisito desde posprevias: {str(e)}"
-                self.stats['errors'] += 1
-                self.error_list.append({
-                    'type': 'posprevias_crear_relacion',
-                    'item': f"{materia_destino.codigo} -> {unidad_fuente.materia.codigo}",
-                    'message': str(e),
-                    'full_message': error_msg
-                })
-                if self.verbose:
-                    self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
-                raise  # Re-raise para que se capture en el nivel superior
-    
-    def _check_unidad_in_tree(self, nodo: RequisitoNodo, unidad: UnidadAprobable) -> bool:
+                # Agregar unidad dependiente a la relación ManyToMany
+                posprevia_item.unidades_dependientes.add(unidad_dependiente)
+        except Exception as e:
+            raise Exception(f"Error creando PospreviaItem para '{materia_fuente.codigo}' -> plan '{plan_estudio}': {str(e)}")
+        
+    def _check_unidad_in_tree(self, nodo: PreviaNodo, unidad: UnidadAprobable) -> bool:
         """Verificar recursivamente si una unidad est[#] en el [#]rbol de requisitos."""
-        if nodo.tipo == RequisitoNodo.Tipo.LEAF:
+        if nodo.tipo == PreviaNodo.Tipo.LEAF:
             # Verificar items
-            items = RequisitoItem.objects.filter(nodo=nodo, unidad_requerida=unidad)
+            items = PreviaItem.objects.filter(nodo=nodo, unidad_requerida=unidad)
             if items.exists():
                 return True
         
@@ -1572,8 +1451,8 @@ class Command(BaseCommand):
             materias_activas = Materia.objects.filter(activo=True).count()
             materias_inactivas = Materia.objects.filter(activo=False).count()
             unidades_count = UnidadAprobable.objects.count()
-            requisitos_nodos_count = RequisitoNodo.objects.count()
-            requisitos_items_count = RequisitoItem.objects.count()
+            requisitos_nodos_count = PreviaNodo.objects.count()
+            requisitos_items_count = PreviaItem.objects.count()
             
             self.stdout.write('')
             self.stdout.write('   En base de datos:')

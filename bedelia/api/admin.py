@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Materia, PlanEstudio, PlanMateria, UnidadAprobable, RequisitoNodo, RequisitoItem
+from .models import Materia, PlanEstudio, PlanMateria, UnidadAprobable
 
 
 @admin.register(Materia)
@@ -42,5 +42,3 @@ class PlanMateriaAdmin(admin.ModelAdmin):
 
 
 # Registrar los demás modelos con configuración básica
-admin.site.register(RequisitoNodo)
-admin.site.register(RequisitoItem)

@@ -18101,7 +18101,6 @@
       "creditos": "4"
     }
   },
-  "LIC EN INGENIERÍA BIOLÓGICA_2013": {},
   "LICENCIATURA EN CIENCIAS DE LA ATMÓSFERA_2007": {
     "12111_AGROMETEOROLOGIA": {
       "codigo": "12111",
@@ -21497,6 +21496,1380 @@
       "codigo": "TIM82",
       "nombre": "MODULO DE EXTENSION - TECNOLOGO MECANICO",
       "creditos": "3"
+    }
+  },
+  "LIC EN INGENIERÍA BIOLÓGICA_2013": {
+    "LIB36_INFORMÁTICA EN BIOLOGÍA Y MEDICINA": {
+      "codigo": "LIB36",
+      "nombre": "INFORMÁTICA EN BIOLOGÍA Y MEDICINA",
+      "creditos": "5"
+    },
+    "LIB47_ANÁLISIS DE DATOS E INTELIGENCIA COMPUTACIONAL": {
+      "codigo": "LIB47",
+      "nombre": "ANÁLISIS DE DATOS E INTELIGENCIA COMPUTACIONAL",
+      "creditos": "10"
+    },
+    "LIB48_ANÁLISIS Y DISEÑO DE EQUIPAMIENTO": {
+      "codigo": "LIB48",
+      "nombre": "ANÁLISIS Y DISEÑO DE EQUIPAMIENTO",
+      "creditos": "8"
+    },
+    "LIB01_BIOINFORMÁTICA 1": {
+      "codigo": "LIB01",
+      "nombre": "BIOINFORMÁTICA 1",
+      "creditos": "12"
+    },
+    "LIB32_BIOMECÁNICA": {
+      "codigo": "LIB32",
+      "nombre": "BIOMECÁNICA",
+      "creditos": "10"
+    },
+    "5852_FUNDAMENTOS DE APRENDIZAJE AUTOMATICO Y RECONOCIMIENTO DE PATRONES": {
+      "codigo": "5852",
+      "nombre": "FUNDAMENTOS DE APRENDIZAJE AUTOMATICO Y RECONOCIMIENTO DE PATRONES",
+      "creditos": "8"
+    },
+    "LIB44_IMÁGENES EN BIOLOGÍA Y MEDICINA": {
+      "codigo": "LIB44",
+      "nombre": "IMÁGENES EN BIOLOGÍA Y MEDICINA",
+      "creditos": "10"
+    },
+    "LIB46_INFORMÁTICA AVANZADA EN BIOLOGÍA Y MEDICINA": {
+      "codigo": "LIB46",
+      "nombre": "INFORMÁTICA AVANZADA EN BIOLOGÍA Y MEDICINA",
+      "creditos": "10"
+    },
+    "5847_PROCESAMIENTO DE IMAGENES PARA BIOLOGIA Y MEDICINA": {
+      "codigo": "5847",
+      "nombre": "PROCESAMIENTO DE IMAGENES PARA BIOLOGIA Y MEDICINA",
+      "creditos": "10"
+    },
+    "LIBB1_PROYECTO PAIE": {
+      "codigo": "LIBB1",
+      "nombre": "PROYECTO PAIE",
+      "creditos": "5"
+    },
+    "LIB50_SISTEMAS EMBEBIDOS": {
+      "codigo": "LIB50",
+      "nombre": "SISTEMAS EMBEBIDOS",
+      "creditos": "8"
+    },
+    "5828_TRATAMIENTO DE IMÁGENES POR COMPUTADORA": {
+      "codigo": "5828",
+      "nombre": "TRATAMIENTO DE IMÁGENES POR COMPUTADORA",
+      "creditos": "10"
+    },
+    "AA001_ACREDITACIÓN ÁREA CIENCIA SOCIALES": {
+      "codigo": "AA001",
+      "nombre": "ACREDITACIÓN ÁREA CIENCIA SOCIALES",
+      "creditos": "7"
+    },
+    "LIB34_BIOÉTICA": {
+      "codigo": "LIB34",
+      "nombre": "BIOÉTICA",
+      "creditos": "5"
+    },
+    "1223_CIENCIA, TECNOLOGIA Y SOCIEDAD": {
+      "codigo": "1223",
+      "nombre": "CIENCIA, TECNOLOGIA Y SOCIEDAD",
+      "creditos": "8"
+    },
+    "CSD13_BASES BIOMOLECULARES": {
+      "codigo": "CSD13",
+      "nombre": "BASES BIOMOLECULARES",
+      "creditos": "8"
+    },
+    "LIB11_BASES BIOMOLECULARES I (HASTA 2024)": {
+      "codigo": "LIB11",
+      "nombre": "BASES BIOMOLECULARES I (HASTA 2024)",
+      "creditos": "8"
+    },
+    "CSD23_BASES BIOMOLECULARES II": {
+      "codigo": "CSD23",
+      "nombre": "BASES BIOMOLECULARES II",
+      "creditos": "12"
+    },
+    "LIB30_BASES BIOMOLECULARES II (HASTA 2024)": {
+      "codigo": "LIB30",
+      "nombre": "BASES BIOMOLECULARES II (HASTA 2024)",
+      "creditos": "12"
+    },
+    "CSD21_BASES HISTO-ANÁTOMO-FUNCIONALES HUMANAS": {
+      "codigo": "CSD21",
+      "nombre": "BASES HISTO-ANÁTOMO-FUNCIONALES HUMANAS",
+      "creditos": "12"
+    },
+    "LIB31_BASES HISTO-ANÁTOMO-FUNCIONALES HUMANAS (HASTA 2024)": {
+      "codigo": "LIB31",
+      "nombre": "BASES HISTO-ANÁTOMO-FUNCIONALES HUMANAS (HASTA 2024)",
+      "creditos": "12"
+    },
+    "SRN07_INTRODUCCIÓN A LA BIOLOGÍA I 2019": {
+      "codigo": "SRN07",
+      "nombre": "INTRODUCCIÓN A LA BIOLOGÍA I 2019",
+      "creditos": "10"
+    },
+    "SRN46_FISICA INICIAL-OPTATIVA": {
+      "codigo": "SRN46",
+      "nombre": "FISICA INICIAL-OPTATIVA",
+      "creditos": "4"
+    },
+    "1151_FISICA 1": {
+      "codigo": "1151",
+      "nombre": "FISICA 1",
+      "creditos": "10"
+    },
+    "1152_FISICA 2": {
+      "codigo": "1152",
+      "nombre": "FISICA 2",
+      "creditos": "10"
+    },
+    "1153_FISICA 3": {
+      "codigo": "1153",
+      "nombre": "FISICA 3",
+      "creditos": "10"
+    },
+    "REF04_FÍSICA 1": {
+      "codigo": "REF04",
+      "nombre": "FÍSICA 1",
+      "creditos": "10"
+    },
+    "SRN11_FÍSICA 2": {
+      "codigo": "SRN11",
+      "nombre": "FÍSICA 2",
+      "creditos": "10"
+    },
+    "SRN26_FÍSICA 3": {
+      "codigo": "SRN26",
+      "nombre": "FÍSICA 3",
+      "creditos": "10"
+    },
+    "1307_PROGRAMACION PARA INGENIERIA ELECTRICA": {
+      "codigo": "1307",
+      "nombre": "PROGRAMACION PARA INGENIERIA ELECTRICA",
+      "creditos": "7"
+    },
+    "1322_PROGRAMACION 1": {
+      "codigo": "1322",
+      "nombre": "PROGRAMACION 1",
+      "creditos": "10"
+    },
+    "1373_PROGRAMACION 1": {
+      "codigo": "1373",
+      "nombre": "PROGRAMACION 1",
+      "creditos": "10"
+    },
+    "1321_PROGRAMACION 2": {
+      "codigo": "1321",
+      "nombre": "PROGRAMACION 2",
+      "creditos": "12"
+    },
+    "SRN17_PROGRAMACIÓN I- CIO CT-LHRH": {
+      "codigo": "SRN17",
+      "nombre": "PROGRAMACIÓN I- CIO CT-LHRH",
+      "creditos": "10"
+    },
+    "SRN03_ALGEBRA LINEAL I": {
+      "codigo": "SRN03",
+      "nombre": "ALGEBRA LINEAL I",
+      "creditos": "12"
+    },
+    "SRN10_ALGEBRA LINEAL II": {
+      "codigo": "SRN10",
+      "nombre": "ALGEBRA LINEAL II",
+      "creditos": "12"
+    },
+    "1061_CALCULO DIF. E INTEGRAL EN UNA VARIABLE": {
+      "codigo": "1061",
+      "nombre": "CALCULO DIF. E INTEGRAL EN UNA VARIABLE",
+      "creditos": "13"
+    },
+    "1062_CALCULO DIF. E INTEGRAL EN VARIAS VARIABLES": {
+      "codigo": "1062",
+      "nombre": "CALCULO DIF. E INTEGRAL EN VARIAS VARIABLES",
+      "creditos": "13"
+    },
+    "1020_CALCULO 1": {
+      "codigo": "1020",
+      "nombre": "CALCULO 1",
+      "creditos": "16"
+    },
+    "1052_CALCULO 1 (ANUAL)": {
+      "codigo": "1052",
+      "nombre": "CALCULO 1 (ANUAL)",
+      "creditos": "16"
+    },
+    "1022_CALCULO 2": {
+      "codigo": "1022",
+      "nombre": "CALCULO 2",
+      "creditos": "16"
+    },
+    "SRN02_CÁLCULO I": {
+      "codigo": "SRN02",
+      "nombre": "CÁLCULO I",
+      "creditos": "16"
+    },
+    "SRN09_CÁLCULO II": {
+      "codigo": "SRN09",
+      "nombre": "CÁLCULO II",
+      "creditos": "16"
+    },
+    "CIM24_ECUACIONES DIFERENCIALES": {
+      "codigo": "CIM24",
+      "nombre": "ECUACIONES DIFERENCIALES",
+      "creditos": "10"
+    },
+    "1028_ECUACIONES DIFERENCIALES": {
+      "codigo": "1028",
+      "nombre": "ECUACIONES DIFERENCIALES",
+      "creditos": "12"
+    },
+    "1030_GEOMETRIA Y ALGEBRA LINEAL 1": {
+      "codigo": "1030",
+      "nombre": "GEOMETRIA Y ALGEBRA LINEAL 1",
+      "creditos": "9"
+    },
+    "1053_GEOMETRIA Y ALGEBRA LINEAL 1 (ANUAL)": {
+      "codigo": "1053",
+      "nombre": "GEOMETRIA Y ALGEBRA LINEAL 1 (ANUAL)",
+      "creditos": "9"
+    },
+    "1031_GEOMETRIA Y ALGEBRA LINEAL 2": {
+      "codigo": "1031",
+      "nombre": "GEOMETRIA Y ALGEBRA LINEAL 2",
+      "creditos": "9"
+    },
+    "1064_INT. A LAS ECUACIONES DIFERENCIALES": {
+      "codigo": "1064",
+      "nombre": "INT. A LAS ECUACIONES DIFERENCIALES",
+      "creditos": "10"
+    },
+    "MI2_MATEMATICA INICIAL": {
+      "codigo": "MI2",
+      "nombre": "MATEMATICA INICIAL",
+      "creditos": "4"
+    },
+    "SRN45_MATEMATICA INICIAL-OPTATIVA": {
+      "codigo": "SRN45",
+      "nombre": "MATEMATICA INICIAL-OPTATIVA",
+      "creditos": "4"
+    },
+    "1033_METODOS NUMERICOS": {
+      "codigo": "1033",
+      "nombre": "METODOS NUMERICOS",
+      "creditos": "8"
+    },
+    "CIM20_MÉTODOS NUMÉRICOS": {
+      "codigo": "CIM20",
+      "nombre": "MÉTODOS NUMÉRICOS",
+      "creditos": "10"
+    },
+    "1025_PROBABILIDAD Y ESTADISTICA": {
+      "codigo": "1025",
+      "nombre": "PROBABILIDAD Y ESTADISTICA",
+      "creditos": "10"
+    },
+    "CH201_PROBABILIDAD Y ESTADÍSTICA": {
+      "codigo": "CH201",
+      "nombre": "PROBABILIDAD Y ESTADÍSTICA",
+      "creditos": "10"
+    },
+    "104A_PREVENCIÓN DE RIESGOS EN EL LABORATORIO": {
+      "codigo": "104A",
+      "nombre": "PREVENCIÓN DE RIESGOS EN EL LABORATORIO",
+      "creditos": "4"
+    },
+    "SRN08_PREVENCIÓN DE RIESGOS EN LABORATORIO": {
+      "codigo": "SRN08",
+      "nombre": "PREVENCIÓN DE RIESGOS EN LABORATORIO",
+      "creditos": "4"
+    },
+    "1620_PRINCIPIOS DE QUIMICA GENERAL": {
+      "codigo": "1620",
+      "nombre": "PRINCIPIOS DE QUIMICA GENERAL",
+      "creditos": "8"
+    },
+    "SRN47_PRINCIPIOS DE QUÍMICA GENERAL - CIOCT-RH-AGR": {
+      "codigo": "SRN47",
+      "nombre": "PRINCIPIOS DE QUÍMICA GENERAL - CIOCT-RH-AGR",
+      "creditos": "10"
+    },
+    "SRN34_PRINCIPIOS DE QUÍMICA GENERAL HASTA 2022": {
+      "codigo": "SRN34",
+      "nombre": "PRINCIPIOS DE QUÍMICA GENERAL HASTA 2022",
+      "creditos": "10"
+    },
+    "SRN05_QUÍMICA GENERAL I (F.QUÍMICA)": {
+      "codigo": "SRN05",
+      "nombre": "QUÍMICA GENERAL I (F.QUÍMICA)",
+      "creditos": "7"
+    },
+    "SRN12_QUÍMICA GENERAL II (F. QUÍMICA)": {
+      "codigo": "SRN12",
+      "nombre": "QUÍMICA GENERAL II (F. QUÍMICA)",
+      "creditos": "8"
+    },
+    "LIB37_PASANTÍA DE LIC.EN INGENIERÍA BIOLÓGICA": {
+      "codigo": "LIB37",
+      "nombre": "PASANTÍA DE LIC.EN INGENIERÍA BIOLÓGICA",
+      "creditos": "10"
+    },
+    "LIB1_TALLER DE ING. BIOLOGICA I": {
+      "codigo": "LIB1",
+      "nombre": "TALLER DE ING. BIOLOGICA I",
+      "creditos": "8"
+    },
+    "LIB14_TALLER DE INGENIERIA BIOLÓGICA III": {
+      "codigo": "LIB14",
+      "nombre": "TALLER DE INGENIERIA BIOLÓGICA III",
+      "creditos": "8"
+    },
+    "LIB49_TALLER DE INGENIERÍA BIOLÓGICA I": {
+      "codigo": "LIB49",
+      "nombre": "TALLER DE INGENIERÍA BIOLÓGICA I",
+      "creditos": "8"
+    },
+    "SRN24_TALLER DE INGENIERÍA BIOLÓGICA I": {
+      "codigo": "SRN24",
+      "nombre": "TALLER DE INGENIERÍA BIOLÓGICA I",
+      "creditos": "8"
+    },
+    "LIB10_TALLER DE INGENIERÍA BIOLÓGICA II": {
+      "codigo": "LIB10",
+      "nombre": "TALLER DE INGENIERÍA BIOLÓGICA II",
+      "creditos": "8"
+    },
+    "LIB42_TALLER DE INGENIERÍA BIOLÓGICA III": {
+      "codigo": "LIB42",
+      "nombre": "TALLER DE INGENIERÍA BIOLÓGICA III",
+      "creditos": "10"
+    },
+    "LIB43_TESINA - TALLER DE INGENIERÍA BIOLÓGICA IV": {
+      "codigo": "LIB43",
+      "nombre": "TESINA - TALLER DE INGENIERÍA BIOLÓGICA IV",
+      "creditos": "25"
+    },
+    "LIB39_MODELOS Y SIMULA.DE SISTEMAS BIOLÓGICOS": {
+      "codigo": "LIB39",
+      "nombre": "MODELOS Y SIMULA.DE SISTEMAS BIOLÓGICOS",
+      "creditos": "5"
+    },
+    "LB36A_INFORMÁTICA EN BIOLOGÍA Y MEDICINA": {
+      "codigo": "LB36A",
+      "nombre": "INFORMÁTICA EN BIOLOGÍA Y MEDICINA",
+      "creditos": "10"
+    },
+    "LIB61_ACREDITACIÓN ÁREA TECNOLÓGICA FUNDAMENTAL": {
+      "codigo": "LIB61",
+      "nombre": "ACREDITACIÓN ÁREA TECNOLÓGICA FUNDAMENTAL",
+      "creditos": "5"
+    },
+    "LIB62_ACREDITACIÓN ÁREA TECNOLÓGICA FUNDAMENTAL": {
+      "codigo": "LIB62",
+      "nombre": "ACREDITACIÓN ÁREA TECNOLÓGICA FUNDAMENTAL",
+      "creditos": "1"
+    },
+    "LIB33_BIOINSTRUMENTACIÓN": {
+      "codigo": "LIB33",
+      "nombre": "BIOINSTRUMENTACIÓN",
+      "creditos": "10"
+    },
+    "LIB41_EQUIPAMIENTO BIOMÉDICO": {
+      "codigo": "LIB41",
+      "nombre": "EQUIPAMIENTO BIOMÉDICO",
+      "creditos": "8"
+    },
+    "LIB38_FISIOLOGÍA CUANTITATIVA": {
+      "codigo": "LIB38",
+      "nombre": "FISIOLOGÍA CUANTITATIVA",
+      "creditos": "10"
+    },
+    "LIB60_FUNDACIÓN (MANOS DE HÉROES)": {
+      "codigo": "LIB60",
+      "nombre": "FUNDACIÓN (MANOS DE HÉROES)",
+      "creditos": "5"
+    },
+    "SRN23_INTRODUCCIÓN A LA INGENIERIA BIOLÓGICA": {
+      "codigo": "SRN23",
+      "nombre": "INTRODUCCIÓN A LA INGENIERIA BIOLÓGICA",
+      "creditos": "2"
+    },
+    "SRN30_TALLER DE ROBÓTICA-CIO CT- INGBIOL": {
+      "codigo": "SRN30",
+      "nombre": "TALLER DE ROBÓTICA-CIO CT- INGBIOL",
+      "creditos": "2"
+    },
+    "1455_TEORIA DE CIRCUITOS (LIC ING BIOL)": {
+      "codigo": "1455",
+      "nombre": "TEORIA DE CIRCUITOS (LIC ING BIOL)",
+      "creditos": "8"
+    },
+    "LIB55_TEORIA DE LOS CIRCUITOS": {
+      "codigo": "LIB55",
+      "nombre": "TEORIA DE LOS CIRCUITOS",
+      "creditos": "8"
+    },
+    "5715_ELECTRONICA FUNDAMENTAL": {
+      "codigo": "5715",
+      "nombre": "ELECTRONICA FUNDAMENTAL",
+      "creditos": "11"
+    },
+    "LIB40_ELECTRÓNICA I": {
+      "codigo": "LIB40",
+      "nombre": "ELECTRÓNICA I",
+      "creditos": "10"
+    },
+    "LIB15_PROCESAMIENTO ANALÓGICO DE SEÑALES": {
+      "codigo": "LIB15",
+      "nombre": "PROCESAMIENTO ANALÓGICO DE SEÑALES",
+      "creditos": "10"
+    },
+    "LIB51_PROCESAMIENTO ANALÓGICO DE SEÑALES-2023": {
+      "codigo": "LIB51",
+      "nombre": "PROCESAMIENTO ANALÓGICO DE SEÑALES-2023",
+      "creditos": "11"
+    },
+    "LIB35_PROCESAMIENTO DIGITAL DE SEÑALES": {
+      "codigo": "LIB35",
+      "nombre": "PROCESAMIENTO DIGITAL DE SEÑALES",
+      "creditos": "5"
+    },
+    "LIB12_SEÑALES Y SISTEMAS": {
+      "codigo": "LIB12",
+      "nombre": "SEÑALES Y SISTEMAS",
+      "creditos": "10"
+    },
+    "AA002_ACREDITACIÓN ÁREA INGENIERÍA INDUSTRIAL": {
+      "codigo": "AA002",
+      "nombre": "ACREDITACIÓN ÁREA INGENIERÍA INDUSTRIAL",
+      "creditos": "5"
+    },
+    "LIB45_GESTIÓN DE PROYECTOS": {
+      "codigo": "LIB45",
+      "nombre": "GESTIÓN DE PROYECTOS",
+      "creditos": "4"
+    }
+  },
+  "INGENIERÍA EN COMPUTACIÓN REVÁLIDA_1987": {
+    "1353_DIDACTICA DE ALGORIT.Y ESTRUCT.DE DATOS": {
+      "codigo": "1353",
+      "nombre": "DIDACTICA DE ALGORIT.Y ESTRUCT.DE DATOS",
+      "creditos": 0
+    },
+    "1637_ALGORITMOS EVOLUTIVOS": {
+      "codigo": "1637",
+      "nombre": "ALGORITMOS EVOLUTIVOS",
+      "creditos": 0
+    },
+    "R100_ANALISIS MATEMATICO I": {
+      "codigo": "R100",
+      "nombre": "ANALISIS MATEMATICO I",
+      "creditos": 0
+    },
+    "B100_ANALISIS MATEMATICO I (ANUAL)": {
+      "codigo": "B100",
+      "nombre": "ANALISIS MATEMATICO I (ANUAL)",
+      "creditos": 0
+    },
+    "1022_CALCULO 2": {
+      "codigo": "1022",
+      "nombre": "CALCULO 2",
+      "creditos": 0
+    },
+    "1052_CALCULO 1 (ANUAL)": {
+      "codigo": "1052",
+      "nombre": "CALCULO 1 (ANUAL)",
+      "creditos": 0
+    },
+    "1021_ALGEBRA LINEAL": {
+      "codigo": "1021",
+      "nombre": "ALGEBRA LINEAL",
+      "creditos": 0
+    },
+    "R101_GEOMETRIA Y ALGEBRA LINEAL": {
+      "codigo": "R101",
+      "nombre": "GEOMETRIA Y ALGEBRA LINEAL",
+      "creditos": 0
+    },
+    "1033_METODOS NUMERICOS": {
+      "codigo": "1033",
+      "nombre": "METODOS NUMERICOS",
+      "creditos": 0
+    },
+    "1053_GEOMETRIA Y ALGEBRA LINEAL 1 (ANUAL)": {
+      "codigo": "1053",
+      "nombre": "GEOMETRIA Y ALGEBRA LINEAL 1 (ANUAL)",
+      "creditos": 0
+    },
+    "B101_GEOMETRIA Y ALGEBRA LINEAL (ANUAL)": {
+      "codigo": "B101",
+      "nombre": "GEOMETRIA Y ALGEBRA LINEAL (ANUAL)",
+      "creditos": 0
+    },
+    "1031_GEOMETRIA Y ALGEBRA LINEAL 2": {
+      "codigo": "1031",
+      "nombre": "GEOMETRIA Y ALGEBRA LINEAL 2",
+      "creditos": 0
+    },
+    "C400_CALCULO NUMERICO": {
+      "codigo": "C400",
+      "nombre": "CALCULO NUMERICO",
+      "creditos": 0
+    },
+    "1030_GEOMETRIA Y ALGEBRA LINEAL 1": {
+      "codigo": "1030",
+      "nombre": "GEOMETRIA Y ALGEBRA LINEAL 1",
+      "creditos": 0
+    },
+    "1610_INT. A LA INVESTIGACION DE OPERACIONES": {
+      "codigo": "1610",
+      "nombre": "INT. A LA INVESTIGACION DE OPERACIONES",
+      "creditos": 0
+    },
+    "1020_CALCULO 1": {
+      "codigo": "1020",
+      "nombre": "CALCULO 1",
+      "creditos": 0
+    },
+    "C401_TEORIA DE PROGRAMACION I": {
+      "codigo": "C401",
+      "nombre": "TEORIA DE PROGRAMACION I",
+      "creditos": 0
+    },
+    "1325_TEORIA DE LENGUAJES": {
+      "codigo": "1325",
+      "nombre": "TEORIA DE LENGUAJES",
+      "creditos": 0
+    },
+    "1744_ADMINISTRACION Y SEGURIDAD DE SISTEMAS": {
+      "codigo": "1744",
+      "nombre": "ADMINISTRACION Y SEGURIDAD DE SISTEMAS",
+      "creditos": 0
+    },
+    "C450_INVESTIGACION OPERATIVA": {
+      "codigo": "C450",
+      "nombre": "INVESTIGACION OPERATIVA",
+      "creditos": 0
+    },
+    "5914_ALGEBRA LINEAL NUMERICA": {
+      "codigo": "5914",
+      "nombre": "ALGEBRA LINEAL NUMERICA",
+      "creditos": 0
+    },
+    "C534_ALGEBRA Y TEORIA DE NUM.APL.A LA COMP.": {
+      "codigo": "C534",
+      "nombre": "ALGEBRA Y TEORIA DE NUM.APL.A LA COMP.",
+      "creditos": 0
+    },
+    "1628_ALGORITMOS EVOLUTIVOS": {
+      "codigo": "1628",
+      "nombre": "ALGORITMOS EVOLUTIVOS",
+      "creditos": 0
+    },
+    "C500_TALLER V": {
+      "codigo": "C500",
+      "nombre": "TALLER V",
+      "creditos": 0
+    },
+    "1918_ADMINISTRACION Y SEGURIDAD DE SISTEMAS": {
+      "codigo": "1918",
+      "nombre": "ADMINISTRACION Y SEGURIDAD DE SISTEMAS",
+      "creditos": 0
+    },
+    "1730_PROYECTO DE GRADO": {
+      "codigo": "1730",
+      "nombre": "PROYECTO DE GRADO",
+      "creditos": 0
+    },
+    "C471_ANAL.DE SIST.INF.APLIC.AL AREA DE GEST.": {
+      "codigo": "C471",
+      "nombre": "ANAL.DE SIST.INF.APLIC.AL AREA DE GEST.",
+      "creditos": 0
+    },
+    "C551_ANALISIS DE COSTOS": {
+      "codigo": "C551",
+      "nombre": "ANALISIS DE COSTOS",
+      "creditos": 0
+    },
+    "1054_ANALISIS DE FOURIER PARA TRATAM.DE IMAGE": {
+      "codigo": "1054",
+      "nombre": "ANALISIS DE FOURIER PARA TRATAM.DE IMAGE",
+      "creditos": 0
+    },
+    "1743_ARQUITECTURA DE SOFTWARE": {
+      "codigo": "1743",
+      "nombre": "ARQUITECTURA DE SOFTWARE",
+      "creditos": 0
+    },
+    "C504_ARQUITECTURA Y SISTEMAS OPERATIVOS": {
+      "codigo": "C504",
+      "nombre": "ARQUITECTURA Y SISTEMAS OPERATIVOS",
+      "creditos": 0
+    },
+    "C508_ARQUITECTURA (ANUAL)": {
+      "codigo": "C508",
+      "nombre": "ARQUITECTURA (ANUAL)",
+      "creditos": 0
+    },
+    "C515_ARQUITECTURAS AVANZADAS": {
+      "codigo": "C515",
+      "nombre": "ARQUITECTURAS AVANZADAS",
+      "creditos": 0
+    },
+    "C456_ALGEBRA I": {
+      "codigo": "C456",
+      "nombre": "ALGEBRA I",
+      "creditos": 0
+    },
+    "C513_BASE DE DATOS ORIENTADA A OBJETOS": {
+      "codigo": "C513",
+      "nombre": "BASE DE DATOS ORIENTADA A OBJETOS",
+      "creditos": 0
+    },
+    "1434_COMPUTACION DE ALTA PERFORMANCE": {
+      "codigo": "1434",
+      "nombre": "COMPUTACION DE ALTA PERFORMANCE",
+      "creditos": 0
+    },
+    "1415_COMPUTACION DE ALTA PERFORMANCE": {
+      "codigo": "1415",
+      "nombre": "COMPUTACION DE ALTA PERFORMANCE",
+      "creditos": 0
+    },
+    "C518_COMPUTACION GRAFICA": {
+      "codigo": "C518",
+      "nombre": "COMPUTACION GRAFICA",
+      "creditos": 0
+    },
+    "C462_AS/400": {
+      "codigo": "C462",
+      "nombre": "AS/400",
+      "creditos": 0
+    },
+    "1447_COMPUT.DE PR.GRAL.EN UNID.DE PROC.GRAF.": {
+      "codigo": "1447",
+      "nombre": "COMPUT.DE PR.GRAL.EN UNID.DE PROC.GRAF.",
+      "creditos": 0
+    },
+    "5813_CODIFICACION DE FUENTES SIN PERDIDA": {
+      "codigo": "5813",
+      "nombre": "CODIFICACION DE FUENTES SIN PERDIDA",
+      "creditos": 0
+    },
+    "1337_CONST.FORMAL DE PROGR.EN TEORIA DE TIPOS": {
+      "codigo": "1337",
+      "nombre": "CONST.FORMAL DE PROGR.EN TEORIA DE TIPOS",
+      "creditos": 0
+    },
+    "C411_COMPILACION DE LENG. FUNC. PEREZOSOS": {
+      "codigo": "C411",
+      "nombre": "COMPILACION DE LENG. FUNC. PEREZOSOS",
+      "creditos": 0
+    },
+    "1832_CONST.DE MOD.PROB.DEL LENGUAJE NATURAL": {
+      "codigo": "1832",
+      "nombre": "CONST.DE MOD.PROB.DEL LENGUAJE NATURAL",
+      "creditos": 0
+    },
+    "1903_COSTOS PARA INGENIERIA": {
+      "codigo": "1903",
+      "nombre": "COSTOS PARA INGENIERIA",
+      "creditos": 0
+    },
+    "1901_CONTROL DE CALIDAD": {
+      "codigo": "1901",
+      "nombre": "CONTROL DE CALIDAD",
+      "creditos": 0
+    },
+    "C452_CONSTRUCCION DE UN LENGUAJE FUNCIONAL": {
+      "codigo": "C452",
+      "nombre": "CONSTRUCCION DE UN LENGUAJE FUNCIONAL",
+      "creditos": 0
+    },
+    "1923_COSTOS PARA INGENIERIA": {
+      "codigo": "1923",
+      "nombre": "COSTOS PARA INGENIERIA",
+      "creditos": 0
+    },
+    "1746_CRIPT. SEG.EN REDES DE COMUN, COM.ELECT.": {
+      "codigo": "1746",
+      "nombre": "CRIPT. SEG.EN REDES DE COMUN, COM.ELECT.",
+      "creditos": 0
+    },
+    "1922_COSTOS PARA INGENIERIA": {
+      "codigo": "1922",
+      "nombre": "COSTOS PARA INGENIERIA",
+      "creditos": 0
+    },
+    "C409_DESCUBRIMIENTO DE INF.EN BASES DE DATOS": {
+      "codigo": "C409",
+      "nombre": "DESCUBRIMIENTO DE INF.EN BASES DE DATOS",
+      "creditos": 0
+    },
+    "1916_DESCUBRIMIENTO DE INF.EN BASES DE DATOS": {
+      "codigo": "1916",
+      "nombre": "DESCUBRIMIENTO DE INF.EN BASES DE DATOS",
+      "creditos": 0
+    },
+    "1347_CONST.FORMAL DE PROGR.EN TEORIA DE TIPOS": {
+      "codigo": "1347",
+      "nombre": "CONST.FORMAL DE PROGR.EN TEORIA DE TIPOS",
+      "creditos": 0
+    },
+    "C455_DISEÑO DE COMPILADORES": {
+      "codigo": "C455",
+      "nombre": "DISEÑO DE COMPILADORES",
+      "creditos": 0
+    },
+    "1331_DISEÑO DE COMPILADORES": {
+      "codigo": "1331",
+      "nombre": "DISEÑO DE COMPILADORES",
+      "creditos": 0
+    },
+    "1349_COMPUTACION GRAFICA AVANZADA": {
+      "codigo": "1349",
+      "nombre": "COMPUTACION GRAFICA AVANZADA",
+      "creditos": 0
+    },
+    "B304_DISEÑO LOGICO": {
+      "codigo": "B304",
+      "nombre": "DISEÑO LOGICO",
+      "creditos": 0
+    },
+    "1429_DISEÑO TOPOLOGICO DE REDES": {
+      "codigo": "1429",
+      "nombre": "DISEÑO TOPOLOGICO DE REDES",
+      "creditos": 0
+    },
+    "1512C_DISEÑO LOGICO": {
+      "codigo": "1512C",
+      "nombre": "DISEÑO LOGICO",
+      "creditos": 0
+    },
+    "1939_DISEÑO Y CONSTRUCCION DE DATA WAREHOUSE": {
+      "codigo": "1939",
+      "nombre": "DISEÑO Y CONSTRUCCION DE DATA WAREHOUSE",
+      "creditos": 0
+    },
+    "1435_DISEÑO TOPOLOGICO DE REDES": {
+      "codigo": "1435",
+      "nombre": "DISEÑO TOPOLOGICO DE REDES",
+      "creditos": 0
+    },
+    "C502_ELECTIVA TECNICA (ANUAL)": {
+      "codigo": "C502",
+      "nombre": "ELECTIVA TECNICA (ANUAL)",
+      "creditos": 0
+    },
+    "C453_ELECTIVA TECNICA (SEMESTRAL)": {
+      "codigo": "C453",
+      "nombre": "ELECTIVA TECNICA (SEMESTRAL)",
+      "creditos": 0
+    },
+    "C507_ELECTIVA TECNICA (ANUAL)": {
+      "codigo": "C507",
+      "nombre": "ELECTIVA TECNICA (ANUAL)",
+      "creditos": 0
+    },
+    "510_ELECTIVA TECNICA (SEMESTRAL)": {
+      "codigo": "510",
+      "nombre": "ELECTIVA TECNICA (SEMESTRAL)",
+      "creditos": 0
+    },
+    "1935_CALIDAD DE DATOS": {
+      "codigo": "1935",
+      "nombre": "CALIDAD DE DATOS",
+      "creditos": 0
+    },
+    "C555_EXTENS. DE PROG. LINEAL Y PROG. ENTERA": {
+      "codigo": "C555",
+      "nombre": "EXTENS. DE PROG. LINEAL Y PROG. ENTERA",
+      "creditos": 0
+    },
+    "1621_EXTENS. DE PROG. LINEAL Y PROG. ENTERA": {
+      "codigo": "1621",
+      "nombre": "EXTENS. DE PROG. LINEAL Y PROG. ENTERA",
+      "creditos": 0
+    },
+    "1942_FUNDAMENTOS DE LA WEB SEMANTICA": {
+      "codigo": "1942",
+      "nombre": "FUNDAMENTOS DE LA WEB SEMANTICA",
+      "creditos": 0
+    },
+    "5915_FUNDAMENTOS DE SEGURIDAD INFORMATICA": {
+      "codigo": "5915",
+      "nombre": "FUNDAMENTOS DE SEGURIDAD INFORMATICA",
+      "creditos": 0
+    },
+    "1747_GESTION DE PROYECTOS": {
+      "codigo": "1747",
+      "nombre": "GESTION DE PROYECTOS",
+      "creditos": 0
+    },
+    "1835_GRAMATICAS FORMALES PARA EL LENG.NATURAL": {
+      "codigo": "1835",
+      "nombre": "GRAMATICAS FORMALES PARA EL LENG.NATURAL",
+      "creditos": 0
+    },
+    "1737_GESTION DE SOFTWARE": {
+      "codigo": "1737",
+      "nombre": "GESTION DE SOFTWARE",
+      "creditos": 0
+    },
+    "1829_I.A. Y ROBOTICA": {
+      "codigo": "1829",
+      "nombre": "I.A. Y ROBOTICA",
+      "creditos": 0
+    },
+    "1771_INGENIERIA DE SOFTWARE EMPIRICA": {
+      "codigo": "1771",
+      "nombre": "INGENIERIA DE SOFTWARE EMPIRICA",
+      "creditos": 0
+    },
+    "1773_INGENIERIA DE SOFTWARE EMPIRICA": {
+      "codigo": "1773",
+      "nombre": "INGENIERIA DE SOFTWARE EMPIRICA",
+      "creditos": 0
+    },
+    "1519_INT. A LA ADMINISTRACION PARA INGENIEROS": {
+      "codigo": "1519",
+      "nombre": "INT. A LA ADMINISTRACION PARA INGENIEROS",
+      "creditos": 0
+    },
+    "1772_INGENIERIA DE SOFTWARE BASADA EN EVID.Y REV.SIST.": {
+      "codigo": "1772",
+      "nombre": "INGENIERIA DE SOFTWARE BASADA EN EVID.Y REV.SIST.",
+      "creditos": 0
+    },
+    "1940_GESTION DE CALIDAD": {
+      "codigo": "1940",
+      "nombre": "GESTION DE CALIDAD",
+      "creditos": 0
+    },
+    "1921_GESTION DE CALIDAD": {
+      "codigo": "1921",
+      "nombre": "GESTION DE CALIDAD",
+      "creditos": 0
+    },
+    "C552_INT. A LA COMPUTACION GRAFICA": {
+      "codigo": "C552",
+      "nombre": "INT. A LA COMPUTACION GRAFICA",
+      "creditos": 0
+    },
+    "1315_INT. A LA COMPUTACION GRAFICA": {
+      "codigo": "1315",
+      "nombre": "INT. A LA COMPUTACION GRAFICA",
+      "creditos": 0
+    },
+    "C460_GESTION DE CALIDAD": {
+      "codigo": "C460",
+      "nombre": "GESTION DE CALIDAD",
+      "creditos": 0
+    },
+    "C554_INT. A LA CRIPTOGRAFIA": {
+      "codigo": "C554",
+      "nombre": "INT. A LA CRIPTOGRAFIA",
+      "creditos": 0
+    },
+    "1416_INT. A LA CRIPTOGRAFIA": {
+      "codigo": "1416",
+      "nombre": "INT. A LA CRIPTOGRAFIA",
+      "creditos": 0
+    },
+    "1736_INT. A LA INTERAC. PERSONA COMPUTADORA": {
+      "codigo": "1736",
+      "nombre": "INT. A LA INTERAC. PERSONA COMPUTADORA",
+      "creditos": 0
+    },
+    "C556_INT. A LA PROG. PARA DISEÑO GRAFICO": {
+      "codigo": "C556",
+      "nombre": "INT. A LA PROG. PARA DISEÑO GRAFICO",
+      "creditos": 0
+    },
+    "1328_INT. A LA PROGRAMACION FUNCIONAL": {
+      "codigo": "1328",
+      "nombre": "INT. A LA PROGRAMACION FUNCIONAL",
+      "creditos": 0
+    },
+    "1629_INT. A LA OPTIMIZ.Y A LA PROG. CON RESTR": {
+      "codigo": "1629",
+      "nombre": "INT. A LA OPTIMIZ.Y A LA PROG. CON RESTR",
+      "creditos": 0
+    },
+    "1332_INT. A LA PROGR.PARA DISEÑO GRAFICO": {
+      "codigo": "1332",
+      "nombre": "INT. A LA PROGR.PARA DISEÑO GRAFICO",
+      "creditos": 0
+    },
+    "1333_INT. A LA PROGRAMACION GENERICA": {
+      "codigo": "1333",
+      "nombre": "INT. A LA PROGRAMACION GENERICA",
+      "creditos": 0
+    },
+    "1431_INT. A LA TEORIA DE LA INFORMACION": {
+      "codigo": "1431",
+      "nombre": "INT. A LA TEORIA DE LA INFORMACION",
+      "creditos": 0
+    },
+    "1450_INT. A LA TEORIA DE LA INFORMACION": {
+      "codigo": "1450",
+      "nombre": "INT. A LA TEORIA DE LA INFORMACION",
+      "creditos": 0
+    },
+    "C461_INT. A LA TOPOLOGIA": {
+      "codigo": "C461",
+      "nombre": "INT. A LA TOPOLOGIA",
+      "creditos": 0
+    },
+    "1513C_INT. A LOS MICROPROCESADORES": {
+      "codigo": "1513C",
+      "nombre": "INT. A LOS MICROPROCESADORES",
+      "creditos": 0
+    },
+    "1432_INT. A LA TEORIA DE LA INFORMACION": {
+      "codigo": "1432",
+      "nombre": "INT. A LA TEORIA DE LA INFORMACION",
+      "creditos": 0
+    },
+    "1926_INT. A LOS SIST. DE INFOR. GEOGRAFICA": {
+      "codigo": "1926",
+      "nombre": "INT. A LOS SIST. DE INFOR. GEOGRAFICA",
+      "creditos": 0
+    },
+    "1316_INT. A LA COMPUTACION GRAFICA": {
+      "codigo": "1316",
+      "nombre": "INT. A LA COMPUTACION GRAFICA",
+      "creditos": 0
+    },
+    "C466_INT. AL ANALISIS DE ALGORITMOS": {
+      "codigo": "C466",
+      "nombre": "INT. AL ANALISIS DE ALGORITMOS",
+      "creditos": 0
+    },
+    "1936_INT. AL MIDDLEWARE": {
+      "codigo": "1936",
+      "nombre": "INT. AL MIDDLEWARE",
+      "creditos": 0
+    },
+    "1828_INT. AL PROCESAMIENTO DE LENG. NATURAL": {
+      "codigo": "1828",
+      "nombre": "INT. AL PROCESAMIENTO DE LENG. NATURAL",
+      "creditos": 0
+    },
+    "C528_INT. AL RUTEO DE VEHICULOS": {
+      "codigo": "C528",
+      "nombre": "INT. AL RUTEO DE VEHICULOS",
+      "creditos": 0
+    },
+    "1749_INTERACCION PERSONA COMPUTADORA": {
+      "codigo": "1749",
+      "nombre": "INTERACCION PERSONA COMPUTADORA",
+      "creditos": 0
+    },
+    "C503_INVESTIGACION OPERATIVA 2 Y 3 (ANUAL)": {
+      "codigo": "C503",
+      "nombre": "INVESTIGACION OPERATIVA 2 Y 3 (ANUAL)",
+      "creditos": 0
+    },
+    "1630_INVESTIGACION DE OPER.Y GEST. DE RIESGOS": {
+      "codigo": "1630",
+      "nombre": "INVESTIGACION DE OPER.Y GEST. DE RIESGOS",
+      "creditos": 0
+    },
+    "1330_LOGICA DE LA PROGRAMACION IMPERATIVA": {
+      "codigo": "1330",
+      "nombre": "LOGICA DE LA PROGRAMACION IMPERATIVA",
+      "creditos": 0
+    },
+    "C509_MANEJ.DE BASE DE DATOS Y LENG.DE 4 GEN.": {
+      "codigo": "C509",
+      "nombre": "MANEJ.DE BASE DE DATOS Y LENG.DE 4 GEN.",
+      "creditos": 0
+    },
+    "1932_METADATA EN SISTEMAS DE INFORMACION": {
+      "codigo": "1932",
+      "nombre": "METADATA EN SISTEMAS DE INFORMACION",
+      "creditos": 0
+    },
+    "1613_METAHEURISTICAS Y OPTIMIZACION SOBRE REDES": {
+      "codigo": "1613",
+      "nombre": "METAHEURISTICAS Y OPTIMIZACION SOBRE REDES",
+      "creditos": 0
+    },
+    "C459_METODOS CUANT.GERENCIALES Y REINGENIERIA": {
+      "codigo": "C459",
+      "nombre": "METODOS CUANT.GERENCIALES Y REINGENIERIA",
+      "creditos": 0
+    },
+    "C524_METODOLOGIAS Y TEND.EN ING.DE SOFTWARE": {
+      "codigo": "C524",
+      "nombre": "METODOLOGIAS Y TEND.EN ING.DE SOFTWARE",
+      "creditos": 0
+    },
+    "1341_LOGICA DE LA PROGRAMACION IMPERATIVA": {
+      "codigo": "1341",
+      "nombre": "LOGICA DE LA PROGRAMACION IMPERATIVA",
+      "creditos": 0
+    },
+    "1919_INTEROPERABILIDAD": {
+      "codigo": "1919",
+      "nombre": "INTEROPERABILIDAD",
+      "creditos": 0
+    },
+    "1834_METODOS DE APRENDIZAJE AUTOMATICO": {
+      "codigo": "1834",
+      "nombre": "METODOS DE APRENDIZAJE AUTOMATICO",
+      "creditos": 0
+    },
+    "1055_METODOS DE MONTE CARLO": {
+      "codigo": "1055",
+      "nombre": "METODOS DE MONTE CARLO",
+      "creditos": 0
+    },
+    "1624_MODELADO Y OPTIMIZACION": {
+      "codigo": "1624",
+      "nombre": "MODELADO Y OPTIMIZACION",
+      "creditos": 0
+    },
+    "C541_MODELIZACION Y VERIF.DE SIST.DE T.REAL": {
+      "codigo": "C541",
+      "nombre": "MODELIZACION Y VERIF.DE SIST.DE T.REAL",
+      "creditos": 0
+    },
+    "1626_OPTIMIZACION BAJO INCERTIDUMBRE": {
+      "codigo": "1626",
+      "nombre": "OPTIMIZACION BAJO INCERTIDUMBRE",
+      "creditos": 0
+    },
+    "1632_OPTIMIZACION BAJO INCERTIDUMBRE": {
+      "codigo": "1632",
+      "nombre": "OPTIMIZACION BAJO INCERTIDUMBRE",
+      "creditos": 0
+    },
+    "C512_ORIENTACION A OBJETOS": {
+      "codigo": "C512",
+      "nombre": "ORIENTACION A OBJETOS",
+      "creditos": 0
+    },
+    "C404_PRINCIPIOS DE LENGUAJES DE PROGRAMACION": {
+      "codigo": "C404",
+      "nombre": "PRINCIPIOS DE LENGUAJES DE PROGRAMACION",
+      "creditos": 0
+    },
+    "C467_PROCESAMIENTO DE LENGUAJE NATURAL": {
+      "codigo": "C467",
+      "nombre": "PROCESAMIENTO DE LENGUAJE NATURAL",
+      "creditos": 0
+    },
+    "C463_PROGR.MATEMATICA Y MODELACION CON GAMS": {
+      "codigo": "C463",
+      "nombre": "PROGR.MATEMATICA Y MODELACION CON GAMS",
+      "creditos": 0
+    },
+    "C408_PROGRAMACION FUNCIONAL": {
+      "codigo": "C408",
+      "nombre": "PROGRAMACION FUNCIONAL",
+      "creditos": 0
+    },
+    "1354_PROGRAMACION FUNCIONAL": {
+      "codigo": "1354",
+      "nombre": "PROGRAMACION FUNCIONAL",
+      "creditos": 0
+    },
+    "1731_PASANTIA (COMPUTACION)": {
+      "codigo": "1731",
+      "nombre": "PASANTIA (COMPUTACION)",
+      "creditos": 0
+    },
+    "1340_PROGRAMACION LOGICA": {
+      "codigo": "1340",
+      "nombre": "PROGRAMACION LOGICA",
+      "creditos": 0
+    },
+    "C501_PROGRAMACION ORIENTADA A OBJETOS": {
+      "codigo": "C501",
+      "nombre": "PROGRAMACION ORIENTADA A OBJETOS",
+      "creditos": 0
+    },
+    "C457_PROGRAMACION LOGICA": {
+      "codigo": "C457",
+      "nombre": "PROGRAMACION LOGICA",
+      "creditos": 0
+    },
+    "C473_RELAC.PERS.EN ING.DE SOFT.Y GER.DE PROY.": {
+      "codigo": "C473",
+      "nombre": "RELAC.PERS.EN ING.DE SOFT.Y GER.DE PROY.",
+      "creditos": 0
+    },
+    "1728_RELACIONES PERSONALES EN ING. DE SOFT. Y GER. DE PROY.": {
+      "codigo": "1728",
+      "nombre": "RELACIONES PERSONALES EN ING. DE SOFT. Y GER. DE PROY.",
+      "creditos": 0
+    },
+    "1758_RELACIONES PERSONALES EN ING. DE SOFT. Y GER. DE PROY.": {
+      "codigo": "1758",
+      "nombre": "RELACIONES PERSONALES EN ING. DE SOFT. Y GER. DE PROY.",
+      "creditos": 0
+    },
+    "C472_REUTILIZACION DE SOFTWARE": {
+      "codigo": "C472",
+      "nombre": "REUTILIZACION DE SOFTWARE",
+      "creditos": 0
+    },
+    "C406_SEMANTICA FORMAL DE LENGUAJES DE PROGR.": {
+      "codigo": "C406",
+      "nombre": "SEMANTICA FORMAL DE LENGUAJES DE PROGR.",
+      "creditos": 0
+    },
+    "C553_SEMANTICA FORMAL DE LENGUAJES DE PROGR.": {
+      "codigo": "C553",
+      "nombre": "SEMANTICA FORMAL DE LENGUAJES DE PROGR.",
+      "creditos": 0
+    },
+    "C565_REINGENIERIA": {
+      "codigo": "C565",
+      "nombre": "REINGENIERIA",
+      "creditos": 0
+    },
+    "C532_SIMULACION DE SISTEMAS": {
+      "codigo": "C532",
+      "nombre": "SIMULACION DE SISTEMAS",
+      "creditos": 0
+    },
+    "C511_SIST.DISTRIBUIDOS Y ARQ.AVANZADAS": {
+      "codigo": "C511",
+      "nombre": "SIST.DISTRIBUIDOS Y ARQ.AVANZADAS",
+      "creditos": 0
+    },
+    "C510_SIST.DIST.Y BASES DE DAT.ORIENT.A OBJ.": {
+      "codigo": "C510",
+      "nombre": "SIST.DIST.Y BASES DE DAT.ORIENT.A OBJ.",
+      "creditos": 0
+    },
+    "1617_SIMULACION A EVENTOS DISCRETOS": {
+      "codigo": "1617",
+      "nombre": "SIMULACION A EVENTOS DISCRETOS",
+      "creditos": 0
+    },
+    "1937_SISTEMAS DE INFORMACION EN SALUD": {
+      "codigo": "1937",
+      "nombre": "SISTEMAS DE INFORMACION EN SALUD",
+      "creditos": 0
+    },
+    "C550_SISTEMAS DISTRIBUIDOS": {
+      "codigo": "C550",
+      "nombre": "SISTEMAS DISTRIBUIDOS",
+      "creditos": 0
+    },
+    "C514_SISTEMAS DISTRIBUIDOS": {
+      "codigo": "C514",
+      "nombre": "SISTEMAS DISTRIBUIDOS",
+      "creditos": 0
+    },
+    "B303_SISTEMAS LINEALES": {
+      "codigo": "B303",
+      "nombre": "SISTEMAS LINEALES",
+      "creditos": 0
+    },
+    "1439_TALLER DE CRIPTOGRAFIA MODERNA": {
+      "codigo": "1439",
+      "nombre": "TALLER DE CRIPTOGRAFIA MODERNA",
+      "creditos": 0
+    },
+    "1733_TALLER DE DESARROLLO CLIENTE/SERVIDOR": {
+      "codigo": "1733",
+      "nombre": "TALLER DE DESARROLLO CLIENTE/SERVIDOR",
+      "creditos": 0
+    },
+    "1428_TALLER DE FIRMWARE": {
+      "codigo": "1428",
+      "nombre": "TALLER DE FIRMWARE",
+      "creditos": 0
+    },
+    "1750_TALLER DE ARQUITECTURA DE SOFTWARE": {
+      "codigo": "1750",
+      "nombre": "TALLER DE ARQUITECTURA DE SOFTWARE",
+      "creditos": 0
+    },
+    "1931_SISTEMAS MULTIFUENTES": {
+      "codigo": "1931",
+      "nombre": "SISTEMAS MULTIFUENTES",
+      "creditos": 0
+    },
+    "1739_TALLER DE GESTION DE SOFTWARE": {
+      "codigo": "1739",
+      "nombre": "TALLER DE GESTION DE SOFTWARE",
+      "creditos": 0
+    },
+    "1414_SISTEMAS DISTRIBUIDOS": {
+      "codigo": "1414",
+      "nombre": "SISTEMAS DISTRIBUIDOS",
+      "creditos": 0
+    },
+    "1925_TALLER DE PROGRAMACION Y ARTE": {
+      "codigo": "1925",
+      "nombre": "TALLER DE PROGRAMACION Y ARTE",
+      "creditos": 0
+    },
+    "1314_TALLER DE PRODUCCION DE PROG.SIN FALLAS": {
+      "codigo": "1314",
+      "nombre": "TALLER DE PRODUCCION DE PROG.SIN FALLAS",
+      "creditos": 0
+    },
+    "1938_RECUPERACION DE INF. Y RECOMEND. EN LA WEB (WIR)": {
+      "codigo": "1938",
+      "nombre": "RECUPERACION DE INF. Y RECOMEND. EN LA WEB (WIR)",
+      "creditos": 0
+    },
+    "1752_TALLER DE PSP": {
+      "codigo": "1752",
+      "nombre": "TALLER DE PSP",
+      "creditos": 0
+    },
+    "1437_TALLER DE SEGURIDAD INFORMATICA": {
+      "codigo": "1437",
+      "nombre": "TALLER DE SEGURIDAD INFORMATICA",
+      "creditos": 0
+    },
+    "1759_TALLER DE SIST. DE INF.GEOGRAF.EMPRESAR.": {
+      "codigo": "1759",
+      "nombre": "TALLER DE SIST. DE INF.GEOGRAF.EMPRESAR.",
+      "creditos": 0
+    },
+    "1741_TALLER DE SISTEMAS DE INFORMACION 4": {
+      "codigo": "1741",
+      "nombre": "TALLER DE SISTEMAS DE INFORMACION 4",
+      "creditos": 0
+    },
+    "1535_TALLER DE SISTEMAS OPERATIVOS": {
+      "codigo": "1535",
+      "nombre": "TALLER DE SISTEMAS OPERATIVOS",
+      "creditos": 0
+    },
+    "1742_TALLER DE VERIFICACION DEL SOFTWARE": {
+      "codigo": "1742",
+      "nombre": "TALLER DE VERIFICACION DEL SOFTWARE",
+      "creditos": 0
+    },
+    "1735_TALLER SISTEMAS DE INFORMACION 2": {
+      "codigo": "1735",
+      "nombre": "TALLER SISTEMAS DE INFORMACION 2",
+      "creditos": 0
+    },
+    "C549_TEC.AVANZ.PARA LA GEST.DE SIST.DE INF.": {
+      "codigo": "C549",
+      "nombre": "TEC.AVANZ.PARA LA GEST.DE SIST.DE INF.",
+      "creditos": 0
+    },
+    "1917_TECNICAS AVANZADAS PARA LA GEST. DE SIST. DE INF.": {
+      "codigo": "1917",
+      "nombre": "TECNICAS AVANZADAS PARA LA GEST. DE SIST. DE INF.",
+      "creditos": 0
+    },
+    "1933_TECNICAS AVANZADAS PARA LA GEST. DE SIST. DE INF.": {
+      "codigo": "1933",
+      "nombre": "TECNICAS AVANZADAS PARA LA GEST. DE SIST. DE INF.",
+      "creditos": 0
+    },
+    "1048_TEORIA COMPUTACIONAL DE LA GESTALT": {
+      "codigo": "1048",
+      "nombre": "TEORIA COMPUTACIONAL DE LA GESTALT",
+      "creditos": 0
+    },
+    "1046_TEORIA DE CODIGOS": {
+      "codigo": "1046",
+      "nombre": "TEORIA DE CODIGOS",
+      "creditos": 0
+    },
+    "C410_TEORIA DE JUEGOS Y PROG. FUNCIONAL": {
+      "codigo": "C410",
+      "nombre": "TEORIA DE JUEGOS Y PROG. FUNCIONAL",
+      "creditos": 0
+    },
+    "1037_TEORIA DE JUEGOS Y PROG. FUNCIONAL": {
+      "codigo": "1037",
+      "nombre": "TEORIA DE JUEGOS Y PROG. FUNCIONAL",
+      "creditos": 0
+    },
+    "1034_TEORIA DE JUEGOS Y PROG. FUNCIONAL": {
+      "codigo": "1034",
+      "nombre": "TEORIA DE JUEGOS Y PROG. FUNCIONAL",
+      "creditos": 0
+    },
+    "1336_TEORIA DE LA COMPUTACION": {
+      "codigo": "1336",
+      "nombre": "TEORIA DE LA COMPUTACION",
+      "creditos": 0
+    },
+    "C454_TRATAMIENTO DE LENGUAJE NATURAL": {
+      "codigo": "C454",
+      "nombre": "TRATAMIENTO DE LENGUAJE NATURAL",
+      "creditos": 0
+    },
+    "C522_UN PROCESO DE DESARROLLO PERSONALIZADO": {
+      "codigo": "C522",
+      "nombre": "UN PROCESO DE DESARROLLO PERSONALIZADO",
+      "creditos": 0
+    },
+    "1346_VERIFICACION DE MODELOS": {
+      "codigo": "1346",
+      "nombre": "VERIFICACION DE MODELOS",
+      "creditos": 0
+    },
+    "C403_VERIFICACION Y DERIVACION DE PROGRAMAS": {
+      "codigo": "C403",
+      "nombre": "VERIFICACION Y DERIVACION DE PROGRAMAS",
+      "creditos": 0
+    },
+    "1339_VERIFICACION Y LOGICA": {
+      "codigo": "1339",
+      "nombre": "VERIFICACION Y LOGICA",
+      "creditos": 0
+    },
+    "C102_LOGICA": {
+      "codigo": "C102",
+      "nombre": "LOGICA",
+      "creditos": 0
+    },
+    "R102_LOGICA": {
+      "codigo": "R102",
+      "nombre": "LOGICA",
+      "creditos": 0
+    },
+    "1027_LOGICA": {
+      "codigo": "1027",
+      "nombre": "LOGICA",
+      "creditos": 0
+    },
+    "1010_LOGICA Y COMPUTACION": {
+      "codigo": "1010",
+      "nombre": "LOGICA Y COMPUTACION",
+      "creditos": 0
+    },
+    "1023_MATEMATICA DISCRETA 1": {
+      "codigo": "1023",
+      "nombre": "MATEMATICA DISCRETA 1",
+      "creditos": 0
+    },
+    "R402_TALLER IV": {
+      "codigo": "R402",
+      "nombre": "TALLER IV",
+      "creditos": 0
+    },
+    "C464_TEMAS AVANZADOS EN COMPUTACION": {
+      "codigo": "C464",
+      "nombre": "TEMAS AVANZADOS EN COMPUTACION",
+      "creditos": 0
+    },
+    "C451_TEORIA DE PROGRAMACION II": {
+      "codigo": "C451",
+      "nombre": "TEORIA DE PROGRAMACION II",
+      "creditos": 0
+    },
+    "1358_TEORIA DE LA COMPUTACION": {
+      "codigo": "1358",
+      "nombre": "TEORIA DE LA COMPUTACION",
+      "creditos": 0
     }
   }
 }

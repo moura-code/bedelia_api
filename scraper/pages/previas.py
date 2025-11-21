@@ -129,7 +129,7 @@ class Previas(Scraper, PlanSection):
                 modality = "course_enrollment"
             elif "examen" in low_hint:
                 modality = "exam"
-            elif "curso" in low_hint and "aprob" not in low_hint:
+            elif "curso" in low_hint:
                 modality = "course"
             elif "u.c.b" in low_hint and "aprob" in low_hint:
                 modality = "ucb_module"

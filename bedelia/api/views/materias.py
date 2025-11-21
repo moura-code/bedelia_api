@@ -16,8 +16,8 @@ from api.models import (
     PlanEstudio,
     PlanMateria,
     UnidadAprobable,
-    RequisitoNodo,
-    RequisitoItem,
+    PreviaNodo,
+    PreviaItem,
 )
 from api.serializers.materias import (
     MateriaSerializer,
@@ -25,42 +25,12 @@ from api.serializers.materias import (
     PlanEstudioSerializer,
     PlanMateriaSerializer,
     UnidadAprobableSerializer,
-    RequisitoNodoSerializer,
-    RequisitoNodoTreeSerializer,
-    RequisitoItemSerializer,
+    PreviaNodoTreeSerializer,
+    PreviaItemSerializer,
 )
 
 
 
-
-class RequisitoNodoFilter(FilterSet):
-    """FilterSet for RequisitoNodo with active status filtering via related models."""
-    activo = BooleanFilter(method='filter_activo')
-    
-    class Meta:
-        model = RequisitoNodo
-        fields = ['tipo', 'padre']
-    
-    def filter_activo(self, queryset, name, value):
-        """Filter by active status of plan."""
-        if value is not None:
-            return queryset.filter(plan__activo=value)
-        return queryset
-
-
-class RequisitoItemFilter(FilterSet):
-    """FilterSet for RequisitoItem with active status filtering via related models."""
-    activo = BooleanFilter(method='filter_activo')
-    
-    class Meta:
-        model = RequisitoItem
-        fields = ['nodo', 'tipo']
-    
-    def filter_activo(self, queryset, name, value):
-        """Filter by active status of unidad_requerida."""
-        if value is not None:
-            return queryset.filter(unidad_requerida__activo=value)
-        return queryset
 
 
 @extend_schema_view(
@@ -308,91 +278,8 @@ class UnidadAprobableViewSet(viewsets.ReadOnlyModelViewSet):
         ],
     ),
 )
-class RequisitoNodoViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    Viewset de solo lectura para RequisitoNodo (Nodos del Árbol de Requisitos).
-    
-    Proporciona acceso a todos los nodos de requisitos con capacidades de filtrado.
-    Soporta vista de árbol para recuperar estructuras completas de árboles de requisitos.
-    """
-    queryset = RequisitoNodo.objects.select_related('plan_materia', 'padre').prefetch_related('hijos', 'items').all().order_by('orden')
-    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_class = RequisitoNodoFilter
-    search_fields = ['descripcion']
-    ordering_fields = ['orden', 'fecha_creacion']
-    ordering = ['orden']
-    
-    def get_serializer_class(self):
-        """Use tree serializer if tree=true query param, otherwise basic serializer."""
-        if self.action == 'retrieve':
-            tree = self.request.query_params.get('tree', '').lower() == 'true'
-            if tree:
-                return RequisitoNodoTreeSerializer
-        return RequisitoNodoSerializer
-    
-    def list(self, request, *args, **kwargs):
-        """List all nodos, optionally filtered to root nodes only."""
-        root_only = request.query_params.get('root_only', '').lower() == 'true'
-        queryset = self.filter_queryset(self.get_queryset())
-        
-        if root_only:
-            queryset = queryset.filter(padre__isnull=True)
-        
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-        
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
 
 
-@extend_schema_view(
-    list=extend_schema(
-        summary="Listar todos los items de requisitos",
-        description="Obtener una lista paginada de todos los items de requisitos (items de requisitos dentro de nodos hoja). Soporta filtrado por nodo, tipo y estado activo.",
-        tags=["requisitos"],
-        parameters=[
-            OpenApiParameter(
-                name='nodo',
-                type=str,
-                location=OpenApiParameter.QUERY,
-                description='Filtrar por ID de nodo de requisito (UUID)',
-            ),
-            OpenApiParameter(
-                name='tipo',
-                type=str,
-                location=OpenApiParameter.QUERY,
-                description='Filtrar por tipo: UNIDAD, CREDITOS, TEXTO',
-            ),
-            OpenApiParameter(
-                name='activo',
-                type=bool,
-                location=OpenApiParameter.QUERY,
-                description='Filtrar por estado activo de unidad_requerida (true/false)',
-            ),
-        ],
-    ),
-    retrieve=extend_schema(
-        summary="Obtener detalles de un item de requisito",
-        description="Obtener información detallada sobre un item de requisito específico, incluyendo información del nodo y unidad_requerida.",
-        tags=["requisitos"],
-    ),
-)
-class RequisitoItemViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    Viewset de solo lectura para RequisitoItem (Items de Requisitos).
-    
-    Proporciona acceso a todos los items de requisitos con capacidades de filtrado.
-    Los items están asociados con nodos de requisitos de tipo LEAF.
-    """
-    queryset = RequisitoItem.objects.select_related('nodo', 'unidad_requerida').all().order_by('nodo', 'orden')
-    serializer_class = RequisitoItemSerializer
-    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_class = RequisitoItemFilter
-    search_fields = ['texto']
-    ordering_fields = ['orden', 'fecha_creacion']
-    ordering = ['nodo', 'orden']
 
 
 @extend_schema_view(
@@ -473,7 +360,7 @@ class PreviasViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     Ejemplo: Para obtener previas de "EXAMEN de la materia 1944 en INGENIERÍA CIVIL 2021":
     /api/previas/?plan_year=2021&plan_name=INGENIERÍA CIVIL&materia_code=1944&unidad_tipo=EXAMEN
     """
-    serializer_class = RequisitoNodoTreeSerializer
+    serializer_class = PreviaNodoTreeSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     ordering_fields = ['orden', 'fecha_creacion']
     ordering = ['orden']
@@ -581,7 +468,7 @@ class PreviasViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
             })
         
         # Step 4: Get the RequisitoNodos for these PlanMaterias
-        queryset = RequisitoNodo.objects.select_related(
+        queryset = PreviaNodo.objects.select_related(
             'plan_materia__plan',
             'plan_materia__materia',
             'padre'
@@ -757,7 +644,7 @@ class PosPreviasViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
         
         # Find RequisitoItems that reference unidades from these materias
         item_filters = Q(
-            tipo=RequisitoItem.TipoItem.UNIDAD,
+            tipo=PreviaItem.TipoItem.UNIDAD,
             unidad_requerida__materia_id__in=materias
         )
         
@@ -765,14 +652,13 @@ class PosPreviasViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
             item_filters &= Q(unidad_requerida__tipo=unidad_tipo)
         
         # Get RequisitoItems that match
-        matching_items = RequisitoItem.objects.filter(item_filters).select_related(
-            'nodo__plan_materia__plan',
-            'nodo__plan_materia__materia',
-            'unidad_requerida__materia'
+        matching_items = PosPreviaItem.objects.filter(item_filters).select_related(
+            'plan_materia_dependiente__plan',
+            'plan_materia_dependiente__materia',
         ).distinct()
         
-        # Get PlanMaterias from the RequisitoNodos (these are the posprevias)
-        plan_estudio_ids = matching_items.values_list('nodo__plan_materia_id', flat=True).distinct()
+        # Get PlanMaterias from the PosPreviaItems (these are the posprevias)
+        plan_estudio_ids = matching_items.values_list('plan_materia_dependiente_id', flat=True).distinct()
         
         # Exclude the source PlanMaterias themselves
         source_ids = set(source_plan_estudios.values_list('id', flat=True))

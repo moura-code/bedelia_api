@@ -6,8 +6,6 @@ from .materias import (
     PlanEstudioViewSet,
     PlanMateriaViewSet,
     UnidadAprobableViewSet,
-    RequisitoNodoViewSet,
-    RequisitoItemViewSet,
     PreviasViewSet,
     PosPreviasViewSet,
 )
@@ -17,8 +15,6 @@ __all__ = [
     'PlanEstudioViewSet',
     'PlanMateriaViewSet',
     'UnidadAprobableViewSet',
-    'RequisitoNodoViewSet',
-    'RequisitoItemViewSet',
     'PreviasViewSet',
     'PosPreviasViewSet',
 ]
