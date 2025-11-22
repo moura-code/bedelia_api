@@ -2,3 +2,14 @@ selenium
 python-dotenv
 sqlalchemy>=2.0.0
 psycopg2-binary
+Django>=4.2,<6.0
+djangorestframework>=3.15,<4.0
+django-filter>=24.2,<25.0
+drf-spectacular>=0.27,<1.0
+django-cors-headers>=4.4,<5.0
+psycopg[binary]>=3.2,<4.0
+dj-database-url>=2.2,<3.0  # Used for DATABASE_URL parsing (optional)
+whitenoise>=6.7,<7.0
+djangorestframework-simplejwt>=5.3,<6.0
+gunicorn>=22.0,<24.0 ; platform_system != "Windows"
+python-dotenv==0.10.1
