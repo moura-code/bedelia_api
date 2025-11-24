@@ -418,26 +418,36 @@ class Command(BaseCommand):
         return None
     
     def get_or_create_plan(self, nombre_carrera: str, anio: str) -> PlanEstudio:
-        """Obtener o crear un plan de estudio."""
+        """Obtener o crear un plan de estudio. Evita duplicados usando comparación normalizada."""
         cache_key = f"{nombre_carrera}_{anio}"
-        
+
         if cache_key in self.plan_cache:
             return self.plan_cache[cache_key]
-        
+
         try:
             if self.dry_run:
                 plan = PlanEstudio(nombre_carrera=nombre_carrera, anio=anio)
             else:
-                plan, created = PlanEstudio.objects.get_or_create(
-                    nombre_carrera=nombre_carrera,
-                    anio=anio,
-                    defaults={}
-                )
-                if created:
-                    self.stats['planes_creados'] += 1
+                # First, try to find an existing plan with normalized comparison
+                existing_plan = self.find_plan_by_carrera_name(nombre_carrera, anio)
+                if existing_plan:
+                    # Use the existing plan (with its original name)
+                    plan = existing_plan
+                    created = False
                     if self.verbose:
-                        self.stdout.write(f'       [#] Nuevo plan: {nombre_carrera} - {anio}')
-            
+                        self.stdout.write(f'       [↗] Usando plan existente: {existing_plan.nombre_carrera} - {anio} (para "{nombre_carrera}")')
+                else:
+                    # Create new plan
+                    plan, created = PlanEstudio.objects.get_or_create(
+                        nombre_carrera=nombre_carrera,
+                        anio=anio,
+                        defaults={}
+                    )
+                    if created:
+                        self.stats['planes_creados'] += 1
+                        if self.verbose:
+                            self.stdout.write(f'       [+] Nuevo plan: {nombre_carrera} - {anio}')
+
             self.plan_cache[cache_key] = plan
             return plan
         except Exception as e:
