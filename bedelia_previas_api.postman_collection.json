@@ -57,6 +57,54 @@
 					"response": []
 				},
 				{
+					"name": "List Plans - Search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/planes-estudio/?search=INGENIERÍA",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"planes-estudio",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "INGENIERÍA",
+									"description": "Search in nombre_carrera, anio, or descripcion"
+								}
+							]
+						},
+						"description": "Search plans by career name, year, or description.\n\nQuery parameters:\n- nombre_carrera: Filter by career name (exact match)\n- anio: Filter by year (exact match)\n- activo: Filter by active status (true/false)\n- search: Search in nombre_carrera, anio, or descripcion"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Plan by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/planes-estudio/{{plan_civil_2021_id}}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"planes-estudio",
+								"{{plan_civil_2021_id}}",
+								""
+							]
+						},
+						"description": "Get details of a specific plan de estudio by UUID.\n\nReturns detailed information including materias_count."
+					},
+					"response": []
+				},
+				{
 					"name": "List Materias",
 					"request": {
 						"method": "GET",
@@ -111,12 +159,67 @@
 					"response": []
 				},
 				{
+					"name": "List Materias - Search by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/materias/?search=PROGRAMACIÓN",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"materias",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "PROGRAMACIÓN",
+									"description": "Search in codigo or nombre fields"
+								}
+							]
+						},
+						"description": "Search materias by code or name using the search parameter.\n\nQuery parameters:\n- codigo: Filter by materia code (exact match)\n- activo: Filter by active status (true/false)\n- search: Search in codigo or nombre fields"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Materia by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/materias/{materia_id}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"materias",
+								"{materia_id}",
+								""
+							],
+							"variable": [
+								{
+									"key": "materia_id",
+									"value": "",
+									"description": "UUID of the materia"
+								}
+							]
+						},
+						"description": "Get detailed information about a specific materia by UUID.\n\nReturns detailed information including unidades (approvable units) and planes_count."
+					},
+					"response": []
+				},
+				{
 					"name": "List PlanMaterias - Materias in a Plan",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/planes-materias/?plan_id={{plan_civil_2021_id}}&page_size=50",
+							"raw": "{{base_url}}/api/planes-materias/?plan={{plan_civil_2021_id}}&page_size=50",
 							"host": [
 								"{{base_url}}"
 							],
@@ -127,7 +230,7 @@
 							],
 							"query": [
 								{
-									"key": "plan_id",
+									"key": "plan",
 									"value": "{{plan_civil_2021_id}}",
 									"description": "UUID of the plan"
 								},
@@ -137,7 +240,62 @@
 								}
 							]
 						},
-						"description": "Get all materias that belong to a specific plan.\n\nQuery parameters:\n- plan_id: UUID of the plan\n- materia__codigo: Filter by materia code\n- activo: Filter by active status (true/false)"
+						"description": "Get all materias that belong to a specific plan.\n\nQuery parameters:\n- plan: UUID of the plan (filterset field)\n- materia: UUID of the materia (filterset field)\n- activo: Filter by active status (true/false)\n- search: Search by plan name, plan year, materia code, or materia name"
+					},
+					"response": []
+				},
+				{
+					"name": "List PlanMaterias - Search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/planes-materias/?search=1944",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"planes-materias",
+								""
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "1944",
+									"description": "Search in plan__nombre_carrera, plan__anio, materia__codigo, or materia__nombre"
+								}
+							]
+						},
+						"description": "Search PlanMaterias by plan name, plan year, materia code, or materia name.\n\nExample: Search for all PlanMaterias containing materia code 1944."
+					},
+					"response": []
+				},
+				{
+					"name": "Get PlanMateria by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/planes-materias/{plan_materia_id}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"planes-materias",
+								"{plan_materia_id}",
+								""
+							],
+							"variable": [
+								{
+									"key": "plan_materia_id",
+									"value": "",
+									"description": "UUID of the PlanMateria"
+								}
+							]
+						},
+						"description": "Get detailed information about a specific PlanMateria relationship by UUID.\n\nReturns detailed information including plan and materia details."
 					},
 					"response": []
 				},
@@ -147,7 +305,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/unidades-aprobables/?materia__codigo=1944",
+							"raw": "{{base_url}}/api/unidades-aprobables/?search=1944",
 							"host": [
 								"{{base_url}}"
 							],
@@ -158,13 +316,73 @@
 							],
 							"query": [
 								{
-									"key": "materia__codigo",
+									"key": "search",
 									"value": "1944",
-									"description": "Filter by materia code"
+									"description": "Search by materia code or name (searches materia__codigo, materia__nombre, codigo_bedelias, nombre)"
 								}
 							]
 						},
-						"description": "Get unidades aprobables (approvable units) for a materia.\n\nUnidad tipos:\n- CURSO: Course\n- EXAMEN: Exam\n- UCB: UCB Module\n- OTRO: Other\n\nQuery parameters:\n- materia__codigo: Filter by materia code\n- tipo: Filter by unit type"
+						"description": "Get unidades aprobables (approvable units) for a materia.\n\nUnidad tipos:\n- CURSO: Course\n- EXAMEN: Exam\n- UCB: UCB Module\n- OTRO: Other\n\nQuery parameters:\n- materia: Filter by materia UUID (exact match)\n- tipo: Filter by unit type (CURSO, EXAMEN, UCB, OTRO)\n- activo: Filter by active status (true/false)\n- search: Search by materia code, materia name, codigo_bedelias, or nombre"
+					},
+					"response": []
+				},
+				{
+					"name": "List Unidades Aprobables - Filter by Tipo",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/unidades-aprobables/?tipo=CURSO&search=1944",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"unidades-aprobables",
+								""
+							],
+							"query": [
+								{
+									"key": "tipo",
+									"value": "CURSO",
+									"description": "Filter by unit type: CURSO, EXAMEN, UCB, OTRO"
+								},
+								{
+									"key": "search",
+									"value": "1944",
+									"description": "Search by materia code or name"
+								}
+							]
+						},
+						"description": "Get unidades aprobables filtered by type and materia code.\n\nExample: Get CURSO units for materia 1944."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Unidad Aprobable by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/unidades-aprobables/{unidad_id}/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"unidades-aprobables",
+								"{unidad_id}",
+								""
+							],
+							"variable": [
+								{
+									"key": "unidad_id",
+									"value": "",
+									"description": "UUID of the UnidadAprobable"
+								}
+							]
+						},
+						"description": "Get detailed information about a specific unidad aprobable by UUID.\n\nReturns detailed information including materia details."
 					},
 					"response": []
 				}
