@@ -12,6 +12,7 @@ from api.models import (
     UnidadAprobable,
     PreviaNodo,
     PreviaItem,
+    PosPreviaItem,
 )
 
 
@@ -98,6 +99,23 @@ class PlanEstudioSerializer(serializers.ModelSerializer):
     def get_materias_count(self, obj: PlanEstudio) -> int:
         """Obtener cantidad de materias en este plan."""
         return obj.materias_plan.count()
+
+
+class PosPreviaSerializer(serializers.Serializer):
+    """Serializer for posprevias response - shows dependent courses."""
+
+    anio_plan = serializers.CharField(source='plan_estudio.anio')
+    carrera = serializers.CharField(source='plan_estudio.nombre_carrera')
+    fecha = serializers.DateTimeField(source='posprevia_item.fecha_creacion', format='%d/%m/%Y')
+    descripcion = serializers.CharField(source='posprevia_item.descripcion')
+    tipo = serializers.CharField(source='unidad_dependiente.tipo')
+    materia_codigo = serializers.CharField(source='materia_dependiente.codigo')
+    materia_nombre = serializers.CharField(source='materia_dependiente.nombre')
+    materia_full = serializers.SerializerMethodField()
+
+    def get_materia_full(self, obj) -> str:
+        """Generate materia_full field."""
+        return f"{obj['materia_dependiente'].codigo}-{obj['materia_dependiente'].nombre}"
 
 
 class PlanMateriaSerializer(serializers.ModelSerializer):

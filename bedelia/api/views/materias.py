@@ -18,6 +18,7 @@ from api.models import (
     UnidadAprobable,
     PreviaNodo,
     PreviaItem,
+    PosPreviaItem,
 )
 from api.serializers.materias import (
     MateriaSerializer,
@@ -27,6 +28,7 @@ from api.serializers.materias import (
     UnidadAprobableSerializer,
     PreviaNodoTreeSerializer,
     PreviaItemSerializer,
+    PosPreviaSerializer,
 )
 
 
@@ -516,197 +518,108 @@ class PreviasViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
 @extend_schema_view(
     list=extend_schema(
-        summary="Obtener posprevias (cursos dependientes) para un PlanEstudio",
+        summary="Obtener posprevias (cursos dependientes) para una materia",
         description="""
-        Obtener todas las posprevias (PlanEstudio que requieren el PlanEstudio dado como requisito previo).
-        
-        Identificación de PlanMateria (al menos uno requerido):
-        - plan_id: UUID del PlanEstudio (información del plan no requerida si se usa esto)
-        - plan_year: Año del PlanEstudio
-        - plan_name: Nombre del PlanEstudio/carrera
-        
-        Identificación del Plan (requerido solo si se usa plan_materia_code o plan_materia_name):
-        O bien:
-        - plan_id: UUID del plan de estudio
-        O bien:
-        - plan_year: Año del plan de estudio
-        - plan_name: Nombre del plan de estudio/carrera
-        
+        Obtener todos los cursos que requieren la materia especificada como requisito previo,
+        con información del plan de estudio al que pertenecen.
+
+        Parámetros requeridos:
+        - materia_code: Código de la materia (ej., "1944")
+
         Filtros opcionales:
-        - unidad_tipo: Filtrar por tipo de unidad aprobable (CURSO, EXAMEN, UCB, OTRO)
-        - activo: Filtrar por estado activo (true/false)
+        - unidad_tipo: Filtrar por tipo de unidad dependiente (CURSO, EXAMEN, UCB, OTRO)
+        - activo: Filtrar por estado activo de los planes (true/false)
+
+        La respuesta incluye información detallada de cada curso dependiente:
+        - anio_plan, carrera: Información del plan
+        - tipo: Tipo de unidad (CURSO, EXAMEN, etc.)
+        - materia_codigo, materia_nombre: Información del curso dependiente
         """,
         tags=["posprevias"],
         parameters=[
             OpenApiParameter(
-                name='plan_materia_id',
+                name='materia_code',
                 type=str,
                 location=OpenApiParameter.QUERY,
-                description='UUID de la PlanMateria',
-            ),
-            OpenApiParameter(
-                name='plan_materia_code',
-                type=str,
-                location=OpenApiParameter.QUERY,
-                description='Código de la materia en el plan',
-            ),
-            OpenApiParameter(
-                name='plan_materia_name',
-                type=str,
-                location=OpenApiParameter.QUERY,
-                description='Nombre de la materia en el plan',
-            ),
-            OpenApiParameter(
-                name='plan_id',
-                type=str,
-                location=OpenApiParameter.QUERY,
-                description='UUID del plan de estudio (requerido si se usa plan_materia_code/plan_materia_name sin plan_materia_id)',
-            ),
-            OpenApiParameter(
-                name='plan_year',
-                type=str,
-                location=OpenApiParameter.QUERY,
-                description='Año del plan de estudio (requerido si se usa plan_materia_code/plan_materia_name sin plan_id)',
-            ),
-            OpenApiParameter(
-                name='plan_name',
-                type=str,
-                location=OpenApiParameter.QUERY,
-                description='Nombre del plan de estudio/carrera (requerido si se usa plan_materia_code/plan_materia_name sin plan_id)',
+                description='Código de la materia (requerido)',
+                required=True,
             ),
             OpenApiParameter(
                 name='unidad_tipo',
                 type=str,
                 location=OpenApiParameter.QUERY,
-                description='Filtrar por tipo de unidad aprobable (CURSO, EXAMEN, UCB, OTRO)',
+                description='Filtrar por tipo de unidad dependiente (CURSO, EXAMEN, UCB, OTRO)',
             ),
             OpenApiParameter(
                 name='activo',
                 type=bool,
                 location=OpenApiParameter.QUERY,
-                description='Filtrar por estado activo (true/false)',
+                description='Filtrar por estado activo de los planes (true/false)',
             ),
         ],
     ),
 )
 class PosPreviasViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """
-    Viewset para obtener posprevias (cursos dependientes) para una PlanMateria dada.
-    
-    Dada una PlanMateria (por plan_materia_id, plan_materia_code, o plan_materia_name)
-    y un PlanEstudio (ya sea por plan_id UUID o por plan_name + plan_year),
-    devuelve todas las PlanMaterias que la requieren como requisito previo.
+    Viewset para obtener posprevias (cursos dependientes) para una materia dada.
+
+    Dada una materia (por materia_code), devuelve todos los cursos que requieren
+    esa materia como requisito previo, con información del plan al que pertenecen.
     """
-    serializer_class = PlanEstudioSerializer
+    serializer_class = PosPreviaSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
     ordering_fields = ['fecha_creacion']
-    ordering = ['nombre_carrera', 'anio']
-    
+    ordering = ['plan_estudio__nombre_carrera', 'plan_estudio__anio']
+    pagination_class = None  # Disable pagination for this endpoint
+
     def get_queryset(self):
         """Build queryset based on query parameters."""
-        # First, find the PlanEstudio
-        plan_materia_id = self.request.query_params.get('plan_materia_id')
-        plan_materia_code = self.request.query_params.get('plan_materia_code')
-        plan_materia_name = self.request.query_params.get('plan_materia_name')
-        
-        # Filter by plan: either plan_id OR (plan_name + plan_year) - optional if plan_materia_id is provided
-        plan_id = self.request.query_params.get('plan_id')
-        plan_year = self.request.query_params.get('plan_year')
-        plan_name = self.request.query_params.get('plan_name')
-        
-        # Build PlanMateria filter
-        plan_materia_filter = Q()
-        use_id = False
-        
-        # If plan_materia_id is provided, try to use it first
-        if plan_materia_id:
-            # Check if the ID exists
-            if PlanEstudio.objects.filter(id=plan_materia_id).exists():
-                plan_materia_filter &= Q(id=plan_materia_id)
-                use_id = True
-                # Optionally add plan filter if provided (for validation/extra filtering)
-                if plan_id:
-                    plan_materia_filter &= Q(plan_id=plan_id)
-                elif plan_year and plan_name:
-                    plan_materia_filter &= Q(plan__anio=plan_year, plan__nombre_carrera=plan_name)
-            # If ID doesn't exist but code is provided, fall back to code
-            elif plan_materia_code:
-                # Fall through to code handling below
-                pass
-            else:
-                # ID doesn't exist and no code provided
-                return PlanEstudio.objects.none()
-        
-        # If we didn't use the ID (either it wasn't provided or didn't exist), try code
-        if not use_id and plan_materia_code:
-            # If using code, we need plan info to uniquely identify
-            if plan_id:
-                plan_materia_filter &= Q(plan_id=plan_id, materia__codigo=plan_materia_code)
-            elif plan_year and plan_name:
-                plan_materia_filter &= Q(plan__anio=plan_year, plan__nombre_carrera=plan_name, materia__codigo=plan_materia_code)
-            else:
-                # Plan info is required when using plan_materia_code
-                return PlanEstudio.objects.none()
-        elif plan_materia_name:
-            # If using name, we need plan info to uniquely identify
-            if plan_id:
-                plan_materia_filter &= Q(plan_id=plan_id, materia__nombre__icontains=plan_materia_name)
-            elif plan_year and plan_name:
-                plan_materia_filter &= Q(plan__anio=plan_year, plan__nombre_carrera=plan_name, materia__nombre__icontains=plan_materia_name)
-            else:
-                # Plan info is required when using plan_materia_name
-                return PlanEstudio.objects.none()
-        else:
-            # At least one way to identify the PlanMateria is required
-            return PlanEstudio.objects.none()
-        
-        # Find the PlanMateria(s)
-        source_plan_estudios = PlanEstudio.objects.filter(plan_materia_filter)
-        
-        if not source_plan_estudios.exists():
-            return PlanEstudio.objects.none()
-        
-        # Get the materia(s) from the source PlanEstudio(s)
-        materias = source_plan_estudios.values_list('materia_id', flat=True).distinct()
-        
-        # Optional: Filter by unidad tipo
+        # Get parameters
+        materia_code = self.request.query_params.get('materia_code')
+
+        # Validate required parameters
+        if not materia_code:
+            return PosPreviaItem.objects.none()
+
+        # Find the source materia
+        try:
+            materia = Materia.objects.get(codigo=materia_code)
+        except Materia.DoesNotExist:
+            return PosPreviaItem.objects.none()
+
+        # Find all PosPreviaItem records for this materia
+        queryset = PosPreviaItem.objects.filter(materia=materia).select_related('plan_estudio').prefetch_related('unidades_dependientes__materia')
+
+        # Optional: Filter by unidad_tipo
         unidad_tipo = self.request.query_params.get('unidad_tipo')
-        
-        # Find RequisitoItems that reference unidades from these materias
-        item_filters = Q(
-            tipo=PreviaItem.TipoItem.UNIDAD,
-            unidad_requerida__materia_id__in=materias
-        )
-        
         if unidad_tipo:
-            item_filters &= Q(unidad_requerida__tipo=unidad_tipo)
-        
-        # Get RequisitoItems that match
-        matching_items = PosPreviaItem.objects.filter(item_filters).select_related(
-            'plan_materia_dependiente__plan',
-            'plan_materia_dependiente__materia',
-        ).distinct()
-        
-        # Get PlanMaterias from the PosPreviaItems (these are the posprevias)
-        plan_estudio_ids = matching_items.values_list('plan_materia_dependiente_id', flat=True).distinct()
-        
-        # Exclude the source PlanMaterias themselves
-        source_ids = set(source_plan_estudios.values_list('id', flat=True))
-        
-        queryset = PlanEstudio.objects.select_related('plan', 'materia').filter(
-            id__in=plan_estudio_ids
-        ).exclude(
-            id__in=source_ids
-        ).order_by('plan__nombre_carrera', 'plan__anio', 'materia__codigo')
-        
+            queryset = queryset.filter(unidades_dependientes__tipo=unidad_tipo)
+
         # Optional: Filter by active status
         activo = self.request.query_params.get('activo')
         if activo is not None:
             activo_bool = activo.lower() in ('true', '1', 'yes')
-            queryset = queryset.filter(
-                plan__activo=activo_bool,
-                materia__activo=activo_bool
-            )
-        
-        return queryset
+            queryset = queryset.filter(plan_estudio__activo=activo_bool)
+
+        return queryset.order_by('plan_estudio__nombre_carrera', 'plan_estudio__anio')
+
+    def list(self, request, *args, **kwargs):
+        """Override list to flatten unidades_dependientes into separate entries."""
+        queryset = self.get_queryset()
+
+        # Flatten the data - each unidad_dependiente becomes a separate entry
+        flattened_data = []
+        for posprevia_item in queryset:
+            for unidad in posprevia_item.unidades_dependientes.all():
+                entry = {
+                    'posprevia_item': posprevia_item,
+                    'unidad_dependiente': unidad,
+                    'plan_estudio': posprevia_item.plan_estudio,
+                    'materia_dependiente': unidad.materia,
+                }
+                flattened_data.append(entry)
+
+        # Serialize the flattened data
+        serializer = self.get_serializer(flattened_data, many=True)
+        return Response(serializer.data)
 
