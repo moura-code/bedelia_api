@@ -951,7 +951,18 @@ class Command(BaseCommand):
         node_type = node_data.get('type', 'LEAF')
         title = node_data.get('title', '')
         required_count = node_data.get('required_count', 1)
-        
+
+        # Para LEAF con descripciones como "X aprobación/es entre:", extraer el contador
+        if node_type == 'LEAF' and title:
+            # Buscar patrones como "X aprobación/es entre:" y extraer el número
+            import re
+            match = re.search(r'(\d+)\s+aprobación', title.lower())
+            if match:
+                required_count = int(match.group(1))
+                # Mantener como LEAF pero usar required_count para cantidad_minima
+                if self.verbose:
+                    print(f'       [↗] LEAF con contador: "{title}" -> cantidad_minima={required_count}')
+
         # Mapear tipo
         tipo_map = {
             'ALL': PreviaNodo.Tipo.ALL,
@@ -967,7 +978,7 @@ class Command(BaseCommand):
                 plan_materia=plan_materia if parent_nodo is None else None,
                 tipo=tipo,
                 padre=parent_nodo,
-                cantidad_minima=required_count if tipo == PreviaNodo.Tipo.ANY else None,
+                cantidad_minima=required_count if (tipo == PreviaNodo.Tipo.ANY or tipo == PreviaNodo.Tipo.LEAF) else None,
                 orden=orden,
                 descripcion=title,
                 unidad_tipo=unidad_tipo if parent_nodo is None else ''
@@ -993,7 +1004,7 @@ class Command(BaseCommand):
                     plan_materia=plan_materia if parent_nodo is None else None,
                     tipo=tipo,
                     padre=parent_nodo,
-                    cantidad_minima=required_count if tipo == PreviaNodo.Tipo.ANY else None,
+                    cantidad_minima=required_count if (tipo == PreviaNodo.Tipo.ANY or tipo == PreviaNodo.Tipo.LEAF) else None,
                     orden=orden,
                     descripcion=title,
                     unidad_tipo=unidad_tipo if parent_nodo is None else ''
@@ -1008,7 +1019,7 @@ class Command(BaseCommand):
                 if nodo.orden != orden:
                     nodo.orden = orden
                     updated = True
-                if tipo == PreviaNodo.Tipo.ANY and nodo.cantidad_minima != required_count:
+                if (tipo == PreviaNodo.Tipo.ANY or tipo == PreviaNodo.Tipo.LEAF) and nodo.cantidad_minima != required_count:
                     nodo.cantidad_minima = required_count
                     updated = True
                 if updated:
