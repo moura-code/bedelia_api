@@ -244,7 +244,7 @@ SPECTACULAR_SETTINGS = {
     'COMPONENT_SPLIT_REQUEST': True,
     'SCHEMA_PATH_PREFIX': '/api',
     'SERVERS': [
-        {'url': 'http://localhost:8000', 'description': 'Servidor de desarrollo'},
+        {'url': 'http://bedelia-api.loca.lt', 'description': 'Servidor de desarrollo'},
     ],
     'TAGS': [
         {'name': 'carreras', 'description': 'Programas de grado académico (carreras)'},
