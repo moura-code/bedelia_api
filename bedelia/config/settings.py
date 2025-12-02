@@ -110,7 +110,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # Use SQLite for simplicity (can be committed to GitHub)
 # For production, you can switch to PostgreSQL if needed
-USE_SQLITE = os.environ.get("USE_SQLITE", "True").lower() == "true"
+USE_SQLITE = os.environ.get("USE_SQLITE", "False").lower() == "true"
 
 if USE_SQLITE:
     # SQLite configuration (simple, file-based database)
