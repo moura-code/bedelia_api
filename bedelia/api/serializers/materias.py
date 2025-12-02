@@ -217,7 +217,6 @@ class PreviaNodoSerializer(serializers.ModelSerializer):
     padre_id = serializers.UUIDField(source='padre.id', read_only=True, allow_null=True)
     tipo_display = serializers.CharField(source='get_tipo_display', read_only=True)
     hijos_count = serializers.SerializerMethodField()
-    items_count = serializers.SerializerMethodField()
     
     class Meta:
         model = PreviaNodo
@@ -241,40 +240,46 @@ class PreviaNodoSerializer(serializers.ModelSerializer):
     def get_hijos_count(self, obj: PreviaNodo) -> int:
         """Obtener cantidad de nodos hijos."""
         return obj.hijos.count()
-    
-    @extend_schema_field(serializers.IntegerField())
-    def get_items_count(self, obj: PreviaNodo) -> int:
-        """Obtener cantidad de items (solo para nodos LEAF)."""
-        return obj.items.count() if obj.tipo == PreviaNodo.Tipo.LEAF else 0
-
+ 
 
 class PreviaNodoTreeSerializer(serializers.ModelSerializer):
-    """Serializador recursivo para estructura de árbol de PreviaNodo."""
-    
+    """Serializador recursivo para estructura de árbol de PreviaNodo.
+
+    Unifica hijos e items en un solo campo 'children':
+    - Para nodos LEAF: children contiene los PreviaItem (condiciones)
+    - Para otros nodos: children contiene los sub-nodos PreviaNodo
+    """
+
     plan_materia_id = serializers.UUIDField(source='plan_materia.id', read_only=True, allow_null=True)
+    padre_id = serializers.UUIDField(source='padre.id', read_only=True, allow_null=True)
     tipo_display = serializers.CharField(source='get_tipo_display', read_only=True)
-    hijos = serializers.SerializerMethodField()
-    items = PreviaItemSerializer(many=True, read_only=True)
-    
+    children = serializers.SerializerMethodField()
+
     class Meta:
         model = PreviaNodo
         fields = [
             'id',
             'plan_materia_id',
+            'padre_id',
             'tipo',
             'tipo_display',
             'cantidad_minima',
             'orden',
             'descripcion',
-            'hijos',
-            'items',
+            'children',
             'fecha_creacion',
             'fecha_modificacion',
         ]
         read_only_fields = fields
-    
+
     @extend_schema_field(serializers.ListField(child=serializers.DictField()))
-    def get_hijos(self, obj: PreviaNodo) -> List[Dict[str, Any]]:
-        """Serializar recursivamente nodos hijos."""
-        hijos = obj.hijos_ordenados()
-        return PreviaNodoTreeSerializer(hijos, many=True).data
+    def get_children(self, obj: PreviaNodo) -> List[Dict[str, Any]]:
+        """Serializar recursivamente nodos hijos o items dependiendo del tipo."""
+        if obj.tipo == 'LEAF':
+            # Para nodos LEAF, devolver los items como "children"
+            items = obj.items.all().order_by('orden')
+            return PreviaItemSerializer(items, many=True).data
+        else:
+            # Para otros nodos, devolver los sub-nodos como "children"
+            hijos = obj.hijos_ordenados()
+            return PreviaNodoTreeSerializer(hijos, many=True).data

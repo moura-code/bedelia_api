@@ -266,16 +266,8 @@ class UnidadAprobableViewSet(viewsets.ReadOnlyModelViewSet):
     ),
     retrieve=extend_schema(
         summary="Obtener detalles de un nodo de requisito",
-        description="Obtener información detallada sobre un nodo de requisito específico. Usar el parámetro tree=true para obtener la estructura completa del árbol con hijos e items anidados.",
+        description="Obtener información detallada sobre un nodo de requisito específico. La estructura del árbol se devuelve unificada con el campo 'children' que contiene sub-nodos o items según el tipo.",
         tags=["requisitos"],
-        parameters=[
-            OpenApiParameter(
-                name='tree',
-                type=bool,
-                location=OpenApiParameter.QUERY,
-                description='Devolver estructura de árbol completa con hijos e items anidados (true/false)',
-            ),
-        ],
     ),
 )
 
@@ -480,8 +472,46 @@ class PreviasViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
             padre__isnull=True,  # Only root nodes
             unidad_tipo=unidad_tipo  # Filter by unidad tipo to separate CURSO/EXAMEN requirements
         )
-        
-        return queryset.order_by('plan_materia__plan__anio', 'orden')
+
+        # Step 5: Validate that there's only one root node per plan_materia and unidad_tipo
+        # Due to data loading issues, multiple root nodes may exist for the same plan_materia/unidad_tipo
+        # If multiple exist, prioritize ALL type roots (most complete structure), then by creation date
+        validated_roots = []
+        for plan_materia in plan_materias:
+            roots_for_pm = [node for node in queryset if node.plan_materia_id == plan_materia.id]
+
+            if not roots_for_pm:
+                continue
+
+            if len(roots_for_pm) == 1:
+                # Only one root, use it
+                validated_roots.append(roots_for_pm[0])
+            else:
+                # Multiple roots, prioritize ALL type, then by creation date
+                all_roots = [root for root in roots_for_pm if root.tipo == 'ALL']
+                if all_roots:
+                    # Use the oldest ALL root (most likely the correct one)
+                    validated_roots.append(min(all_roots, key=lambda x: x.fecha_creacion))
+                else:
+                    # No ALL root, use the oldest root
+                    validated_roots.append(min(roots_for_pm, key=lambda x: x.fecha_creacion))
+
+        # Return validated roots as a queryset
+        if validated_roots:
+            root_ids = [root.id for root in validated_roots]
+            queryset = PreviaNodo.objects.select_related(
+                'plan_materia__plan',
+                'plan_materia__materia',
+                'padre'
+            ).prefetch_related(
+                'hijos',
+                'items__unidad_requerida__materia'
+            ).filter(id__in=root_ids)
+        else:
+            # No valid roots found
+            queryset = PreviaNodo.objects.none()
+
+        return queryset
 
 
 @extend_schema_view(

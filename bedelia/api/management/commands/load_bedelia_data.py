@@ -62,7 +62,7 @@ class Command(BaseCommand):
         parser.add_argument(
             '--previas',
             type=str,
-            default='../data/previas_data_backup_.json',
+            default='../data/previas_data_backup.json',
             help='Ruta al archivo previas_data_backup.json'
         )
         parser.add_argument(
@@ -978,6 +978,7 @@ class Command(BaseCommand):
             filters = {
                 'tipo': tipo,
                 'padre': parent_nodo,
+                'orden': orden,  # Incluir orden para distinguir hijos con mismo tipo
             }
             if parent_nodo is None:
                 filters['plan_materia'] = plan_materia
@@ -1049,7 +1050,11 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.ERROR(f'       [X] {error_msg}'))
     
     def _process_requisito_item(self, nodo: PreviaNodo, item_data: Dict, orden: int):
-        """Procesar un item de requisito (LEAF)."""
+        """Procesar un item de requisito (LEAF).
+
+        Si no hay modality explícita pero hay código y texto descriptivo,
+        infiere el tipo basado en indicadores en el texto (examen, curso, ucb, etc.).
+        """
         # Handle both 'modality' (new format) and 'kind' (old format)
         modality = item_data.get('modality', '') or item_data.get('kind', '')
         code = item_data.get('code', '').strip()
@@ -1057,6 +1062,20 @@ class Command(BaseCommand):
         title = title.strip()
         raw = item_data.get('raw', '')
         source = item_data.get('source', 'UCB')
+
+        # If no explicit modality but we have a code and text contains type indicators, infer type
+        if not modality and code and raw:
+            raw_lower = raw.lower()
+            # Check for UCB variations (with and without dots)
+            has_ucb = 'ucb' in raw_lower or 'u.c.b' in raw_lower
+            if 'examen' in raw_lower and has_ucb:
+                modality = 'exam'  # Infer exam type from text
+            elif has_ucb and ('módulo' in raw_lower or 'modulo' in raw_lower):
+                modality = 'ucb_module'  # Infer UCB module type
+            elif 'curso' in raw_lower and has_ucb:
+                modality = 'course'  # Infer course type
+            elif 'inscripción' in raw_lower and 'examen' in raw_lower:
+                modality = 'course_enrollment'  # Infer course enrollment type
         
         # Handle PLAN-based requirements (credits in plan)
         if source == 'PLAN' and modality == 'credits_in_plan':
