@@ -33,7 +33,8 @@ def is_same_course_item(item: dict, exam_code: str, exam_name: str) -> bool:
     This covers:
       - same code (e.g. exam code 1650 and course code 1650)
       - OR a different code but *same name/title* as the exam (e.g. 1610 vs 1650
-        both named "INT. A LA INVESTIGACION DE OPERACIONES").
+        both named "INT. A LA INVESTIGACION DE OPERACIONES")
+      - OR same code and name in title format "CODE - NAME"
 
     Only items with modality "course" or "ucb_module" are treated as "the course".
     """
@@ -51,6 +52,11 @@ def is_same_course_item(item: dict, exam_code: str, exam_name: str) -> bool:
 
     # 2) Different code but same name (for old/new codes equivalents like 1610/1650)
     if normalize_title(item_title) == normalize_title(exam_name):
+        return True
+
+    # 3) Title matches the expected format "CODE - NAME" for this exam
+    expected_title = f"{exam_code} - {exam_name}"
+    if normalize_title(item_title) == normalize_title(expected_title):
         return True
 
     return False
@@ -137,7 +143,7 @@ def main():
         requirements = course.get("requirements")
 
         vigentes_course = vigentes.get(exam_code)
-        if not vigentes_course:
+        if not vigentes_course or "CIM" in exam_code or vigentes_course.get("university_code") == "CENURLN":
             continue
         course['university_code'] = vigentes_course.get("university_code")
         # No requirements at all → definitely can be done without the course
@@ -149,6 +155,7 @@ def main():
             exams_can_without_course.append(course)
         else:
             exams_need_course.append(course)
+   
 
     # ---------------- Output ----------------
     print("======================================================")
@@ -161,7 +168,8 @@ def main():
     print("\n------------------------------------------------------")
     print("Exams that REQUIRE their own course (directly or via equivalent code/name):")
     print("------------------------------------------------------")
- 
+
+
     print("\nSummary:")
     print(f"  Exams without-course allowed : {len(exams_can_without_course)}")
     print(f"  Exams requiring course       : {len(exams_need_course)}")

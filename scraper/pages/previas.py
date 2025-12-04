@@ -60,7 +60,7 @@ class Previas(Scraper, PlanSection):
     def _split_code_name(self, body: str):
         """
         Split "CODE - NAME (possible notes)" into (code, name, notes[])
-        - code: first sequence before ' - '
+        - code: course code (handles faculty codes like "FCS - D84 - NAME")
         - name: rest
         - notes: simple heuristic: final parentheses or suffixes like " (P. 74)" etc.
         """
@@ -69,11 +69,20 @@ class Previas(Scraper, PlanSection):
         title = body
         notes: List[str] = []
 
-        # Detect "CODE - NAME"
-        m = re.match(r"^\s*([A-Za-z0-9]+)\s*-\s*(.+?)\s*$", body)
+        # Handle cases like "FCS - D84 - FORMULACIÓN Y EVALUACIÓN DE PROYECTOS DE INVERSIÓN"
+        # where faculty code is followed by course code
+        m = re.match(r"^\s*([A-Za-z0-9]+)\s*-\s*([A-Za-z0-9]+)\s*-\s*(.+?)\s*$", body)
         if m:
-            code = m.group(1).strip()
-            title = m.group(2).strip()
+            # Faculty code - Course code - Name
+            faculty_code = m.group(1).strip()
+            code = m.group(2).strip()
+            title = m.group(3).strip()
+        else:
+            # Regular case: "CODE - NAME"
+            m = re.match(r"^\s*([A-Za-z0-9]+)\s*-\s*(.+?)\s*$", body)
+            if m:
+                code = m.group(1).strip()
+                title = m.group(2).strip()
 
         # Extract notes in parentheses at the end (e.g. "(P. 74)")
         m2 = re.search(r"\(([^)]{1,80})\)\s*$", title)
