@@ -1,19 +1,24 @@
 {
   "INGENIERÍA CIVIL_2021": {
-    "1267": {
-      "university_code": "FING",
-      "course_code": "1267",
-      "course_name": "TALLER REPR. Y COM. GRAFICA"
+    "SRN03": {
+      "university_code": "CENURLN",
+      "course_code": "SRN03",
+      "course_name": "ALGEBRA LINEAL I"
+    },
+    "SRN02": {
+      "university_code": "CENURLN",
+      "course_code": "SRN02",
+      "course_name": "CÁLCULO I"
+    },
+    "REF04": {
+      "university_code": "CENURLN",
+      "course_code": "REF04",
+      "course_name": "FÍSICA 1"
     },
     "1944": {
       "university_code": "FING",
       "course_code": "1944",
       "course_name": "ADMINISTRACION GENERAL PARA INGENIEROS"
-    },
-    "SRN03": {
-      "university_code": "CENURLN",
-      "course_code": "SRN03",
-      "course_name": "ALGEBRA LINEAL I"
     },
     "SRN10": {
       "university_code": "CENURLN",
@@ -59,11 +64,6 @@
       "university_code": "CURE",
       "course_code": "DMA01",
       "course_name": "CÁLCULO DIFERENCIAL E INTEGRAL EN UNA VARIABLE"
-    },
-    "SRN02": {
-      "university_code": "CENURLN",
-      "course_code": "SRN02",
-      "course_name": "CÁLCULO I"
     },
     "SRN09": {
       "university_code": "CENURLN",
@@ -259,11 +259,6 @@
       "university_code": "CENURLN",
       "course_code": "CIM26",
       "course_name": "FÍSICA TÉRMICA"
-    },
-    "REF04": {
-      "university_code": "CENURLN",
-      "course_code": "REF04",
-      "course_name": "FÍSICA 1"
     },
     "SRN11": {
       "university_code": "CENURLN",
@@ -615,6 +610,11 @@
       "course_code": "1875A",
       "course_name": "TALLER DE TECNICAS DE MEDICION EN HIDROLOGIA E HIDRAULICA"
     },
+    "1267": {
+      "university_code": "FING",
+      "course_code": "1267",
+      "course_name": "TALLER REPR. Y COM. GRAFICA"
+    },
     "2371": {
       "university_code": "FING",
       "course_code": "2371",
@@ -669,18 +669,88 @@
       "university_code": "FING",
       "course_code": "1144",
       "course_name": "VIBRACIONES Y ONDAS"
+    },
+    "2258": {
+      "university_code": "FING",
+      "course_code": "2258",
+      "course_name": "INT. AL SISTEMA CLIMATICO"
+    },
+    "1033": {
+      "university_code": "FING",
+      "course_code": "1033",
+      "course_name": "METODOS NUMERICOS"
+    },
+    "2210": {
+      "university_code": "FING",
+      "course_code": "2210",
+      "course_name": "MODULO TALLER EXTENSION ING.AMBIENTAL 1"
+    },
+    "2211": {
+      "university_code": "FING",
+      "course_code": "2211",
+      "course_name": "MODULO TALLER EXTENSION ING.AMBIENTAL 2"
+    },
+    "RN115": {
+      "university_code": "CUR",
+      "course_code": "RN115",
+      "course_name": "ESTADÍSTICA I 2022"
+    },
+    "2384": {
+      "university_code": "FING",
+      "course_code": "2384",
+      "course_name": "ESTRUCTURAS DE MADERA"
+    },
+    "1227": {
+      "university_code": "FING",
+      "course_code": "1227",
+      "course_name": "INGENIERIA LEGAL"
+    },
+    "1131": {
+      "university_code": "FING",
+      "course_code": "1131",
+      "course_name": "INT. A LA FISICA MODERNA"
     }
   },
   "INGENIERÍA DE ALIMENTOS_2003": {
-    "744": {
-      "university_code": "FQ",
-      "course_code": "744",
-      "course_name": "AGROQUÍMICOS II"
-    },
     "SRN03": {
       "university_code": "CENURLN",
       "course_code": "SRN03",
       "course_name": "ALGEBRA LINEAL I"
+    },
+    "SRN02": {
+      "university_code": "CENURLN",
+      "course_code": "SRN02",
+      "course_name": "CÁLCULO I"
+    },
+    "SRN13": {
+      "university_code": "CENURLN",
+      "course_code": "SRN13",
+      "course_name": "ECONOMÍA POLÍTICA"
+    },
+    "REF04": {
+      "university_code": "CENURLN",
+      "course_code": "REF04",
+      "course_name": "FÍSICA 1"
+    },
+    "SRN08": {
+      "university_code": "CENURLN",
+      "course_code": "SRN08",
+      "course_name": "PREVENCIÓN DE RIESGOS EN LABORATORIO"
+    },
+    "SRN05": {
+      "university_code": "CENURLN",
+      "course_code": "SRN05",
+      "course_name": "QUÍMICA GENERAL I (F.QUÍMICA)"
+    },
+    "SRN06": {
+      "university_code": "CENURLN",
+      "course_code": "SRN06",
+      "course_name": "TALLER DE DISEÑO"
+    },
+    "744": {
+      "university_code": "FQ",
+      "course_code": "744",
+      "course_name": "AGROQUÍMICOS II"
     },
     "SRN10": {
       "university_code": "CENURLN",
@@ -747,11 +817,6 @@
       "course_code": "1063",
       "course_name": "CALCULO VECTORIAL"
     },
-    "SRN02": {
-      "university_code": "CENURLN",
-      "course_code": "SRN02",
-      "course_name": "CÁLCULO I"
-    },
     "SRN09": {
       "university_code": "CENURLN",
       "course_code": "SRN09",
@@ -801,11 +866,6 @@
       "university_code": "FING",
       "course_code": "1224",
       "course_name": "ECONOMIA"
-    },
-    "SRN13": {
-      "university_code": "CENURLN",
-      "course_code": "SRN13",
-      "course_name": "ECONOMÍA POLÍTICA"
     },
     "2108": {
       "university_code": "FING",
@@ -897,10 +957,25 @@
       "course_code": "562",
       "course_name": "FÍSICA DEL ESTADO SÓLIDO"
     },
-    "REF04": {
+    "CIM18": {
       "university_code": "CENURLN",
-      "course_code": "REF04",
-      "course_name": "FÍSICA 1"
+      "course_code": "CIM18",
+      "course_name": "FÍSICA EXPERIMENTAL 1 (FE1)"
+    },
+    "CIM29": {
+      "university_code": "CENURLN",
+      "course_code": "CIM29",
+      "course_name": "FÍSICA EXPERIMENTAL 2 (FE2)"
+    },
+    "CCT10": {
+      "university_code": "CURE",
+      "course_code": "CCT10",
+      "course_name": "FÍSICA I"
+    },
+    "CCT20": {
+      "university_code": "CURE",
+      "course_code": "CCT20",
+      "course_name": "FÍSICA II"
     },
     "205": {
       "university_code": "FQ",
@@ -921,6 +996,11 @@
       "university_code": "CENURLN",
       "course_code": "SRN11",
       "course_name": "FÍSICA 2"
+    },
+    "SRN26": {
+      "university_code": "CENURLN",
+      "course_code": "SRN26",
+      "course_name": "FÍSICA 3"
     },
     "Q66B": {
       "university_code": "FING",
@@ -1152,11 +1232,6 @@
       "course_code": "104A",
       "course_name": "PREVENCIÓN DE RIESGOS EN EL LABORATORIO"
     },
-    "SRN08": {
-      "university_code": "CENURLN",
-      "course_code": "SRN08",
-      "course_name": "PREVENCIÓN DE RIESGOS EN LABORATORIO"
-    },
     "1025": {
       "university_code": "FING",
       "course_code": "1025",
@@ -1211,11 +1286,6 @@
       "university_code": "FQ",
       "course_code": "102",
       "course_name": "QUÍMICA GENERAL I"
-    },
-    "SRN05": {
-      "university_code": "CENURLN",
-      "course_code": "SRN05",
-      "course_name": "QUÍMICA GENERAL I (F.QUÍMICA)"
     },
     "202": {
       "university_code": "FQ",
@@ -1282,11 +1352,6 @@
       "course_code": "2107A",
       "course_name": "TALLER DE COMUNICACIÓN ORAL Y ESCRITA"
     },
-    "SRN06": {
-      "university_code": "CENURLN",
-      "course_code": "SRN06",
-      "course_name": "TALLER DE DISEÑO"
-    },
     "2105A": {
       "university_code": "FVET",
       "course_code": "2105A",
@@ -1327,22 +1392,207 @@
       "course_code": "974",
       "course_name": "TOXICOLOGÍA AMBIENTAL Y GEOLOGÍA MÉDICA"
     },
-    "Q74": {
-      "university_code": "FING",
-      "course_code": "Q74",
-      "course_name": "TRANSFERENCIA DE CALOR Y MASA 1"
-    },
     "Q68": {
       "university_code": "FING",
       "course_code": "Q68",
       "course_name": "TRANSFERENCIA DE CALOR Y MASA 2"
+    },
+    "522A": {
+      "university_code": "FQ",
+      "course_code": "522A",
+      "course_name": "APLICACIONES DE MICROBIOLOGÍA MOLECULAR"
+    },
+    "1872": {
+      "university_code": "FING",
+      "course_code": "1872",
+      "course_name": "APLICACIONES DEL ALGEBRA LINEAL"
+    },
+    "MHC19": {
+      "university_code": "FCIEN",
+      "course_code": "MHC19",
+      "course_name": "BIOINGENIERÍA MOLECULAR Y CELULAR"
+    },
+    "MHC17": {
+      "university_code": "FCIEN",
+      "course_code": "MHC17",
+      "course_name": "BIOLOGÍA MOLECULAR (2020-"
+    },
+    "709": {
+      "university_code": "FQ",
+      "course_code": "709",
+      "course_name": "BROMATOLOGÍA Y NUTRICIÓN (PLAN 2000)"
+    },
+    "105": {
+      "university_code": "FQ",
+      "course_code": "105",
+      "course_name": "BUENAS PRÁCTICAS Y GESTIÓN INTEGRAL"
+    },
+    "521": {
+      "university_code": "FQ",
+      "course_code": "521",
+      "course_name": "ELECTROQUÍMICA (PLAN 2000)"
+    },
+    "406": {
+      "university_code": "FQ",
+      "course_code": "406",
+      "course_name": "FISICOQUÍMICA I (PLAN 2000)"
+    },
+    "508": {
+      "university_code": "FQ",
+      "course_code": "508",
+      "course_name": "FISICOQUÍMICA II (PLAN 2000)"
+    },
+    "520": {
+      "university_code": "FQ",
+      "course_code": "520",
+      "course_name": "FISICOQUÍMICA III (PLAN 2000)"
+    },
+    "MHC20": {
+      "university_code": "FCIEN",
+      "course_code": "MHC20",
+      "course_name": "GENÓMICA (2021-2024)"
+    },
+    "17036": {
+      "university_code": "FAGRO",
+      "course_code": "17036",
+      "course_name": "INDUSTRIAS LACTEAS 5º"
+    },
+    "618A": {
+      "university_code": "FQ",
+      "course_code": "618A",
+      "course_name": "INTRODUCCIÓN A LOS SISTEMAS DE GESTIÓN (DESDE 2016)"
+    },
+    "05A": {
+      "university_code": "FQ",
+      "course_code": "05A",
+      "course_name": "MAT. 05 (ESTADÍSTICA) (DESDE 2015"
+    },
+    "533": {
+      "university_code": "FQ",
+      "course_code": "533",
+      "course_name": "MICROBIOLOGÍA GENERAL"
+    },
+    "405": {
+      "university_code": "FQ",
+      "course_code": "405",
+      "course_name": "QCA. ANALÍTICA P/ING.ALIMENTOS"
+    },
+    "Q74B": {
+      "university_code": "FING",
+      "course_code": "Q74B",
+      "course_name": "TRANSFERENCIA DE CALOR Y MASA 1"
+    },
+    "A91": {
+      "university_code": "FING",
+      "course_code": "A91",
+      "course_name": "ANALISIS DE ALIMENTOS"
+    },
+    "17035": {
+      "university_code": "FAGRO",
+      "course_code": "17035",
+      "course_name": "ENOLOGIA 5º"
+    },
+    "Q22": {
+      "university_code": "FING",
+      "course_code": "Q22",
+      "course_name": "FENOMENOS DE TRANSPORTE EN ING. DE PROCESOS"
+    },
+    "Q22B": {
+      "university_code": "FING",
+      "course_code": "Q22B",
+      "course_name": "FENOMENOS DE TRANSPORTE EN INGENIERIA DE PROCESOS"
+    },
+    "403": {
+      "university_code": "FQ",
+      "course_code": "403",
+      "course_name": "FISICOQUÍMICA GENERAL I (PLAN 2000)"
+    },
+    "504": {
+      "university_code": "FQ",
+      "course_code": "504",
+      "course_name": "FISICOQUÍMICA GENERAL II (PLAN 2000)"
+    },
+    "Q66": {
+      "university_code": "FING",
+      "course_code": "Q66",
+      "course_name": "FLUIDODINAMICA"
+    },
+    "Q81": {
+      "university_code": "FING",
+      "course_code": "Q81",
+      "course_name": "INGENIERIA BIOQUIMICA"
+    },
+    "307": {
+      "university_code": "FQ",
+      "course_code": "307",
+      "course_name": "MATEMÁTICA 005 (EC. DIFERENCIALES)"
+    },
+    "101": {
+      "university_code": "FQ",
+      "course_code": "101",
+      "course_name": "MATEMÁTICA 101 (ANÁLISIS I)"
+    },
+    "106": {
+      "university_code": "FQ",
+      "course_code": "106",
+      "course_name": "MATEMÁTICA 102 (ÁLGEBRA)"
+    },
+    "208": {
+      "university_code": "FQ",
+      "course_code": "208",
+      "course_name": "MATEMÁTICA 104 (ANÁLISIS II)"
+    },
+    "309": {
+      "university_code": "FQ",
+      "course_code": "309",
+      "course_name": "MATEMÁTICA 105 (EC. DIFERENCIALES)"
+    },
+    "306": {
+      "university_code": "FQ",
+      "course_code": "306",
+      "course_name": "MATEMÁTICA 106 (ESTADÍSTICA)"
+    },
+    "407": {
+      "university_code": "FQ",
+      "course_code": "407",
+      "course_name": "MATEMÁTICA 107 (CÁLCULO NUM. Y COMP.)"
+    },
+    "209": {
+      "university_code": "FQ",
+      "course_code": "209",
+      "course_name": "MATEMÁTICA 108 (ÁLGEBRA Y ANÁLISIS II)"
+    },
+    "697": {
+      "university_code": "FQ",
+      "course_code": "697",
+      "course_name": "PREP. DE MUESTRAS PARA ANÁLISIS QUÍMICO"
+    },
+    "A90": {
+      "university_code": "FING",
+      "course_code": "A90",
+      "course_name": "QUIMICA DE ALIMENTOS"
+    },
+    "Q74": {
+      "university_code": "FING",
+      "course_code": "Q74",
+      "course_name": "TRANSFERENCIA DE CALOR Y MASA 1"
     }
   },
   "INGENIERÍA DE PRODUCCIÓN_2010": {
-    "1269": {
-      "university_code": "FING",
-      "course_code": "1269",
-      "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO B"
+    "SRN03": {
+      "university_code": "CENURLN",
+      "course_code": "SRN03",
+      "course_name": "ALGEBRA LINEAL I"
+    },
+    "SRN02": {
+      "university_code": "CENURLN",
+      "course_code": "SRN02",
+      "course_name": "CÁLCULO I"
+    },
+    "REF04": {
+      "university_code": "CENURLN",
+      "course_code": "REF04",
+      "course_name": "FÍSICA 1"
     },
     "1915": {
       "university_code": "FING",
@@ -1353,11 +1603,6 @@
       "university_code": "FING",
       "course_code": "1944",
       "course_name": "ADMINISTRACION GENERAL PARA INGENIEROS"
-    },
-    "SRN03": {
-      "university_code": "CENURLN",
-      "course_code": "SRN03",
-      "course_name": "ALGEBRA LINEAL I"
     },
     "SRN10": {
       "university_code": "CENURLN",
@@ -1398,11 +1643,6 @@
       "university_code": "CURE",
       "course_code": "DMA01",
       "course_name": "CÁLCULO DIFERENCIAL E INTEGRAL EN UNA VARIABLE"
-    },
-    "SRN02": {
-      "university_code": "CENURLN",
-      "course_code": "SRN02",
-      "course_name": "CÁLCULO I"
     },
     "SRN09": {
       "university_code": "CENURLN",
@@ -1568,11 +1808,6 @@
       "university_code": "CENURLN",
       "course_code": "CIM26",
       "course_name": "FÍSICA TÉRMICA"
-    },
-    "REF04": {
-      "university_code": "CENURLN",
-      "course_code": "REF04",
-      "course_name": "FÍSICA 1"
     },
     "SRN11": {
       "university_code": "CENURLN",
@@ -1859,6 +2094,11 @@
       "course_code": "1266",
       "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO A"
     },
+    "1269": {
+      "university_code": "FING",
+      "course_code": "1269",
+      "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO B"
+    },
     "2033": {
       "university_code": "FING",
       "course_code": "2033",
@@ -1884,27 +2124,102 @@
       "course_code": "2038",
       "course_name": "TIEMPOS Y METODOS"
     },
-    "Q74": {
-      "university_code": "FING",
-      "course_code": "Q74",
-      "course_name": "TRANSFERENCIA DE CALOR Y MASA 1"
-    },
     "5005": {
       "university_code": "FING",
       "course_code": "5005",
       "course_name": "TUTORIAS ENTRE PARES ACADEMICAS PROGRESA/FING"
+    },
+    "1872": {
+      "university_code": "FING",
+      "course_code": "1872",
+      "course_name": "APLICACIONES DEL ALGEBRA LINEAL"
+    },
+    "2401": {
+      "university_code": "FING",
+      "course_code": "2401",
+      "course_name": "LEGISLACION Y RELACIONES INDUSTRIALES"
+    },
+    "CIM11": {
+      "university_code": "CENURLN",
+      "course_code": "CIM11",
+      "course_name": "MATEMÁTICA DISCRETA 2- CIM-CIOCT"
+    },
+    "1033": {
+      "university_code": "FING",
+      "course_code": "1033",
+      "course_name": "METODOS NUMERICOS"
+    },
+    "Q74B": {
+      "university_code": "FING",
+      "course_code": "Q74B",
+      "course_name": "TRANSFERENCIA DE CALOR Y MASA 1"
+    },
+    "RN115": {
+      "university_code": "CUR",
+      "course_code": "RN115",
+      "course_name": "ESTADÍSTICA I 2022"
+    },
+    "Q22": {
+      "university_code": "FING",
+      "course_code": "Q22",
+      "course_name": "FENOMENOS DE TRANSPORTE EN ING. DE PROCESOS"
+    },
+    "Q22B": {
+      "university_code": "FING",
+      "course_code": "Q22B",
+      "course_name": "FENOMENOS DE TRANSPORTE EN INGENIERIA DE PROCESOS"
+    },
+    "Q66": {
+      "university_code": "FING",
+      "course_code": "Q66",
+      "course_name": "FLUIDODINAMICA"
+    },
+    "1927": {
+      "university_code": "FING",
+      "course_code": "1927",
+      "course_name": "TEORIA DE RESTRICCIONES"
+    },
+    "Q74": {
+      "university_code": "FING",
+      "course_code": "Q74",
+      "course_name": "TRANSFERENCIA DE CALOR Y MASA 1"
     }
   },
   "INGENIERÍA ELÉCTRICA_2023": {
-    "1944": {
-      "university_code": "FING",
-      "course_code": "1944",
-      "course_name": "ADMINISTRACION GENERAL PARA INGENIEROS"
-    },
     "SRN03": {
       "university_code": "CENURLN",
       "course_code": "SRN03",
       "course_name": "ALGEBRA LINEAL I"
+    },
+    "SRN02": {
+      "university_code": "CENURLN",
+      "course_code": "SRN02",
+      "course_name": "CÁLCULO I"
+    },
+    "REF04": {
+      "university_code": "CENURLN",
+      "course_code": "REF04",
+      "course_name": "FÍSICA 1"
+    },
+    "SRN47": {
+      "university_code": "CENURLN",
+      "course_code": "SRN47",
+      "course_name": "PRINCIPIOS DE QUÍMICA GENERAL"
+    },
+    "SRN06": {
+      "university_code": "CENURLN",
+      "course_code": "SRN06",
+      "course_name": "TALLER DE DISEÑO"
+    },
+    "SRN30": {
+      "university_code": "CENURLN",
+      "course_code": "SRN30",
+      "course_name": "TALLER DE ROBÓTICA-CIO CT- INGBIOL"
+    },
+    "1944": {
+      "university_code": "FING",
+      "course_code": "1944",
+      "course_name": "ADMINISTRACION GENERAL PARA INGENIEROS"
     },
     "SRN10": {
       "university_code": "CENURLN",
@@ -1955,11 +2270,6 @@
       "university_code": "CURE",
       "course_code": "DMA01",
       "course_name": "CÁLCULO DIFERENCIAL E INTEGRAL EN UNA VARIABLE"
-    },
-    "SRN02": {
-      "university_code": "CENURLN",
-      "course_code": "SRN02",
-      "course_name": "CÁLCULO I"
     },
     "SRN09": {
       "university_code": "CENURLN",
@@ -2195,11 +2505,6 @@
       "university_code": "CENURLN",
       "course_code": "CIM26",
       "course_name": "FÍSICA TÉRMICA"
-    },
-    "REF04": {
-      "university_code": "CENURLN",
-      "course_code": "REF04",
-      "course_name": "FÍSICA 1"
     },
     "SRN11": {
       "university_code": "CENURLN",
@@ -2446,11 +2751,6 @@
       "course_code": "1620",
       "course_name": "PRINCIPIOS DE QUIMICA GENERAL"
     },
-    "SRN47": {
-      "university_code": "CENURLN",
-      "course_code": "SRN47",
-      "course_name": "PRINCIPIOS DE QUÍMICA GENERAL"
-    },
     "1025": {
       "university_code": "FING",
       "course_code": "1025",
@@ -2621,11 +2921,6 @@
       "course_code": "5720",
       "course_name": "TALLER DE APRENDIZAJE AUTOMATICO"
     },
-    "SRN06": {
-      "university_code": "CENURLN",
-      "course_code": "SRN06",
-      "course_name": "TALLER DE DISEÑO"
-    },
     "TTR13": {
       "university_code": "CURE",
       "course_code": "TTR13",
@@ -2655,11 +2950,6 @@
       "university_code": "FING",
       "course_code": "1266",
       "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO A"
-    },
-    "SRN30": {
-      "university_code": "CENURLN",
-      "course_code": "SRN30",
-      "course_name": "TALLER DE ROBÓTICA-CIO CT- INGBIOL"
     },
     "1459": {
       "university_code": "FING",
@@ -2740,13 +3030,98 @@
       "university_code": "FING",
       "course_code": "5865",
       "course_name": "VISION POR COMPUTADORA"
+    },
+    "1872": {
+      "university_code": "FING",
+      "course_code": "1872",
+      "course_name": "APLICACIONES DEL ALGEBRA LINEAL"
+    },
+    "BG827": {
+      "university_code": "FCIEN",
+      "course_code": "BG827",
+      "course_name": "BIOFÍSICA (2020-"
+    },
+    "RN102": {
+      "university_code": "CUR",
+      "course_code": "RN102",
+      "course_name": "EVALUACIÓN DE RECURSOS NATURALES"
+    },
+    "2401": {
+      "university_code": "FING",
+      "course_code": "2401",
+      "course_name": "LEGISLACION Y RELACIONES INDUSTRIALES"
+    },
+    "1033": {
+      "university_code": "FING",
+      "course_code": "1033",
+      "course_name": "METODOS NUMERICOS"
+    },
+    "RN04": {
+      "university_code": "CUR",
+      "course_code": "RN04",
+      "course_name": "CONCEPTOS DE ECONOMIA Y DESARROLLO LOCAL"
+    },
+    "1512": {
+      "university_code": "FING",
+      "course_code": "1512",
+      "course_name": "DISEÑO LOGICO"
+    },
+    "RN115": {
+      "university_code": "CUR",
+      "course_code": "RN115",
+      "course_name": "ESTADÍSTICA I 2022"
+    },
+    "LIB36": {
+      "university_code": "CENURLN",
+      "course_code": "LIB36",
+      "course_name": "INFORMÁTICA EN BIOLOGÍA Y MEDICINA"
+    },
+    "1131": {
+      "university_code": "FING",
+      "course_code": "1131",
+      "course_name": "INT. A LA FISICA MODERNA"
+    },
+    "1159": {
+      "university_code": "FING",
+      "course_code": "1159",
+      "course_name": "INT. A LA FISICA MODERNA"
+    },
+    "PQIF": {
+      "university_code": "CUT",
+      "course_code": "PQIF",
+      "course_name": "PRINCIPIOS DE QUÍMICA PARA ING. FORESTAL"
+    },
+    "5833": {
+      "university_code": "FING",
+      "course_code": "5833",
+      "course_name": "REDES DE ACCESO"
     }
   },
   "INGENIERÍA EN AGRIMENSURA_2023": {
-    "1269": {
-      "university_code": "FING",
-      "course_code": "1269",
-      "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO B"
+    "SRN03": {
+      "university_code": "CENURLN",
+      "course_code": "SRN03",
+      "course_name": "ALGEBRA LINEAL I"
+    },
+    "SRN02": {
+      "university_code": "CENURLN",
+      "course_code": "SRN02",
+      "course_name": "CÁLCULO I"
+    },
+    "SRN13": {
+      "university_code": "CENURLN",
+      "course_code": "SRN13",
+      "course_name": "ECONOMÍA POLÍTICA"
+    },
+    "REF04": {
+      "university_code": "CENURLN",
+      "course_code": "REF04",
+      "course_name": "FÍSICA 1"
+    },
+    "SRN06": {
+      "university_code": "CENURLN",
+      "course_code": "SRN06",
+      "course_name": "TALLER DE DISEÑO"
     },
     "1910": {
       "university_code": "FING",
@@ -2762,11 +3137,6 @@
       "university_code": "FING",
       "course_code": "1817",
       "course_name": "AGRIMENSURA LEGAL 3"
-    },
-    "SRN03": {
-      "university_code": "CENURLN",
-      "course_code": "SRN03",
-      "course_name": "ALGEBRA LINEAL I"
     },
     "SRN10": {
       "university_code": "CENURLN",
@@ -2807,11 +3177,6 @@
       "university_code": "CURE",
       "course_code": "DMA01",
       "course_name": "CÁLCULO DIFERENCIAL E INTEGRAL EN UNA VARIABLE"
-    },
-    "SRN02": {
-      "university_code": "CENURLN",
-      "course_code": "SRN02",
-      "course_name": "CÁLCULO I"
     },
     "SRN09": {
       "university_code": "CENURLN",
@@ -2857,11 +3222,6 @@
       "university_code": "FING",
       "course_code": "1224",
       "course_name": "ECONOMIA"
-    },
-    "SRN13": {
-      "university_code": "CENURLN",
-      "course_code": "SRN13",
-      "course_name": "ECONOMÍA POLÍTICA"
     },
     "CIM24": {
       "university_code": "CENURLN",
@@ -2922,11 +3282,6 @@
       "university_code": "CURE",
       "course_code": "CCT20",
       "course_name": "FÍSICA II"
-    },
-    "REF04": {
-      "university_code": "CENURLN",
-      "course_code": "REF04",
-      "course_name": "FÍSICA 1"
     },
     "SRN11": {
       "university_code": "CENURLN",
@@ -3053,15 +3408,15 @@
       "course_code": "TSIG",
       "course_name": "TALLER DE DATOS ESPACIALES Y SISTEMAS DE INFORMACIÓN GEOGRÁFICA"
     },
-    "SRN06": {
-      "university_code": "CENURLN",
-      "course_code": "SRN06",
-      "course_name": "TALLER DE DISEÑO"
-    },
     "1266": {
       "university_code": "FING",
       "course_code": "1266",
       "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO A"
+    },
+    "1269": {
+      "university_code": "FING",
+      "course_code": "1269",
+      "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO B"
     },
     "TIIO": {
       "university_code": "CUT",
@@ -3082,9 +3437,39 @@
       "university_code": "FING",
       "course_code": "1465",
       "course_name": "TOPOGRAFIA PLANIMETRICA"
+    },
+    "RN115": {
+      "university_code": "CUR",
+      "course_code": "RN115",
+      "course_name": "ESTADÍSTICA I 2022"
+    },
+    "RN101": {
+      "university_code": "CUR",
+      "course_code": "RN101",
+      "course_name": "EVALUACIÓN DE IMPACTO AMBIENTAL"
+    },
+    "1222": {
+      "university_code": "FING",
+      "course_code": "1222",
+      "course_name": "INT. AL DERECHO"
     }
   },
   "INGENIERÍA EN COMPUTACIÓN_1997": {
+    "SRN03": {
+      "university_code": "CENURLN",
+      "course_code": "SRN03",
+      "course_name": "ALGEBRA LINEAL I"
+    },
+    "SRN02": {
+      "university_code": "CENURLN",
+      "course_code": "SRN02",
+      "course_name": "CÁLCULO I"
+    },
+    "SRN13": {
+      "university_code": "CENURLN",
+      "course_code": "SRN13",
+      "course_name": "ECONOMÍA POLÍTICA"
+    },
     "REF06": {
       "university_code": "CENURLN",
       "course_code": "REF06",
@@ -3095,6 +3480,16 @@
       "course_code": "REF05",
       "course_name": "FÍSICA IA- LDI.CIOCT"
     },
+    "REF04": {
+      "university_code": "CENURLN",
+      "course_code": "REF04",
+      "course_name": "FÍSICA 1"
+    },
+    "SRN30": {
+      "university_code": "CENURLN",
+      "course_code": "SRN30",
+      "course_name": "TALLER DE ROBÓTICA-CIO CT- INGBIOL"
+    },
     "1944": {
       "university_code": "FING",
       "course_code": "1944",
@@ -3104,11 +3499,6 @@
       "university_code": "FING",
       "course_code": "1918",
       "course_name": "ADMINISTRACION Y SEGURIDAD DE SISTEMAS"
-    },
-    "SRN03": {
-      "university_code": "CENURLN",
-      "course_code": "SRN03",
-      "course_name": "ALGEBRA LINEAL I"
     },
     "SRN10": {
       "university_code": "CENURLN",
@@ -3188,11 +3578,6 @@
     "MC10": {
       "university_code": "FCEA",
       "course_code": "MC10",
-      "course_name": "CÁLCULO I"
-    },
-    "SRN02": {
-      "university_code": "CENURLN",
-      "course_code": "SRN02",
       "course_name": "CÁLCULO I"
     },
     "SRN09": {
@@ -3295,11 +3680,6 @@
       "course_code": "1224",
       "course_name": "ECONOMIA"
     },
-    "SRN13": {
-      "university_code": "CENURLN",
-      "course_code": "SRN13",
-      "course_name": "ECONOMÍA POLÍTICA"
-    },
     "CIM24": {
       "university_code": "CENURLN",
       "course_code": "CIM24",
@@ -3374,11 +3754,6 @@
       "university_code": "CURE",
       "course_code": "CCT20",
       "course_name": "FÍSICA II"
-    },
-    "REF04": {
-      "university_code": "CENURLN",
-      "course_code": "REF04",
-      "course_name": "FÍSICA 1"
     },
     "SRN11": {
       "university_code": "CENURLN",
@@ -3885,11 +4260,6 @@
       "course_code": "1327",
       "course_name": "TALLER DE PROGRAMACION"
     },
-    "SRN30": {
-      "university_code": "CENURLN",
-      "course_code": "SRN30",
-      "course_name": "TALLER DE ROBÓTICA-CIO CT- INGBIOL"
-    },
     "1891": {
       "university_code": "FING",
       "course_code": "1891",
@@ -3979,6 +4349,91 @@
       "university_code": "FING",
       "course_code": "5005",
       "course_name": "TUTORIAS ENTRE PARES ACADEMICAS PROGRESA/FING"
+    },
+    "1872": {
+      "university_code": "FING",
+      "course_code": "1872",
+      "course_name": "APLICACIONES DEL ALGEBRA LINEAL"
+    },
+    "1443": {
+      "university_code": "FING",
+      "course_code": "1443",
+      "course_name": "ARQUITECTURA DE COMPUTADORAS"
+    },
+    "1454": {
+      "university_code": "FING",
+      "course_code": "1454",
+      "course_name": "ASPECTOS BASICOS DE REDES DE COMPUT"
+    },
+    "MHC39": {
+      "university_code": "FCIEN",
+      "course_code": "MHC39",
+      "course_name": "BIOQUÍMICA I (2025-"
+    },
+    "MHC16": {
+      "university_code": "FCIEN",
+      "course_code": "MHC16",
+      "course_name": "BIOQUÍMICA 1 (2020-2024)"
+    },
+    "1453": {
+      "university_code": "FING",
+      "course_code": "1453",
+      "course_name": "COMPL.ARQUITECTURA DE COMPUTADORAS"
+    },
+    "MHC20": {
+      "university_code": "FCIEN",
+      "course_code": "MHC20",
+      "course_name": "GENÓMICA (2021-2024)"
+    },
+    "2401": {
+      "university_code": "FING",
+      "course_code": "2401",
+      "course_name": "LEGISLACION Y RELACIONES INDUSTRIALES"
+    },
+    "CIM11": {
+      "university_code": "CENURLN",
+      "course_code": "CIM11",
+      "course_name": "MATEMÁTICA DISCRETA 2- CIM-CIOCT"
+    },
+    "1033": {
+      "university_code": "FING",
+      "course_code": "1033",
+      "course_name": "METODOS NUMERICOS"
+    },
+    "AT021": {
+      "university_code": "FADU",
+      "course_code": "AT021",
+      "course_name": "PRODUCCIÓN AUDIOVISUAL INTERACTIVA II"
+    },
+    "AT023": {
+      "university_code": "FADU",
+      "course_code": "AT023",
+      "course_name": "PRODUCCIÓN GRÁFICA 3D II"
+    },
+    "CIM22": {
+      "university_code": "CENURLN",
+      "course_code": "CIM22",
+      "course_name": "TOPOLOGÍA"
+    },
+    "RN115": {
+      "university_code": "CUR",
+      "course_code": "RN115",
+      "course_name": "ESTADÍSTICA I 2022"
+    },
+    "1131": {
+      "university_code": "FING",
+      "course_code": "1131",
+      "course_name": "INT. A LA FISICA MODERNA"
+    },
+    "1159": {
+      "university_code": "FING",
+      "course_code": "1159",
+      "course_name": "INT. A LA FISICA MODERNA"
+    },
+    "1716": {
+      "university_code": "FING",
+      "course_code": "1716",
+      "course_name": "INT. A LA INGENIERIA DE SOFTWARE"
     }
   },
   "INGENIERÍA EN COMPUTACIÓN REVÁLIDA_1987": {
@@ -4101,9 +4556,29 @@
       "university_code": "FING",
       "course_code": "1325",
       "course_name": "TEORIA DE LENGUAJES"
+    },
+    "1033": {
+      "university_code": "FING",
+      "course_code": "1033",
+      "course_name": "METODOS NUMERICOS"
     }
   },
   "INGENIERÍA EN SISTEMAS DE COMUNICACIÓN_2018": {
+    "SRN03": {
+      "university_code": "CENURLN",
+      "course_code": "SRN03",
+      "course_name": "ALGEBRA LINEAL I"
+    },
+    "SRN02": {
+      "university_code": "CENURLN",
+      "course_code": "SRN02",
+      "course_name": "CÁLCULO I"
+    },
+    "REF04": {
+      "university_code": "CENURLN",
+      "course_code": "REF04",
+      "course_name": "FÍSICA 1"
+    },
     "1944": {
       "university_code": "FING",
       "course_code": "1944",
@@ -4113,11 +4588,6 @@
       "university_code": "FCEA",
       "course_code": "A10",
       "course_name": "ADMINISTRACIÓN Y GESTIÓN DE LAS ORGANIZACIONES I"
-    },
-    "SRN03": {
-      "university_code": "CENURLN",
-      "course_code": "SRN03",
-      "course_name": "ALGEBRA LINEAL I"
     },
     "SRN10": {
       "university_code": "CENURLN",
@@ -4158,11 +4628,6 @@
       "university_code": "CURE",
       "course_code": "DMA01",
       "course_name": "CÁLCULO DIFERENCIAL E INTEGRAL EN UNA VARIABLE"
-    },
-    "SRN02": {
-      "university_code": "CENURLN",
-      "course_code": "SRN02",
-      "course_name": "CÁLCULO I"
     },
     "SRN09": {
       "university_code": "CENURLN",
@@ -4348,11 +4813,6 @@
       "university_code": "CENURLN",
       "course_code": "CIM26",
       "course_name": "FÍSICA TÉRMICA"
-    },
-    "REF04": {
-      "university_code": "CENURLN",
-      "course_code": "REF04",
-      "course_name": "FÍSICA 1"
     },
     "SRN11": {
       "university_code": "CENURLN",
@@ -4738,13 +5198,88 @@
       "university_code": "FING",
       "course_code": "5865",
       "course_name": "VISION POR COMPUTADORA"
+    },
+    "1872": {
+      "university_code": "FING",
+      "course_code": "1872",
+      "course_name": "APLICACIONES DEL ALGEBRA LINEAL"
+    },
+    "2401": {
+      "university_code": "FING",
+      "course_code": "2401",
+      "course_name": "LEGISLACION Y RELACIONES INDUSTRIALES"
+    },
+    "1033": {
+      "university_code": "FING",
+      "course_code": "1033",
+      "course_name": "METODOS NUMERICOS"
+    },
+    "5851": {
+      "university_code": "FING",
+      "course_code": "5851",
+      "course_name": "TECNOLOGIA DE SERVICIOS AUDIOVISUALES"
+    },
+    "1512": {
+      "university_code": "FING",
+      "course_code": "1512",
+      "course_name": "DISEÑO LOGICO"
+    },
+    "RN115": {
+      "university_code": "CUR",
+      "course_code": "RN115",
+      "course_name": "ESTADÍSTICA I 2022"
+    },
+    "5833": {
+      "university_code": "FING",
+      "course_code": "5833",
+      "course_name": "REDES DE ACCESO"
     }
   },
   "INGENIERÍA FÍSICO-MATEMÁTICA_2017": {
-    "1269": {
-      "university_code": "FING",
-      "course_code": "1269",
-      "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO B"
+    "SRN03": {
+      "university_code": "CENURLN",
+      "course_code": "SRN03",
+      "course_name": "ALGEBRA LINEAL I"
+    },
+    "SRN02": {
+      "university_code": "CENURLN",
+      "course_code": "SRN02",
+      "course_name": "CÁLCULO I"
+    },
+    "FG1": {
+      "university_code": "FHUM",
+      "course_code": "FG1",
+      "course_name": "FILOSOFIA LATINOAMERICANA Y URUGUAYA"
+    },
+    "REF04": {
+      "university_code": "CENURLN",
+      "course_code": "REF04",
+      "course_name": "FÍSICA 1"
+    },
+    "H15EX": {
+      "university_code": "FHUM",
+      "course_code": "H15EX",
+      "course_name": "HISTORIA AMERICANA III"
+    },
+    "FA1": {
+      "university_code": "FHUM",
+      "course_code": "FA1",
+      "course_name": "HISTORIA DE LA FILOSOFIA ANTIGUA"
+    },
+    "H11": {
+      "university_code": "FHUM",
+      "course_code": "H11",
+      "course_name": "HISTORIA DEL URUGUAY I"
+    },
+    "FF1": {
+      "university_code": "FHUM",
+      "course_code": "FF1",
+      "course_name": "HISTORIA Y FILOSOFIA DE LA CIENCIA I"
+    },
+    "H107": {
+      "university_code": "FHUM",
+      "course_code": "H107",
+      "course_name": "TECNICAS INVESTIGACION HISTORICA (13 CR)"
     },
     "AT027": {
       "university_code": "FADU",
@@ -4755,11 +5290,6 @@
       "university_code": "FING",
       "course_code": "1944",
       "course_name": "ADMINISTRACION GENERAL PARA INGENIEROS"
-    },
-    "SRN03": {
-      "university_code": "CENURLN",
-      "course_code": "SRN03",
-      "course_name": "ALGEBRA LINEAL I"
     },
     "SRN10": {
       "university_code": "CENURLN",
@@ -4860,11 +5390,6 @@
       "university_code": "CURE",
       "course_code": "DMA01",
       "course_name": "CÁLCULO DIFERENCIAL E INTEGRAL EN UNA VARIABLE"
-    },
-    "SRN02": {
-      "university_code": "CENURLN",
-      "course_code": "SRN02",
-      "course_name": "CÁLCULO I"
     },
     "SRN09": {
       "university_code": "CENURLN",
@@ -5086,11 +5611,6 @@
       "course_code": "D76A",
       "course_name": "EVALUACIÓN DE IMPACTO DE POLÍTICAS Y PROGRAMAS"
     },
-    "FG1": {
-      "university_code": "FHUM",
-      "course_code": "FG1",
-      "course_name": "FILOSOFIA LATINOAMERICANA Y URUGUAYA"
-    },
     "1154": {
       "university_code": "FING",
       "course_code": "1154",
@@ -5160,11 +5680,6 @@
       "university_code": "CENURLN",
       "course_code": "CIM26",
       "course_name": "FÍSICA TÉRMICA"
-    },
-    "REF04": {
-      "university_code": "CENURLN",
-      "course_code": "REF04",
-      "course_name": "FÍSICA 1"
     },
     "SRN11": {
       "university_code": "CENURLN",
@@ -5256,25 +5771,10 @@
       "course_code": "D19",
       "course_name": "HERRAMIENTAS CONCEPTUALES Y METODOLÓGICAS PARA EL TRABAJO INTERDISCIPLINARIO"
     },
-    "H15EX": {
-      "university_code": "FHUM",
-      "course_code": "H15EX",
-      "course_name": "HISTORIA AMERICANA III"
-    },
-    "FA1": {
-      "university_code": "FHUM",
-      "course_code": "FA1",
-      "course_name": "HISTORIA DE LA FILOSOFIA ANTIGUA"
-    },
-    "H11": {
-      "university_code": "FHUM",
-      "course_code": "H11",
-      "course_name": "HISTORIA DEL URUGUAY I"
-    },
-    "FF1": {
-      "university_code": "FHUM",
-      "course_code": "FF1",
-      "course_name": "HISTORIA Y FILOSOFIA DE LA CIENCIA I"
+    "2382": {
+      "university_code": "FING",
+      "course_code": "2382",
+      "course_name": "HORMIGON ESTRUCTURAL 1"
     },
     "2395": {
       "university_code": "FING",
@@ -5430,6 +5930,11 @@
       "university_code": "FING",
       "course_code": "2380",
       "course_name": "MET. COMPUT.APLIC.AL CALCULO ESTRUCTURAL"
+    },
+    "1719": {
+      "university_code": "FING",
+      "course_code": "1719",
+      "course_name": "METALURGIA FISICA"
     },
     "S62": {
       "university_code": "FCS",
@@ -5696,15 +6201,15 @@
       "course_code": "1266",
       "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO A"
     },
+    "1269": {
+      "university_code": "FING",
+      "course_code": "1269",
+      "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO B"
+    },
     "1459": {
       "university_code": "FING",
       "course_code": "1459",
       "course_name": "TALLER FOURIER"
-    },
-    "H107": {
-      "university_code": "FHUM",
-      "course_code": "H107",
-      "course_name": "TECNICAS INVESTIGACION HISTORICA (13 CR)"
     },
     "1633": {
       "university_code": "FING",
@@ -5746,11 +6251,6 @@
       "course_code": "1886",
       "course_name": "TOPOLOGIA Y ANALISIS REAL"
     },
-    "Q74": {
-      "university_code": "FING",
-      "course_code": "Q74",
-      "course_name": "TRANSFERENCIA DE CALOR Y MASA 1"
-    },
     "1823": {
       "university_code": "FING",
       "course_code": "1823",
@@ -5780,13 +6280,178 @@
       "university_code": "FING",
       "course_code": "1144",
       "course_name": "VIBRACIONES Y ONDAS"
+    },
+    "1872": {
+      "university_code": "FING",
+      "course_code": "1872",
+      "course_name": "APLICACIONES DEL ALGEBRA LINEAL"
+    },
+    "1443": {
+      "university_code": "FING",
+      "course_code": "1443",
+      "course_name": "ARQUITECTURA DE COMPUTADORAS"
+    },
+    "MHC08": {
+      "university_code": "FCIEN",
+      "course_code": "MHC08",
+      "course_name": "ASTRONOMÍA FUNDAMENTAL"
+    },
+    "MHC18": {
+      "university_code": "FCIEN",
+      "course_code": "MHC18",
+      "course_name": "BIOFÍSICA (2020-"
+    },
+    "MHC19": {
+      "university_code": "FCIEN",
+      "course_code": "MHC19",
+      "course_name": "BIOINGENIERÍA MOLECULAR Y CELULAR"
+    },
+    "MHC39": {
+      "university_code": "FCIEN",
+      "course_code": "MHC39",
+      "course_name": "BIOQUÍMICA I (2025-"
+    },
+    "MHC12": {
+      "university_code": "FCIEN",
+      "course_code": "MHC12",
+      "course_name": "CÁLCULO VECTORIAL Y ANÁLISIS COMPLEJO"
+    },
+    "MHC07": {
+      "university_code": "FCIEN",
+      "course_code": "MHC07",
+      "course_name": "CIENCIAS PLANETARIAS"
+    },
+    "MHC15": {
+      "university_code": "FCIEN",
+      "course_code": "MHC15",
+      "course_name": "ECOLOGÍA GENERAL"
+    },
+    "MHC14": {
+      "university_code": "FCIEN",
+      "course_code": "MHC14",
+      "course_name": "ETOLOGÍA (2021-2024)"
+    },
+    "MHC32": {
+      "university_code": "FCIEN",
+      "course_code": "MHC32",
+      "course_name": "ETOLOGÍA (2025-"
+    },
+    "MHC05": {
+      "university_code": "FCIEN",
+      "course_code": "MHC05",
+      "course_name": "FÍSICA DEL ESTADO SÓLIDO"
+    },
+    "MHC23": {
+      "university_code": "FCIEN",
+      "course_code": "MHC23",
+      "course_name": "GEOQUÍMICA"
+    },
+    "LI114": {
+      "university_code": "FHUM",
+      "course_code": "LI114",
+      "course_name": "GRAMATICA DEL ESPAÑOL I"
+    },
+    "FD8": {
+      "university_code": "FHUM",
+      "course_code": "FD8",
+      "course_name": "INTRODUCCION A LA ETICA APLICADA"
+    },
+    "CIM11": {
+      "university_code": "CENURLN",
+      "course_code": "CIM11",
+      "course_name": "MATEMÁTICA DISCRETA 2- CIM-CIOCT"
+    },
+    "MHC04": {
+      "university_code": "FCIEN",
+      "course_code": "MHC04",
+      "course_name": "MECÁNICA ANALÍTICA"
+    },
+    "MHC29": {
+      "university_code": "FCIEN",
+      "course_code": "MHC29",
+      "course_name": "MECÁNICA CLÁSICA (2022-"
+    },
+    "1033": {
+      "university_code": "FING",
+      "course_code": "1033",
+      "course_name": "METODOS NUMERICOS"
+    },
+    "MHC03": {
+      "university_code": "FCIEN",
+      "course_code": "MHC03",
+      "course_name": "ONDAS"
+    },
+    "Q74B": {
+      "university_code": "FING",
+      "course_code": "Q74B",
+      "course_name": "TRANSFERENCIA DE CALOR Y MASA 1"
+    },
+    "MHC28": {
+      "university_code": "FCIEN",
+      "course_code": "MHC28",
+      "course_name": "VIROLOGÍA FUNDAMENTAL (2022-2024)"
+    },
+    "C34B": {
+      "university_code": "FCS",
+      "course_code": "C34B",
+      "course_name": "DESARROLLO ECONÓMICO EN EL URUGUAY CONTEMPORÁNEO"
+    },
+    "1512": {
+      "university_code": "FING",
+      "course_code": "1512",
+      "course_name": "DISEÑO LOGICO"
+    },
+    "RN115": {
+      "university_code": "CUR",
+      "course_code": "RN115",
+      "course_name": "ESTADÍSTICA I 2022"
+    },
+    "Q22": {
+      "university_code": "FING",
+      "course_code": "Q22",
+      "course_name": "FENOMENOS DE TRANSPORTE EN ING. DE PROCESOS"
+    },
+    "Q22B": {
+      "university_code": "FING",
+      "course_code": "Q22B",
+      "course_name": "FENOMENOS DE TRANSPORTE EN INGENIERIA DE PROCESOS"
+    },
+    "Q66": {
+      "university_code": "FING",
+      "course_code": "Q66",
+      "course_name": "FLUIDODINAMICA"
+    },
+    "1131": {
+      "university_code": "FING",
+      "course_code": "1131",
+      "course_name": "INT. A LA FISICA MODERNA"
+    },
+    "1159": {
+      "university_code": "FING",
+      "course_code": "1159",
+      "course_name": "INT. A LA FISICA MODERNA"
+    },
+    "Q74": {
+      "university_code": "FING",
+      "course_code": "Q74",
+      "course_name": "TRANSFERENCIA DE CALOR Y MASA 1"
     }
   },
   "INGENIERÍA INDUSTRIAL MECÁNICA_1997": {
-    "1269": {
-      "university_code": "FING",
-      "course_code": "1269",
-      "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO B"
+    "SRN03": {
+      "university_code": "CENURLN",
+      "course_code": "SRN03",
+      "course_name": "ALGEBRA LINEAL I"
+    },
+    "SRN02": {
+      "university_code": "CENURLN",
+      "course_code": "SRN02",
+      "course_name": "CÁLCULO I"
+    },
+    "REF04": {
+      "university_code": "CENURLN",
+      "course_code": "REF04",
+      "course_name": "FÍSICA 1"
     },
     "1915": {
       "university_code": "FING",
@@ -5797,11 +6462,6 @@
       "university_code": "FING",
       "course_code": "1944",
       "course_name": "ADMINISTRACION GENERAL PARA INGENIEROS"
-    },
-    "SRN03": {
-      "university_code": "CENURLN",
-      "course_code": "SRN03",
-      "course_name": "ALGEBRA LINEAL I"
     },
     "SRN10": {
       "university_code": "CENURLN",
@@ -5837,11 +6497,6 @@
       "university_code": "CURE",
       "course_code": "DMA01",
       "course_name": "CÁLCULO DIFERENCIAL E INTEGRAL EN UNA VARIABLE"
-    },
-    "SRN02": {
-      "university_code": "CENURLN",
-      "course_code": "SRN02",
-      "course_name": "CÁLCULO I"
     },
     "SRN09": {
       "university_code": "CENURLN",
@@ -6047,11 +6702,6 @@
       "university_code": "CENURLN",
       "course_code": "CIM26",
       "course_name": "FÍSICA TÉRMICA"
-    },
-    "REF04": {
-      "university_code": "CENURLN",
-      "course_code": "REF04",
-      "course_name": "FÍSICA 1"
     },
     "SRN11": {
       "university_code": "CENURLN",
@@ -6348,6 +6998,11 @@
       "course_code": "1266",
       "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO A"
     },
+    "1269": {
+      "university_code": "FING",
+      "course_code": "1269",
+      "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO B"
+    },
     "2035": {
       "university_code": "FING",
       "course_code": "2035",
@@ -6382,13 +7037,73 @@
       "university_code": "FING",
       "course_code": "1144",
       "course_name": "VIBRACIONES Y ONDAS"
+    },
+    "1872": {
+      "university_code": "FING",
+      "course_code": "1872",
+      "course_name": "APLICACIONES DEL ALGEBRA LINEAL"
+    },
+    "2401": {
+      "university_code": "FING",
+      "course_code": "2401",
+      "course_name": "LEGISLACION Y RELACIONES INDUSTRIALES"
+    },
+    "1033": {
+      "university_code": "FING",
+      "course_code": "1033",
+      "course_name": "METODOS NUMERICOS"
+    },
+    "RN115": {
+      "university_code": "CUR",
+      "course_code": "RN115",
+      "course_name": "ESTADÍSTICA I 2022"
+    },
+    "1227": {
+      "university_code": "FING",
+      "course_code": "1227",
+      "course_name": "INGENIERIA LEGAL"
+    },
+    "1131": {
+      "university_code": "FING",
+      "course_code": "1131",
+      "course_name": "INT. A LA FISICA MODERNA"
+    },
+    "1159": {
+      "university_code": "FING",
+      "course_code": "1159",
+      "course_name": "INT. A LA FISICA MODERNA"
+    },
+    "1724": {
+      "university_code": "FING",
+      "course_code": "1724",
+      "course_name": "METALURGIA DE TRANSFORMACION"
+    },
+    "1722": {
+      "university_code": "FING",
+      "course_code": "1722",
+      "course_name": "TEORIA DE MAQUINAS Y MECANISMOS"
+    },
+    "1927": {
+      "university_code": "FING",
+      "course_code": "1927",
+      "course_name": "TEORIA DE RESTRICCIONES"
     }
   },
   "INGENIERÍA NAVAL_1997": {
-    "1269": {
-      "university_code": "FING",
-      "course_code": "1269",
-      "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO B"
+    "SRN03": {
+      "university_code": "CENURLN",
+      "course_code": "SRN03",
+      "course_name": "ALGEBRA LINEAL I"
+    },
+    "SRN02": {
+      "university_code": "CENURLN",
+      "course_code": "SRN02",
+      "course_name": "CÁLCULO I"
+    },
+    "REF04": {
+      "university_code": "CENURLN",
+      "course_code": "REF04",
+      "course_name": "FÍSICA 1"
     },
     "1915": {
       "university_code": "FING",
@@ -6399,11 +7114,6 @@
       "university_code": "FING",
       "course_code": "1944",
       "course_name": "ADMINISTRACION GENERAL PARA INGENIEROS"
-    },
-    "SRN03": {
-      "university_code": "CENURLN",
-      "course_code": "SRN03",
-      "course_name": "ALGEBRA LINEAL I"
     },
     "SRN10": {
       "university_code": "CENURLN",
@@ -6444,11 +7154,6 @@
       "university_code": "CURE",
       "course_code": "DMA01",
       "course_name": "CÁLCULO DIFERENCIAL E INTEGRAL EN UNA VARIABLE"
-    },
-    "SRN02": {
-      "university_code": "CENURLN",
-      "course_code": "SRN02",
-      "course_name": "CÁLCULO I"
     },
     "SRN09": {
       "university_code": "CENURLN",
@@ -6659,11 +7364,6 @@
       "university_code": "CENURLN",
       "course_code": "CIM26",
       "course_name": "FÍSICA TÉRMICA"
-    },
-    "REF04": {
-      "university_code": "CENURLN",
-      "course_code": "REF04",
-      "course_name": "FÍSICA 1"
     },
     "SRN11": {
       "university_code": "CENURLN",
@@ -6935,6 +7635,11 @@
       "course_code": "1266",
       "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO A"
     },
+    "1269": {
+      "university_code": "FING",
+      "course_code": "1269",
+      "course_name": "TALLER DE REPRESENTACION Y COMUNICACION GRAFICA_MODULO B"
+    },
     "2035": {
       "university_code": "FING",
       "course_code": "2035",
@@ -6969,18 +7674,113 @@
       "university_code": "FING",
       "course_code": "1144",
       "course_name": "VIBRACIONES Y ONDAS"
+    },
+    "1872": {
+      "university_code": "FING",
+      "course_code": "1872",
+      "course_name": "APLICACIONES DEL ALGEBRA LINEAL"
+    },
+    "2320": {
+      "university_code": "FING",
+      "course_code": "2320",
+      "course_name": "HIDRODINAMICA NAVAL"
+    },
+    "2401": {
+      "university_code": "FING",
+      "course_code": "2401",
+      "course_name": "LEGISLACION Y RELACIONES INDUSTRIALES"
+    },
+    "1033": {
+      "university_code": "FING",
+      "course_code": "1033",
+      "course_name": "METODOS NUMERICOS"
+    },
+    "2602": {
+      "university_code": "FING",
+      "course_code": "2602",
+      "course_name": "ELEMENTOS DE NAVEGACION"
+    },
+    "RN115": {
+      "university_code": "CUR",
+      "course_code": "RN115",
+      "course_name": "ESTADÍSTICA I 2022"
+    },
+    "1227": {
+      "university_code": "FING",
+      "course_code": "1227",
+      "course_name": "INGENIERIA LEGAL"
+    },
+    "1131": {
+      "university_code": "FING",
+      "course_code": "1131",
+      "course_name": "INT. A LA FISICA MODERNA"
+    },
+    "1159": {
+      "university_code": "FING",
+      "course_code": "1159",
+      "course_name": "INT. A LA FISICA MODERNA"
+    },
+    "2302": {
+      "university_code": "FING",
+      "course_code": "2302",
+      "course_name": "INT. A LA INGENIERIA NAVAL"
+    },
+    "1724": {
+      "university_code": "FING",
+      "course_code": "1724",
+      "course_name": "METALURGIA DE TRANSFORMACION"
+    },
+    "1722": {
+      "university_code": "FING",
+      "course_code": "1722",
+      "course_name": "TEORIA DE MAQUINAS Y MECANISMOS"
+    },
+    "1927": {
+      "university_code": "FING",
+      "course_code": "1927",
+      "course_name": "TEORIA DE RESTRICCIONES"
     }
   },
   "INGENIERÍA QUÍMICA_2021": {
-    "1944": {
-      "university_code": "FING",
-      "course_code": "1944",
-      "course_name": "ADMINISTRACION GENERAL PARA INGENIEROS"
-    },
     "SRN03": {
       "university_code": "CENURLN",
       "course_code": "SRN03",
       "course_name": "ALGEBRA LINEAL I"
+    },
+    "SRN02": {
+      "university_code": "CENURLN",
+      "course_code": "SRN02",
+      "course_name": "CÁLCULO I"
+    },
+    "SRN13": {
+      "university_code": "CENURLN",
+      "course_code": "SRN13",
+      "course_name": "ECONOMÍA POLÍTICA"
+    },
+    "REF04": {
+      "university_code": "CENURLN",
+      "course_code": "REF04",
+      "course_name": "FÍSICA 1"
+    },
+    "SRN08": {
+      "university_code": "CENURLN",
+      "course_code": "SRN08",
+      "course_name": "PREVENCIÓN DE RIESGOS EN LABORATORIO"
+    },
+    "SRN05": {
+      "university_code": "CENURLN",
+      "course_code": "SRN05",
+      "course_name": "QUÍMICA GENERAL I (F.QUÍMICA)"
+    },
+    "SRN06": {
+      "university_code": "CENURLN",
+      "course_code": "SRN06",
+      "course_name": "TALLER DE DISEÑO"
+    },
+    "1944": {
+      "university_code": "FING",
+      "course_code": "1944",
+      "course_name": "ADMINISTRACION GENERAL PARA INGENIEROS"
     },
     "SRN10": {
       "university_code": "CENURLN",
@@ -7036,11 +7836,6 @@
       "university_code": "CURE",
       "course_code": "DMA01",
       "course_name": "CÁLCULO DIFERENCIAL E INTEGRAL EN UNA VARIABLE"
-    },
-    "SRN02": {
-      "university_code": "CENURLN",
-      "course_code": "SRN02",
-      "course_name": "CÁLCULO I"
     },
     "SRN09": {
       "university_code": "CENURLN",
@@ -7136,11 +7931,6 @@
       "university_code": "FING",
       "course_code": "1224",
       "course_name": "ECONOMIA"
-    },
-    "SRN13": {
-      "university_code": "CENURLN",
-      "course_code": "SRN13",
-      "course_name": "ECONOMÍA POLÍTICA"
     },
     "CIM24": {
       "university_code": "CENURLN",
@@ -7241,11 +8031,6 @@
       "university_code": "CURE",
       "course_code": "CCT20",
       "course_name": "FÍSICA II"
-    },
-    "REF04": {
-      "university_code": "CENURLN",
-      "course_code": "REF04",
-      "course_name": "FÍSICA 1"
     },
     "205": {
       "university_code": "FQ",
@@ -7542,11 +8327,6 @@
       "course_code": "104A",
       "course_name": "PREVENCIÓN DE RIESGOS EN EL LABORATORIO"
     },
-    "SRN08": {
-      "university_code": "CENURLN",
-      "course_code": "SRN08",
-      "course_name": "PREVENCIÓN DE RIESGOS EN LABORATORIO"
-    },
     "1025": {
       "university_code": "FING",
       "course_code": "1025",
@@ -7627,11 +8407,6 @@
       "course_code": "102",
       "course_name": "QUÍMICA GENERAL I"
     },
-    "SRN05": {
-      "university_code": "CENURLN",
-      "course_code": "SRN05",
-      "course_name": "QUÍMICA GENERAL I (F.QUÍMICA)"
-    },
     "202": {
       "university_code": "FQ",
       "course_code": "202",
@@ -7692,11 +8467,6 @@
       "course_code": "2107A",
       "course_name": "TALLER DE COMUNICACIÓN ORAL Y ESCRITA"
     },
-    "SRN06": {
-      "university_code": "CENURLN",
-      "course_code": "SRN06",
-      "course_name": "TALLER DE DISEÑO"
-    },
     "Q71": {
       "university_code": "FING",
       "course_code": "Q71",
@@ -7722,11 +8492,6 @@
       "course_code": "Q21",
       "course_name": "TERMODINAMICA APL. A LA ING.DE PROCESOS"
     },
-    "Q74": {
-      "university_code": "FING",
-      "course_code": "Q74",
-      "course_name": "TRANSFERENCIA DE CALOR Y MASA 1"
-    },
     "Q68": {
       "university_code": "FING",
       "course_code": "Q68",
@@ -7741,6 +8506,146 @@
       "university_code": "FING",
       "course_code": "5005",
       "course_name": "TUTORIAS ENTRE PARES ACADEMICAS PROGRESA/FING"
+    },
+    "1872": {
+      "university_code": "FING",
+      "course_code": "1872",
+      "course_name": "APLICACIONES DEL ALGEBRA LINEAL"
+    },
+    "105": {
+      "university_code": "FQ",
+      "course_code": "105",
+      "course_name": "BUENAS PRÁCTICAS Y GESTIÓN INTEGRAL"
+    },
+    "521": {
+      "university_code": "FQ",
+      "course_code": "521",
+      "course_name": "ELECTROQUÍMICA (PLAN 2000)"
+    },
+    "406": {
+      "university_code": "FQ",
+      "course_code": "406",
+      "course_name": "FISICOQUÍMICA I (PLAN 2000)"
+    },
+    "508": {
+      "university_code": "FQ",
+      "course_code": "508",
+      "course_name": "FISICOQUÍMICA II (PLAN 2000)"
+    },
+    "520": {
+      "university_code": "FQ",
+      "course_code": "520",
+      "course_name": "FISICOQUÍMICA III (PLAN 2000)"
+    },
+    "2258": {
+      "university_code": "FING",
+      "course_code": "2258",
+      "course_name": "INT. AL SISTEMA CLIMATICO"
+    },
+    "618A": {
+      "university_code": "FQ",
+      "course_code": "618A",
+      "course_name": "INTRODUCCIÓN A LOS SISTEMAS DE GESTIÓN (DESDE 2016)"
+    },
+    "05A": {
+      "university_code": "FQ",
+      "course_code": "05A",
+      "course_name": "MAT. 05 (ESTADÍSTICA) (DESDE 2015"
+    },
+    "Q198": {
+      "university_code": "FING",
+      "course_code": "Q198",
+      "course_name": "MEDIDAS ELECTRICAS EN INGENIERIA DE PROCESOS"
+    },
+    "1033": {
+      "university_code": "FING",
+      "course_code": "1033",
+      "course_name": "METODOS NUMERICOS"
+    },
+    "533": {
+      "university_code": "FQ",
+      "course_code": "533",
+      "course_name": "MICROBIOLOGÍA GENERAL"
+    },
+    "550": {
+      "university_code": "FQ",
+      "course_code": "550",
+      "course_name": "RADIOQUÍMICA"
+    },
+    "Q74B": {
+      "university_code": "FING",
+      "course_code": "Q74B",
+      "course_name": "TRANSFERENCIA DE CALOR Y MASA 1"
+    },
+    "RN115": {
+      "university_code": "CUR",
+      "course_code": "RN115",
+      "course_name": "ESTADÍSTICA I 2022"
+    },
+    "Q22": {
+      "university_code": "FING",
+      "course_code": "Q22",
+      "course_name": "FENOMENOS DE TRANSPORTE EN ING. DE PROCESOS"
+    },
+    "Q22B": {
+      "university_code": "FING",
+      "course_code": "Q22B",
+      "course_name": "FENOMENOS DE TRANSPORTE EN INGENIERIA DE PROCESOS"
+    },
+    "Q66": {
+      "university_code": "FING",
+      "course_code": "Q66",
+      "course_name": "FLUIDODINAMICA"
+    },
+    "Q81": {
+      "university_code": "FING",
+      "course_code": "Q81",
+      "course_name": "INGENIERIA BIOQUIMICA"
+    },
+    "Q89": {
+      "university_code": "FING",
+      "course_code": "Q89",
+      "course_name": "INGENIERIA DE LOS PROCESOS ELECTROQUIMICOS"
+    },
+    "101": {
+      "university_code": "FQ",
+      "course_code": "101",
+      "course_name": "MATEMÁTICA 101 (ANÁLISIS I)"
+    },
+    "106": {
+      "university_code": "FQ",
+      "course_code": "106",
+      "course_name": "MATEMÁTICA 102 (ÁLGEBRA)"
+    },
+    "208": {
+      "university_code": "FQ",
+      "course_code": "208",
+      "course_name": "MATEMÁTICA 104 (ANÁLISIS II)"
+    },
+    "309": {
+      "university_code": "FQ",
+      "course_code": "309",
+      "course_name": "MATEMÁTICA 105 (EC. DIFERENCIALES)"
+    },
+    "306": {
+      "university_code": "FQ",
+      "course_code": "306",
+      "course_name": "MATEMÁTICA 106 (ESTADÍSTICA)"
+    },
+    "407": {
+      "university_code": "FQ",
+      "course_code": "407",
+      "course_name": "MATEMÁTICA 107 (CÁLCULO NUM. Y COMP.)"
+    },
+    "1927": {
+      "university_code": "FING",
+      "course_code": "1927",
+      "course_name": "TEORIA DE RESTRICCIONES"
+    },
+    "Q74": {
+      "university_code": "FING",
+      "course_code": "Q74",
+      "course_name": "TRANSFERENCIA DE CALOR Y MASA 1"
     }
   },
   "LIC EN INGENIERÍA BIOLÓGICA_2013": {
@@ -7748,6 +8653,36 @@
       "university_code": "CENURLN",
       "course_code": "SRN03",
       "course_name": "ALGEBRA LINEAL I"
+    },
+    "SRN02": {
+      "university_code": "CENURLN",
+      "course_code": "SRN02",
+      "course_name": "CÁLCULO I"
+    },
+    "REF04": {
+      "university_code": "CENURLN",
+      "course_code": "REF04",
+      "course_name": "FÍSICA 1"
+    },
+    "SRN08": {
+      "university_code": "CENURLN",
+      "course_code": "SRN08",
+      "course_name": "PREVENCIÓN DE RIESGOS EN LABORATORIO"
+    },
+    "SRN47": {
+      "university_code": "CENURLN",
+      "course_code": "SRN47",
+      "course_name": "PRINCIPIOS DE QUÍMICA GENERAL"
+    },
+    "SRN05": {
+      "university_code": "CENURLN",
+      "course_code": "SRN05",
+      "course_name": "QUÍMICA GENERAL I (F.QUÍMICA)"
+    },
+    "SRN30": {
+      "university_code": "CENURLN",
+      "course_code": "SRN30",
+      "course_name": "TALLER DE ROBÓTICA-CIO CT- INGBIOL"
     },
     "SRN10": {
       "university_code": "CENURLN",
@@ -7783,11 +8718,6 @@
       "university_code": "FING",
       "course_code": "1062",
       "course_name": "CALCULO DIF. E INTEGRAL EN VARIAS VARIABLES"
-    },
-    "SRN02": {
-      "university_code": "CENURLN",
-      "course_code": "SRN02",
-      "course_name": "CÁLCULO I"
     },
     "SRN09": {
       "university_code": "CENURLN",
@@ -7828,11 +8758,6 @@
       "university_code": "CENURLN",
       "course_code": "LIB38",
       "course_name": "FISIOLOGÍA CUANTITATIVA"
-    },
-    "REF04": {
-      "university_code": "CENURLN",
-      "course_code": "REF04",
-      "course_name": "FÍSICA 1"
     },
     "SRN11": {
       "university_code": "CENURLN",
@@ -7899,20 +8824,10 @@
       "course_code": "104A",
       "course_name": "PREVENCIÓN DE RIESGOS EN EL LABORATORIO"
     },
-    "SRN08": {
-      "university_code": "CENURLN",
-      "course_code": "SRN08",
-      "course_name": "PREVENCIÓN DE RIESGOS EN LABORATORIO"
-    },
     "1620": {
       "university_code": "FING",
       "course_code": "1620",
       "course_name": "PRINCIPIOS DE QUIMICA GENERAL"
-    },
-    "SRN47": {
-      "university_code": "CENURLN",
-      "course_code": "SRN47",
-      "course_name": "PRINCIPIOS DE QUÍMICA GENERAL"
     },
     "1025": {
       "university_code": "FING",
@@ -7954,11 +8869,6 @@
       "course_code": "SRN17",
       "course_name": "PROGRAMACIÓN I- CIO CT-LHRH"
     },
-    "SRN05": {
-      "university_code": "CENURLN",
-      "course_code": "SRN05",
-      "course_name": "QUÍMICA GENERAL I (F.QUÍMICA)"
-    },
     "SRN12": {
       "university_code": "CENURLN",
       "course_code": "SRN12",
@@ -7984,11 +8894,6 @@
       "course_code": "LIB42",
       "course_name": "TALLER DE INGENIERÍA BIOLÓGICA III"
     },
-    "SRN30": {
-      "university_code": "CENURLN",
-      "course_code": "SRN30",
-      "course_name": "TALLER DE ROBÓTICA-CIO CT- INGBIOL"
-    },
     "LIB55": {
       "university_code": "CENURLN",
       "course_code": "LIB55",
@@ -8003,6 +8908,46 @@
       "university_code": "CENURLN",
       "course_code": "5828",
       "course_name": "TRATAMIENTO DE IMÁGENES POR COMPUTADORA"
+    },
+    "LIB30": {
+      "university_code": "CENURLN",
+      "course_code": "LIB30",
+      "course_name": "BASES BIOMOLECULARES II (HASTA 2024)"
+    },
+    "LIB31": {
+      "university_code": "CENURLN",
+      "course_code": "LIB31",
+      "course_name": "BASES HISTO-ANÁTOMO-FUNCIONALES HUMANAS (HASTA 2024)"
+    },
+    "LB36A": {
+      "university_code": "CENURLN",
+      "course_code": "LB36A",
+      "course_name": "INFORMÁTICA EN BIOLOGÍA Y MEDICINA"
+    },
+    "1033": {
+      "university_code": "FING",
+      "course_code": "1033",
+      "course_name": "METODOS NUMERICOS"
+    },
+    "LIB39": {
+      "university_code": "CENURLN",
+      "course_code": "LIB39",
+      "course_name": "MODELOS Y SIMULA.DE SISTEMAS BIOLÓGICOS"
+    },
+    "LIB11": {
+      "university_code": "CENURLN",
+      "course_code": "LIB11",
+      "course_name": "BASES BIOMOLECULARES I (HASTA 2024)"
+    },
+    "LIB46": {
+      "university_code": "CENURLN",
+      "course_code": "LIB46",
+      "course_name": "INFORMÁTICA AVANZADA EN BIOLOGÍA Y MEDICINA"
+    },
+    "LIB36": {
+      "university_code": "CENURLN",
+      "course_code": "LIB36",
+      "course_name": "INFORMÁTICA EN BIOLOGÍA Y MEDICINA"
     }
   },
   "LICENCIATURA EN CIENCIAS DE LA ATMÓSFERA_2007": {
@@ -8285,6 +9230,201 @@
       "university_code": "FING",
       "course_code": "1144",
       "course_name": "VIBRACIONES Y ONDAS"
+    },
+    "12111": {
+      "university_code": "FAGRO",
+      "course_code": "12111",
+      "course_name": "AGROMETEOROLOGIA"
+    },
+    "FI35": {
+      "university_code": "FCIEN",
+      "course_code": "FI35",
+      "course_name": "ANÁLISIS ESTADÍSTICO DE DATOS CLIMÁTICOS (2008-"
+    },
+    "MA505": {
+      "university_code": "FCIEN",
+      "course_code": "MA505",
+      "course_name": "APROXIMACIÓN NUMÉRICA DE ECUACIONES DIFERENCIALES ORDINARIAS"
+    },
+    "MA424": {
+      "university_code": "FCIEN",
+      "course_code": "MA424",
+      "course_name": "ÁLGEBRA LINEAL Y GEOMETRÍA 1"
+    },
+    "MA485": {
+      "university_code": "FCIEN",
+      "course_code": "MA485",
+      "course_name": "BIOESTADÍSTICA (2023-2024)"
+    },
+    "ME23": {
+      "university_code": "FCIEN",
+      "course_code": "ME23",
+      "course_name": "CAPA LÍMITE ATMOSFÉRICA"
+    },
+    "MA428": {
+      "university_code": "FCIEN",
+      "course_code": "MA428",
+      "course_name": "CÁLCULO DIFERENCIAL E INTEGRAL 1"
+    },
+    "MA07": {
+      "university_code": "FCIEN",
+      "course_code": "MA07",
+      "course_name": "CÁLCULO VECTORIAL Y ANÁLISIS COMPLEJO"
+    },
+    "ME28": {
+      "university_code": "FCIEN",
+      "course_code": "ME28",
+      "course_name": "CLIMA DE SUDAMERICA"
+    },
+    "ME29": {
+      "university_code": "FCIEN",
+      "course_code": "ME29",
+      "course_name": "ELEMENTOS DE METEOROLOGIA"
+    },
+    "BG914": {
+      "university_code": "FCIEN",
+      "course_code": "BG914",
+      "course_name": "ÉTICA Y CIENCIA: LA BIOÉTICA COMO PUENTE (2021-2024)"
+    },
+    "FI048": {
+      "university_code": "FCIEN",
+      "course_code": "FI048",
+      "course_name": "FÍSICA DEL SISTEMA CLIMÁTICO"
+    },
+    "FI183": {
+      "university_code": "FCIEN",
+      "course_code": "FI183",
+      "course_name": "FÍSICA GENERAL I"
+    },
+    "FI08": {
+      "university_code": "FCIEN",
+      "course_code": "FI08",
+      "course_name": "FÍSICA MODERNA"
+    },
+    "GL002": {
+      "university_code": "FCIEN",
+      "course_code": "GL002",
+      "course_name": "GEOLOGÍA GENERAL I"
+    },
+    "FI07": {
+      "university_code": "FCIEN",
+      "course_code": "FI07",
+      "course_name": "INTRODUCCIÓN A LA CIENCIA DE LA TIERRA Y EL ESPACIO I"
+    },
+    "FI19": {
+      "university_code": "FCIEN",
+      "course_code": "FI19",
+      "course_name": "INTRODUCCIÓN A LA COMPUTACIÓN (FÍSICA)"
+    },
+    "ME14": {
+      "university_code": "FCIEN",
+      "course_code": "ME14",
+      "course_name": "INTRODUCCIÓN A LA DINÁMICA DE LA ATMÓSFERA"
+    },
+    "BG463": {
+      "university_code": "FCIEN",
+      "course_code": "BG463",
+      "course_name": "INTRODUCCIÓN A LA INVESTIGACIÓN ANTÁRTICA (2017-2024)"
+    },
+    "FI58": {
+      "university_code": "FCIEN",
+      "course_code": "FI58",
+      "course_name": "MECÁNICA CLÁSICA (2022-"
+    },
+    "ME04": {
+      "university_code": "FCIEN",
+      "course_code": "ME04",
+      "course_name": "MECÁNICA DE LOS FLUIDOS"
+    },
+    "ME011": {
+      "university_code": "FCIEN",
+      "course_code": "ME011",
+      "course_name": "METEOROLOGÍA DINÁMICA Y SINÓPTICA"
+    },
+    "1033": {
+      "university_code": "FING",
+      "course_code": "1033",
+      "course_name": "METODOS NUMERICOS"
+    },
+    "FI05": {
+      "university_code": "FCIEN",
+      "course_code": "FI05",
+      "course_name": "ONDAS"
+    },
+    "BG1": {
+      "university_code": "FCIEN",
+      "course_code": "BG1",
+      "course_name": "QUÍMICA I/QUÍMICA GENERAL (2013-"
+    },
+    "GF02": {
+      "university_code": "FCIEN",
+      "course_code": "GF02",
+      "course_name": "SISTEMAS DE INFORMACIÓN GEOGRÁFICA (1998-2024)"
+    },
+    "ME18": {
+      "university_code": "FCIEN",
+      "course_code": "ME18",
+      "course_name": "TALLER DE INTRODUCCIÓN A LAS CIENCIAS DE LA ATMÓSFERA"
+    },
+    "FI29": {
+      "university_code": "FCIEN",
+      "course_code": "FI29",
+      "course_name": "TALLER I (1980-2024)"
+    },
+    "FI41": {
+      "university_code": "FCIEN",
+      "course_code": "FI41",
+      "course_name": "TALLER II (1991-2024)"
+    },
+    "FI12": {
+      "university_code": "FCIEN",
+      "course_code": "FI12",
+      "course_name": "TEORÍA ELECTROMAGNÉTICA"
+    },
+    "BG793": {
+      "university_code": "FCIEN",
+      "course_code": "BG793",
+      "course_name": "UNIVERSIDAD Y SOCIEDAD (2020-2024)"
+    },
+    "470": {
+      "university_code": "FCEA",
+      "course_code": "470",
+      "course_name": "ANALISIS MULTIVARIADO II"
+    },
+    "1131": {
+      "university_code": "FING",
+      "course_code": "1131",
+      "course_name": "INT. A LA FISICA MODERNA"
+    },
+    "1159": {
+      "university_code": "FING",
+      "course_code": "1159",
+      "course_name": "INT. A LA FISICA MODERNA"
+    },
+    "2212": {
+      "university_code": "FING",
+      "course_code": "2212",
+      "course_name": "METEOROLOGIA DINAMICA Y SINOPTICA"
+    },
+    "BG988": {
+      "university_code": "FCIEN",
+      "course_code": "BG988",
+      "course_name": "REDES NEURONALES DE LA COGNICIÓN NATURAL Y ARTIFICIAL"
+    },
+    "AS29": {
+      "university_code": "FCIEN",
+      "course_code": "AS29",
+      "course_name": "SISTEMAS DINÁMICOS APLICADOS A PROBLEMAS DE CIENCIAS E INGENIERÍA"
+    },
+    "FI282": {
+      "university_code": "FCIEN",
+      "course_code": "FI282",
+      "course_name": "TALLER I (2025-"
+    },
+    "ME20": {
+      "university_code": "FCIEN",
+      "course_code": "ME20",
+      "course_name": "TRABAJO ESPECIAL"
     }
   },
   "LICENCIATURA EN COMPUTACIÓN_2012": {
@@ -8827,9 +9967,54 @@
       "university_code": "FING",
       "course_code": "5005",
       "course_name": "TUTORIAS ENTRE PARES ACADEMICAS PROGRESA/FING"
+    },
+    "1872": {
+      "university_code": "FING",
+      "course_code": "1872",
+      "course_name": "APLICACIONES DEL ALGEBRA LINEAL"
+    },
+    "MHC39": {
+      "university_code": "FCIEN",
+      "course_code": "MHC39",
+      "course_name": "BIOQUÍMICA I (2025-"
+    },
+    "MHC16": {
+      "university_code": "FCIEN",
+      "course_code": "MHC16",
+      "course_name": "BIOQUÍMICA 1 (2020-2024)"
+    },
+    "MHC20": {
+      "university_code": "FCIEN",
+      "course_code": "MHC20",
+      "course_name": "GENÓMICA (2021-2024)"
+    },
+    "2401": {
+      "university_code": "FING",
+      "course_code": "2401",
+      "course_name": "LEGISLACION Y RELACIONES INDUSTRIALES"
+    },
+    "AT021": {
+      "university_code": "FADU",
+      "course_code": "AT021",
+      "course_name": "PRODUCCIÓN AUDIOVISUAL INTERACTIVA II"
+    },
+    "AT023": {
+      "university_code": "FADU",
+      "course_code": "AT023",
+      "course_name": "PRODUCCIÓN GRÁFICA 3D II"
+    },
+    "1716": {
+      "university_code": "FING",
+      "course_code": "1716",
+      "course_name": "INT. A LA INGENIERIA DE SOFTWARE"
     }
   },
   "TECNÓLOGO EN CARTOGRAFÍA_2011": {
+    "FF1": {
+      "university_code": "FHUM",
+      "course_code": "FF1",
+      "course_name": "HISTORIA Y FILOSOFIA DE LA CIENCIA I"
+    },
     "1881": {
       "university_code": "FING",
       "course_code": "1881",
@@ -8840,9 +10025,9 @@
       "course_code": "TCI24",
       "course_name": "CAPTURA DE DATOS POR PERCEPCION REMOTA"
     },
-    "TCI13": {
+    "1480": {
       "university_code": "FING",
-      "course_code": "TCI13",
+      "course_code": "1480",
       "course_name": "CARTOGRAFIA MATEMATICA"
     },
     "1228": {
@@ -8879,11 +10064,6 @@
       "university_code": "FING",
       "course_code": "2247",
       "course_name": "GEOESTADISTICA APLICADA"
-    },
-    "FF1": {
-      "university_code": "FHUM",
-      "course_code": "FF1",
-      "course_name": "HISTORIA Y FILOSOFIA DE LA CIENCIA I"
     },
     "2413": {
       "university_code": "FING",
@@ -8969,6 +10149,96 @@
       "university_code": "FING",
       "course_code": "1359",
       "course_name": "TALLER DE DATOS ESPAC.Y SIST.DE INF.GEO."
+    },
+    "MA485": {
+      "university_code": "FCIEN",
+      "course_code": "MA485",
+      "course_name": "BIOESTADÍSTICA (2023-2024)"
+    },
+    "1882": {
+      "university_code": "FING",
+      "course_code": "1882",
+      "course_name": "CARTOGRAFÍA TEMÁTICA"
+    },
+    "GF014": {
+      "university_code": "FCIEN",
+      "course_code": "GF014",
+      "course_name": "GEOGRAFÍA RURAL"
+    },
+    "GF161": {
+      "university_code": "FCIEN",
+      "course_code": "GF161",
+      "course_name": "GEOGRAFÍA URBANA (2018-"
+    },
+    "GL002": {
+      "university_code": "FCIEN",
+      "course_code": "GL002",
+      "course_name": "GEOLOGÍA GENERAL I"
+    },
+    "GF068": {
+      "university_code": "FCIEN",
+      "course_code": "GF068",
+      "course_name": "GEOMORFOLOGÍA (2014 -"
+    },
+    "GF064": {
+      "university_code": "FCIEN",
+      "course_code": "GF064",
+      "course_name": "GEORRIESGOS (OP. GENERAL)"
+    },
+    "GF183": {
+      "university_code": "FCIEN",
+      "course_code": "GF183",
+      "course_name": "HIDROLOGÍA (2020-"
+    },
+    "GL189": {
+      "university_code": "FCIEN",
+      "course_code": "GL189",
+      "course_name": "INTRODUCCIÓN A LAS TÉCNICAS CARTOGRÁFICAS"
+    },
+    "MA400": {
+      "university_code": "FCIEN",
+      "course_code": "MA400",
+      "course_name": "MATEMÁTICA 1 (2017-"
+    },
+    "1883": {
+      "university_code": "FING",
+      "course_code": "1883",
+      "course_name": "TALLER DE CALIDAD DE DATOS GEOGRAFICOS"
+    },
+    "GF049": {
+      "university_code": "FCIEN",
+      "course_code": "GF049",
+      "course_name": "TERRITORIO DIMENSIONES FISICO Y SOCIALES (TEC EN CARTOGRAFÍA/ LGF PP)"
+    },
+    "TCI13": {
+      "university_code": "FING",
+      "course_code": "TCI13",
+      "course_name": "CARTOGRAFIA MATEMATICA"
+    },
+    "TCI30": {
+      "university_code": "FING",
+      "course_code": "TCI30",
+      "course_name": "COORDENADAS Y SISTEMAS DE REFERENCIA EN GEODESIA"
+    },
+    "OO7EA": {
+      "university_code": "CURE",
+      "course_code": "OO7EA",
+      "course_name": "FOTOGRAMETRÍA DE RANGO CERCANO APLICADA AL REGISTRO DEL PAISAJE"
+    },
+    "TCI11": {
+      "university_code": "FING",
+      "course_code": "TCI11",
+      "course_name": "INT. A LA GEODESIA Y SIST. DE POS. GLOBAL"
+    },
+    "1222": {
+      "university_code": "FING",
+      "course_code": "1222",
+      "course_name": "INT. AL DERECHO"
+    },
+    "TCI20": {
+      "university_code": "FING",
+      "course_code": "TCI20",
+      "course_name": "TALLER DE CARTOGRAFIA"
     }
   },
   "TECNÓLOGO EN INFORMÁTICA_2007": {

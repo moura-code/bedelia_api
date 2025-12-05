@@ -3,6 +3,7 @@
 
 import json
 import re
+import csv
 from pathlib import Path
 
 # ============================================================
@@ -11,7 +12,8 @@ from pathlib import Path
 
 # Change this to the path of your JSON file
 JSON_PATH = Path("data/previas_data_backup.json")
-
+"INGENIERÍA QUÍMICA_2021"
+carrera = "INGENIERÍA EN COMPUTACIÓN_1997"
 
 # ============================================================
 # Helpers to detect "the same course"
@@ -123,16 +125,27 @@ def can_satisfy_without_course(node: dict, exam_code: str, exam_name: str) -> bo
 # Main search
 # ============================================================
 
+def get_credits_for_course(course_code, credits_data):
+    """Get credits for a course code from credits data."""
+    for cred_key, cred_course in credits_data.items():
+        if cred_course.get('codigo') == course_code:
+            return cred_course.get('creditos', 'N/A')
+    return 'N/A'
+
 def main():
     # Load JSON
     with open(JSON_PATH, "r", encoding="utf-8") as f:
-        data = json.load(f)["INGENIERÍA EN COMPUTACIÓN_1997"]
-        
+        data = json.load(f)[carrera]
+
     with open("data/vigentes_data_backup.json", "r", encoding="utf-8") as f:
-        vigentes = json.load(f)["INGENIERÍA EN COMPUTACIÓN_1997"]
+        vigentes = json.load(f)[carrera]
+
+    with open("data/credits_data_backup.json", "r", encoding="utf-8") as f:
+        credits_data = json.load(f)[carrera]
+
     exams_that_dont_require_course = []
     exams_can_without_course = []
-    exams_need_course = []
+    calidad_libre_courses = []
 
     for key, course in data.items():
         if course.get("type_previas") != "Examen":
@@ -146,6 +159,7 @@ def main():
         if not vigentes_course or "CIM" in exam_code or vigentes_course.get("university_code") == "CENURLN":
             continue
         course['university_code'] = vigentes_course.get("university_code")
+        course['credits'] = get_credits_for_course(exam_code, credits_data)
         # No requirements at all → definitely can be done without the course
         if not requirements:
             exams_can_without_course.append(course)
@@ -153,26 +167,92 @@ def main():
 
         if can_satisfy_without_course(requirements, exam_code, exam_name):
             exams_can_without_course.append(course)
-        else:
-            exams_need_course.append(course)
-   
+
+    # Find courses that are in vigentes & credits but NOT in previas (calidad libre)
+    previas_codes = {course.get("code") for course in data.values()}
+    for vig_code, vig_course in vigentes.items():
+        # Skip if already in previas
+        if vig_code in previas_codes:
+            continue
+
+        # Check if exists in credits
+        credits_exists = any(cred_course.get('codigo') == vig_code for cred_course in credits_data.values())
+
+        if credits_exists:
+            calidad_libre_courses.append({
+                'code': vig_code,
+                'name': vig_course.get('course_name', ''),
+                'university_code': vig_course.get('university_code', ''),
+                'credits': get_credits_for_course(vig_code, credits_data),
+                'source': 'calidad_libre'
+            })
+
+
+    # Filter out exams from CENURLN, CURE, and CUT universities
+    excluded_universities = {"CENURLN", "CURE", "CUT"}
+
+    exams_can_without_course_filtered = [
+        c for c in exams_can_without_course
+        if c.get('university_code') not in excluded_universities
+    ]
+
+    calidad_libre_filtered = [
+        c for c in calidad_libre_courses
+        if c.get('university_code') not in excluded_universities
+    ]
 
     # ---------------- Output ----------------
     print("======================================================")
-    print("Exams that CAN be taken WITHOUT their own course\n"
-          "(considering equivalent codes with the same name as 'the course'):")
+    print("ALL LIBRE COURSES (can be taken without prerequisites)")
+    print("Exams without course + Calidad Libre courses")
+    print("Filtered: excluding CENURLN, CURE, and CUT universities")
+    print("Format: CREDITS - CODE - NAME - UNIVERSITY")
     print("======================================================")
-    for c in exams_can_without_course:
-        print(f"{c.get('code')} - {c.get('name')} - {c.get('university_code')} ")
 
-    print("\n------------------------------------------------------")
-    print("Exams that REQUIRE their own course (directly or via equivalent code/name):")
-    print("------------------------------------------------------")
+    # Combine all libre courses
+    all_libre_courses = exams_can_without_course_filtered + calidad_libre_filtered
 
+    # Sort by credits (descending) then by name
+    def sort_key(course):
+        credits = course.get('credits', '0')
+        try:
+            return (int(credits), course.get('name', ''))
+        except ValueError:
+            return (0, course.get('name', ''))
 
-    print("\nSummary:")
-    print(f"  Exams without-course allowed : {len(exams_can_without_course)}")
-    print(f"  Exams requiring course       : {len(exams_need_course)}")
+    all_libre_courses.sort(key=sort_key, reverse=True)
+
+    # Print to console
+    for c in all_libre_courses:
+        credits = c.get('credits', 'N/A')
+        code = c.get('code', '')
+        name = c.get('name', '')
+        university = c.get('university_code', '')
+        print(f"{credits} - {code} - {name} - {university}")
+
+    # Save to CSV
+    csv_filename = "libre_courses.csv"
+    with open(csv_filename, 'w', newline='', encoding='utf-8') as csvfile:
+        fieldnames = ['credits', 'code', 'name', 'university_code', 'source']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+        for c in all_libre_courses:
+            writer.writerow({
+                'credits': c.get('credits', 'N/A'),
+                'code': c.get('code', ''),
+                'name': c.get('name', ''),
+                'university_code': c.get('university_code', ''),
+                'source': c.get('source', 'exam')
+            })
+
+    print(f"\nCSV file saved as: {csv_filename}")
+
+    print("\nSummary (filtered data):")
+    print(f"  Libre courses total         : {len(all_libre_courses)}")
+    print(f"    - Exams without course    : {len(exams_can_without_course_filtered)}")
+    print(f"    - Calidad libre courses   : {len(calidad_libre_filtered)}")
+    print(f"\nFiltered out {len(exams_can_without_course) - len(exams_can_without_course_filtered)} exams without course and {len(calidad_libre_courses) - len(calidad_libre_filtered)} calidad libre courses from CENURLN/CURE/CUT")
 
 
 

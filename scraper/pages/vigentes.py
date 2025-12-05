@@ -116,9 +116,35 @@ class Vigentes(Scraper, PlanSection):
                 sleep(1)
              
                 data_finalizadas = self.process_table()
-                
                 combined_data = {**data_disponibles, **data_finalizadas}
-                return combined_data
+                
+                self.open_plan_section(
+                    log_message=f"Starting to extract materias vigentes finalizadas for {plan} {year}",
+                    plan_name=plan,
+                    plan_year=year,
+                    second=True
+                )
+                
+                data_disponibles_second = {}
+                self.logger.info("Sacando instancias de evaluación con período disponible")
+                condicion_1 = not self.try_find_element((By.XPATH, '//td[text()= "No existen instancias de evaluación con período de inscripción/desistimiento habilitado."]'))
+                condicion_2 = not self.try_find_element((By.XPATH, '//td[text()= "No existen instancias de evaluación con período de inscripción/desistimiento finalizado en el último año."]'))
+
+                if condicion_1 and condicion_2:
+                    data_disponibles_second = self.process_table()
+                self.remove_element(self.driver.find_element(By.XPATH, '//div[@id="accordEval:tabEvalH_header"]'))
+                self.remove_element(self.driver.find_element(By.XPATH, '//div[@id="accordEval:tabEvalH"]'))
+                self.logger.info("Sacando instancias de evaluación con período finalizado")
+                self.wait_for_element_to_be_clickable((By.XPATH, '//div[contains(text(), "Instancias de evaluación con período finalizado")]')).click()
+                sleep(1)
+                condicion_1 = not self.try_find_element((By.XPATH, '//td[text()= "No existen instancias de evaluación con período de inscripción/desistimiento habilitado."]'))
+                condicion_2 = not self.try_find_element((By.XPATH, '//td[text()= "No existen instancias de evaluación con período de inscripción/desistimiento finalizado en el último año."]'))
+                if condicion_1 and condicion_2:
+                    data_finalizadas_second = self.process_table()
+                else:
+                    data_finalizadas_second = {}
+                combined_data_second = {**data_disponibles_second, **data_finalizadas_second}
+                return {**combined_data, **combined_data_second}
             except Exception as e:
                 last_exception = e
                 retry_count += 1

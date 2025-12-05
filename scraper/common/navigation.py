@@ -86,7 +86,7 @@ class PlanSection(UseTable):
    
         return plans_data
     
-    def open_plan_section(self, *, log_message: str, plan_name: str, plan_year: str) -> None:
+    def open_plan_section(self, *, log_message: str, plan_name: str, plan_year: str, second=False) -> None:
         """Navigate to the previas listing shared by previas and credits pages."""
         self.logger.info(log_message)
         self.open_faculty()
@@ -104,5 +104,9 @@ class PlanSection(UseTable):
         
         # Click on the info icon for the row that has both the matching year AND "Si" in vigente
         xpath = f'//tr[td[1][text()="{plan_year}"]][td[3][text()="Si"]]//i[contains(@class, "pi-info-circle") or contains(@class, "pi-calendar")]'
+        
         self.logger.info(f"Clicking plan: year={plan_year}, vigente=Si")
-        self.scroll_to_element_and_click(self.wait_for_element_to_be_clickable((By.XPATH, xpath)))
+        if not second:
+            return self.scroll_to_element_and_click(self.wait_for_element_to_be_clickable((By.XPATH, xpath)))        
+        second_element = self.wait_for_all_elements_to_be_visible((By.XPATH, xpath))[-1]
+        self.scroll_to_element_and_click(second_element)
